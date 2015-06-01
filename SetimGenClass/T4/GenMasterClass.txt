@@ -1,0 +1,10 @@
+﻿
+
+//-> asoSocio.cs
+
+//-> asoSocioControl.cs
+// Generated helper templates
+// SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
+// Generated items
+// SetimSiAso\SetimGenClass\Modelos\asoSocioControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoSocio.cs
