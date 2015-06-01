@@ -35,11 +35,11 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSocio> sp_asoSocio_0SelByAll(Int32 UserID, String CI, String Descripcion, DateTime Fecha_Nacimiento, String Estado, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        public IList<asoSocio> sp_asoSocio_0SelByAll(Int32 UserID, String CI, String Descripcion, DateTime Fecha_Nacimiento, String Estado, String Users_EMail, String Users_Nombre, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0SelByAll"
-                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, PageIndex, PageSize, SortField, SortDirection
+                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, Users_EMail, Users_Nombre, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 

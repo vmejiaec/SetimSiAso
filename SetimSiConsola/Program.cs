@@ -10,7 +10,7 @@ namespace SetimSiConsola
     {
         static void Main(string[] args)
         {
-
+            String prueba = "";
         }
     }
 }

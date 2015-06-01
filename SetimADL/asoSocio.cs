@@ -14,5 +14,7 @@ namespace SetimBasico
         public String Descripcion { get; set; }
         public DateTime Fecha_Nacimiento { get; set; }
         public String Estado { get; set; }
+        public String Users_EMail { get; set; }
+        public String Users_Nombre { get; set; }
     }
 }

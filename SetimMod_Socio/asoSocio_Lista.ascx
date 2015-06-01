@@ -26,8 +26,10 @@
         <asp:BoundColumn DataField="Id" HeaderStyle-Width="50px" HeaderText="Id"/>
         <asp:BoundColumn DataField="UserID" HeaderStyle-Width="50px" HeaderText="UserID"/>
         <asp:BoundColumn DataField="CI" HeaderStyle-Width="80px" HeaderText="CI"/>
-        <asp:BoundColumn DataField="Descripcion" HeaderStyle-Width="250px" HeaderText="Descripcion"/>
-        <asp:BoundColumn DataField="Fecha_Nacimiento" HeaderStyle-Width="140px" HeaderText="Fecha_Nacimiento" DataFormatString="{0:d}"/>
+        <asp:BoundColumn DataField="Users_Nombre" HeaderStyle-Width="150px" HeaderText="Nombre"/>
+        <asp:BoundColumn DataField="Users_EMail" HeaderStyle-Width="100px" HeaderText="EMail"/>
+        <asp:BoundColumn DataField="Descripcion" HeaderStyle-Width="150px" HeaderText="Descripcion"/>
+        <asp:BoundColumn DataField="Fecha_Nacimiento" HeaderStyle-Width="100px" HeaderText="Fecha_Nacimiento" DataFormatString="{0:d}"/>
         <asp:BoundColumn DataField="Estado" HeaderStyle-Width="50px" HeaderText="Estado"/>
 
         <asp:TemplateColumn>

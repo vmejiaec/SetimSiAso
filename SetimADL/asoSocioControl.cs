@@ -19,25 +19,27 @@ namespace SetimBasico
     public class asoSocioControl
     {
         LogEventos _eventos = new LogEventos();
-        public IList<asoSocio> sp_asoSocio_0Sel()
-        {
-            var dr = DataProvider.Instance().ExecuteReader("sp_asoSocio_0Sel");
-            return CBO.FillCollection<asoSocio>(dr);
-        }
-
-        public IList<asoSocio> sp_asoSocio_0SelByAll(Int32 UserID, String CI, String Descripcion, DateTime Fecha_Nacimiento, String Estado, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
-        {
-            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSocio_0SelByAll"
-                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, PageIndex, PageSize, SortField, SortDirection
-            ));
-        }
-
         public IList<asoSocio> sp_asoSocio_0SelByEstado(String Estado)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0SelByEstado"
                 , Estado
+            ));
+        }
+
+        public IList<asoSocio> sp_asoSocio_0Sel()
+        {
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0Sel"
+
+            ));
+        }
+
+        public IList<asoSocio> sp_asoSocio_0SelByAll(Int32 UserID, String CI, String Descripcion, DateTime Fecha_Nacimiento, String Estado, String Users_EMail, String Users_Nombre, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        {
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0SelByAll"
+                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, Users_EMail, Users_Nombre, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
@@ -62,7 +64,7 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_4Del, registro {0}.", o.Id);
-                throw new Exception(mensaje,exc);
+                throw new Exception(mensaje, exc);
             }
         }
 
@@ -79,7 +81,7 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_2Ins, registro {0}.", o.Id);
-                throw new Exception(mensaje,exc);
+                throw new Exception(mensaje, exc);
             }
         }
 
@@ -96,7 +98,7 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_3Upd, registro {0}.", o.Id);
-                throw new Exception(mensaje,exc);
+                throw new Exception(mensaje, exc);
             }
         }
 
@@ -113,7 +115,7 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_5CopyFromUsers, parámetros. ");
-                throw new Exception(mensaje,exc);
+                throw new Exception(mensaje, exc);
             }
         }
 
@@ -130,7 +132,7 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_5NoUsuariosPorEstado, parámetros. Estado:> {0}", Estado);
-                throw new Exception(mensaje,exc);
+                throw new Exception(mensaje, exc);
             }
         }
 

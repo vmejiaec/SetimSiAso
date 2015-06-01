@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoSocio.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="asoSocioControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +55,9 @@
       <Project>{63193768-efe9-473d-af70-e4d6925e9c15}</Project>
       <Name>SetimBasico</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GenMasterClass.txt4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
