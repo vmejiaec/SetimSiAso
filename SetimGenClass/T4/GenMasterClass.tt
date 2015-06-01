@@ -1,0 +1,221 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ include file="Plantillas\TemplateFilemanager.CS.ttinclude" #>
+<#@ output extension=".txt" #>
+<#
+    // The namespace surrounding the code
+    var namespaceName               = "SetimBasico";
+    var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
+    var schema                      = GetSchema (connectionString);
+    string Tabla_Nombre             = "asoSocio";
+    string SP_Prefijo               = "sp_";
+
+    var tables = schema
+        .SchemaObjects
+        .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
+            && (so.Name == Tabla_Nombre)))
+        .ToArray ();
+
+    var procs = schema
+        .SchemaObjects
+        .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
+            && (so.Name.StartsWith(SP_Prefijo+Tabla_Nombre))))
+        .ToArray();
+    
+    infoTabla iTabla = new infoTabla();
+    if (tables.Length > 0) {
+        // Carga los datos en la tabla
+        iTabla.Id = tables[0].Id;
+        iTabla.Name = tables[0].Name;
+        iTabla.NombreEntidad = tables[0].Name + ".cs";
+        iTabla.NombreControl= tables[0].Name + "Control.cs";
+        iTabla.NombreNamespace = namespaceName;
+        // Carga las columnas de la tabla
+        foreach (var c in tables[0].Columns)
+        {
+            iTabla.Cols.Add(new infoCol() {
+                Name = c.Name, 
+                CsTypeName= c.CsTypeName.Replace("System.",""),
+                isIdentity = c.IsIdentity,
+                isComputed = c.IsComputed
+            });
+        }
+        // Carga procesos y parámetros
+        foreach (var p in procs)
+        {
+            infoProc proc = new infoProc();
+            proc.Name = p.Name;
+            foreach ( var param in p.Parameters)
+            {
+                proc.Params.Add(new infoCol(){
+                    Name = param.Name,
+                    CsTypeName = param.CsTypeName.Replace("System.",""),
+                    isOutput = param.IsOutput 
+                });
+            }
+            iTabla.Procs.Add(proc);
+        }
+    }
+    // Graba las clases en archivos
+    var fileManager = TemplateFileManager.Create(this);
+    fileManager.IsAutoIndentEnabled = true;
+    fileManager.CanOverwriteExistingFile = true;
+    var paramTmpl = ParamTextTemplate.Create(this.Host); 
+    var session = ParamTextTemplate.GetSessionObject();	 
+    //Guarda en sesion la tabla
+    session["Tabla"] = iTabla;
+    //Generar clase entidad
+    fileManager.StartNewFile(iTabla.NombreEntidad, "", "Modelos");
+    string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
+    this.Write(outputEntidad);
+    // Generar clase de control
+    fileManager.StartNewFile(iTabla.NombreControl, "", "Modelos");
+    string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
+    this.Write(outputControl);
+    // Guardar
+    fileManager.Process();
+#>
+<#+
+    static Schema GetSchema (string connectionString) 
+    {
+        using (var connection = new SqlConnection (connectionString))
+        {
+            connection.Open ();
+            return new Schema (connection);
+        }
+    }
+    /// <summary>
+    /// Información para tablas
+    /// </summery>
+    [Serializable()]
+    public class infoTabla : MarshalByRefObject
+    {
+        public string NombreNamespace{ get; set; }
+        public string NombreEntidad{ get; set; }
+        public string NombreControl { get; set; }
+        public int Id{ get; set; }
+	    public string Name { get; set; }
+	    public List<infoCol> Cols{ get; set; }
+        public List<infoProc> Procs{ get; set; }
+        public infoTabla()
+        {
+            Name = "..";
+            Cols = Cols ?? new List<infoCol>();
+            Procs = Procs ?? new List<infoProc>();
+        }
+        public List<infoProc> ProcsSelectVariosRegistros()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_0Sel"));
+            return res;
+        }
+        public List<infoProc> ProcsSelectUnRegistro()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_1Sel"));
+            return res;
+        }
+        public List<infoProc> ProcsIUD()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (
+                (p.Name.EndsWith("_2Ins")) ||
+                (p.Name.EndsWith("_3Upd")) ||
+                (p.Name.EndsWith("_4Del")) 
+                ));
+            return res;
+        }
+        public List<infoProc> ProcsOtros()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_5"));
+            return res;
+        }
+    }
+    /// <summary>
+    /// Información para Procedimientos
+    /// </summery>
+    [Serializable()]
+    public class infoProc : MarshalByRefObject
+    {
+        public int Id{ get; set; }
+        public string Name{ get; set; }
+        public List<infoCol> Params{ get; set; }
+        public infoProc()
+        {
+            Name = "..";
+            Params = Params ?? new List<infoCol>();
+        }
+        public string ParamsConTipo()
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1} {2}",lista,p.CsTypeName, p.Name.Replace("@",""));
+            }
+            return string.IsNullOrEmpty(lista)?"":lista.Remove(0,1);
+        }
+        public string ParamsSinTipoConComaInicial()
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1}",lista,p.Name.Replace("@",""));
+            }
+            return lista;
+        }
+        public string ParamsSinTipoConComaInicialConPrefijo(string prefijo)
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1}{2}",lista,prefijo,p.Name.Replace("@",""));
+            }
+            return lista;
+        }
+        public string MarcasParaFormatString()
+        {
+            string marcas="";
+            int i = 0;
+            foreach(var p in Params)
+            {
+                marcas = marcas + p.Name.Replace("@","") + ":> {" + i.ToString() + "}";
+                i = i + 1;
+            }
+            return marcas;
+        }
+    }
+    /// <summary>
+    /// Información para columnas y parametros
+    /// </summery>
+    [Serializable()]
+    public class infoCol : MarshalByRefObject
+    {
+        public int Id{ get; set; }
+        public string Name{ get; set; }
+    
+        public string DbTypeName{ get; set; }
+        public string CsTypeName{ get; set; }
+        public string DbDefaultValue{ get; set; }
+    
+        public short MaxLength{ get; set; }
+        public byte Precision{ get; set; }
+        public byte Scale{ get; set; }
+
+        public bool isOutput{ get; set; }
+        public bool isIdentity { get; set; }
+        public bool isNullable { get; set; }
+        public bool isComputed { get; set; }
+    }
+#>
+<#+ 
+    /// <summary>
+    /// DTO definitions for parameter template
+    /// </summery>
+    [Serializable]
+    public class Person : MarshalByRefObject
+    {
+	    public string Name { get; set; }
+	    public string CsTypeName { get; set; }
+    }
+#>
