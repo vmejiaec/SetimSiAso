@@ -1,0 +1,60 @@
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe.config
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.Linq.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.Linq.dll
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.pdb
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.TemplateDialog.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.frmCompareData.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.CompareSchema.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.EditConnection.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.MainForm.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.Properties.Resources.resources
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csproj.GenerateResource.Cache
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Users\Victor\Desktop\Nueva carpeta\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe.config
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.Linq.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.Linq.dll
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.pdb
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.TemplateDialog.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.frmCompareData.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.CompareSchema.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.EditConnection.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.MainForm.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.Properties.Resources.resources
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csproj.GenerateResource.Cache
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Users\Victor\Desktop\T4 Docs\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe.config
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\System.Data.Linq.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\System.Xml.Linq.dll
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\bin\Debug\FlexiSqlTools.Core.pdb
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csprojResolveAssemblyReference.cache
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.TemplateDialog.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.frmCompareData.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.CompareSchema.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.EditConnection.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.MainForm.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.Properties.Resources.resources
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\Flexi Sql Tools Windows Forms.csproj.GenerateResource.Cache
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.exe
+C:\Victor\SetimDNN\FlexiSqlTools-master\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.pdb
