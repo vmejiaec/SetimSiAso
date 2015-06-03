@@ -31,6 +31,69 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.LinkButton btCopiarSocios;
         
         /// <summary>
+        /// pnFiltros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnFiltros;
+        
+        /// <summary>
+        /// lbFiltro_Mixto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFiltro_Mixto;
+        
+        /// <summary>
+        /// tbFiltro_Mixto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFiltro_Mixto;
+        
+        /// <summary>
+        /// lbFiltro_Estado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFiltro_Estado;
+        
+        /// <summary>
+        /// ddlFiltro_Estado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Estado;
+        
+        /// <summary>
+        /// lbNoFilasPorPagina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNoFilasPorPagina;
+        
+        /// <summary>
+        /// ddlNoFilasPorPagina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNoFilasPorPagina;
+        
+        /// <summary>
         /// dgMaster control.
         /// </summary>
         /// <remarks>

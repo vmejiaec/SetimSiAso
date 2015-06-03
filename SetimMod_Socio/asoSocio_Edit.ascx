@@ -9,6 +9,7 @@
 <div id="dnnUsers" class="dnnForm dnnClear">
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos del socio." />
     <fieldset>
+        <legend></legend>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Identificador"/>
             <asp:TextBox runat="server" ID="tbId" Enabled="false"/>

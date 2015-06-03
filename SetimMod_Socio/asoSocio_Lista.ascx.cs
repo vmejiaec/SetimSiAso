@@ -6,6 +6,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
 using DotNetNuke.Collections;
+using DotNetNuke.Common.Lists;
 
 using SetimBasico;
 
@@ -27,19 +28,32 @@ namespace SetimMod_Socio
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            // Datos del usuario del DNN
+            _UserId = ModuleContext.PortalSettings.UserId;
+            // Inicializa la lista de estados en el filtro
+            BindFiltro_Estado();
             // Inicializa el ordenamiento
             if (Session["campo_orden"] == null) Session["campo_orden"] = new campo_orden() { campo = "Users_Nombre", orden="ASC" };
-
-            _UserId = ModuleContext.PortalSettings.UserId;
+            // Datos de la página actual            
             int paginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
-
+            // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
                 dgMaster.VirtualItemCount = 20;
                 ConsultaDatos(paginaIndex);
             }
+            // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+        }
+
+        private void BindFiltro_Estado()
+        {
+            ListController dnnListas = new ListController();
+            var lista = dnnListas.GetListEntryInfoItems("asoSocio_Estado");
+            ddlFiltro_Estado.DataSource = lista;
+            ddlFiltro_Estado.DataTextField = "Text";
+            ddlFiltro_Estado.DataValueField = "Value";
+            ddlFiltro_Estado.DataBind();
         }
 
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
