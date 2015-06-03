@@ -13,13 +13,13 @@ namespace SetimMod_Socio {
     public partial class asoSocio_Edit {
         
         /// <summary>
-        /// lblAux control.
+        /// lbTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAux;
+        protected global::System.Web.UI.WebControls.Label lbTitulo;
         
         /// <summary>
         /// lbId control.
@@ -28,7 +28,7 @@ namespace SetimMod_Socio {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbId;
+        protected global::System.Web.UI.UserControl lbId;
         
         /// <summary>
         /// tbId control.
@@ -46,7 +46,7 @@ namespace SetimMod_Socio {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbUserId;
+        protected global::System.Web.UI.UserControl lbUserId;
         
         /// <summary>
         /// tbUserId control.
@@ -58,13 +58,31 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.TextBox tbUserId;
         
         /// <summary>
+        /// lbNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbNombre;
+        
+        /// <summary>
+        /// tbNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNombre;
+        
+        /// <summary>
         /// lbCI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCI;
+        protected global::System.Web.UI.UserControl lbCI;
         
         /// <summary>
         /// tbCI control.
@@ -76,13 +94,40 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.TextBox tbCI;
         
         /// <summary>
+        /// rfv_tbCI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbCI;
+        
+        /// <summary>
+        /// lbEMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbEMail;
+        
+        /// <summary>
+        /// tbEMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEMail;
+        
+        /// <summary>
         /// lbDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDescripcion;
+        protected global::System.Web.UI.UserControl lbDescripcion;
         
         /// <summary>
         /// tbDescripcion control.
@@ -100,16 +145,16 @@ namespace SetimMod_Socio {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFecha_Nacimiento;
+        protected global::System.Web.UI.UserControl lbFecha_Nacimiento;
         
         /// <summary>
-        /// tbFecha_Nacimiento control.
+        /// dnnDP_Fecha_Nacimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFecha_Nacimiento;
+        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_Fecha_Nacimiento;
         
         /// <summary>
         /// lbEstado control.
@@ -118,16 +163,16 @@ namespace SetimMod_Socio {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEstado;
+        protected global::System.Web.UI.UserControl lbEstado;
         
         /// <summary>
-        /// tbEstado control.
+        /// ddlEstado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
         
         /// <summary>
         /// saveButton control.

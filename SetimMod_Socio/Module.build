@@ -33,7 +33,7 @@
           DestinationFolder="$(WebsiteBinPath)" />
   </Target>
 
-    <Target Name="CopyFiles">
+  <Target Name="CopyFiles">
     <Copy SourceFiles="@(Views)" 
           DestinationFolder="$(ModuleFolderName)" />
     <Copy SourceFiles="@(Styles)"  

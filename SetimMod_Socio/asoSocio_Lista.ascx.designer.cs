@@ -31,21 +31,12 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.LinkButton btCopiarSocios;
         
         /// <summary>
-        /// tasks control.
+        /// dgMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid tasks;
-        
-        /// <summary>
-        /// msj control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label msj;
+        protected global::System.Web.UI.WebControls.DataGrid dgMaster;
     }
 }

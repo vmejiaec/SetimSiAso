@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text;
 
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
-using DotNetNuke.UI.Utilities;
+using DotNetNuke.Collections;
 
 using SetimBasico;
 
@@ -21,26 +17,76 @@ namespace SetimMod_Socio
         private int _UserId;
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        // Datos para el ordenamiento
+        class campo_orden 
+        {
+            public string campo = "";
+            public string orden = "ASC";
+        }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            // Inicializa el ordenamiento
+            if (Session["campo_orden"] == null) Session["campo_orden"] = new campo_orden() { campo = "Users_Nombre", orden="ASC" };
+
             _UserId = ModuleContext.PortalSettings.UserId;
+            int paginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
+
             if (!IsPostBack)
             {
-                tasks.DataSource = _EntidadControl.sp_asoSocio_0Sel();
-                tasks.DataBind();
+                dgMaster.VirtualItemCount = 20;
+                ConsultaDatos(paginaIndex);
             }
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
 
-        protected void DeleteTask(object source, DataGridCommandEventArgs e)
+        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            { 
+                case "Borrar":
+                    int entidadId = int.Parse((string) e.CommandArgument);
+                    BorrarEntidad(entidadId);
+                    break;
+                case "Page":
+                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
+                    string dir = (string)e.CommandArgument;
+                    int indice = ((DataGrid)source).CurrentPageIndex;
+                    if (dir == "Next")
+                        indice = indice + 1;
+                    else
+                        indice = indice - 1;
+                    ConsultaDatos(indice);
+                    break;
+            }            
+        }
+        // Proceso de carga de datos en el GridView
+        protected void ConsultaDatos(int PaginaIndice)
+        {
+            campo_orden Campo_Orden = (campo_orden)Session["campo_orden"];
+            var NoRegsPorPagina = dgMaster.PageSize;
+            var datos = _EntidadControl.sp_asoSocio_0SelByAll(
+                null, null, null, null, null, null, null,
+                PaginaIndice, NoRegsPorPagina, 
+                Campo_Orden.campo, Campo_Orden.orden);
+            // Calcula la página que el toca
+            int noDatos = datos.Count();
+            dgMaster.CurrentPageIndex = PaginaIndice;
+            dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ? (PaginaIndice) * 10 + noDatos : (PaginaIndice + 2) * 10;
+            // Coloa los datos en el grid
+            dgMaster.DataSource = datos;
+            dgMaster.DataBind();
+            
+        }
+        // Proceso de borrado de la fila
+        protected void BorrarEntidad(int entidadId)
         {
             try
             {
-                var socioId = Convert.ToInt32(e.CommandArgument);
-                var oSocio = _EntidadControl.sp_asoSocio_1SelById(socioId);
-                int res =  _EntidadControl.sp_asoSocio_4Del(oSocio);
+                var oSocio = _EntidadControl.sp_asoSocio_1SelById(entidadId);
+                int res = _EntidadControl.sp_asoSocio_4Del(oSocio);
                 Response.Redirect(Request.RawUrl, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -48,13 +94,14 @@ namespace SetimMod_Socio
             {
                 Exceptions.LogException(exc);
                 const string headerText = "Error";
-                const string messageText = "Al borrar hay error. <br/> Mire en el visor.";
+                const string messageText = "Al borrar hay error. Mire en el visor.";
                 Skin.AddModuleMessage(this,
                     headerText,
                     messageText,
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
+        // Carga masiva de los socios en base de los usuario que tienen rol ="Socio"
         protected void btCopiarSocios_OnClick(object sender, EventArgs e)
         {
             try
@@ -73,6 +120,21 @@ namespace SetimMod_Socio
                     messageText,
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
+        }
+
+        protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
+        {
+            campo_orden Campo_Orden = (campo_orden) Session["campo_orden"];
+            if (Campo_Orden.campo == e.SortExpression)
+                Campo_Orden.orden = Campo_Orden.orden == "ASC" ? "DES" : "ASC";
+            else
+            {
+                Campo_Orden.campo = e.SortExpression;
+                Campo_Orden.orden = "ASC";
+            }
+            Session["campo_orden"] = Campo_Orden;
+            // Consulta los datos
+            ConsultaDatos(dgMaster.CurrentPageIndex);
         }
     }
 }

@@ -14,50 +14,54 @@
     </li>
 </ul>
 
-<asp:DataGrid runat="server" ID="tasks"
-    AutoGenerateColumns="false"
-    GridLines="None"
-    OnItemCommand ="DeleteTask"
-    >
-    <HeaderStyle CssClass="taskListHeader" />
-    <ItemStyle CssClass="taskListRow" />
-    <AlternatingItemStyle CssClass="gridEstiloAlternante" />
-    <Columns>
-        <asp:BoundColumn DataField="Id" HeaderStyle-Width="50px" HeaderText="Id"/>
-        <asp:BoundColumn DataField="UserID" HeaderStyle-Width="50px" HeaderText="UserID"/>
-        <asp:BoundColumn DataField="CI" HeaderStyle-Width="80px" HeaderText="CI"/>
-        <asp:BoundColumn DataField="Users_Nombre" HeaderStyle-Width="150px" HeaderText="Nombre"/>
-        <asp:BoundColumn DataField="Users_EMail" HeaderStyle-Width="100px" HeaderText="EMail"/>
-        <asp:BoundColumn DataField="Descripcion" HeaderStyle-Width="150px" HeaderText="Descripcion"/>
-        <asp:BoundColumn DataField="Fecha_Nacimiento" HeaderStyle-Width="100px" HeaderText="Fecha_Nacimiento" DataFormatString="{0:d}"/>
-        <asp:BoundColumn DataField="Estado" HeaderStyle-Width="50px" HeaderText="Estado"/>
+<asp:DataGrid runat="server" ID="dgMaster" 
+    CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
+    
+    AllowPaging="True" AllowCustomPaging="True" 
+    PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior" 
+    
+    AllowSorting="True"
 
+    OnItemCommand ="dgMaster_OnItemCommand"
+    OnSortCommand="dgMaster_SortCommand">
+
+    <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
+    <headerstyle cssclass="dnnGridHeader" verticalalign="Top"/>
+    <itemstyle cssclass="dnnGridItem" horizontalalign="Left" />
+
+    <Columns>
+        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="50px"    />
+        <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="50px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
+        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    HeaderStyle-HorizontalAlign="Center"/>
+        <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="150px"   SortExpression="Users_Nombre" />
+        <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="100px"   SortExpression="EMail" />
+        <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="150px"   SortExpression="Descripcion" />
+        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha_Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"/>
+        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center"/>
         <asp:TemplateColumn>
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
-                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit", "paginaIndex", dgMaster.CurrentPageIndex.ToString()) %>'
                     Text="Editar"
                 />
             </ItemTemplate>
         </asp:TemplateColumn>
-
         <asp:TemplateColumn>
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:LinkButton runat="server" ID="LinkButton1"
                     class ="confirm"
                     CommandArgument='<%# Eval("Id") %>'
-                    CommandName ="Delete" 
+                    CommandName ="Borrar" 
                     Text="Borrar"
                 />
             </ItemTemplate>
         </asp:TemplateColumn>
-
     </Columns>
 </asp:DataGrid>
 
-<div><asp:Label runat="server" ID="msj" Text=">:"></asp:Label></div>
+<div><i>Página No: <%=dgMaster.CurrentPageIndex+1%>.</i></div>
 
 <script type="text/javascript">
     jQuery(function ($) {
