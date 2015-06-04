@@ -19,10 +19,14 @@ namespace SetimMod_Socio
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
         // Datos para el ordenamiento
-        class campo_orden 
+        class PaginacionFiltroOrden 
         {
-            public string campo = "";
-            public string orden = "ASC";
+            public int NoFilasPorPagina { get; set; }
+            public int PaginaActual { get; set; }
+            public string OrdenarCampo { get; set; }
+            public string OrdenarSentido { get; set; }
+            public string FiltroNombre { get; set; }
+            public string FiltroValor { get; set; }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -30,22 +34,27 @@ namespace SetimMod_Socio
             base.OnLoad(e);
             // Datos del usuario del DNN
             _UserId = ModuleContext.PortalSettings.UserId;
-            // Inicializa la lista de estados en el filtro
-            BindFiltro_Estado();
             // Inicializa el ordenamiento
-            if (Session["campo_orden"] == null) Session["campo_orden"] = new campo_orden() { campo = "Users_Nombre", orden="ASC" };
+            if (Session["PaginacionFiltroOrden"] == null) Session["PaginacionFiltroOrden"] = new PaginacionFiltroOrden()
+            {
+                OrdenarCampo = "Users_Nombre",
+                OrdenarSentido = "ASC"
+            };
             // Datos de la página actual            
             int paginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
+                // Inicializa la lista de estados en el filtro
+                BindFiltro_Estado();
+                // Carga de datos
                 dgMaster.VirtualItemCount = 20;
                 ConsultaDatos(paginaIndex);
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
-
+        // Carga los estados desde una lista de DNN llamada asoSocio_Estado
         private void BindFiltro_Estado()
         {
             ListController dnnListas = new ListController();
@@ -56,6 +65,7 @@ namespace SetimMod_Socio
             ddlFiltro_Estado.DataBind();
         }
 
+        // Organiza los comandos generados por el DataGrid
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
         {
             switch (e.CommandName)
@@ -79,12 +89,12 @@ namespace SetimMod_Socio
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos(int PaginaIndice)
         {
-            campo_orden Campo_Orden = (campo_orden)Session["campo_orden"];
+            PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
             var NoRegsPorPagina = dgMaster.PageSize;
             var datos = _EntidadControl.sp_asoSocio_0SelByAll(
                 null, null, null, null, null, null, null,
-                PaginaIndice, NoRegsPorPagina, 
-                Campo_Orden.campo, Campo_Orden.orden);
+                PaginaIndice, NoRegsPorPagina,
+                filtros.OrdenarCampo, filtros.OrdenarSentido);
             // Calcula la página que el toca
             int noDatos = datos.Count();
             dgMaster.CurrentPageIndex = PaginaIndice;
@@ -138,17 +148,39 @@ namespace SetimMod_Socio
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
-            campo_orden Campo_Orden = (campo_orden) Session["campo_orden"];
-            if (Campo_Orden.campo == e.SortExpression)
-                Campo_Orden.orden = Campo_Orden.orden == "ASC" ? "DES" : "ASC";
+            PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
+            if (filtros.OrdenarCampo == e.SortExpression)
+                filtros.OrdenarSentido = filtros.OrdenarSentido == "ASC" ? "DES" : "ASC";
             else
             {
-                Campo_Orden.campo = e.SortExpression;
-                Campo_Orden.orden = "ASC";
+                filtros.OrdenarCampo = e.SortExpression;
+                filtros.OrdenarSentido = "ASC";
             }
-            Session["campo_orden"] = Campo_Orden;
+            Session["PaginacionFiltroOrden"] = filtros;
             // Consulta los datos
             ConsultaDatos(dgMaster.CurrentPageIndex);
+        }
+
+        protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                e.Item.Cells[0].ColumnSpan = 2;
+                e.Item.Cells[0].Text = string.Format("Página No: {0}",dgMaster.CurrentPageIndex+1);
+                e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1 );
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+            }
+        }
+
+        protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

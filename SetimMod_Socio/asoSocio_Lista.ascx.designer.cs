@@ -58,6 +58,15 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.TextBox tbFiltro_Mixto;
         
         /// <summary>
+        /// btBuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btBuscar;
+        
+        /// <summary>
         /// lbFiltro_Estado control.
         /// </summary>
         /// <remarks>
@@ -74,24 +83,6 @@ namespace SetimMod_Socio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Estado;
-        
-        /// <summary>
-        /// lbNoFilasPorPagina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNoFilasPorPagina;
-        
-        /// <summary>
-        /// ddlNoFilasPorPagina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNoFilasPorPagina;
         
         /// <summary>
         /// dgMaster control.

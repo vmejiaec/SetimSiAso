@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="asoSocio_Lista.ascx.cs" Inherits="SetimMod_Socio.asoSocio_Lista" %>
 
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
     <li>
@@ -15,31 +16,26 @@
     </li>
 </ul>
 
-<asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage">
+<asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
     <div class="dnnClear">
         <asp:Label runat="server" ID="lbFiltro_Mixto" Text="CI, Nombre o EMail: "/>
         <asp:TextBox runat="server" ID="tbFiltro_Mixto" Text="" CssClass="TextBox_Setim" />
+        <asp:Button runat="server" ID="btBuscar" Text="Buscar" />
         <asp:Label runat="server" ID="lbFiltro_Estado" Text="Estado: "/>
-        <asp:DropDownList runat="server" ID="ddlFiltro_Estado" AutoPostBack="false" CssClass="DropDownList_Setim"/>
-        <asp:Label runat="server" ID="lbNoFilasPorPagina" Text="No Filas por Página: "/>
-        <asp:DropDownList ID="ddlNoFilasPorPagina" runat="server" AutoPostBack="false" CssClass="DropDownList_Setim">
-            <asp:ListItem Value="10">10</asp:ListItem>
-            <asp:ListItem Value="25">20</asp:ListItem>
-            <asp:ListItem Value="50">50</asp:ListItem>
-        </asp:DropDownList>
+        <asp:DropDownList runat="server" ID="ddlFiltro_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
     </div>
 </asp:Panel>
 
 <asp:DataGrid runat="server" ID="dgMaster" 
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
-    
+    ShowFooter="true"
     AllowPaging="True" AllowCustomPaging="True" 
     PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior" 
     
     AllowSorting="True"
 
     OnItemCommand ="dgMaster_OnItemCommand"
-    OnSortCommand="dgMaster_SortCommand">
+    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated">
 
     <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
 
@@ -50,22 +46,32 @@
     <selecteditemstyle cssclass="dnnFormError" />
     <footerstyle cssclass="dnnGridFooter" />
 
-    <Columns>
-        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="50px"    />
+    <Columns>        
+        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="50px"    FooterText ="Página No: "   />
         <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="50px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
-        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    HeaderStyle-HorizontalAlign="Center"/>
+        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    HeaderStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="150px"   SortExpression="Users_Nombre" />
         <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="100px"   SortExpression="EMail" />
         <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="150px"   SortExpression="Descripcion" />
-        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha_Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"/>
-        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center"/>
+        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha_Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center" />
+
+        <asp:TemplateColumn>
+            <FooterTemplate>
+                No de Filas: 
+                <asp:DropDownList ID="ddlNoFilasPorPagina" runat="server" CssClass="DropDownList_Setim" AutoPostBack="true" OnSelectedIndexChanged="ddlNoFilasPorPagina_SelectedIndexChanged" >
+                    <asp:ListItem Value="10">10</asp:ListItem>
+                    <asp:ListItem Value="20">20</asp:ListItem>
+                    <asp:ListItem Value="50">50</asp:ListItem>
+                </asp:DropDownList>
+            </FooterTemplate>
+        </asp:TemplateColumn>
         <asp:TemplateColumn>
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
                     NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit", "paginaIndex", dgMaster.CurrentPageIndex.ToString()) %>'
-                    Text="Editar"
-                />
+                    Text="Editar"/>
             </ItemTemplate>
         </asp:TemplateColumn>
         <asp:TemplateColumn>
@@ -75,14 +81,11 @@
                     class ="confirm"
                     CommandArgument='<%# Eval("Id") %>'
                     CommandName ="Borrar" 
-                    Text="Borrar"
-                />
+                    Text="Borrar"/>
             </ItemTemplate>
         </asp:TemplateColumn>
     </Columns>
 </asp:DataGrid>
-
-<div><i>Página No: <%=dgMaster.CurrentPageIndex+1%>.</i></div>
 
 <script type="text/javascript">
     jQuery(function ($) {
@@ -97,8 +100,8 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('input[class=TextBox_Setim]').css({ 'margin': '0px' });
-        $('select[class=DropDownList_Setim]').css({ 'margin': '0px' });
+        $('input[class=TextBox_Setim]').css({ 'margin': '0px', 'padding': '2px' });
+        $('select[class=DropDownList_Setim]').css({ 'margin': '0px', 'padding': '2px' });
     })
 </script>
 
