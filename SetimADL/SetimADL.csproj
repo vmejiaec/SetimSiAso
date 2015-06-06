@@ -42,11 +42,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoPeriodo.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asoSetimLista.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asoSetimListaControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asoSetimListaDet.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asoSetimListaDetControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="asoSocio.cs">
       <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="asoSocioControl.cs">
       <DependentUpon>GenMasterClass.txt4</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

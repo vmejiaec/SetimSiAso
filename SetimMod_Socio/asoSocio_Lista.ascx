@@ -18,12 +18,16 @@
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
     <div class="dnnClear">
-        <asp:Label runat="server" ID="lbFiltro_Mixto" Text="CI, Nombre o EMail: "/>
-        <asp:TextBox runat="server" ID="tbFiltro_Mixto" Text="" CssClass="TextBox_Setim" />
-        <asp:Button runat="server" ID="btBuscar" Text="Buscar" />
-        <asp:Label runat="server" ID="lbFiltro_Estado" Text="Estado: "/>
-        <asp:DropDownList runat="server" ID="ddlFiltro_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
+        <asp:Label runat="server" ID="lbFiltro_Criterio" Text="Criterio: "/>
+        <asp:TextBox runat="server" ID="tbFiltro_Criterio" Text="" CssClass="TextBox_Setim" />
+        <asp:DropDownList runat="server" ID="ddlFiltro_Campo" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
+        <asp:Button runat="server" ID="btBuscar" Text="Buscar" OnClick="btBuscar_Click" />
     </div>
+</asp:Panel>
+
+<asp:Panel runat="server" ID="pnCabecera" CssClass="dnnFormMessage dnnFormSuccess">
+    <asp:Label runat="server" ID="lbCab_Estado" Text="Estado: "/>
+    <asp:DropDownList runat="server" ID="ddlCab_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
 </asp:Panel>
 
 <asp:DataGrid runat="server" ID="dgMaster" 

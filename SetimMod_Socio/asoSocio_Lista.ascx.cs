@@ -54,15 +54,15 @@ namespace SetimMod_Socio
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
-        // Carga los estados desde una lista de DNN llamada asoSocio_Estado
+        // Carga los estados desde una lista de SetimLista
         private void BindFiltro_Estado()
         {
-            ListController dnnListas = new ListController();
-            var lista = dnnListas.GetListEntryInfoItems("asoSocio_Estado");
-            ddlFiltro_Estado.DataSource = lista;
-            ddlFiltro_Estado.DataTextField = "Text";
-            ddlFiltro_Estado.DataValueField = "Value";
-            ddlFiltro_Estado.DataBind();
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
+            ddlCab_Estado.DataSource = lista;
+            ddlCab_Estado.DataTextField = "Texto";
+            ddlCab_Estado.DataValueField = "Valor";
+            ddlCab_Estado.DataBind();
         }
 
         // Organiza los comandos generados por el DataGrid
@@ -86,12 +86,18 @@ namespace SetimMod_Socio
                     break;
             }            
         }
+        // Filtrar 
+        protected void filtrar()
+        { 
+            // Estado
+
+        }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos(int PaginaIndice)
         {
             PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
             var NoRegsPorPagina = dgMaster.PageSize;
-            var datos = _EntidadControl.sp_asoSocio_0SelByAll(
+            var datos = _EntidadControl._0SelByAll(
                 null, null, null, null, null, null, null,
                 PaginaIndice, NoRegsPorPagina,
                 filtros.OrdenarCampo, filtros.OrdenarSentido);
@@ -109,8 +115,8 @@ namespace SetimMod_Socio
         {
             try
             {
-                var oSocio = _EntidadControl.sp_asoSocio_1SelById(entidadId);
-                int res = _EntidadControl.sp_asoSocio_4Del(oSocio);
+                var oSocio = _EntidadControl._1SelById(entidadId);
+                int res = _EntidadControl._4Del(oSocio);
                 Response.Redirect(Request.RawUrl, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -130,7 +136,7 @@ namespace SetimMod_Socio
         {
             try
             {
-                _EntidadControl.sp_asoSocio_5CopyFromUsers();
+                _EntidadControl._5CopyFromUsers();
                 Response.Redirect(Request.RawUrl,false);
                 Context.ApplicationInstance.CompleteRequest();
             }
@@ -179,6 +185,11 @@ namespace SetimMod_Socio
         }
 
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btBuscar_Click(object sender, EventArgs e)
         {
 
         }

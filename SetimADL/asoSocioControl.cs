@@ -19,7 +19,7 @@ namespace SetimBasico
     public class asoSocioControl
     {
         LogEventos _eventos = new LogEventos();
-        public IList<asoSocio> sp_asoSocio_0SelByEstado(String Estado)
+        public IList<asoSocio> _0SelByEstado(String Estado)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0SelByEstado"
@@ -27,7 +27,7 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSocio> sp_asoSocio_0Sel()
+        public IList<asoSocio> _0Sel()
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0Sel"
@@ -35,7 +35,7 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSocio> sp_asoSocio_0SelByAll(Int32? UserID, string CI, string Descripcion, DateTime? Fecha_Nacimiento, string Estado, string Users_EMail, string Users_Nombre, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        public IList<asoSocio> _0SelByAll(Int32? UserID, String CI, String Descripcion, DateTime? Fecha_Nacimiento, String Estado, String Users_EMail, String Users_Nombre, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0SelByAll"
@@ -43,7 +43,7 @@ namespace SetimBasico
             ));
         }
 
-        public asoSocio sp_asoSocio_1SelById(Int32 Id)
+        public asoSocio _1SelById(Int32 Id)
         {
             return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_1SelById"
@@ -51,7 +51,7 @@ namespace SetimBasico
             ));
         }
 
-        public int sp_asoSocio_4Del(asoSocio o)
+        public int _4Del(asoSocio o)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace SetimBasico
             }
         }
 
-        public int sp_asoSocio_2Ins(asoSocio o)
+        public int _2Ins(asoSocio o)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace SetimBasico
             }
         }
 
-        public int sp_asoSocio_3Upd(asoSocio o)
+        public int _3Upd(asoSocio o)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace SetimBasico
             }
         }
 
-        public int sp_asoSocio_5CopyFromUsers()
+        public int _5CopyFromUsers()
         {
             try
             {
@@ -119,7 +119,7 @@ namespace SetimBasico
             }
         }
 
-        public int sp_asoSocio_5NoUsuariosPorEstado(String Estado)
+        public int _5NoUsuariosPorEstado(String Estado)
         {
             try
             {

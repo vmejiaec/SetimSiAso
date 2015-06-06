@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelos\asoSocio.cs">
+    <Compile Include="Modelos\asoSetimListaDet.cs">
       <DependentUpon>GenMasterClass.txt4</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\asoSocioControl.cs">
+    <Compile Include="Modelos\asoSetimListaDetControl.cs">
       <DependentUpon>GenMasterClass.txt4</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

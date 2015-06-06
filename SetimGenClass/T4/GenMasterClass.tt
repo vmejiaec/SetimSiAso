@@ -7,8 +7,9 @@
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
-    string Tabla_Nombre             = "asoSocio";
+    string Tabla_Nombre             = "asoSetimListaDet";
     string SP_Prefijo               = "sp_";
+    string SP_NombrePrefijo         = SP_Prefijo+Tabla_Nombre+"_";
 
     var tables = schema
         .SchemaObjects
@@ -19,7 +20,7 @@
     var procs = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
-            && (so.Name.StartsWith(SP_Prefijo+Tabla_Nombre))))
+            && (so.Name.StartsWith(SP_NombrePrefijo))))
         .ToArray();
     
     infoTabla iTabla = new infoTabla();
@@ -30,6 +31,7 @@
         iTabla.NombreEntidad = tables[0].Name + ".cs";
         iTabla.NombreControl= tables[0].Name + "Control.cs";
         iTabla.NombreNamespace = namespaceName;
+        iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
         // Carga las columnas de la tabla
         foreach (var c in tables[0].Columns)
         {
@@ -45,6 +47,8 @@
         {
             infoProc proc = new infoProc();
             proc.Name = p.Name;
+            proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
+            //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
             foreach ( var param in p.Parameters)
             {
                 proc.Params.Add(new infoCol(){
@@ -65,11 +69,11 @@
     //Guarda en sesion la tabla
     session["Tabla"] = iTabla;
     //Generar clase entidad
-    fileManager.StartNewFile(iTabla.NombreEntidad, "", "Modelos");
+    fileManager.StartNewFile(iTabla.NombreEntidad, "","Modelos");
     string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
     this.Write(outputEntidad);
     // Generar clase de control
-    fileManager.StartNewFile(iTabla.NombreControl, "", "Modelos");
+    fileManager.StartNewFile(iTabla.NombreControl, "","Modelos");
     string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
     this.Write(outputControl);
     // Guardar
@@ -93,6 +97,7 @@
         public string NombreNamespace{ get; set; }
         public string NombreEntidad{ get; set; }
         public string NombreControl { get; set; }
+        public string SP_NombrePrefijo { get; set; }
         public int Id{ get; set; }
 	    public string Name { get; set; }
 	    public List<infoCol> Cols{ get; set; }
@@ -107,6 +112,13 @@
         {
             List<infoProc> res = new List<infoProc>();
             res = Procs.FindAll(p => (p.Name).Contains("_0Sel"));
+            res.RemoveAll(p =>(p.Name).EndsWith("_0SelByAll"));
+            return res;
+        }
+        public List<infoProc> ProcsSelectByAll()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).EndsWith("_0SelByAll"));
             return res;
         }
         public List<infoProc> ProcsSelectUnRegistro()
@@ -140,6 +152,7 @@
     {
         public int Id{ get; set; }
         public string Name{ get; set; }
+        public string Nombre{ get; set; }
         public List<infoCol> Params{ get; set; }
         public infoProc()
         {

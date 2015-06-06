@@ -40,22 +40,31 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.Panel pnFiltros;
         
         /// <summary>
-        /// lbFiltro_Mixto control.
+        /// lbFiltro_Criterio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFiltro_Mixto;
+        protected global::System.Web.UI.WebControls.Label lbFiltro_Criterio;
         
         /// <summary>
-        /// tbFiltro_Mixto control.
+        /// tbFiltro_Criterio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFiltro_Mixto;
+        protected global::System.Web.UI.WebControls.TextBox tbFiltro_Criterio;
+        
+        /// <summary>
+        /// ddlFiltro_Campo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Campo;
         
         /// <summary>
         /// btBuscar control.
@@ -67,22 +76,31 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.Button btBuscar;
         
         /// <summary>
-        /// lbFiltro_Estado control.
+        /// pnCabecera control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFiltro_Estado;
+        protected global::System.Web.UI.WebControls.Panel pnCabecera;
         
         /// <summary>
-        /// ddlFiltro_Estado control.
+        /// lbCab_Estado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Estado;
+        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
+        
+        /// <summary>
+        /// ddlCab_Estado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
         
         /// <summary>
         /// dgMaster control.

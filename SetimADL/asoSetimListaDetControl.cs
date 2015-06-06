@@ -19,27 +19,27 @@ namespace SetimBasico
     public class asoSetimListaDetControl
     {
         LogEventos _eventos = new LogEventos();
+        public IList<asoSetimListaDet> _0SelBy_asoSetimLista_Nombre(String asoSetimLista_Nombre)
+        {
+            return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSetimListaDet_0SelBy_asoSetimLista_Nombre"
+                , asoSetimLista_Nombre
+            ));
+        }
+
         public IList<asoSetimListaDet> _0Sel()
         {
             return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSetimListaDet_0Sel"
-                
+
             ));
         }
 
-        public IList<asoSetimListaDet> _0SelByAll(Int32? asoSetimLista_Id,Int32? Orden,String Texto,String Valor,Int32 PageIndex,Int32 PageSize,String SortField,String SortDirection)
+        public IList<asoSetimListaDet> _0SelByAll(Int32? asoSetimLista_Id, Int32? Orden, String Texto, String Valor, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
         {
             return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSetimListaDet_0SelByAll"
-                ,asoSetimLista_Id,Orden,Texto,Valor,PageIndex,PageSize,SortField,SortDirection
-            ));
-        }
-
-        public asoSetimListaDet _1SelBy_asoSetimLista_Nombre(String asoSetimLista_Nombre)
-        {
-            return CBO.FillObject<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSetimListaDet_1SelBy_asoSetimLista_Nombre"
-                ,asoSetimLista_Nombre
+                , asoSetimLista_Id, Orden, Texto, Valor, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
@@ -47,7 +47,7 @@ namespace SetimBasico
         {
             return CBO.FillObject<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSetimListaDet_1SelById"
-                ,Id
+                , Id
             ));
         }
 
@@ -57,13 +57,13 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSetimListaDet_4Del"
-                    ,o.Id
+                    , o.Id
                     );
             }
-            catch(Exception exc)
-            {                
+            catch (Exception exc)
+            {
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_4Del, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_4Del, registro {0}.", o.Id);
                 throw new Exception(mensaje, exc);
             }
         }
@@ -74,13 +74,13 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSetimListaDet_2Ins"
-                    ,o.asoSetimLista_Id,o.Orden,o.Texto,o.Valor
+                    , o.asoSetimLista_Id, o.Orden, o.Texto, o.Valor
                     );
             }
-            catch(Exception exc)
-            {                
+            catch (Exception exc)
+            {
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_2Ins, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_2Ins, registro {0}.", o.Id);
                 throw new Exception(mensaje, exc);
             }
         }
@@ -91,13 +91,13 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSetimListaDet_3Upd"
-                    ,o.Id,o.asoSetimLista_Id,o.Orden,o.Texto,o.Valor
+                    , o.Id, o.asoSetimLista_Id, o.Orden, o.Texto, o.Valor
                     );
             }
-            catch(Exception exc)
-            {                
+            catch (Exception exc)
+            {
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_3Upd, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_3Upd, registro {0}.", o.Id);
                 throw new Exception(mensaje, exc);
             }
         }

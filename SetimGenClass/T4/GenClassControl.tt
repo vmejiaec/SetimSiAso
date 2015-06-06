@@ -31,7 +31,27 @@ namespace <#=tabla.NombreNamespace#>
         LogEventos _eventos = new LogEventos();
 <#foreach (var proc in tabla.ProcsSelectVariosRegistros()) 
     {#>
-        public IList<<#=tabla.Name#>> <#=proc.Name#>(<#=proc.ParamsConTipo() #>)
+        public IList<<#=tabla.Name#>> <#=proc.Nombre#>(<#=proc.ParamsConTipo() #>)
+        {
+            return CBO.FillCollection<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
+                "<#=proc.Name#>"
+                <#=proc.ParamsSinTipoConComaInicial() #>
+            ));
+        }
+
+<#  }#>
+<#foreach (var proc in tabla.ProcsSelectByAll()) 
+    {
+        string parametros = proc.ParamsConTipo();
+        parametros = parametros
+            .Replace("Int32","Int32?")
+            .Replace("DateTime","DateTime?")
+            .Replace("Decimal","Decimal?");
+        parametros = parametros
+            .Replace("Int32? PageIndex","Int32 PageIndex")
+            .Replace("Int32? PageSize","Int32 PageSize");
+#>
+        public IList<<#=tabla.Name#>> <#=proc.Nombre#>(<#=parametros #>)
         {
             return CBO.FillCollection<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
                 "<#=proc.Name#>"
@@ -42,7 +62,7 @@ namespace <#=tabla.NombreNamespace#>
 <#  }#>
 <#foreach (var proc in tabla.ProcsSelectUnRegistro()) 
     {#>
-        public <#=tabla.Name#> <#=proc.Name#>(<#=proc.ParamsConTipo() #>)
+        public <#=tabla.Name#> <#=proc.Nombre#>(<#=proc.ParamsConTipo() #>)
         {
             return CBO.FillObject<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
                 "<#=proc.Name#>"
@@ -53,7 +73,7 @@ namespace <#=tabla.NombreNamespace#>
 <#  }#>
 <#foreach (var proc in tabla.ProcsIUD()) 
     {#>
-        public int <#=proc.Name#>(<#=tabla.Name#> o)
+        public int <#=proc.Nombre#>(<#=tabla.Name#> o)
         {
             try
             {
@@ -73,7 +93,7 @@ namespace <#=tabla.NombreNamespace#>
 <#  }#>
 <#foreach (var proc in tabla.ProcsOtros()) 
     {#>
-        public int <#=proc.Name#>(<#=proc.ParamsConTipo() #>)
+        public int <#=proc.Nombre#>(<#=proc.ParamsConTipo() #>)
         {
             try
             {

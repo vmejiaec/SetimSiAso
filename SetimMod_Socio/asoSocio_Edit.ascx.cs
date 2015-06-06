@@ -35,9 +35,9 @@ namespace SetimMod_Socio
             var o = ColocarDatosEnObjeto();
 
             if (_EntidadId == -1) 
-                 _EntidadControl.sp_asoSocio_2Ins(o);
+                 _EntidadControl._2Ins(o);
             else 
-                _EntidadControl.sp_asoSocio_3Upd(o);
+                _EntidadControl._3Upd(o);
 
             Response.Redirect(Globals.NavigateURL("", "paginaIndex", _senderPaginaIndex.ToString()));
         }
@@ -51,7 +51,7 @@ namespace SetimMod_Socio
         protected void ColocarDatosEnFormulario(int entidadId)
         {
             // Consulta los datos de la entidad
-            var o = _EntidadControl.sp_asoSocio_1SelById(entidadId);
+            var o = _EntidadControl._1SelById(entidadId);
             // Campos propios
             tbId.Text = o.Id.ToString();
             tbUserId.Text = o.UserID.ToString();
