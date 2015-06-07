@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Entidad.cs" />
     <Compile Include="LogEventos.cs" />
+    <Compile Include="PaginaEstado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

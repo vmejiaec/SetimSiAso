@@ -16,6 +16,7 @@ namespace SetimMod_Socio
     {
         // Usuario
         private int _UserId;
+        private int _ModuleId;
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
         // Datos para el ordenamiento
@@ -33,29 +34,31 @@ namespace SetimMod_Socio
         {
             base.OnLoad(e);
             // Datos del usuario del DNN
+            _ModuleId = ModuleContext.ModuleId;
             _UserId = ModuleContext.PortalSettings.UserId;
-            // Inicializa el ordenamiento
-            if (Session["PaginacionFiltroOrden"] == null) Session["PaginacionFiltroOrden"] = new PaginacionFiltroOrden()
-            {
-                OrdenarCampo = "Users_Nombre",
-                OrdenarSentido = "ASC"
-            };
             // Datos de la página actual            
             int paginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
+                // Inicializa el ordenamiento
+                if (Session["PaginacionFiltroOrden"] == null)
+                    Session["PaginacionFiltroOrden"] = new PaginacionFiltroOrden()
+                    {
+                        OrdenarCampo = "Users_Nombre",
+                        OrdenarSentido = "ASC"
+                    };
                 // Inicializa la lista de estados en el filtro
-                BindFiltro_Estado();
+                CargarFiltro_Campo();
+                CargarFiltro_Estado();                
                 // Carga de datos
-                dgMaster.VirtualItemCount = 20;
                 ConsultaDatos(paginaIndex);
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
         // Carga los estados desde una lista de SetimLista
-        private void BindFiltro_Estado()
+        private void CargarFiltro_Estado()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
             var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
@@ -63,6 +66,16 @@ namespace SetimMod_Socio
             ddlCab_Estado.DataTextField = "Texto";
             ddlCab_Estado.DataValueField = "Valor";
             ddlCab_Estado.DataBind();
+        }
+        // Carga los campos para filtrar 
+        private void CargarFiltro_Campo()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Lista_Filtros");
+            ddlFiltro_Campo.DataSource = lista;
+            ddlFiltro_Campo.DataTextField = "Texto";
+            ddlFiltro_Campo.DataValueField = "Valor";
+            ddlFiltro_Campo.DataBind();
         }
 
         // Organiza los comandos generados por el DataGrid
@@ -97,14 +110,17 @@ namespace SetimMod_Socio
         {
             PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
             var NoRegsPorPagina = dgMaster.PageSize;
+            
             var datos = _EntidadControl._0SelByAll(
                 null, null, null, null, null, null, null,
                 PaginaIndice, NoRegsPorPagina,
                 filtros.OrdenarCampo, filtros.OrdenarSentido);
+            
             // Calcula la página que el toca
             int noDatos = datos.Count();
             dgMaster.CurrentPageIndex = PaginaIndice;
             dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ? (PaginaIndice) * 10 + noDatos : (PaginaIndice + 2) * 10;
+            
             // Coloa los datos en el grid
             dgMaster.DataSource = datos;
             dgMaster.DataBind();
