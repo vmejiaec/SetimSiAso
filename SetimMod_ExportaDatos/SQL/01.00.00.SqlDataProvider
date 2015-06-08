@@ -1,0 +1,63 @@
+﻿/*		01.00.00		*/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}forDNN_GetListOfTables') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}forDNN_GetListOfTables
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}forDNN_GetListOfViews') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}forDNN_GetListOfViews
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}forDNN_ExecDynamicQuery') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}forDNN_ExecDynamicQuery
+GO
+
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS OFF
+GO
+CREATE PROCEDURE {databaseOwner}{objectQualifier}forDNN_GetListOfTables
+AS
+	SELECT	o.name ObjectName,
+			i.rows RowsCount
+	FROM sysobjects o inner join sysindexes i ON (o.id = i.id)
+	WHERE (o.xtype = 'U') AND (i.indid < 2)
+	ORDER BY o.name;
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS ON
+
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS OFF
+GO
+CREATE PROCEDURE {databaseOwner}{objectQualifier}forDNN_GetListOfViews
+AS
+	SELECT	o.name ObjectName,
+			0 RowsCount
+	FROM sysobjects o
+	WHERE (o.xtype = 'V')
+	-- Para las vistas asoSetim que por estandar empezarán con 'aso_'
+	and o.name like 'aso_%'
+	ORDER BY o.name;
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS ON
+
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS OFF
+GO
+CREATE PROCEDURE {databaseOwner}{objectQualifier}forDNN_ExecDynamicQuery
+	@Query	nvarchar(4000)
+AS
+	EXEC (@Query);
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+SET ANSI_NULLS ON
