@@ -12,7 +12,6 @@ namespace SetimMod_Socio
     {
         private int _UserID;
         private int _EntidadId;
-        private int _senderPaginaIndex;
 
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
 
@@ -22,8 +21,6 @@ namespace SetimMod_Socio
             _UserID = ModuleContext.PortalSettings.UserId;
             //Obtiene el identificador de la llamada
             _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
-            _senderPaginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
-
             //Verifica si debe cargar datos en el formulario
             if (_EntidadId > -1 && !IsPostBack)
             {                
@@ -39,12 +36,12 @@ namespace SetimMod_Socio
             else 
                 _EntidadControl._3Upd(o);
 
-            Response.Redirect(Globals.NavigateURL("", "paginaIndex", _senderPaginaIndex.ToString()));
+            Response.Redirect(Globals.NavigateURL());
         }
 
         protected void Cancelar(object sender, EventArgs e)
         {
-            Response.Redirect(Globals.NavigateURL("", "paginaIndex", _senderPaginaIndex.ToString()));
+            Response.Redirect(Globals.NavigateURL());
         }
 
         // Carga el formulario con los datos de un objeto

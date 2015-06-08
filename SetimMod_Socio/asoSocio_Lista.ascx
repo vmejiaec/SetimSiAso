@@ -39,7 +39,7 @@
     AllowSorting="True"
 
     OnItemCommand ="dgMaster_OnItemCommand"
-    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated">
+    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated" OnPreRender="dgMaster_PreRender">
 
     <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
 
@@ -53,9 +53,9 @@
     <Columns>        
         <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="50px"    FooterText ="Página No: "   />
         <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="50px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
-        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    HeaderStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    SortExpression="CI" HeaderStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="150px"   SortExpression="Users_Nombre" />
-        <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="100px"   SortExpression="EMail" />
+        <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="100px"   />
         <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="150px"   SortExpression="Descripcion" />
         <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha_Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center" />
@@ -74,7 +74,7 @@
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
-                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit", "paginaIndex", dgMaster.CurrentPageIndex.ToString()) %>'
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
                     Text="Editar"/>
             </ItemTemplate>
         </asp:TemplateColumn>

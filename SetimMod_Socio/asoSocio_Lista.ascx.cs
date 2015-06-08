@@ -17,48 +17,68 @@ namespace SetimMod_Socio
         // Usuario
         private int _UserId;
         private int _ModuleId;
+        // Estado de la página
+        private PaginaEstado paginaEstado 
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null)
+                    Session["paginaEstado"]= new PaginaEstado();
+                return (PaginaEstado)Session["paginaEstado"];
+            }
+            set
+            {
+                Session["paginaEstado"] = value;
+            }
+        }
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
-        // Datos para el ordenamiento
-        class PaginacionFiltroOrden 
-        {
-            public int NoFilasPorPagina { get; set; }
-            public int PaginaActual { get; set; }
-            public string OrdenarCampo { get; set; }
-            public string OrdenarSentido { get; set; }
-            public string FiltroNombre { get; set; }
-            public string FiltroValor { get; set; }
-        }
-
+        // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            // Datos del usuario del DNN
+            // Datos del módulo y del usuario del DNN
             _ModuleId = ModuleContext.ModuleId;
             _UserId = ModuleContext.PortalSettings.UserId;
-            // Datos de la página actual            
-            int paginaIndex = Request.QueryString.GetValueOrDefault("paginaIndex", 0);
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
-                // Inicializa el ordenamiento
-                if (Session["PaginacionFiltroOrden"] == null)
-                    Session["PaginacionFiltroOrden"] = new PaginacionFiltroOrden()
+                // Verifica el estado de la página
+                if (paginaEstado.ModuleID == _ModuleId)
+                {
+                    if (paginaEstado.Ordenar_Campo == "")
                     {
-                        OrdenarCampo = "Users_Nombre",
-                        OrdenarSentido = "ASC"
-                    };
+                        paginaEstado.Ordenar_Campo = "Users_Nombre";
+                    }
+                }
+                else
+                {
+                    paginaEstado.ModuleID = _ModuleId;
+                    paginaEstado.Ordenar_Campo = "Users_Nombre";
+                }
                 // Inicializa la lista de estados en el filtro
-                CargarFiltro_Campo();
-                CargarFiltro_Estado();                
+                CargarDdl_CamposDelFiltro();
+                CargarDdl_Estados();
                 // Carga de datos
-                ConsultaDatos(paginaIndex);
+                ConsultaDatos();
+                //CargarDdl_NoRegsPorPagina();
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
+        // Carga los números de registros por página
+        private void CargarDdl_NoRegsPorPagina()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetim_NoRegsPorPagina");
+            var ddl = (DropDownList)dgMaster.FindControl("ddlNoFilasPorPagina");
+            ddl.DataSource = lista;
+            ddl.DataTextField = "Texto";
+            ddl.DataValueField = "Valor";
+            ddl.DataBind();
+        }
         // Carga los estados desde una lista de SetimLista
-        private void CargarFiltro_Estado()
+        private void CargarDdl_Estados()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
             var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
@@ -68,7 +88,7 @@ namespace SetimMod_Socio
             ddlCab_Estado.DataBind();
         }
         // Carga los campos para filtrar 
-        private void CargarFiltro_Campo()
+        private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
             var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Lista_Filtros");
@@ -95,7 +115,8 @@ namespace SetimMod_Socio
                         indice = indice + 1;
                     else
                         indice = indice - 1;
-                    ConsultaDatos(indice);
+                    paginaEstado.PaginaActual = indice;
+                    ConsultaDatos();
                     break;
             }            
         }
@@ -106,25 +127,31 @@ namespace SetimMod_Socio
 
         }
         // Proceso de carga de datos en el GridView
-        protected void ConsultaDatos(int PaginaIndice)
+        protected void ConsultaDatos()
         {
-            PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
+            int PaginaIndice = paginaEstado.PaginaActual;
             var NoRegsPorPagina = dgMaster.PageSize;
             
             var datos = _EntidadControl._0SelByAll(
                 null, null, null, null, null, null, null,
                 PaginaIndice, NoRegsPorPagina,
-                filtros.OrdenarCampo, filtros.OrdenarSentido);
+                paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
             
             // Calcula la página que el toca
             int noDatos = datos.Count();
             dgMaster.CurrentPageIndex = PaginaIndice;
-            dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ? (PaginaIndice) * 10 + noDatos : (PaginaIndice + 2) * 10;
+            dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ?
+                  (PaginaIndice) * NoRegsPorPagina + noDatos
+                : (PaginaIndice + 2) * NoRegsPorPagina;
             
             // Coloa los datos en el grid
             dgMaster.DataSource = datos;
             dgMaster.DataBind();
-            
+            // Accede al Footer del DataGrid y pone el número de registros por página
+            int NoRegs = dgMaster.Controls[0].Controls.Count;
+            var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
+            var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
+            ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
         }
         // Proceso de borrado de la fila
         protected void BorrarEntidad(int entidadId)
@@ -170,17 +197,16 @@ namespace SetimMod_Socio
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
-            PaginacionFiltroOrden filtros = (PaginacionFiltroOrden)Session["PaginacionFiltroOrden"];
-            if (filtros.OrdenarCampo == e.SortExpression)
-                filtros.OrdenarSentido = filtros.OrdenarSentido == "ASC" ? "DES" : "ASC";
+            
+            if (paginaEstado.Ordenar_Campo == e.SortExpression)
+                paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
             else
             {
-                filtros.OrdenarCampo = e.SortExpression;
-                filtros.OrdenarSentido = "ASC";
+                paginaEstado.Ordenar_Campo = e.SortExpression;
+                paginaEstado.Ordenar_Sentido = "ASC";
             }
-            Session["PaginacionFiltroOrden"] = filtros;
             // Consulta los datos
-            ConsultaDatos(dgMaster.CurrentPageIndex);
+            ConsultaDatos();
         }
 
         protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
@@ -197,7 +223,9 @@ namespace SetimMod_Socio
 
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            dgMaster.PageSize = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
         }
 
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
@@ -208,6 +236,14 @@ namespace SetimMod_Socio
         protected void btBuscar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void dgMaster_PreRender(object sender, EventArgs e)
+        {
+            //int NoRegs = dgMaster.Controls[0].Controls.Count;
+            //var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
+            //var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
+            //ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
         }
     }
 }
