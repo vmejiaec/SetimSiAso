@@ -17,6 +17,8 @@ namespace SetimMod_Socio
         // Usuario
         private int _UserId;
         private int _ModuleId;
+        // Campo por defecto para ordenar la lista
+        private string _Ordenar_Campo_Defaul = "Users_Nombre";
         // Estado de la página
         private PaginaEstado paginaEstado 
         {
@@ -46,10 +48,8 @@ namespace SetimMod_Socio
                 // Verifica el estado de la página
                 if (paginaEstado.ModuleID == _ModuleId)
                 {
-                    if (paginaEstado.Ordenar_Campo == "")
-                    {
-                        paginaEstado.Ordenar_Campo = "Users_Nombre";
-                    }
+                    if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
                 }
                 else
                 {
@@ -129,21 +129,22 @@ namespace SetimMod_Socio
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
         {
+            // Saca los datos del estado de la pagina
             int PaginaIndice = paginaEstado.PaginaActual;
-            var NoRegsPorPagina = dgMaster.PageSize;
-            
+            int NoRegsPorPagina = paginaEstado.NoFilasPorPagina;
+            // Actualiza los datos en el DataGrid
+            dgMaster.CurrentPageIndex = PaginaIndice;
+            dgMaster.PageSize = NoRegsPorPagina;
+            // Consulta los datos del SP SelByAll
             var datos = _EntidadControl._0SelByAll(
                 null, null, null, null, null, null, null,
                 PaginaIndice, NoRegsPorPagina,
                 paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
-            
             // Calcula la página que el toca
             int noDatos = datos.Count();
-            dgMaster.CurrentPageIndex = PaginaIndice;
             dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ?
                   (PaginaIndice) * NoRegsPorPagina + noDatos
                 : (PaginaIndice + 2) * NoRegsPorPagina;
-            
             // Coloa los datos en el grid
             dgMaster.DataSource = datos;
             dgMaster.DataBind();
@@ -223,7 +224,8 @@ namespace SetimMod_Socio
 
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgMaster.PageSize = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            int noFilasPorPagina = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            paginaEstado.NoFilasPorPagina = noFilasPorPagina;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
