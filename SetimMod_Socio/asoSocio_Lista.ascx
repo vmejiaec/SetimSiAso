@@ -39,7 +39,7 @@
     AllowSorting="True"
 
     OnItemCommand ="dgMaster_OnItemCommand"
-    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated" OnPreRender="dgMaster_PreRender">
+    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated" >
 
     <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
 

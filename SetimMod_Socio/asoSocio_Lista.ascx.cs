@@ -54,28 +54,16 @@ namespace SetimMod_Socio
                 else
                 {
                     paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = "Users_Nombre";
+                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
                 CargarDdl_Estados();
                 // Carga de datos
                 ConsultaDatos();
-                //CargarDdl_NoRegsPorPagina();
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
-        }
-        // Carga los números de registros por página
-        private void CargarDdl_NoRegsPorPagina()
-        {
-            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetim_NoRegsPorPagina");
-            var ddl = (DropDownList)dgMaster.FindControl("ddlNoFilasPorPagina");
-            ddl.DataSource = lista;
-            ddl.DataTextField = "Texto";
-            ddl.DataValueField = "Valor";
-            ddl.DataBind();
         }
         // Carga los estados desde una lista de SetimLista
         private void CargarDdl_Estados()
@@ -97,7 +85,6 @@ namespace SetimMod_Socio
             ddlFiltro_Campo.DataValueField = "Valor";
             ddlFiltro_Campo.DataBind();
         }
-
         // Organiza los comandos generados por el DataGrid
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
         {
@@ -238,14 +225,6 @@ namespace SetimMod_Socio
         protected void btBuscar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        protected void dgMaster_PreRender(object sender, EventArgs e)
-        {
-            //int NoRegs = dgMaster.Controls[0].Controls.Count;
-            //var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
-            //var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
-            //ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
         }
     }
 }
