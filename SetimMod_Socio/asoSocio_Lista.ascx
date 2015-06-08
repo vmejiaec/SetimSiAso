@@ -20,8 +20,8 @@
     <div class="dnnClear">
         <asp:Label runat="server" ID="lbFiltro_Criterio" Text="Criterio: "/>
         <asp:TextBox runat="server" ID="tbFiltro_Criterio" Text="" CssClass="TextBox_Setim" />
-        <asp:DropDownList runat="server" ID="ddlFiltro_Campo" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
-        <asp:Button runat="server" ID="btBuscar" Text="Buscar" OnClick="btBuscar_Click" />
+        <asp:DropDownList runat="server" ID="ddlFiltro_Campo" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Campo_SelectedIndexChanged" />
+        <asp:Button runat="server" ID="btBuscar" Text="Buscar" OnClick="btBuscar_Click"  />
     </div>
 </asp:Panel>
 

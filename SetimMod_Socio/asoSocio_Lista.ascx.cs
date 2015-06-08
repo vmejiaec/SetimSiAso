@@ -9,6 +9,7 @@ using DotNetNuke.Collections;
 using DotNetNuke.Common.Lists;
 
 using SetimBasico;
+using System.Collections.Generic;
 
 namespace SetimMod_Socio
 {
@@ -53,6 +54,8 @@ namespace SetimMod_Socio
                 }
                 else
                 {
+                    // Si no se trata del estado de esta página, se inicializa todo el estado
+                    paginaEstado = new PaginaEstado();
                     paginaEstado.ModuleID = _ModuleId;
                     paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                 }
@@ -74,6 +77,8 @@ namespace SetimMod_Socio
             ddlCab_Estado.DataTextField = "Texto";
             ddlCab_Estado.DataValueField = "Valor";
             ddlCab_Estado.DataBind();
+            // Carga el estado del estado de la pagina
+            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
         }
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()
@@ -84,6 +89,9 @@ namespace SetimMod_Socio
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
             ddlFiltro_Campo.DataBind();
+            // Carga el filtro de los campos desde el estado de la pagina
+            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
+            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
         }
         // Organiza los comandos generados por el DataGrid
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
@@ -116,30 +124,37 @@ namespace SetimMod_Socio
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
         {
-            // Saca los datos del estado de la pagina
-            int PaginaIndice = paginaEstado.PaginaActual;
-            int NoRegsPorPagina = paginaEstado.NoFilasPorPagina;
-            // Actualiza los datos en el DataGrid
-            dgMaster.CurrentPageIndex = PaginaIndice;
-            dgMaster.PageSize = NoRegsPorPagina;
             // Consulta los datos del SP SelByAll
-            var datos = _EntidadControl._0SelByAll(
-                null, null, null, null, null, null, null,
-                PaginaIndice, NoRegsPorPagina,
-                paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
-            // Calcula la página que el toca
+            var datos = ConsultaSP();
+            // Calcula la página que el toca en el datagrid
             int noDatos = datos.Count();
-            dgMaster.VirtualItemCount = noDatos < NoRegsPorPagina ?
-                  (PaginaIndice) * NoRegsPorPagina + noDatos
-                : (PaginaIndice + 2) * NoRegsPorPagina;
-            // Coloa los datos en el grid
-            dgMaster.DataSource = datos;
-            dgMaster.DataBind();
-            // Accede al Footer del DataGrid y pone el número de registros por página
-            int NoRegs = dgMaster.Controls[0].Controls.Count;
-            var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
-            var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
-            ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
+            if (noDatos > 0 || (noDatos == 0 && paginaEstado.PaginaActual == 0))
+            {
+                dgMaster.VirtualItemCount = noDatos < paginaEstado.NoFilasPorPagina ?
+                      (paginaEstado.PaginaActual) * paginaEstado.NoFilasPorPagina + noDatos
+                    : (paginaEstado.PaginaActual + 2) * paginaEstado.NoFilasPorPagina;
+                dgMaster.CurrentPageIndex = paginaEstado.PaginaActual;
+                dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                // Coloca los datos en el grid
+                dgMaster.DataSource = datos;
+                dgMaster.DataBind();
+                // Accede al Footer del DataGrid y pone el número de registros por página
+                int NoRegs = dgMaster.Controls[0].Controls.Count;
+                var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
+                var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
+                ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
+            }
+        }
+        // Proceso para consultar a la base los datos
+        private IList<asoSocio> ConsultaSP()
+        {
+            IList<asoSocio> res = new List<asoSocio>();
+            res = _EntidadControl._0SelByAll(
+                paginaEstado.Filtro_Estado,
+                paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
+                paginaEstado.PaginaActual, paginaEstado.NoFilasPorPagina,
+                paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
+            return res;
         }
         // Proceso de borrado de la fila
         protected void BorrarEntidad(int entidadId)
@@ -219,12 +234,24 @@ namespace SetimMod_Socio
 
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var ddl = (DropDownList) sender;
+            paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
 
+        protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
         }
 
         protected void btBuscar_Click(object sender, EventArgs e)
         {
-
+            ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
         }
     }
 }

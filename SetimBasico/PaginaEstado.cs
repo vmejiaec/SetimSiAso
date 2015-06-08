@@ -16,7 +16,8 @@ namespace SetimBasico
         public string Ordenar_Campo { get; set; }
         public string Ordenar_Sentido { get; set; }
         public string Filtro_Campo { get; set; }
-        public string Filtro_Valor { get; set; }
+        public object Filtro_Valor { get; set; }
+        public string Filtro_Estado { get; set; }
         // Constructor
         public PaginaEstado()
         {
@@ -24,7 +25,9 @@ namespace SetimBasico
             ModuleID = -1;
             NoFilasPorPagina = 10;
             PaginaActual = 0;
-            Ordenar_Sentido = "ASC";
+            Ordenar_Sentido = "ASC"; // por defecto orden ascendente
+            Filtro_Estado = null; // por defecto todos los estados
+            Filtro_Valor = null; // por defecto todos los valores
         }
     }
 }
