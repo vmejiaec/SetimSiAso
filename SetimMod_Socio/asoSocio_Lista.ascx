@@ -14,6 +14,11 @@
             OnClick="btCopiarSocios_OnClick"
             Text="Copiar Socios" />
     </li>
+    <li>
+        <asp:HyperLink runat="server" ID="btConfigAportes"
+            CssClass="dnnSecondaryAction"
+            Text="Configurar Aportes" />
+    </li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -32,6 +37,7 @@
 
 <asp:DataGrid runat="server" ID="dgMaster" 
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
+    DataKeyField="Id"
     ShowFooter="true"
     AllowPaging="True" AllowCustomPaging="True" 
     PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior" 
@@ -47,7 +53,7 @@
     <itemstyle cssclass="dnnGridItem" horizontalalign="Left" />
     <alternatingitemstyle cssclass="dnnGridAltItem" />
     <edititemstyle cssclass="dnnFormInput" />
-    <selecteditemstyle cssclass="dnnFormError" />
+    <selecteditemstyle BackColor="#c6dbec"/>
     <footerstyle cssclass="dnnGridFooter" />
 
     <Columns>        
@@ -59,7 +65,7 @@
         <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="150px"   SortExpression="Descripcion" />
         <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha_Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center" />
-
+        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
         <asp:TemplateColumn>
             <FooterTemplate>
                 No de Filas: 

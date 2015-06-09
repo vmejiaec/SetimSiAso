@@ -76,6 +76,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoSocio_ConfigAportes.ascx.cs">
+      <DependentUpon>asoSocio_ConfigAportes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSocio_ConfigAportes.ascx.designer.cs">
+      <DependentUpon>asoSocio_ConfigAportes.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoSocio_Edit.ascx.cs">
       <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -93,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoSocio_ConfigAportes.ascx" />
     <Content Include="asoSocio_Edit.ascx" />
     <Content Include="asoSocio_Lista.ascx" />
     <Content Include="Module.build" />

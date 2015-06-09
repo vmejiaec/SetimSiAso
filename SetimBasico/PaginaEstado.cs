@@ -18,6 +18,7 @@ namespace SetimBasico
         public string Filtro_Campo { get; set; }
         public object Filtro_Valor { get; set; }
         public string Filtro_Estado { get; set; }
+        public int dgMasterItemIndex { get; set; }
         // Constructor
         public PaginaEstado()
         {
@@ -28,6 +29,7 @@ namespace SetimBasico
             Ordenar_Sentido = "ASC"; // por defecto orden ascendente
             Filtro_Estado = null; // por defecto todos los estados
             Filtro_Valor = null; // por defecto todos los valores
+            dgMasterItemIndex = -1;
         }
     }
 }

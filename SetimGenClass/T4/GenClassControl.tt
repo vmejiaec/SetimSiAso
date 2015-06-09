@@ -43,6 +43,7 @@ namespace <#=tabla.NombreNamespace#>
 <#foreach (var proc in tabla.ProcsSelectByAll()) 
     {
         string parametros = proc.ParamsConTipo();
+        // Pone tipos que permiten valores nulos
         parametros = parametros
             .Replace("Int32","Int32?")
             .Replace("DateTime","DateTime?")
@@ -50,6 +51,21 @@ namespace <#=tabla.NombreNamespace#>
         parametros = parametros
             .Replace("Int32? PageIndex","Int32 PageIndex")
             .Replace("Int32? PageSize","Int32 PageSize");
+        // Esconde las comas de los parámetros especiales usando * en lugar de ,
+        // Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection
+        parametros = parametros
+            .Replace("Int32 PageIndex,","Int32 PageIndex*")
+            .Replace("Int32 PageSize,","Int32 PageSize*")
+            .Replace("String SortField,","String SortField*");
+        // Reemplaza las comas por valores iniciales de null
+        parametros = parametros
+            .Replace(",","=null,");
+        //// Pone los valores iniciales de los parámetros especiales
+        parametros = parametros
+            .Replace("Int32 PageIndex*","Int32 PageIndex = 0, ")
+            .Replace("Int32 PageSize*","Int32 PageSize = 10, ")
+            .Replace("String SortField*","String SortField = \"Id\", ")
+            .Replace("String SortDirection","String SortDirection = \"ASC\" ");
 #>
         public IList<<#=tabla.Name#>> <#=proc.Nombre#>(<#=parametros #>)
         {

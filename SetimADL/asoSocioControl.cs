@@ -16,7 +16,7 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoSocio
     ///</summary>
-    public class asoSocioControl
+    public partial class asoSocioControl
     {
         LogEventos _eventos = new LogEventos();
         public IList<asoSocio> _0SelByEstado(String Estado)
@@ -41,97 +41,6 @@ namespace SetimBasico
                 "sp_asoSocio_0SelByAll"
                 , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, Users_EMail, Users_Nombre, PageIndex, PageSize, SortField, SortDirection
             ));
-        }
-
-        public IList<asoSocio> _0SelByAll(string campo, object valor, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
-        {
-            IList<asoSocio> res = new List<asoSocio>();
-            switch (campo)
-            { 
-                case "UserID":
-                    res = _0SelByAll((Int32?)valor,null,null,null,null,null,null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "CI":
-                    res = _0SelByAll(null,(String)valor, null, null, null, null, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "Descripcion":
-                    res = _0SelByAll(null, null, (String)valor, null, null, null, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "Fecha_Nacimiento":
-                    res = _0SelByAll(null, null, null, (DateTime?)valor, null, null, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "Estado":
-                    res = _0SelByAll(null, null, null, null, (String)valor, null, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "Users_EMail":
-                    res = _0SelByAll(null, null, null, null, null, (String)valor, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                case "Users_Nombre":
-                    res = _0SelByAll(null, null, null, null, null, null, (String)valor,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-                default:
-                    res = _0SelByAll(null, null, null, null, null, null, null,
-                        PageIndex, PageSize, SortField, SortDirection);
-                    break;
-            }
-            return res;
-        }
-
-        public IList<asoSocio> _0SelByAll(string estado, string campo, object valor, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
-        {
-            IList<asoSocio> res = new List<asoSocio>();
-            switch (campo)
-            {
-                case "UserID":
-                    res = _0SelByAll( 
-                        UserID: (Int32?)valor,
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                case "CI":
-                    res = _0SelByAll(
-                        CI:(String)valor, 
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                case "Descripcion":
-                    res = _0SelByAll(
-                        Descripcion: (String)valor,
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                case "Fecha_Nacimiento":
-                    res = _0SelByAll(
-                        Fecha_Nacimiento: (DateTime?)valor,
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                case "Users_EMail":
-                    res = _0SelByAll(
-                        Users_EMail: (String)valor,
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                case "Users_Nombre":
-                    res = _0SelByAll(
-                        Users_Nombre: (String)valor,
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-                default:
-                    res = _0SelByAll(
-                        Estado: estado,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-            }
-            return res;
         }
 
         public asoSocio _1SelById(Int32 Id)

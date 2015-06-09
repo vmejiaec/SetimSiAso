@@ -7,9 +7,11 @@ using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
 using DotNetNuke.Collections;
 using DotNetNuke.Common.Lists;
+using DotNetNuke.Common;
 
 using SetimBasico;
 using System.Collections.Generic;
+using DotNetNuke.Entities.Portals;
 
 namespace SetimMod_Socio
 {
@@ -51,13 +53,14 @@ namespace SetimMod_Socio
                 {
                     if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                    if (paginaEstado.dgMasterItemIndex != -1) dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
                 }
                 else
                 {
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
                     paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;                    
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -96,10 +99,11 @@ namespace SetimMod_Socio
         // Organiza los comandos generados por el DataGrid
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
         {
+            int entidadId;
             switch (e.CommandName)
             { 
                 case "Borrar":
-                    int entidadId = int.Parse((string) e.CommandArgument);
+                    entidadId = int.Parse((string) e.CommandArgument);
                     BorrarEntidad(entidadId);
                     break;
                 case "Page":
@@ -113,14 +117,15 @@ namespace SetimMod_Socio
                     paginaEstado.PaginaActual = indice;
                     ConsultaDatos();
                     break;
+                case "Select":
+                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                    string sEntidadId = e.Item.Cells[0].Text;
+                    entidadId = 1;
+                    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
+                    break;
             }            
         }
-        // Filtrar 
-        protected void filtrar()
-        { 
-            // Estado
 
-        }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
         {
@@ -196,6 +201,13 @@ namespace SetimMod_Socio
                     messageText,
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
+        }
+
+        protected void btConfigAportes_OnClick(object sender, EventArgs e)
+        {
+            int vId = (int) dgMaster.DataKeys[dgMaster.SelectedIndex];
+            string url = Globals.NavigateURL( ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(),"EntidadId",vId.ToString());
+            Response.Redirect(url + "?popUp=true");
         }
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
