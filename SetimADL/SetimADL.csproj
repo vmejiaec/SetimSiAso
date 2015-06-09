@@ -42,7 +42,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asoSocioControl_ext.cs" />
+    <Compile Include="asoInversion.cs" />
+    <Compile Include="asoInversionControl.cs" />
+    <Compile Include="asoPeriodo.cs" />
+    <Compile Include="asoPeriodoAporte.cs" />
+    <Compile Include="asoPeriodoAporteControl.cs" />
+    <Compile Include="asoPeriodoControl.cs" />
+    <Compile Include="asoPeriodoCuota.cs" />
+    <Compile Include="asoPeriodoCuotaControl.cs" />
+    <Compile Include="asoPeriodoInversion.cs" />
+    <Compile Include="asoPeriodoInversionControl.cs" />
+    <Compile Include="asoPrestamo.cs" />
+    <Compile Include="asoPrestamoControl.cs" />
+    <Compile Include="asoSetimLista.cs" />
+    <Compile Include="asoSetimListaControl.cs" />
+    <Compile Include="asoSetimListaDet.cs" />
+    <Compile Include="asoSetimListaDetControl.cs" />
+    <Compile Include="asoSocio.cs" />
+    <Compile Include="asoSocioAporte.cs" />
+    <Compile Include="asoSocioAporteControl.cs" />
+    <Compile Include="asoSocioControl.cs" />
+    <Compile Include="ext_asoSocioControl.cs" />
+    <Compile Include="asoSocioInversion.cs" />
+    <Compile Include="asoSocioInversionControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoSetimLista
     ///</summary>
-    public class asoSetimListaControl
+    public partial class asoSetimListaControl
     {
         LogEventos _eventos = new LogEventos();
         public IList<asoSetimLista> _0Sel()
@@ -27,7 +27,7 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSetimLista> _0SelByAll(String Nombre, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        public IList<asoSetimLista> _0SelByAll(String Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoSetimLista>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSetimLista_0SelByAll"

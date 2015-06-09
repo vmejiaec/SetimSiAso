@@ -7,75 +7,78 @@
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
-    string Tabla_Nombre             = "asoSetimListaDet";
-    string SP_Prefijo               = "sp_";
-    string SP_NombrePrefijo         = SP_Prefijo+Tabla_Nombre+"_";
+    var fileManager = TemplateFileManager.Create(this);
 
-    var tables = schema
+    var vTablas = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
-            && (so.Name == Tabla_Nombre)))
+            && (so.Name.StartsWith("aso"))))
         .ToArray ();
 
-    var procs = schema
-        .SchemaObjects
-        .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
-            && (so.Name.StartsWith(SP_NombrePrefijo))))
-        .ToArray();
-    
-    infoTabla iTabla = new infoTabla();
-    if (tables.Length > 0) {
-        // Carga los datos en la tabla
-        iTabla.Id = tables[0].Id;
-        iTabla.Name = tables[0].Name;
-        iTabla.NombreEntidad = tables[0].Name + ".cs";
-        iTabla.NombreControl= tables[0].Name + "Control.cs";
-        iTabla.NombreNamespace = namespaceName;
-        iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
-        // Carga las columnas de la tabla
-        foreach (var c in tables[0].Columns)
-        {
-            iTabla.Cols.Add(new infoCol() {
-                Name = c.Name, 
-                CsTypeName= c.CsTypeName.Replace("System.",""),
-                isIdentity = c.IsIdentity,
-                isComputed = c.IsComputed
-            });
-        }
-        // Carga procesos y parámetros
-        foreach (var p in procs)
-        {
-            infoProc proc = new infoProc();
-            proc.Name = p.Name;
-            proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
-            //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
-            foreach ( var param in p.Parameters)
+    foreach(var vTabla in vTablas)
+    {    
+        infoTabla iTabla = new infoTabla();
+        string Tabla_Nombre             = vTabla.Name;
+        string SP_Prefijo               = "sp_";
+        string SP_NombrePrefijo         = SP_Prefijo+Tabla_Nombre+"_";
+
+            // Carga los datos en la tabla
+            iTabla.Id = vTabla.Id;
+            iTabla.Name = vTabla.Name;
+            iTabla.NombreEntidad = vTabla.Name + ".cs";
+            iTabla.NombreControl= vTabla.Name + "Control.cs";
+            iTabla.NombreNamespace = namespaceName;
+            iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
+            // Carga las columnas de la tabla
+            foreach (var c in vTabla.Columns)
             {
-                proc.Params.Add(new infoCol(){
-                    Name = param.Name,
-                    CsTypeName = param.CsTypeName.Replace("System.",""),
-                    isOutput = param.IsOutput 
-                });
+                iTabla.Cols.Add(new infoCol() {
+                        Name = c.Name, 
+                        CsTypeName= c.CsTypeName.Replace("System.",""),
+                        isIdentity = c.IsIdentity,
+                        isComputed = c.IsComputed
+                        });
             }
-            iTabla.Procs.Add(proc);
-        }
+            // Busca los SPs en la base asociados a la tabla
+            var procs = schema
+                .SchemaObjects
+                .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
+                && (so.Name.StartsWith(SP_NombrePrefijo))))
+                .ToArray();
+            // Carga procesos y parámetros
+            foreach (var p in procs)
+            {
+                infoProc proc = new infoProc();
+                proc.Name = p.Name;
+                proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
+                //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
+                foreach ( var param in p.Parameters)
+                {
+                    proc.Params.Add(new infoCol(){
+                            Name = param.Name,
+                            CsTypeName = param.CsTypeName.Replace("System.",""),
+                            isOutput = param.IsOutput 
+                            });
+                }
+                iTabla.Procs.Add(proc);
+            }
+
+        // Graba las clases en archivos        
+        fileManager.IsAutoIndentEnabled = true;
+        fileManager.CanOverwriteExistingFile = true;
+        var paramTmpl = ParamTextTemplate.Create(this.Host); 
+        var session = ParamTextTemplate.GetSessionObject();	 
+        //Guarda en sesion la tabla
+        session["Tabla"] = iTabla;
+        //Generar clase entidad
+        fileManager.StartNewFile(iTabla.NombreEntidad, "","Modelos");
+        string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
+        this.Write(outputEntidad);
+        // Generar clase de control
+        fileManager.StartNewFile(iTabla.NombreControl, "","Modelos");
+        string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
+        this.Write(outputControl);
     }
-    // Graba las clases en archivos
-    var fileManager = TemplateFileManager.Create(this);
-    fileManager.IsAutoIndentEnabled = true;
-    fileManager.CanOverwriteExistingFile = true;
-    var paramTmpl = ParamTextTemplate.Create(this.Host); 
-    var session = ParamTextTemplate.GetSessionObject();	 
-    //Guarda en sesion la tabla
-    session["Tabla"] = iTabla;
-    //Generar clase entidad
-    fileManager.StartNewFile(iTabla.NombreEntidad, "","Modelos");
-    string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
-    this.Write(outputEntidad);
-    // Generar clase de control
-    fileManager.StartNewFile(iTabla.NombreControl, "","Modelos");
-    string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
-    this.Write(outputControl);
     // Guardar
     fileManager.Process();
 #>

@@ -35,7 +35,7 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSocio> _0SelByAll(Int32? UserID= null, String CI=null, String Descripcion=null, DateTime? Fecha_Nacimiento=null, String Estado=null, String Users_EMail=null, String Users_Nombre=null, Int32 PageIndex=0, Int32 PageSize=10, String SortField="Id", String SortDirection="ASC")
+        public IList<asoSocio> _0SelByAll(Int32? UserID = null, String CI = null, String Descripcion = null, DateTime? Fecha_Nacimiento = null, String Estado = null, String Users_EMail = null, String Users_Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_0SelByAll"

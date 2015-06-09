@@ -16,7 +16,7 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoPeriodo
     ///</summary>
-    public class asoPeriodoControl
+    public partial class asoPeriodoControl
     {
         LogEventos _eventos = new LogEventos();
         public IList<asoPeriodo> _0Sel()
@@ -27,7 +27,7 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoPeriodo> _0SelByAll(Int32? No_Periodo, DateTime? Fecha_Periodo, String Estado, String Descripcion, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        public IList<asoPeriodo> _0SelByAll(Int32? No_Periodo = null, DateTime? Fecha_Periodo = null, String Estado = null, String Descripcion = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
                 "sp_asoPeriodo_0SelByAll"

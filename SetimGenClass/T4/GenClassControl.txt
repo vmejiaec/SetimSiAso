@@ -14,90 +14,124 @@ namespace SetimBasico
 {
 
     ///<summary>
-    ///Controladores para los procedimientos de asoSetimListaDet
+    ///Controladores para los procedimientos de asoSocio
     ///</summary>
-    public class asoSetimListaDetControl
+    public partial class asoSocioControl
     {
         LogEventos _eventos = new LogEventos();
-        public IList<asoSetimListaDet> _0SelBy_asoSetimLista_Nombre(String asoSetimLista_Nombre)
+        public IList<asoSocio> _0SelByEstado(String Estado)
         {
-            return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSetimListaDet_0SelBy_asoSetimLista_Nombre"
-                ,asoSetimLista_Nombre
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0SelByEstado"
+                ,Estado
             ));
         }
 
-        public IList<asoSetimListaDet> _0Sel()
+        public IList<asoSocio> _0Sel()
         {
-            return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSetimListaDet_0Sel"
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0Sel"
                 
             ));
         }
 
-        public IList<asoSetimListaDet> _0SelByAll(Int32? asoSetimLista_Id=null,Int32? Orden=null,String Texto=null,String Valor=null,Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC" )
+        public IList<asoSocio> _0SelByAll(Int32? UserID=null,String CI=null,String Descripcion=null,DateTime? Fecha_Nacimiento=null,String Estado=null,String Users_EMail=null,String Users_Nombre=null,Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC" )
         {
-            return CBO.FillCollection<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSetimListaDet_0SelByAll"
-                ,asoSetimLista_Id,Orden,Texto,Valor,PageIndex,PageSize,SortField,SortDirection
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0SelByAll"
+                ,UserID,CI,Descripcion,Fecha_Nacimiento,Estado,Users_EMail,Users_Nombre,PageIndex,PageSize,SortField,SortDirection
             ));
         }
 
-        public asoSetimListaDet _1SelById(Int32 Id)
+        public asoSocio _1SelById(Int32 Id)
         {
-            return CBO.FillObject<asoSetimListaDet>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSetimListaDet_1SelById"
+            return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_1SelById"
                 ,Id
             ));
         }
 
-        public int _4Del(asoSetimListaDet o)
+        public int _4Del(asoSocio o)
         {
             try
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
-                    "sp_asoSetimListaDet_4Del"
+                    "sp_asoSocio_4Del"
                     ,o.Id
                     );
             }
             catch(Exception exc)
             {                
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_4Del, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_4Del, registro {0}.",o.Id);
                 throw new Exception(mensaje, exc);
             }
         }
 
-        public int _2Ins(asoSetimListaDet o)
+        public int _2Ins(asoSocio o)
         {
             try
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
-                    "sp_asoSetimListaDet_2Ins"
-                    ,o.asoSetimLista_Id,o.Orden,o.Texto,o.Valor
+                    "sp_asoSocio_2Ins"
+                    ,o.UserID,o.CI,o.Descripcion,o.Fecha_Nacimiento,o.Estado
                     );
             }
             catch(Exception exc)
             {                
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_2Ins, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_2Ins, registro {0}.",o.Id);
                 throw new Exception(mensaje, exc);
             }
         }
 
-        public int _3Upd(asoSetimListaDet o)
+        public int _3Upd(asoSocio o)
         {
             try
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
-                    "sp_asoSetimListaDet_3Upd"
-                    ,o.Id,o.asoSetimLista_Id,o.Orden,o.Texto,o.Valor
+                    "sp_asoSocio_3Upd"
+                    ,o.Id,o.UserID,o.CI,o.Descripcion,o.Fecha_Nacimiento,o.Estado
                     );
             }
             catch(Exception exc)
             {                
                 Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoSetimListaDet, operacion: sp_asoSetimListaDet_3Upd, registro {0}.",o.Id);
+                string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_3Upd, registro {0}.",o.Id);
+                throw new Exception(mensaje, exc);
+            }
+        }
+
+        public int _5CopyFromUsers()
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoSocio_5CopyFromUsers"
+                    
+                    );
+            }
+            catch(Exception exc)
+            {                
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_5CopyFromUsers, parámetros. " );
+                throw new Exception(mensaje, exc);
+            }
+        }
+
+        public int _5NoUsuariosPorEstado(String Estado)
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoSocio_5NoUsuariosPorEstado"
+                    ,Estado
+                    );
+            }
+            catch(Exception exc)
+            {                
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoSocio, operacion: sp_asoSocio_5NoUsuariosPorEstado, parámetros. Estado:> {0}" ,Estado);
                 throw new Exception(mensaje, exc);
             }
         }

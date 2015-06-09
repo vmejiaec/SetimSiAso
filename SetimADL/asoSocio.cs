@@ -16,5 +16,7 @@ namespace SetimBasico
         public String Estado { get; set; }
         public String Users_EMail { get; set; }
         public String Users_Nombre { get; set; }
+        public Decimal Valor_Accion { get; set; }
+        public Decimal Valor_Ahorro { get; set; }
     }
 }
