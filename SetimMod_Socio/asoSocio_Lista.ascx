@@ -59,14 +59,14 @@
     <Columns>        
         <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="35px"    FooterText ="Página No: "   />
         <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="35px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
-        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    SortExpression="CI" HeaderStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    SortExpression="CI"                 HeaderStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="120px"   SortExpression="Users_Nombre" />
         <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="90px"   />
         <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="120px"   SortExpression="Descripcion" />
-        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Valor_Accion"       HeaderText="Valor Accion"       HeaderStyle-Width="100px"   DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="Valor_Ahorro"       HeaderText="Valor Ahorro"       HeaderStyle-Width="100px"   DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento"   DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado"             ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Valor_Accion"       HeaderText="Valor Accion"       HeaderStyle-Width="90px"   SortExpression="Valor_Accion"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Valor_Ahorro"       HeaderText="Valor Ahorro"       HeaderStyle-Width="90px"   SortExpression="Valor_Ahorro"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
 
       <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>

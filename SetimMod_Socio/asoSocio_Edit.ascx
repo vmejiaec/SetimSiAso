@@ -12,7 +12,6 @@
 <script type="text/javascript">
     jQuery(function ($) {
         $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
-        
     });
 </script>
 

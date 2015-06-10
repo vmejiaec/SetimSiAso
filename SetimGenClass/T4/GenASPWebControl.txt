@@ -1,0 +1,15 @@
+﻿
+
+
+//-> asoSetimLista_Lista.ascx
+
+//-> asoSetimLista_Lista.ascx.cs
+
+//-> asoSetimLista_Lista.ascx.cs
+
+//-> asoSetimLista_Lista.ascx
+// Generated helper templates
+// SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
+// Generated items
+// SetimSiAso\SetimGenClass\ASP_Control\asoSetimLista_Lista.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoSetimLista_Lista.ascx

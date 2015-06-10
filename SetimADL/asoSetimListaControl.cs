@@ -27,11 +27,11 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSetimLista> _0SelByAll(String Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        public IList<asoSetimLista> _0SelByAll(String Nombre = null, String Descripcion = null, String Detalles = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoSetimLista>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSetimLista_0SelByAll"
-                , Nombre, PageIndex, PageSize, SortField, SortDirection
+                , Nombre, Descripcion, Detalles, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
@@ -66,7 +66,7 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSetimLista_2Ins"
-                    , o.Nombre
+                    , o.Nombre, o.Descripcion
                     );
             }
             catch (Exception exc)
@@ -83,7 +83,7 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSetimLista_3Upd"
-                    , o.Id, o.Nombre
+                    , o.Id, o.Nombre, o.Descripcion
                     );
             }
             catch (Exception exc)

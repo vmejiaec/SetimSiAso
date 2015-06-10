@@ -1,0 +1,619 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ include file="Plantillas\TemplateFilemanager.CS.ttinclude" #>
+<#@ output extension=".txt" #>
+
+<#
+    var TablaBase                   = "asoSetimLista";
+    var namespaceName               = "SetimBasico";
+    var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
+    var schema                      = GetSchema (connectionString);
+    var fileManager = TemplateFileManager.Create(this);
+
+    var vTablas = schema
+        .SchemaObjects
+        .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
+            && (so.Name.Equals(TablaBase))))
+        .ToArray ();
+
+    foreach(var vTabla in vTablas)
+    {    
+        infoTabla iTabla = new infoTabla();
+        string Tabla_Nombre             = vTabla.Name; 
+        string SP_Prefijo               = "sp_";
+        string SP_NombrePrefijo         = SP_Prefijo+Tabla_Nombre+"_";
+
+            // Carga los datos en la tabla
+            iTabla.Id = vTabla.Id;
+            iTabla.Name = vTabla.Name;
+            iTabla.Nombre_ascx = vTabla.Name + "_Lista.ascx";
+            iTabla.Nombre_ascx_cs= vTabla.Name + "_Lista.ascx.cs";
+            iTabla.NombreNamespace = namespaceName;
+            iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
+            // Carga las columnas de la tabla
+            foreach (var c in vTabla.Columns)
+            {
+                iTabla.Cols.Add(new infoCol() {
+                        Name = c.Name, 
+                        CsTypeName= c.CsTypeName.Replace("System.",""),
+                        isIdentity = c.IsIdentity,
+                        isComputed = c.IsComputed
+                        });
+            }
+            // Busca los SPs en la base asociados a la tabla
+            var procs = schema
+                .SchemaObjects
+                .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
+                && (so.Name.StartsWith(SP_NombrePrefijo))))
+                .ToArray();
+            // Carga procesos y parámetros
+            foreach (var p in procs)
+            {
+                infoProc proc = new infoProc();
+                proc.Name = p.Name;
+                proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
+                //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
+                foreach ( var param in p.Parameters)
+                {
+                    proc.Params.Add(new infoCol(){
+                            Name = param.Name,
+                            CsTypeName = param.CsTypeName.Replace("System.",""),
+                            isOutput = param.IsOutput 
+                            });
+                }
+                iTabla.Procs.Add(proc);
+            }
+
+        // Graba las clases en archivos        
+        fileManager.IsAutoIndentEnabled = true;
+        fileManager.CanOverwriteExistingFile = true;
+        var paramTmpl = ParamTextTemplate.Create(this.Host); 
+        var session = ParamTextTemplate.GetSessionObject();	 
+        //Guarda en sesion la tabla
+        session["Tabla"] = iTabla;
+        //Generar clase entidad
+        fileManager.StartNewFile(iTabla.Nombre_ascx, "","ASP_Control");
+        //string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
+        //this.Write(outputEntidad);
+#>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="<#=iTabla.Nombre_ascx_cs #>" Inherits="SetimMod_<#=iTabla.Name #>.<#=iTabla.Name #>_Lista" %>
+
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
+
+<ul class="dnnActions dnnClear">
+    <li>
+        <asp:HyperLink runat="server" ID="addButton"
+            CssClass="dnnPrimaryAction"
+            Text="Nuevo" />
+    </li>
+    <li>
+        <asp:LinkButton runat="server" ID="btCopiarSocios"
+            CssClass="dnnSecondaryAction"
+            OnClick="btCopiarSocios_OnClick"
+            Text="Copiar Socios" />
+    </li>
+<%--    <li>
+        <asp:HyperLink runat="server" ID="btConfigAportes"
+            CssClass="dnnSecondaryAction"
+            Text="Configurar Aportes" />
+    </li>--%>
+</ul>
+
+<asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
+    <div class="dnnClear">
+        <asp:Label runat="server" ID="lbFiltro_Criterio" Text="Criterio: "/>
+        <asp:TextBox runat="server" ID="tbFiltro_Criterio" Text="" CssClass="TextBox_Setim" />
+        <asp:DropDownList runat="server" ID="ddlFiltro_Campo" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Campo_SelectedIndexChanged" />
+        <asp:Button runat="server" ID="btBuscar" Text="Buscar" OnClick="btBuscar_Click"  />
+    </div>
+</asp:Panel>
+
+<asp:Panel runat="server" ID="pnCabecera" CssClass="dnnFormMessage dnnFormSuccess">
+    <asp:Label runat="server" ID="lbCab_Estado" Text="Estado: "/>
+    <asp:DropDownList runat="server" ID="ddlCab_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged"/>
+</asp:Panel>
+
+<asp:DataGrid runat="server" ID="dgMaster" 
+    CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
+    DataKeyField="Id"
+    ShowFooter="true"
+    AllowPaging="True" AllowCustomPaging="True" 
+    PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior" 
+    
+    AllowSorting="True"
+
+    OnItemCommand ="dgMaster_OnItemCommand"
+    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated" >
+
+    <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
+
+    <headerstyle cssclass="dnnGridHeader" verticalalign="Top"/>
+    <itemstyle cssclass="dnnGridItem" horizontalalign="Left" />
+    <alternatingitemstyle cssclass="dnnGridAltItem" />
+    <edititemstyle cssclass="dnnFormInput" />
+    <selecteditemstyle BackColor="#c6dbec"/>
+    <footerstyle cssclass="dnnGridFooter" />
+
+    <Columns>        
+        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="35px"    FooterText ="Página No: "   />
+        <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="35px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
+        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    SortExpression="CI"                 HeaderStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="120px"   SortExpression="Users_Nombre" />
+        <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="90px"   />
+        <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="120px"   SortExpression="Descripcion" />
+        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento"   DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado"             ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Valor_Accion"       HeaderText="Valor Accion"       HeaderStyle-Width="90px"   SortExpression="Valor_Accion"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Valor_Ahorro"       HeaderText="Valor Ahorro"       HeaderStyle-Width="90px"   SortExpression="Valor_Ahorro"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
+
+      <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
+        <asp:TemplateColumn>
+            <FooterTemplate>
+                No de Filas: 
+                <asp:DropDownList ID="ddlNoFilasPorPagina" runat="server" CssClass="DropDownList_Setim" AutoPostBack="true" OnSelectedIndexChanged="ddlNoFilasPorPagina_SelectedIndexChanged" >
+                    <asp:ListItem Value="10">10</asp:ListItem>
+                    <asp:ListItem Value="20">20</asp:ListItem>
+                    <asp:ListItem Value="50">50</asp:ListItem>
+                </asp:DropDownList>
+            </FooterTemplate>
+        </asp:TemplateColumn>
+        <asp:TemplateColumn>
+            <HeaderStyle Width="50px" />
+            <ItemTemplate>
+                <asp:HyperLink runat="server" ID="Hyperlink1"
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
+                    Text="Editar"/>
+            </ItemTemplate>
+        </asp:TemplateColumn>
+        <asp:TemplateColumn>
+            <HeaderStyle Width="50px" />
+            <ItemTemplate>
+                <asp:LinkButton runat="server" ID="LinkButton1"
+                    class ="confirm"
+                    CommandArgument='<%# Eval("Id") %>'
+                    CommandName ="Borrar" 
+                    Text="Borrar"/>
+            </ItemTemplate>
+        </asp:TemplateColumn>
+    </Columns>
+</asp:DataGrid>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('.confirm').dnnConfirm({
+            text: '¿Desea proceder con la operación?',
+            yestext: 'Si',
+            notext: 'No',
+            title: 'Confirmación'
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input[class=TextBox_Setim]').css({ 'margin': '0px', 'padding': '2px' });
+        $('select[class=DropDownList_Setim]').css({ 'margin': '0px', 'padding': '2px' });
+    })
+</script>
+<#
+        // Generar clase de control
+        fileManager.StartNewFile(iTabla.Nombre_ascx_cs, "","ASP_Control");
+        //string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
+        //this.Write(outputControl);
+#>
+using System;
+using System.Linq;
+using System.Web.UI.WebControls;
+
+using DotNetNuke.Services.Exceptions;
+using DotNetNuke.UI.Modules;
+using DotNetNuke.UI.Skins;
+using DotNetNuke.Collections;
+using DotNetNuke.Common.Lists;
+using DotNetNuke.Common;
+
+using SetimBasico;
+using System.Collections.Generic;
+using DotNetNuke.Entities.Portals;
+
+namespace SetimMod_Socio
+{
+    public partial class asoSocio_Lista : ModuleUserControlBase
+    {
+        // Usuario
+        private int _UserId;
+        private int _ModuleId;
+        // Campo por defecto para ordenar la lista
+        private string _Ordenar_Campo_Defaul = "Users_Nombre";
+        // Estado de la página
+        private PaginaEstado paginaEstado 
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null)
+                    Session["paginaEstado"]= new PaginaEstado();
+                return (PaginaEstado)Session["paginaEstado"];
+            }
+            set
+            {
+                Session["paginaEstado"] = value;
+            }
+        }
+        // Entidad base
+        private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        // Cada vez que se llama a la página
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            // Datos del módulo y del usuario del DNN
+            _ModuleId = ModuleContext.ModuleId;
+            _UserId = ModuleContext.PortalSettings.UserId;
+            // Solo si es primera vez, carga los datos por defecto.
+            if (!IsPostBack)
+            {
+                // Verifica el estado de la página
+                if (paginaEstado.ModuleID == _ModuleId)
+                {
+                    if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                    if (paginaEstado.dgMasterItemIndex != -1) dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
+                }
+                else
+                {
+                    // Si no se trata del estado de esta página, se inicializa todo el estado
+                    paginaEstado = new PaginaEstado();
+                    paginaEstado.ModuleID = _ModuleId;
+                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;                    
+                }
+                // Inicializa la lista de estados en el filtro
+                CargarDdl_CamposDelFiltro();
+                CargarDdl_Estados();
+                // Carga de datos
+                ConsultaDatos();
+            }
+            // Inicializa el botón de edición
+            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+        }
+        // Carga los estados desde una lista de SetimLista
+        private void CargarDdl_Estados()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
+            ddlCab_Estado.DataSource = lista;
+            ddlCab_Estado.DataTextField = "Texto";
+            ddlCab_Estado.DataValueField = "Valor";
+            ddlCab_Estado.DataBind();
+            // Carga el estado del estado de la pagina
+            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
+        }
+        // Carga los campos para filtrar 
+        private void CargarDdl_CamposDelFiltro()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Lista_Filtros");
+            ddlFiltro_Campo.DataSource = lista;
+            ddlFiltro_Campo.DataTextField = "Texto";
+            ddlFiltro_Campo.DataValueField = "Valor";
+            ddlFiltro_Campo.DataBind();
+            // Carga el filtro de los campos desde el estado de la pagina
+            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
+            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
+        }
+        // Organiza los comandos generados por el DataGrid
+        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            int entidadId;
+            switch (e.CommandName)
+            { 
+                case "Borrar":
+                    entidadId = int.Parse((string) e.CommandArgument);
+                    BorrarEntidad(entidadId);
+                    break;
+                case "Page":
+                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
+                    string dir = (string)e.CommandArgument;
+                    int indice = ((DataGrid)source).CurrentPageIndex;
+                    if (dir == "Next")
+                        indice = indice + 1;
+                    else
+                        indice = indice - 1;
+                    paginaEstado.PaginaActual = indice;
+                    ConsultaDatos();
+                    break;
+                //case "Select":
+                //    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                //    string sEntidadId = e.Item.Cells[0].Text;
+                //    entidadId = 1;
+                //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
+                //    break;
+            }            
+        }
+
+        // Proceso de carga de datos en el GridView
+        protected void ConsultaDatos()
+        {
+            // Consulta los datos del SP SelByAll
+            var datos = ConsultaSP();
+            // Calcula la página que el toca en el datagrid
+            int noDatos = datos.Count();
+            if (noDatos > 0 || (noDatos == 0 && paginaEstado.PaginaActual == 0))
+            {
+                dgMaster.VirtualItemCount = noDatos < paginaEstado.NoFilasPorPagina ?
+                      (paginaEstado.PaginaActual) * paginaEstado.NoFilasPorPagina + noDatos
+                    : (paginaEstado.PaginaActual + 2) * paginaEstado.NoFilasPorPagina;
+                dgMaster.CurrentPageIndex = paginaEstado.PaginaActual;
+                dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                // Coloca los datos en el grid
+                dgMaster.DataSource = datos;
+                dgMaster.DataBind();
+                // Accede al Footer del DataGrid y pone el número de registros por página
+                int NoRegs = dgMaster.Controls[0].Controls.Count;
+                var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
+                var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
+                ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
+            }
+        }
+        // Proceso para consultar a la base los datos
+        private IList<asoSocio> ConsultaSP()
+        {
+            IList<asoSocio> res = new List<asoSocio>();
+            res = _EntidadControl._0SelByAll(
+                paginaEstado.Filtro_Estado,
+                paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
+                paginaEstado.PaginaActual, paginaEstado.NoFilasPorPagina,
+                paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
+            return res;
+        }
+        // Proceso de borrado de la fila
+        protected void BorrarEntidad(int entidadId)
+        {
+            try
+            {
+                var oSocio = _EntidadControl._1SelById(entidadId);
+                int res = _EntidadControl._4Del(oSocio);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Al borrar hay error. Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+        // Carga masiva de los socios en base de los usuario que tienen rol ="Socio"
+        protected void btCopiarSocios_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                _EntidadControl._5CopyFromUsers();
+                Response.Redirect(Request.RawUrl,false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+
+        protected void btConfigAportes_OnClick(object sender, EventArgs e)
+        {
+            int vId = (int) dgMaster.DataKeys[dgMaster.SelectedIndex];
+            string url = Globals.NavigateURL( ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(),"EntidadId",vId.ToString());
+            Response.Redirect(url + "?popUp=true");
+        }
+
+        protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
+        {
+            
+            if (paginaEstado.Ordenar_Campo == e.SortExpression)
+                paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
+            else
+            {
+                paginaEstado.Ordenar_Campo = e.SortExpression;
+                paginaEstado.Ordenar_Sentido = "ASC";
+            }
+            // Consulta los datos
+            ConsultaDatos();
+        }
+
+        protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                e.Item.Cells[0].ColumnSpan = 2;
+                e.Item.Cells[0].Text = string.Format("Página No: {0}",dgMaster.CurrentPageIndex+1);
+                e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1 );
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+            }
+        }
+
+        protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int noFilasPorPagina = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            paginaEstado.NoFilasPorPagina = noFilasPorPagina;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+
+        protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList) sender;
+            paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+
+        protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
+        }
+    }
+}
+<#
+    }
+    // Guardar
+    fileManager.Process();
+#>
+<#+
+    static Schema GetSchema (string connectionString) 
+    {
+        using (var connection = new SqlConnection (connectionString))
+        {
+            connection.Open ();
+            return new Schema (connection);
+        }
+    }
+    /// <summary>
+    /// Información para tablas
+    /// </summery>
+    [Serializable()]
+    public class infoTabla : MarshalByRefObject
+    {
+        public string NombreNamespace{ get; set; }
+        public string Nombre_ascx{ get; set; }
+        public string Nombre_ascx_cs { get; set; }
+        public string SP_NombrePrefijo { get; set; }
+        public int Id{ get; set; }
+	    public string Name { get; set; }
+	    public List<infoCol> Cols{ get; set; }
+        public List<infoProc> Procs{ get; set; }
+        public infoTabla()
+        {
+            Name = "..";
+            Cols = Cols ?? new List<infoCol>();
+            Procs = Procs ?? new List<infoProc>();
+        }
+        public List<infoProc> ProcsSelectVariosRegistros()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_0Sel"));
+            res.RemoveAll(p =>(p.Name).EndsWith("_0SelByAll"));
+            return res;
+        }
+        public List<infoProc> ProcsSelectByAll()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).EndsWith("_0SelByAll"));
+            return res;
+        }
+        public List<infoProc> ProcsSelectUnRegistro()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_1Sel"));
+            return res;
+        }
+        public List<infoProc> ProcsIUD()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (
+                (p.Name.EndsWith("_2Ins")) ||
+                (p.Name.EndsWith("_3Upd")) ||
+                (p.Name.EndsWith("_4Del")) 
+                ));
+            return res;
+        }
+        public List<infoProc> ProcsOtros()
+        {
+            List<infoProc> res = new List<infoProc>();
+            res = Procs.FindAll(p => (p.Name).Contains("_5"));
+            return res;
+        }
+    }
+    /// <summary>
+    /// Información para Procedimientos
+    /// </summery>
+    [Serializable()]
+    public class infoProc : MarshalByRefObject
+    {
+        public int Id{ get; set; }
+        public string Name{ get; set; }
+        public string Nombre{ get; set; }
+        public List<infoCol> Params{ get; set; }
+        public infoProc()
+        {
+            Name = "..";
+            Params = Params ?? new List<infoCol>();
+        }
+        public string ParamsConTipo()
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1} {2}",lista,p.CsTypeName, p.Name.Replace("@",""));
+            }
+            return string.IsNullOrEmpty(lista)?"":lista.Remove(0,1);
+        }
+        public string ParamsSinTipoConComaInicial()
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1}",lista,p.Name.Replace("@",""));
+            }
+            return lista;
+        }
+        public string ParamsSinTipoConComaInicialConPrefijo(string prefijo)
+        {
+            string lista="";
+            foreach(var p in Params)
+            {
+                lista = string.Format("{0},{1}{2}",lista,prefijo,p.Name.Replace("@",""));
+            }
+            return lista;
+        }
+        public string MarcasParaFormatString()
+        {
+            string marcas="";
+            int i = 0;
+            foreach(var p in Params)
+            {
+                marcas = marcas + p.Name.Replace("@","") + ":> {" + i.ToString() + "}";
+                i = i + 1;
+            }
+            return marcas;
+        }
+    }
+    /// <summary>
+    /// Información para columnas y parametros
+    /// </summery>
+    [Serializable()]
+    public class infoCol : MarshalByRefObject
+    {
+        public int Id{ get; set; }
+        public string Name{ get; set; }
+    
+        public string DbTypeName{ get; set; }
+        public string CsTypeName{ get; set; }
+        public string DbDefaultValue{ get; set; }
+    
+        public short MaxLength{ get; set; }
+        public byte Precision{ get; set; }
+        public byte Scale{ get; set; }
+
+        public bool isOutput{ get; set; }
+        public bool isIdentity { get; set; }
+        public bool isNullable { get; set; }
+        public bool isComputed { get; set; }
+    }
+#>
