@@ -55,6 +55,8 @@ namespace SetimMod_Socio
             tbDescripcion.Text = o.Descripcion;
             dnnDP_Fecha_Nacimiento.SelectedDate = o.Fecha_Nacimiento;
             ddlEstado.SelectedValue = o.Estado;
+            tbValor_Accion.Text = o.Valor_Accion.ToString();
+            tbValor_Ahorro.Text = o.Valor_Ahorro.ToString();
             // Campos calculados
             tbNombre.Text = o.Users_Nombre;
             tbEMail.Text = o.Users_EMail;
@@ -69,7 +71,9 @@ namespace SetimMod_Socio
                 CI = tbCI.Text,
                 Descripcion = tbDescripcion.Text,
                 Fecha_Nacimiento = (DateTime)dnnDP_Fecha_Nacimiento.SelectedDate,
-                Estado = ddlEstado.SelectedValue
+                Estado = ddlEstado.SelectedValue,
+                Valor_Accion = decimal.Parse(tbValor_Accion.Text),
+                Valor_Ahorro = decimal.Parse(tbValor_Ahorro.Text)
             };
             return o;
         }

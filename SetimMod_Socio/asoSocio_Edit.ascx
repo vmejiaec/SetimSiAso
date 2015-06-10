@@ -6,6 +6,16 @@
     <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
     <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
+<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
+
+<%--Funcion para poner el formato numérico a los campos de Valor--%>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
+        
+    });
+</script>
+
 <div id="dnnUsers" class="dnnForm dnnClear">
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos del socio." />
     <fieldset>
@@ -45,6 +55,14 @@
                 <asp:ListItem Text="Activo" Value="ACT" />
                 <asp:ListItem Text="Inactivo" Value="INA"/>
             </asp:DropDownList>
+        </div>
+        <div class="dnnFormItem" >
+            <dnn:Label ID="lbValor_Accion" runat="server" Text="Valor_Accion:" HelpText="Valor_Accion"/>
+            <asp:TextBox runat="server" ID="tbValor_Accion" CssClass="TextBox_Setim_Valor" />
+        </div>
+        <div class="dnnFormItem" >
+            <dnn:Label ID="lbValor_Ahorro" runat="server" Text="Valor_Ahorro:" HelpText="Valor_Ahorro"/>
+            <asp:TextBox runat="server" ID="tbValor_Ahorro" CssClass="TextBox_Setim_Valor" />
         </div>
     </fieldset>
 </div>

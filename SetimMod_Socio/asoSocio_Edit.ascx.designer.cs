@@ -175,6 +175,42 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
         
         /// <summary>
+        /// lbValor_Accion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbValor_Accion;
+        
+        /// <summary>
+        /// tbValor_Accion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbValor_Accion;
+        
+        /// <summary>
+        /// lbValor_Ahorro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbValor_Ahorro;
+        
+        /// <summary>
+        /// tbValor_Ahorro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbValor_Ahorro;
+        
+        /// <summary>
         /// saveButton control.
         /// </summary>
         /// <remarks>

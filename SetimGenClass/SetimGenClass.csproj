@@ -42,6 +42,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\asoInversion.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoInversionControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodo.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoAporte.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoAporteControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoCuota.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoCuotaControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoInversion.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPeriodoInversionControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPrestamo.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoPrestamoControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSetimLista.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSetimListaControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSetimListaDet.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSetimListaDetControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocio.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocioAporte.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocioAporteControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocioControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocioInversion.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\asoSocioInversionControl.cs">
+      <DependentUpon>GenMasterClass.txt4</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4\GeneraClases.cs">
       <AutoGen>True</AutoGen>
@@ -51,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ArchivosBase\Module.build" />
+    <None Include="Modelos\GenMasterClass.txt4" />
     <None Include="T4\GenClassControl.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenClassControl.txt</LastGenOutput>
@@ -97,9 +164,7 @@
       <Name>SetimBasico</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modelos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

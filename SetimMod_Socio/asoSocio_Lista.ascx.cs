@@ -117,12 +117,12 @@ namespace SetimMod_Socio
                     paginaEstado.PaginaActual = indice;
                     ConsultaDatos();
                     break;
-                case "Select":
-                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
-                    string sEntidadId = e.Item.Cells[0].Text;
-                    entidadId = 1;
-                    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
-                    break;
+                //case "Select":
+                //    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                //    string sEntidadId = e.Item.Cells[0].Text;
+                //    entidadId = 1;
+                //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
+                //    break;
             }            
         }
 

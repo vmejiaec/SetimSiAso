@@ -43,6 +43,50 @@
 //-> asoSocioInversion.cs
 
 //-> asoSocioInversionControl.cs
+
+//-> asoInversion.cs
+
+//-> asoInversionControl.cs
+
+//-> asoPeriodo.cs
+
+//-> asoPeriodoAporte.cs
+
+//-> asoPeriodoAporteControl.cs
+
+//-> asoPeriodoControl.cs
+
+//-> asoPeriodoCuota.cs
+
+//-> asoPeriodoCuotaControl.cs
+
+//-> asoPeriodoInversion.cs
+
+//-> asoPeriodoInversionControl.cs
+
+//-> asoPrestamo.cs
+
+//-> asoPrestamoControl.cs
+
+//-> asoSetimLista.cs
+
+//-> asoSetimListaControl.cs
+
+//-> asoSetimListaDet.cs
+
+//-> asoSetimListaDetControl.cs
+
+//-> asoSocio.cs
+
+//-> asoSocioAporte.cs
+
+//-> asoSocioAporteControl.cs
+
+//-> asoSocioControl.cs
+
+//-> asoSocioInversion.cs
+
+//-> asoSocioInversionControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
