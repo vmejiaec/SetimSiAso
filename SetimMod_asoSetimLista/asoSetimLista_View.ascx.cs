@@ -10,9 +10,9 @@ using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
 
-namespace SetimMod_Listas
+namespace SetimMod_asoSetimLista
 {
-    public partial class asoSetimLista_Lista : ModuleUserControlBase
+    public partial class asoSetimLista_View : ModuleUserControlBase
     {
         private int _UserID;
         private int _EntidadId;

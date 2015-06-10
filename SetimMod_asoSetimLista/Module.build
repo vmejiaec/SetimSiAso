@@ -8,7 +8,7 @@
   <PropertyGroup>
     <WebsitePath>C:\websites\dnndev.me</WebsitePath>
     <WebsiteBinPath>$(WebsitePath)\bin</WebsiteBinPath>
-    <ModuleFolderName>$(WebsitePath)\DesktopModules\Setim\ModListas</ModuleFolderName>
+    <ModuleFolderName>$(WebsitePath)\DesktopModules\Setim\SetimMod_asoSetimLista</ModuleFolderName>
   </PropertyGroup>
 
   <ItemGroup>

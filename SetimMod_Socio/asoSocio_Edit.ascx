@@ -58,10 +58,12 @@
         <div class="dnnFormItem" >
             <dnn:Label ID="lbValor_Accion" runat="server" Text="Valor_Accion:" HelpText="Valor_Accion"/>
             <asp:TextBox runat="server" ID="tbValor_Accion" CssClass="TextBox_Setim_Valor" />
+            <asp:RequiredFieldValidator ID="rfvValor_Accion" runat="server" ControlToValidate="tbValor_Accion" CssClass="dnnFormMessage dnnFormError" Text="Requerido" />
         </div>
         <div class="dnnFormItem" >
             <dnn:Label ID="lbValor_Ahorro" runat="server" Text="Valor_Ahorro:" HelpText="Valor_Ahorro"/>
             <asp:TextBox runat="server" ID="tbValor_Ahorro" CssClass="TextBox_Setim_Valor" />
+            <asp:RequiredFieldValidator ID="rfvValor_Ahorro" runat="server" ControlToValidate="tbValor_Ahorro" CssClass="dnnFormMessage dnnFormError" Text="Requerido" />
         </div>
     </fieldset>
 </div>

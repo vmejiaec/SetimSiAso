@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DD71DC1B-0B4D-48A3-AF02-2C33567215D6}</ProjectGuid>
+    <ProjectGuid>{3708F7BA-D24A-4AB7-9B31-484E102A8A06}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SetimMod_Listas</RootNamespace>
-    <AssemblyName>SetimMod_Listas</AssemblyName>
+    <RootNamespace>SetimMod_asoSetimLista</RootNamespace>
+    <AssemblyName>SetimMod_asoSetimLista</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -72,17 +72,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asoSetimLista_Lista.ascx.cs">
-      <DependentUpon>asoSetimLista_Lista.ascx</DependentUpon>
+    <Compile Include="asoSetimLista_View.ascx.cs">
+      <DependentUpon>asoSetimLista_View.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="asoSetimLista_Lista.ascx.designer.cs">
-      <DependentUpon>asoSetimLista_Lista.ascx</DependentUpon>
+    <Compile Include="asoSetimLista_View.ascx.designer.cs">
+      <DependentUpon>asoSetimLista_View.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asoSetimLista_Lista.ascx" />
+    <Content Include="asoSetimLista_View.ascx" />
     <Content Include="Module.build" />
     <Content Include="module.css" />
   </ItemGroup>
@@ -114,7 +114,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:19169/</IISUrl>
+          <IISUrl>http://localhost:20590/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

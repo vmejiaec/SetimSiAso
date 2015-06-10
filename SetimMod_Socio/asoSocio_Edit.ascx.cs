@@ -72,8 +72,8 @@ namespace SetimMod_Socio
                 Descripcion = tbDescripcion.Text,
                 Fecha_Nacimiento = (DateTime)dnnDP_Fecha_Nacimiento.SelectedDate,
                 Estado = ddlEstado.SelectedValue,
-                Valor_Accion = decimal.Parse(tbValor_Accion.Text),
-                Valor_Ahorro = decimal.Parse(tbValor_Ahorro.Text)
+                Valor_Accion = string.IsNullOrWhiteSpace(tbValor_Accion.Text) ? 0 : decimal.Parse(tbValor_Accion.Text),
+                Valor_Ahorro = string.IsNullOrWhiteSpace(tbValor_Ahorro.Text) ? 0 : decimal.Parse(tbValor_Ahorro.Text)
             };
             return o;
         }

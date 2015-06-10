@@ -193,6 +193,15 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.TextBox tbValor_Accion;
         
         /// <summary>
+        /// rfvValor_Accion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Accion;
+        
+        /// <summary>
         /// lbValor_Ahorro control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace SetimMod_Socio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbValor_Ahorro;
+        
+        /// <summary>
+        /// rfvValor_Ahorro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Ahorro;
         
         /// <summary>
         /// saveButton control.

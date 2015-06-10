@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SetimMod_Listas")]
+[assembly: AssemblyTitle("SetimMod_asoSetimLista")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SetimMod_Listas")]
+[assembly: AssemblyProduct("SetimMod_asoSetimLista")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e7419184-85d9-447a-bb1f-3c6bbaab5125")]
+[assembly: Guid("d5626e1c-5d93-46bf-afd5-4d5b9968057c")]
 
 // Version information for an assembly consists of the following four values:
 //

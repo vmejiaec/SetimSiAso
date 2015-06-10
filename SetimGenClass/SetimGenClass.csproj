@@ -63,10 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ASP_Control\asoSetimLista_Lista.ascx.cs">
-      <DependentUpon>GenASPWebControl.txt4</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4\GeneraClases.cs">
       <AutoGen>True</AutoGen>
@@ -76,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ArchivosBase\Module.build" />
-    <None Include="ASP_Control\GenASPWebControl.txt4" />
     <None Include="T4\GenASPWebControl.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenASPWebControl.txt</LastGenOutput>
@@ -105,10 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ArchivosBase\module.css" />
-    <Content Include="ASP_Control\asoSetimLista_Lista.ascx">
-      <DependentUpon>GenASPWebControl.txt4</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="T4\GenASPWebControl.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +132,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ASP_Control\" />
     <Folder Include="Modelos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
