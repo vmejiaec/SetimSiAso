@@ -40,40 +40,22 @@ namespace SetimMod_asoSocio {
         protected global::System.Web.UI.WebControls.TextBox tbId;
         
         /// <summary>
-        /// lbUserId control.
+        /// lbUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbUserId;
+        protected global::System.Web.UI.UserControl lbUserID;
         
         /// <summary>
-        /// tbUserId control.
+        /// tbUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUserId;
-        
-        /// <summary>
-        /// lbNombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbNombre;
-        
-        /// <summary>
-        /// tbNombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNombre;
+        protected global::System.Web.UI.WebControls.TextBox tbUserID;
         
         /// <summary>
         /// lbCI control.
@@ -101,24 +83,6 @@ namespace SetimMod_asoSocio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbCI;
-        
-        /// <summary>
-        /// lbEMail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbEMail;
-        
-        /// <summary>
-        /// tbEMail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEMail;
         
         /// <summary>
         /// lbDescripcion control.
@@ -157,6 +121,15 @@ namespace SetimMod_asoSocio {
         protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_Fecha_Nacimiento;
         
         /// <summary>
+        /// rfv_dnnDP_Fecha_Nacimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_dnnDP_Fecha_Nacimiento;
+        
+        /// <summary>
         /// lbEstado control.
         /// </summary>
         /// <remarks>
@@ -173,6 +146,60 @@ namespace SetimMod_asoSocio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
+        
+        /// <summary>
+        /// lbUsers_EMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbUsers_EMail;
+        
+        /// <summary>
+        /// tbUsers_EMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUsers_EMail;
+        
+        /// <summary>
+        /// rfv_tbUsers_EMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbUsers_EMail;
+        
+        /// <summary>
+        /// lbUsers_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbUsers_Nombre;
+        
+        /// <summary>
+        /// tbUsers_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUsers_Nombre;
+        
+        /// <summary>
+        /// rfv_tbUsers_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbUsers_Nombre;
         
         /// <summary>
         /// lbValor_Accion control.
@@ -193,13 +220,13 @@ namespace SetimMod_asoSocio {
         protected global::System.Web.UI.WebControls.TextBox tbValor_Accion;
         
         /// <summary>
-        /// rfvValor_Accion control.
+        /// rfv_Valor_Accion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Accion;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Valor_Accion;
         
         /// <summary>
         /// lbValor_Ahorro control.
@@ -220,13 +247,13 @@ namespace SetimMod_asoSocio {
         protected global::System.Web.UI.WebControls.TextBox tbValor_Ahorro;
         
         /// <summary>
-        /// rfvValor_Ahorro control.
+        /// rfv_Valor_Ahorro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Ahorro;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Valor_Ahorro;
         
         /// <summary>
         /// vsResumen control.

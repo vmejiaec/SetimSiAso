@@ -48,7 +48,7 @@ namespace SetimMod_asoSocio
             var o = _EntidadControl._1SelById(entidadId);
             // Campos propios
             tbId.Text = o.Id.ToString();
-            tbUserId.Text = o.UserID.ToString();
+            tbUserID.Text = o.UserID.ToString();
             tbCI.Text = o.CI;
             tbDescripcion.Text = o.Descripcion;
             dnnDP_Fecha_Nacimiento.SelectedDate = o.Fecha_Nacimiento;
@@ -56,8 +56,8 @@ namespace SetimMod_asoSocio
             tbValor_Accion.Text = o.Valor_Accion.ToString();
             tbValor_Ahorro.Text = o.Valor_Ahorro.ToString();
             // Campos calculados
-            tbNombre.Text = o.Users_Nombre;
-            tbEMail.Text = o.Users_EMail;
+            tbUsers_Nombre.Text = o.Users_Nombre;
+            tbUsers_EMail.Text = o.Users_EMail;
         }
         // Carga un objeto con los datos del formulario
         protected asoSocio ColocarDatosEnObjeto()
@@ -65,7 +65,7 @@ namespace SetimMod_asoSocio
             var o = new asoSocio()
             {
                 Id = _EntidadId,
-                UserID = Int32.Parse(tbUserId.Text),
+                UserID = Int32.Parse(tbUserID.Text),
                 CI = tbCI.Text,
                 Descripcion = tbDescripcion.Text,
                 Fecha_Nacimiento = (DateTime)dnnDP_Fecha_Nacimiento.SelectedDate,

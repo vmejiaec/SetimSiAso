@@ -5,17 +5,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton"
-            CssClass="dnnPrimaryAction"
-            Text="Nuevo" />
-    </li>
-    <li>
-        <asp:LinkButton runat="server" ID="btAccion"
-            CssClass="dnnSecondaryAction"
-            OnClick="btAccion_OnClick"
-            Text="Accion" />
-    </li>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction" OnClick="btAccion_OnClick" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -27,16 +18,10 @@
     </div>
 </asp:Panel>
 
-<asp:Panel runat="server" ID="pnCabecera" CssClass="dnnFormMessage dnnFormSuccess">
-    <asp:Label runat="server" ID="lbCab_Estado" Text="Estado: " />
-    <asp:DropDownList runat="server" ID="ddlCab_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged" />
-</asp:Panel>
-
 <asp:DataGrid runat="server" ID="dgMaster"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
     DataKeyField="Id"
-    ShowFooter="true"
-    AllowPaging="True" AllowCustomPaging="True" AllowSorting="True"
+    ShowFooter="true" AllowPaging="True" AllowCustomPaging="True" AllowSorting="True"
     PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior"
     OnItemCommand="dgMaster_OnItemCommand"
     OnSortCommand="dgMaster_SortCommand"

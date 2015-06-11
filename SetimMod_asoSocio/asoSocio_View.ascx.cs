@@ -21,11 +21,14 @@ namespace SetimMod_asoSocio
         private string _Ordenar_Campo_Defaul = "Users_Nombre";
         // Estado de la página
         private PaginaEstado paginaEstado
-        { get
-            { if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
-              return (PaginaEstado)Session["paginaEstado"];}
-          set
-            { Session["paginaEstado"] = value;}
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
+                return (PaginaEstado)Session["paginaEstado"];
+            }
+            set
+            { Session["paginaEstado"] = value; }
         }
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();

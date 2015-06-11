@@ -76,33 +76,6 @@ namespace SetimMod_asoSetimLista {
         protected global::System.Web.UI.WebControls.Button btBuscar;
         
         /// <summary>
-        /// pnCabecera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnCabecera;
-        
-        /// <summary>
-        /// lbCab_Estado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
-        
-        /// <summary>
-        /// ddlCab_Estado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
-        
-        /// <summary>
         /// dgMaster control.
         /// </summary>
         /// <remarks>

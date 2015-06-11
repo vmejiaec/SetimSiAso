@@ -236,7 +236,7 @@ namespace SetimMod_asoSetimLista
         {
             var ddl = (DropDownList)sender;
             paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
-            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.Filtro_Valor = "%"+tbFiltro_Criterio.Text+"%";
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }

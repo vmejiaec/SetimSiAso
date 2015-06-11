@@ -4,7 +4,7 @@
 <#@ output extension=".txt" #>
 
 <#
-    var TablaBase                   = "asoSetimListaDet";
+    var TablaBase                   = "asoSocio";
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
@@ -13,7 +13,7 @@
     var vTablas = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
-            && (so.Name.Equals(TablaBase))))
+        && (so.Name.Equals(TablaBase))))
         .ToArray ();
 
     foreach(var vTabla in vTablas)
@@ -23,50 +23,58 @@
         string SP_Prefijo               = "sp_";
         string SP_NombrePrefijo         = SP_Prefijo+Tabla_Nombre+"_";
 
-            // Carga los datos en la tabla
-            iTabla.Id = vTabla.Id;
-            iTabla.Name = vTabla.Name;
-            iTabla.Nombre_ascx = vTabla.Name + "_View.ascx";
-            iTabla.Nombre_ascx_cs= vTabla.Name + "_View.ascx.cs";
-            iTabla.ascxCodeBehind = vTabla.Name+"_View.ascx.cs";
-            iTabla.ascxInherits = "SetimMod_" + vTabla.Name + "." + vTabla.Name + "_View";
-            iTabla.csNamespace = "SetimMod_" + vTabla.Name;
-            iTabla.csClase = vTabla.Name + "_View";
-            iTabla.NombreNamespace = namespaceName;
-            iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
-            // Carga las columnas de la tabla
-            foreach (var c in vTabla.Columns)
+        // Carga los datos en la tabla
+        iTabla.Id = vTabla.Id;
+        iTabla.Name = vTabla.Name;
+        iTabla.NombreNamespace = namespaceName;
+        iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
+        // Los nombres para la página tipo View
+        iTabla.View_Nombre_ascx = vTabla.Name + "_View.ascx";
+        iTabla.View_Nombre_ascx_cs= vTabla.Name + "_View.ascx.cs";
+        iTabla.View_ascxCodeBehind = vTabla.Name+"_View.ascx.cs";
+        iTabla.View_ascxInherits = "SetimMod_" + vTabla.Name + "." + vTabla.Name + "_View";
+        iTabla.View_csNamespace = "SetimMod_" + vTabla.Name;
+        iTabla.View_csClase = vTabla.Name + "_View";
+        // Los nombres para la página tipo Edit
+        iTabla.Edit_Nombre_ascx = vTabla.Name + "_Edit.ascx";
+        iTabla.Edit_Nombre_ascx_cs= vTabla.Name + "_Edit.ascx.cs";
+        iTabla.Edit_ascxCodeBehind = vTabla.Name+"_Edit.ascx.cs";
+        iTabla.Edit_ascxInherits = "SetimMod_" + vTabla.Name + "." + vTabla.Name + "_Edit";
+        iTabla.Edit_csNamespace = "SetimMod_" + vTabla.Name;
+        iTabla.Edit_csClase = vTabla.Name + "_Edit";
+        // Carga las columnas de la tabla
+        foreach (var c in vTabla.Columns)
+        {
+            iTabla.Cols.Add(new infoCol() {
+                    Name = c.Name, 
+                    CsTypeName= c.CsTypeName.Replace("System.",""),
+                    isIdentity = c.IsIdentity,
+                    isComputed = c.IsComputed
+                    });
+        }
+        // Busca los SPs en la base asociados a la tabla
+        var procs = schema
+            .SchemaObjects
+            .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
+            && (so.Name.StartsWith(SP_NombrePrefijo))))
+            .ToArray();
+        // Carga procesos y parámetros
+        foreach (var p in procs)
+        {
+            infoProc proc = new infoProc();
+            proc.Name = p.Name;
+            proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
+            //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
+            foreach ( var param in p.Parameters)
             {
-                iTabla.Cols.Add(new infoCol() {
-                        Name = c.Name, 
-                        CsTypeName= c.CsTypeName.Replace("System.",""),
-                        isIdentity = c.IsIdentity,
-                        isComputed = c.IsComputed
+                proc.Params.Add(new infoCol(){
+                        Name = param.Name,
+                        CsTypeName = param.CsTypeName.Replace("System.",""),
+                        isOutput = param.IsOutput 
                         });
             }
-            // Busca los SPs en la base asociados a la tabla
-            var procs = schema
-                .SchemaObjects
-                .Where (so => ((so.Type == SchemaObject.SchemaObjectType.StoredProcedure )
-                && (so.Name.StartsWith(SP_NombrePrefijo))))
-                .ToArray();
-            // Carga procesos y parámetros
-            foreach (var p in procs)
-            {
-                infoProc proc = new infoProc();
-                proc.Name = p.Name;
-                proc.Nombre = p.Name.Replace(SP_NombrePrefijo,"_");
-                //proc.Name.Replace(tabla.SP_NombrePrefijo,"_"
-                foreach ( var param in p.Parameters)
-                {
-                    proc.Params.Add(new infoCol(){
-                            Name = param.Name,
-                            CsTypeName = param.CsTypeName.Replace("System.",""),
-                            isOutput = param.IsOutput 
-                            });
-                }
-                iTabla.Procs.Add(proc);
-            }
+            iTabla.Procs.Add(proc);
+        }
 
         // Graba las clases en archivos        
         fileManager.IsAutoIndentEnabled = true;
@@ -75,29 +83,20 @@
         var session = ParamTextTemplate.GetSessionObject();	 
         //Guarda en sesion la tabla
         session["Tabla"] = iTabla;
-        //Generar clase entidad
-        fileManager.StartNewFile(iTabla.Nombre_ascx, "","ASP_Control");
-        //string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
-        //this.Write(outputEntidad);
+#>
+<# 
+        //Generar pagina del tipo View
+        fileManager.StartNewFile(iTabla.View_Nombre_ascx, "","ASP_Control");
 #>
 <%@ Control Language="C#" AutoEventWireup="true" 
-    CodeBehind="<#=iTabla.ascxCodeBehind #>" 
-    Inherits="<#=iTabla.ascxInherits #>" %>
+    CodeBehind="<#=            iTabla.View_ascxCodeBehind #>" 
+    Inherits="<#=            iTabla.View_ascxInherits #>" %>
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton"
-            CssClass="dnnPrimaryAction"
-            Text="Nuevo" />
-    </li>
-    <li>
-        <asp:LinkButton runat="server" ID="btAccion"
-            CssClass="dnnSecondaryAction"
-            OnClick="btAccion_OnClick"
-            Text="Accion" />
-    </li>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction" OnClick="btAccion_OnClick" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -134,7 +133,7 @@
 
     <Columns>   
 <#        foreach ( var col in iTabla.Cols) { 
-#>      <asp:BoundColumn DataField="<#=col.Name #>" HeaderText="<#=col.Name #>" HeaderStyle-Width="50px" SortExpression="<#=col.Name #>" HeaderStyle-HorizontalAlign="Center" <#
+#>      <asp:BoundColumn DataField="<#=                col.Name #>" HeaderText="<#=                col.Name #>" HeaderStyle-Width="50px" SortExpression="<#=                col.Name #>" HeaderStyle-HorizontalAlign="Center" <#
             switch (col.CsTypeName) {   
                 case "Int32": 
 #>          DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" <#
@@ -148,7 +147,7 @@
                 default: 
 #>          DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" <#
                     break;
-               } 
+            } 
 #>      />
 <#        } #>
       <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
@@ -201,10 +200,8 @@
     })
 </script>
 <#
-        // Generar clase de control
-        fileManager.StartNewFile(iTabla.Nombre_ascx_cs, "","ASP_Control");
-        //string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
-        //this.Write(outputControl);
+        // Generar clase del tipo View
+        fileManager.StartNewFile(iTabla.View_Nombre_ascx_cs, "","ASP_Control");
 #>
 using System;
 using System.Linq;
@@ -216,9 +213,9 @@ using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
 using SetimBasico;
 
-namespace <#=iTabla.csNamespace #> 
+namespace <#=            iTabla.View_csNamespace #> 
 {
-    public partial class <#=iTabla.csClase #> : ModuleUserControlBase
+    public partial class <#=            iTabla.View_csClase #> : ModuleUserControlBase
     {
         // Usuario
         private int _UserId;
@@ -234,7 +231,7 @@ namespace <#=iTabla.csNamespace #>
             { Session["paginaEstado"] = value;}
         }
         // Entidad base
-        private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
+        private readonly <#=            iTabla.Name #>Control _EntidadControl = new <#=            iTabla.Name #>Control();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -284,7 +281,7 @@ namespace <#=iTabla.csNamespace #>
         private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Filtro_Campos");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=            iTabla.Name #>_Filtro_Campos");
             ddlFiltro_Campo.DataSource = lista;
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
@@ -348,9 +345,9 @@ namespace <#=iTabla.csNamespace #>
             }
         }
         // Proceso para consultar a la base los datos
-        private IList<<#=iTabla.Name #>> ConsultaSP()
+        private IList<<#=            iTabla.Name #>> ConsultaSP()
         {
-            IList<<#=iTabla.Name #>> res = new List<<#=iTabla.Name #>>();
+            IList<<#=            iTabla.Name #>> res = new List<<#=            iTabla.Name #>>();
             res = _EntidadControl._0SelByAll(
                 paginaEstado.Filtro_Estado,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -453,7 +450,7 @@ namespace <#=iTabla.csNamespace #>
         {
             var ddl = (DropDownList)sender;
             paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
-            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.Filtro_Valor = "%"+tbFiltro_Criterio.Text+"%";
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
@@ -465,6 +462,95 @@ namespace <#=iTabla.csNamespace #>
 
     }
 }
+<#
+        // Generar pantalla del tipo Edit
+        fileManager.StartNewFile(iTabla.Edit_Nombre_ascx, "","ASP_Control");
+#>
+<%@ Control Language="C#" AutoEventWireup="true" 
+    CodeBehind="<#=            iTabla.Edit_ascxCodeBehind #>" 
+    Inherits="<#=            iTabla.Edit_ascxInherits #>" %>
+
+    <%@ Register Assembly="DotNetNuke.WebControls" Namespace="DotNetNuke.UI.WebControls" TagPrefix="DNN" %>
+    <%@ Register TagPrefix="dnn" TagName="Label" Src= "~/controls/LabelControl.ascx" %>
+    <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+    <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
+    <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+
+<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
+
+<%--Funcion para poner el formato numérico a los campos de Valor--%>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
+    });
+</script>
+
+<div id="dnnUsers" class="dnnForm dnnClear">
+    <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
+    <fieldset>
+        <legend></legend>
+<# 
+        foreach(var col in iTabla.Cols)
+        {
+            switch (col.CsTypeName)
+            {
+#>
+<#              case "Int32": #>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lb<#=col.Name #>" Text="<#=col.Name #>:" HelpText="<#=col.Name #>"/>
+            <asp:TextBox runat="server" ID="tb<#=col.Name #>" Enabled="true"/>
+            <asp:RequiredFieldValidator ID="rfv_tb<#=col.Name #>" runat="server" ControlToValidate="tb<#=col.Name #>" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta <#=col.Name #>"  SetFocusOnError="true" />
+        </div>
+<#                  break; 
+                case "String": 
+                    if (col.Name.Contains("Descripcion")) {#>              
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lb<#=col.Name #>" Text="<#=col.Name #>:" HelpText="<#=col.Name #>"/>
+            <asp:TextBox runat="server" ID="tb<#=col.Name #>"  TextMode="MultiLine" />
+        </div>
+<#                  } else
+                        if (col.Name.Contains("Estado")) { #>
+        <div class="dnnFormItem">
+            <dnn:Label ID="lb<#=col.Name #>" runat="server" Text="<#=col.Name #>:"/>
+            <asp:DropDownList runat="server" ID="ddl<#=col.Name #>">
+                <asp:ListItem Text="Activo" Value="ACT" />
+                <asp:ListItem Text="Inactivo" Value="INA"/>
+            </asp:DropDownList>
+        </div>
+<#                    } else { #>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lb<#=col.Name #>" Text="<#=col.Name #>:" HelpText="<#=col.Name #>"/>
+            <asp:TextBox runat="server" ID="tb<#=col.Name #>" />
+            <asp:RequiredFieldValidator ID="rfv_tb<#=col.Name #>" runat="server" ControlToValidate="tb<#=col.Name #>" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta <#=col.Name #>"  SetFocusOnError="true" />
+        </div>
+<#                    } 
+                    break; 
+                case "DateTime": #>
+        <div class="dnnFormItem">
+            <dnn:Label ID="lb<#=col.Name #>" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_<#=col.Name #>" Text="<#=col.Name #>" />
+            <dnn:DnnDatePicker runat="server" CssClass="dnnFormInput" ID="dnnDP_<#=col.Name #>" />
+            <asp:RequiredFieldValidator ID="rfv_dnnDP_<#=col.Name #>" runat="server" ControlToValidate="dnnDP_<#=col.Name #>" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta <#=col.Name #>"  SetFocusOnError="true" />
+        </div>
+<#                  break; 
+                case "Decimal": #>
+        <div class="dnnFormItem" >
+            <dnn:Label ID="lb<#=col.Name #>" runat="server" Text="<#=col.Name #>:" HelpText="<#=col.Name #>"/>
+            <asp:TextBox runat="server" ID="tb<#=col.Name #>" CssClass="TextBox_Setim_Valor" />
+            <asp:RequiredFieldValidator ID="rfv_<#=col.Name #>" runat="server" ControlToValidate="tb<#=col.Name #>" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta <#=col.Name #>"  SetFocusOnError="true" />
+        </div>
+<#                    break;
+            } }
+#>
+    </fieldset>
+
+    <asp:ValidationSummary runat="server" ID="vsResumen" CssClass="dnnFormMessage dnnFormValidationSummary"/>
+
+</div>
+
+<ul class="dnnActions dnnClear">
+    <li><asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar"/></li>
+    <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar" /> </li>
+</ul>
 <#
     }
     // Guardar
@@ -486,16 +572,24 @@ namespace <#=iTabla.csNamespace #>
     public class infoTabla : MarshalByRefObject
     {
         public string NombreNamespace{ get; set; }
-        public string Nombre_ascx{ get; set; }
-        public string Nombre_ascx_cs { get; set; }
-        public string ascxInherits {get;set;}
-        public string ascxCodeBehind {get ; set;}
-        public string csNamespace {get; set;}
-        public string csClase {get; set;}
+        public string View_Nombre_ascx { get; set; }
+        public string View_Nombre_ascx_cs { get; set; }
+        public string View_ascxInherits {get;set;}
+        public string View_ascxCodeBehind {get ; set;}
+        public string View_csNamespace {get; set;}
+        public string View_csClase {get; set;}
+
+        public string Edit_Nombre_ascx { get; set; }
+        public string Edit_Nombre_ascx_cs { get; set; }
+        public string Edit_ascxInherits {get;set;}
+        public string Edit_ascxCodeBehind {get ; set;}
+        public string Edit_csNamespace {get; set;}
+        public string Edit_csClase {get; set;}
+
         public string SP_NombrePrefijo { get; set; }
         public int Id{ get; set; }
-	    public string Name { get; set; }
-	    public List<infoCol> Cols{ get; set; }
+        public string Name { get; set; }
+        public List<infoCol> Cols{ get; set; }
         public List<infoProc> Procs{ get; set; }
         public infoTabla()
         {
