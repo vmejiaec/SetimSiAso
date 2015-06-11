@@ -213,9 +213,9 @@ using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
 using SetimBasico;
 
-namespace <#=            iTabla.View_csNamespace #> 
+namespace <#=iTabla.View_csNamespace #> 
 {
-    public partial class <#=            iTabla.View_csClase #> : ModuleUserControlBase
+    public partial class <#=iTabla.View_csClase #> : ModuleUserControlBase
     {
         // Usuario
         private int _UserId;
@@ -231,7 +231,7 @@ namespace <#=            iTabla.View_csNamespace #>
             { Session["paginaEstado"] = value;}
         }
         // Entidad base
-        private readonly <#=            iTabla.Name #>Control _EntidadControl = new <#=            iTabla.Name #>Control();
+        private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -281,7 +281,7 @@ namespace <#=            iTabla.View_csNamespace #>
         private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=            iTabla.Name #>_Filtro_Campos");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Filtro_Campos");
             ddlFiltro_Campo.DataSource = lista;
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
@@ -345,9 +345,9 @@ namespace <#=            iTabla.View_csNamespace #>
             }
         }
         // Proceso para consultar a la base los datos
-        private IList<<#=            iTabla.Name #>> ConsultaSP()
+        private IList<<#=iTabla.Name #>> ConsultaSP()
         {
-            IList<<#=            iTabla.Name #>> res = new List<<#=            iTabla.Name #>>();
+            IList<<#=iTabla.Name #>> res = new List<<#=iTabla.Name #>>();
             res = _EntidadControl._0SelByAll(
                 paginaEstado.Filtro_Estado,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -467,8 +467,8 @@ namespace <#=            iTabla.View_csNamespace #>
         fileManager.StartNewFile(iTabla.Edit_Nombre_ascx, "","ASP_Control");
 #>
 <%@ Control Language="C#" AutoEventWireup="true" 
-    CodeBehind="<#=            iTabla.Edit_ascxCodeBehind #>" 
-    Inherits="<#=            iTabla.Edit_ascxInherits #>" %>
+    CodeBehind="<#=iTabla.Edit_ascxCodeBehind #>" 
+    Inherits="<#=iTabla.Edit_ascxInherits #>" %>
 
     <%@ Register Assembly="DotNetNuke.WebControls" Namespace="DotNetNuke.UI.WebControls" TagPrefix="DNN" %>
     <%@ Register TagPrefix="dnn" TagName="Label" Src= "~/controls/LabelControl.ascx" %>
@@ -551,6 +551,123 @@ namespace <#=            iTabla.View_csNamespace #>
     <li><asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar"/></li>
     <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar" /> </li>
 </ul>
+<#
+        // Generar la clase base de la pantalla del tipo Edit
+        fileManager.StartNewFile(iTabla.Edit_Nombre_ascx_cs, "","ASP_Control");
+#>
+using System;
+using DotNetNuke.Common;
+using DotNetNuke.UI.Modules;
+using DotNetNuke.Collections;
+using SetimBasico;
+
+namespace SetimMod_<#=iTabla.Name #>
+{
+    public partial class <#=iTabla.Name #>_Edit : ModuleUserControlBase
+    {
+        private int _UserID;
+        private int _EntidadId;
+        private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            _UserID = ModuleContext.PortalSettings.UserId;
+            //Obtiene el identificador de la llamada
+            _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
+            //Verifica si debe cargar datos en el formulario
+            if (_EntidadId > -1 && !IsPostBack)
+            {
+                ColocarDatosEnFormulario(_EntidadId);
+            }
+        }
+        // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
+        protected void Guardar(object sender, EventArgs e)
+        {
+            var o = ColocarDatosEnObjeto();
+
+            if (_EntidadId == -1)
+                _EntidadControl._2Ins(o);
+            else
+                _EntidadControl._3Upd(o);
+
+            Response.Redirect(Globals.NavigateURL());
+        }
+        // Cancela y regresa a la pantalla base
+        protected void Cancelar(object sender, EventArgs e)
+        {
+            Response.Redirect(Globals.NavigateURL());
+        }
+        // Carga el formulario con los datos de un objeto
+        protected void ColocarDatosEnFormulario(int entidadId)
+        {
+            // Consulta los datos de la entidad
+            var o = _EntidadControl._1SelById(entidadId);
+            // Pone en los campos los valores del objeto
+<# 
+        foreach(var col in iTabla.Cols)
+        {
+            switch (col.CsTypeName)
+            {
+                case "String":
+                    if (col.Name.Contains("Estado")) {#>
+            ddlEstado.SelectedValue = o.Estado;
+<#                    } 
+                    else { #>
+            tb<#=col.Name #>.Text = o.<#=col.Name #>;            
+<#                    }
+                    break;
+                case "DateTime" :
+#>
+            dnnDP_<#=col.Name #>.SelectedDate = o.<#=col.Name #>;
+<#                    break;
+                default : #>
+            tb<#=col.Name #>.Text = o.<#=col.Name #>.ToString();
+<#                    break;
+            }
+        }#>            
+        }
+        // Carga un objeto con los datos del formulario
+        protected asoSocio ColocarDatosEnObjeto()
+        {
+            var o = new asoSocio();
+<# 
+        foreach(var col in iTabla.Cols)
+        {
+            switch (col.CsTypeName)
+            {
+                case "Decimal":
+#>
+            o.<#=col.Name #> = string.IsNullOrWhiteSpace(tb<#=col.Name #>.Text) ? 0 : decimal.Parse(tb<#=col.Name #>.Text);
+<#
+                    break;
+                case "String":
+                    if (col.Name.Contains("Estado")) {#>
+            o.<#=col.Name #> = ddl<#=col.Name #>.SelectedValue;
+<#                    } 
+                    else { #>
+            o.<#=col.Name #> = tb<#=col.Name #>.Text;
+<#                    }
+                    break;
+                case "DateTime" :
+#>
+            o.<#=col.Name #> = (DateTime)dnnDP_<#=col.Name #>.SelectedDate;
+<#                    break;
+                case "Int32" : 
+                    if (col.Name == "Id") {#>
+            o.Id = _EntidadId;
+<#                    } 
+                    else {#>
+            o.<#=col.Name #> = Int32.Parse(tb<#=col.Name #>.Text);
+<#                    }
+                    break;
+            }
+        }#>     
+            return o;
+        }
+
+    }
+}
 <#
     }
     // Guardar

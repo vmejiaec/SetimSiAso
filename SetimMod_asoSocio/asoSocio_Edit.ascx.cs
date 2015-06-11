@@ -24,6 +24,7 @@ namespace SetimMod_asoSocio
                 ColocarDatosEnFormulario(_EntidadId);
             }
         }
+        // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
         protected void Guardar(object sender, EventArgs e)
         {
             var o = ColocarDatosEnObjeto();
@@ -35,44 +36,44 @@ namespace SetimMod_asoSocio
 
             Response.Redirect(Globals.NavigateURL());
         }
-
+        // Cancela y regresa a la pantalla base
         protected void Cancelar(object sender, EventArgs e)
         {
             Response.Redirect(Globals.NavigateURL());
         }
-
         // Carga el formulario con los datos de un objeto
         protected void ColocarDatosEnFormulario(int entidadId)
         {
             // Consulta los datos de la entidad
             var o = _EntidadControl._1SelById(entidadId);
-            // Campos propios
+            // Pone en los campos los valores del objeto
             tbId.Text = o.Id.ToString();
             tbUserID.Text = o.UserID.ToString();
             tbCI.Text = o.CI;
             tbDescripcion.Text = o.Descripcion;
             dnnDP_Fecha_Nacimiento.SelectedDate = o.Fecha_Nacimiento;
             ddlEstado.SelectedValue = o.Estado;
-            tbValor_Accion.Text = o.Valor_Accion.ToString();
-            tbValor_Ahorro.Text = o.Valor_Ahorro.ToString();
-            // Campos calculados
-            tbUsers_Nombre.Text = o.Users_Nombre;
             tbUsers_EMail.Text = o.Users_EMail;
+            tbUsers_Nombre.Text = o.Users_Nombre;
+            tbValor_Accion.Text = string.Format("{0:N2}",o.Valor_Accion);
+            tbValor_Ahorro.Text = string.Format("{0:N2}", o.Valor_Ahorro); 
+
         }
         // Carga un objeto con los datos del formulario
         protected asoSocio ColocarDatosEnObjeto()
         {
-            var o = new asoSocio()
-            {
-                Id = _EntidadId,
-                UserID = Int32.Parse(tbUserID.Text),
-                CI = tbCI.Text,
-                Descripcion = tbDescripcion.Text,
-                Fecha_Nacimiento = (DateTime)dnnDP_Fecha_Nacimiento.SelectedDate,
-                Estado = ddlEstado.SelectedValue,
-                Valor_Accion = string.IsNullOrWhiteSpace(tbValor_Accion.Text) ? 0 : decimal.Parse(tbValor_Accion.Text),
-                Valor_Ahorro = string.IsNullOrWhiteSpace(tbValor_Ahorro.Text) ? 0 : decimal.Parse(tbValor_Ahorro.Text)
-            };
+            var o = new asoSocio();
+            o.Id = _EntidadId;
+            o.UserID = Int32.Parse(tbUserID.Text);
+            o.CI = tbCI.Text;
+            o.Descripcion = tbDescripcion.Text;
+            o.Fecha_Nacimiento = (DateTime)dnnDP_Fecha_Nacimiento.SelectedDate;
+            o.Estado = ddlEstado.SelectedValue;
+            o.Users_EMail = tbUsers_EMail.Text;
+            o.Users_Nombre = tbUsers_Nombre.Text;
+            o.Valor_Accion = string.IsNullOrWhiteSpace(tbValor_Accion.Text) ? 0 : decimal.Parse(tbValor_Accion.Text);
+            o.Valor_Ahorro = string.IsNullOrWhiteSpace(tbValor_Ahorro.Text) ? 0 : decimal.Parse(tbValor_Ahorro.Text);
+
             return o;
         }
 

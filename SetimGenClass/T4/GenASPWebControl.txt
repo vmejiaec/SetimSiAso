@@ -3,11 +3,17 @@
 
 //-> asoSocio_Edit.ascx
 
+//-> asoSocio_Edit.ascx.cs
+
 //-> asoSocio_View.ascx
 
 //-> asoSocio_View.ascx.cs
 
+//-> asoSocio_Edit.ascx.cs
+
 //-> asoSocio_Edit.ascx
+
+//-> asoSocio_Edit.ascx.cs
 
 //-> asoSocio_Edit.ascx
 
@@ -17,6 +23,7 @@
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items
+// SetimSiAso\SetimGenClass\ASP_Control\asoSocio_Edit.ascx.cs
 // SetimSiAso\SetimGenClass\ASP_Control\asoSocio_Edit.ascx
 // SetimSiAso\SetimGenClass\ASP_Control\asoSocio_View.ascx.cs
 // SetimSiAso\SetimGenClass\ASP_Control\asoSocio_View.ascx

@@ -22,7 +22,7 @@ namespace SetimMod_Socio
             _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             //Verifica si debe cargar datos en el formulario
             if (_EntidadId > -1 && !IsPostBack)
-            {                
+            {
                 ColocarDatosEnFormulario(_EntidadId);
             }
         }
@@ -30,9 +30,9 @@ namespace SetimMod_Socio
         {
             var o = ColocarDatosEnObjeto();
 
-            if (_EntidadId == -1) 
-                 _EntidadControl._2Ins(o);
-            else 
+            if (_EntidadId == -1)
+                _EntidadControl._2Ins(o);
+            else
                 _EntidadControl._3Upd(o);
 
             Response.Redirect(Globals.NavigateURL());

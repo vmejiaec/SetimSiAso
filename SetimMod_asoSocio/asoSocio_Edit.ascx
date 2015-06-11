@@ -21,13 +21,13 @@
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
     <fieldset>
         <legend></legend>
-        <div class="dnnFormItem" style="visibility:hidden">
+        <div class="dnnFormItem" style="visibility: hidden">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
             <asp:TextBox runat="server" ID="tbId" Enabled="false" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbUserID" Text="UserID:" HelpText="UserID" />
-            <asp:TextBox runat="server" ID="tbUserID" Enabled="false" />            
+            <asp:TextBox runat="server" ID="tbUserID" Enabled="false" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbCI" Text="CI:" HelpText="CI" />
