@@ -1,28 +1,16 @@
 ﻿
 
-//-> asoInversion.cs
+//-> asoSetimLista.cs
 
-//-> asoInversionControl.cs
+//-> asoSetimListaControl.cs
 
-//-> asoPeriodo.cs
+//-> asoSetimListaDet.cs
 
-//-> asoPeriodoAporte.cs
+//-> asoSetimListaDetControl.cs
 
-//-> asoPeriodoAporteControl.cs
+//-> ext_asoSetimListaControl.cs
 
-//-> asoPeriodoControl.cs
-
-//-> asoPeriodoCuota.cs
-
-//-> asoPeriodoCuotaControl.cs
-
-//-> asoPeriodoInversion.cs
-
-//-> asoPeriodoInversionControl.cs
-
-//-> asoPrestamo.cs
-
-//-> asoPrestamoControl.cs
+//-> ext_asoSetimListaDetControl.cs
 
 //-> asoSetimLista.cs
 
@@ -32,83 +20,15 @@
 
 //-> asoSetimListaDetControl.cs
 
-//-> asoSocio.cs
+//-> ext_asoSetimListaControl.cs
 
-//-> asoSocioAporte.cs
-
-//-> asoSocioAporteControl.cs
-
-//-> asoSocioControl.cs
-
-//-> asoSocioInversion.cs
-
-//-> asoSocioInversionControl.cs
-
-//-> asoInversion.cs
-
-//-> asoInversionControl.cs
-
-//-> asoPeriodo.cs
-
-//-> asoPeriodoAporte.cs
-
-//-> asoPeriodoAporteControl.cs
-
-//-> asoPeriodoControl.cs
-
-//-> asoPeriodoCuota.cs
-
-//-> asoPeriodoCuotaControl.cs
-
-//-> asoPeriodoInversion.cs
-
-//-> asoPeriodoInversionControl.cs
-
-//-> asoPrestamo.cs
-
-//-> asoPrestamoControl.cs
-
-//-> asoSetimLista.cs
-
-//-> asoSetimListaControl.cs
-
-//-> asoSetimListaDet.cs
-
-//-> asoSetimListaDetControl.cs
-
-//-> asoSocio.cs
-
-//-> asoSocioAporte.cs
-
-//-> asoSocioAporteControl.cs
-
-//-> asoSocioControl.cs
-
-//-> asoSocioInversion.cs
-
-//-> asoSocioInversionControl.cs
+//-> ext_asoSetimListaDetControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\asoSocioControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocio.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoSetimListaDetControl.cs
 // SetimSiAso\SetimGenClass\Modelos\asoSetimListaDetControl.cs
 // SetimSiAso\SetimGenClass\Modelos\asoSetimListaDet.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoSetimListaControl.cs
 // SetimSiAso\SetimGenClass\Modelos\asoSetimListaControl.cs
 // SetimSiAso\SetimGenClass\Modelos\asoSetimLista.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuotaControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuota.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPrestamoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPrestamo.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporteControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporte.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversion.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodo.cs
-// SetimSiAso\SetimGenClass\Modelos\asoInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoInversion.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversion.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioAporteControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioAporte.cs

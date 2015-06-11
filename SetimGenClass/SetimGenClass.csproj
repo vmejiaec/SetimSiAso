@@ -80,6 +80,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenClassControl.txt</LastGenOutput>
     </None>
+    <None Include="T4\GenClassControlExtendida.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenClassControlExtendida.txt</LastGenOutput>
+    </None>
     <None Include="T4\GeneraClases.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GeneraClases.cs</LastGenOutput>
@@ -109,6 +113,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenClassControl.tt</DependentUpon>
+    </Content>
+    <Content Include="T4\GenClassControlExtendida.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenClassControlExtendida.tt</DependentUpon>
     </Content>
     <Content Include="T4\GenClassEntidad.txt">
       <AutoGen>True</AutoGen>

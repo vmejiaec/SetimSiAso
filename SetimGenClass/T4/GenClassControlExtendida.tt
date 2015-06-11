@@ -1,0 +1,60 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="Microsoft.CSharp" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Tabla" type="System.Object" #>
+<#
+	var tabla = Tabla as dynamic;
+#>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using DotNetNuke.Common.Utilities;
+using DotNetNuke.Data;
+using DotNetNuke.Services.Log.EventLog;
+using DotNetNuke.Services.Exceptions;
+using SetimBasico;
+
+namespace <#=tabla.NombreNamespace#>
+{
+
+    /// <summary>
+    /// Completa las funciones de la clase generada automáticamente <#=tabla.Name#>
+    /// </summary>
+    public partial class <#=tabla.Name#>Control
+    {
+<#foreach (var proc in tabla.ProcsSelectByAll()) 
+    {
+#>
+        public IList<<#=tabla.Name#>> _0SelByAll(string estado, string campo, object valor, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
+        {
+            IList<<#=tabla.Name#>> res = new List<<#=tabla.Name#>>();
+            switch (campo)
+            {
+<#        foreach(var param in proc.Params)
+          {
+            if ( param.Name != "@PageIndex" && param.Name != "@PageSize" && param.Name != "@SortField" && param.Name != "@SortDirection") 
+            {
+#>
+                case "<#=param.Name.Replace("@","") #>":
+                    res = _0SelByAll(
+                        <#=param.Name.Replace("@","") #>: (<#=param.CsTypeName #><#=param.CsTypeName =="String"?"":"?"#>)valor,
+                        Estado: estado,
+                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
+                    break;
+<#          } 
+         } #>                
+                default:
+                    res = _0SelByAll(
+                        Estado: estado,
+                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
+                    break;
+            }
+            return res;
+        }
+<#  }#>
+    }
+}

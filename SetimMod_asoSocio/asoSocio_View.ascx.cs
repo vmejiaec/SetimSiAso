@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-using System.Collections.Generic;
+
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
-using SetimBasico;
 
-namespace SetimMod_asoSetimLista
+using SetimBasico;
+using System.Collections.Generic;
+
+namespace SetimMod_asoSocio
 {
-    public partial class asoSetimLista_View : ModuleUserControlBase
+    public partial class asoSocio_View : ModuleUserControlBase
     {
         // Usuario
         private int _UserId;
         private int _ModuleId;
         // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Id";
+        private string _Ordenar_Campo_Defaul = "Users_Nombre";
         // Estado de la página
         private PaginaEstado paginaEstado
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
-                return (PaginaEstado)Session["paginaEstado"];
-            }
-            set
-            { Session["paginaEstado"] = value; }
+        { get
+            { if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
+              return (PaginaEstado)Session["paginaEstado"];}
+          set
+            { Session["paginaEstado"] = value;}
         }
         // Entidad base
-        private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
+        private readonly asoSocioControl _EntidadControl = new asoSocioControl();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -56,18 +55,30 @@ namespace SetimMod_asoSetimLista
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
+                CargarDdl_Estados();
                 // Carga de datos
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
-
+        // Carga los estados desde una lista de SetimLista
+        private void CargarDdl_Estados()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
+            ddlCab_Estado.DataSource = lista;
+            ddlCab_Estado.DataTextField = "Texto";
+            ddlCab_Estado.DataValueField = "Valor";
+            ddlCab_Estado.DataBind();
+            // Carga el estado del estado de la pagina
+            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
+        }
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetimLista_Filtro_Campos");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Lista_Filtros");
             ddlFiltro_Campo.DataSource = lista;
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
@@ -131,9 +142,9 @@ namespace SetimMod_asoSetimLista
             }
         }
         // Proceso para consultar a la base los datos
-        private IList<asoSetimLista> ConsultaSP()
+        private IList<asoSocio> ConsultaSP()
         {
-            IList<asoSetimLista> res = new List<asoSetimLista>();
+            IList<asoSocio> res = new List<asoSocio>();
             res = _EntidadControl._0SelByAll(
                 paginaEstado.Filtro_Estado,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -163,24 +174,24 @@ namespace SetimMod_asoSetimLista
             }
         }
         // Carga masiva de los socios en base de los usuario que tienen rol ="Socio"
-        protected void btAccion_OnClick(object sender, EventArgs e)
+        protected void btCopiarSocios_OnClick(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    _EntidadControl._5CopyFromUsers();
-            //    Response.Redirect(Request.RawUrl, false);
-            //    Context.ApplicationInstance.CompleteRequest();
-            //}
-            //catch (Exception exc)
-            //{
-            //    Exceptions.LogException(exc);
-            //    const string headerText = "Error";
-            //    const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
-            //    Skin.AddModuleMessage(this,
-            //        headerText,
-            //        messageText,
-            //        DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
-            //}
+            try
+            {
+                _EntidadControl._5CopyFromUsers();
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
         }
 
         protected void btConfigAportes_OnClick(object sender, EventArgs e)

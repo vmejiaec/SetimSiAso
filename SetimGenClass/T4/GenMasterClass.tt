@@ -12,7 +12,7 @@
     var vTablas = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
-            && (so.Name.StartsWith("aso"))))
+            && (so.Name.StartsWith("asoSetimLista"))))
         .ToArray ();
 
     foreach(var vTabla in vTablas)
@@ -78,6 +78,10 @@
         fileManager.StartNewFile(iTabla.NombreControl, "","Modelos");
         string outputControl = paramTmpl.TransformText("GenClassControl.tt", session);
         this.Write(outputControl);
+        // Generar clase extencion
+        fileManager.StartNewFile("ext_" + iTabla.NombreControl, "","Modelos");
+        string outputControExt = paramTmpl.TransformText("GenClassControlExtendida.tt", session);
+        this.Write(outputControExt);
     }
     // Guardar
     fileManager.Process();

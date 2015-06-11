@@ -4,7 +4,7 @@
 <#@ output extension=".txt" #>
 
 <#
-    var TablaBase                   = "asoSetimLista";
+    var TablaBase                   = "asoSetimListaDet";
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
@@ -26,8 +26,12 @@
             // Carga los datos en la tabla
             iTabla.Id = vTabla.Id;
             iTabla.Name = vTabla.Name;
-            iTabla.Nombre_ascx = vTabla.Name + "_Lista.ascx";
-            iTabla.Nombre_ascx_cs= vTabla.Name + "_Lista.ascx.cs";
+            iTabla.Nombre_ascx = vTabla.Name + "_View.ascx";
+            iTabla.Nombre_ascx_cs= vTabla.Name + "_View.ascx.cs";
+            iTabla.ascxCodeBehind = vTabla.Name+"_View.ascx.cs";
+            iTabla.ascxInherits = "SetimMod_" + vTabla.Name + "." + vTabla.Name + "_View";
+            iTabla.csNamespace = "SetimMod_" + vTabla.Name;
+            iTabla.csClase = vTabla.Name + "_View";
             iTabla.NombreNamespace = namespaceName;
             iTabla.SP_NombrePrefijo = SP_NombrePrefijo;
             // Carga las columnas de la tabla
@@ -76,7 +80,9 @@
         //string outputEntidad = paramTmpl.TransformText("GenClassEntidad.tt", session);
         //this.Write(outputEntidad);
 #>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="<#=iTabla.Nombre_ascx_cs #>" Inherits="SetimMod_<#=iTabla.Name #>.<#=iTabla.Name #>_Lista" %>
+<%@ Control Language="C#" AutoEventWireup="true" 
+    CodeBehind="<#=iTabla.ascxCodeBehind #>" 
+    Inherits="<#=iTabla.ascxInherits #>" %>
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
@@ -87,16 +93,11 @@
             Text="Nuevo" />
     </li>
     <li>
-        <asp:LinkButton runat="server" ID="btCopiarSocios"
+        <asp:LinkButton runat="server" ID="btAccion"
             CssClass="dnnSecondaryAction"
-            OnClick="btCopiarSocios_OnClick"
-            Text="Copiar Socios" />
+            OnClick="btAccion_OnClick"
+            Text="Accion" />
     </li>
-<%--    <li>
-        <asp:HyperLink runat="server" ID="btConfigAportes"
-            CssClass="dnnSecondaryAction"
-            Text="Configurar Aportes" />
-    </li>--%>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -117,16 +118,13 @@
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
     DataKeyField="Id"
     ShowFooter="true"
-    AllowPaging="True" AllowCustomPaging="True" 
-    PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior" 
-    
-    AllowSorting="True"
-
+    AllowPaging="True" AllowCustomPaging="True" AllowSorting="True"
+    PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior"     
     OnItemCommand ="dgMaster_OnItemCommand"
-    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated" >
+    OnSortCommand="dgMaster_SortCommand" 
+    OnItemCreated="dgMaster_ItemCreated" >
 
     <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
-
     <headerstyle cssclass="dnnGridHeader" verticalalign="Top"/>
     <itemstyle cssclass="dnnGridItem" horizontalalign="Left" />
     <alternatingitemstyle cssclass="dnnGridAltItem" />
@@ -134,18 +132,25 @@
     <selecteditemstyle BackColor="#c6dbec"/>
     <footerstyle cssclass="dnnGridFooter" />
 
-    <Columns>        
-        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="35px"    FooterText ="Página No: "   />
-        <asp:BoundColumn DataField="UserID"             HeaderText="UserID"             HeaderStyle-Width="35px"    ItemStyle-HorizontalAlign="Center"  Visible="false"/>
-        <asp:BoundColumn DataField="CI"                 HeaderText="CI"                 HeaderStyle-Width="80px"    SortExpression="CI"                 HeaderStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Users_Nombre"       HeaderText="Nombre"             HeaderStyle-Width="120px"   SortExpression="Users_Nombre" />
-        <asp:BoundColumn DataField="Users_EMail"        HeaderText="EMail"              HeaderStyle-Width="90px"   />
-        <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion"        HeaderStyle-Width="120px"   SortExpression="Descripcion" />
-        <asp:BoundColumn DataField="Fecha_Nacimiento"   HeaderText="Fecha Nacimiento"   HeaderStyle-Width="100px"   SortExpression="Fecha_Nacimiento"   DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px"    SortExpression="Estado"             ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Valor_Accion"       HeaderText="Valor Accion"       HeaderStyle-Width="90px"   SortExpression="Valor_Accion"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Valor_Ahorro"       HeaderText="Valor Ahorro"       HeaderStyle-Width="90px"   SortExpression="Valor_Ahorro"       DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
-
+    <Columns>   
+<#        foreach ( var col in iTabla.Cols) { 
+#>      <asp:BoundColumn DataField="<#=col.Name #>" HeaderText="<#=col.Name #>" HeaderStyle-Width="50px" SortExpression="<#=col.Name #>" HeaderStyle-HorizontalAlign="Center" <#
+            switch (col.CsTypeName) {   
+                case "Int32": 
+#>          DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" <#
+                    break;
+                case "DateTime": 
+#>          DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" <#
+                    break;
+                case "Decimal": 
+#>          DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" <#
+                    break; 
+                default: 
+#>          DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" <#
+                    break;
+               } 
+#>      />
+<#        } #>
       <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>
             <FooterTemplate>
@@ -204,43 +209,32 @@
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-
+using System.Collections.Generic;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
-using DotNetNuke.Collections;
-using DotNetNuke.Common.Lists;
 using DotNetNuke.Common;
-
 using SetimBasico;
-using System.Collections.Generic;
-using DotNetNuke.Entities.Portals;
 
-namespace SetimMod_Socio
+namespace <#=iTabla.csNamespace #> 
 {
-    public partial class asoSocio_Lista : ModuleUserControlBase
+    public partial class <#=iTabla.csClase #> : ModuleUserControlBase
     {
         // Usuario
         private int _UserId;
         private int _ModuleId;
         // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Users_Nombre";
+        private string _Ordenar_Campo_Defaul = "Id";
         // Estado de la página
-        private PaginaEstado paginaEstado 
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null)
-                    Session["paginaEstado"]= new PaginaEstado();
-                return (PaginaEstado)Session["paginaEstado"];
-            }
-            set
-            {
-                Session["paginaEstado"] = value;
-            }
+        private PaginaEstado paginaEstado
+        { get
+            { if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
+              return (PaginaEstado)Session["paginaEstado"];}
+          set
+            { Session["paginaEstado"] = value;}
         }
         // Entidad base
-        private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -263,7 +257,7 @@ namespace SetimMod_Socio
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
                     paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;                    
+                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -290,7 +284,7 @@ namespace SetimMod_Socio
         private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Lista_Filtros");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Filtro_Campos");
             ddlFiltro_Campo.DataSource = lista;
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
@@ -304,9 +298,9 @@ namespace SetimMod_Socio
         {
             int entidadId;
             switch (e.CommandName)
-            { 
+            {
                 case "Borrar":
-                    entidadId = int.Parse((string) e.CommandArgument);
+                    entidadId = int.Parse((string)e.CommandArgument);
                     BorrarEntidad(entidadId);
                     break;
                 case "Page":
@@ -326,7 +320,7 @@ namespace SetimMod_Socio
                 //    entidadId = 1;
                 //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
                 //    break;
-            }            
+            }
         }
 
         // Proceso de carga de datos en el GridView
@@ -354,9 +348,9 @@ namespace SetimMod_Socio
             }
         }
         // Proceso para consultar a la base los datos
-        private IList<asoSocio> ConsultaSP()
+        private IList<<#=iTabla.Name #>> ConsultaSP()
         {
-            IList<asoSocio> res = new List<asoSocio>();
+            IList<<#=iTabla.Name #>> res = new List<<#=iTabla.Name #>>();
             res = _EntidadControl._0SelByAll(
                 paginaEstado.Filtro_Estado,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -386,36 +380,36 @@ namespace SetimMod_Socio
             }
         }
         // Carga masiva de los socios en base de los usuario que tienen rol ="Socio"
-        protected void btCopiarSocios_OnClick(object sender, EventArgs e)
+        protected void btAccion_OnClick(object sender, EventArgs e)
         {
-            try
-            {
-                _EntidadControl._5CopyFromUsers();
-                Response.Redirect(Request.RawUrl,false);
-                Context.ApplicationInstance.CompleteRequest();
-            }
-            catch (Exception exc)
-            {
-                Exceptions.LogException(exc);
-                const string headerText = "Error";
-                const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
-                Skin.AddModuleMessage(this,
-                    headerText,
-                    messageText,
-                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
-            }
+            //try
+            //{
+            //    _EntidadControl._5CopyFromUsers();
+            //    Response.Redirect(Request.RawUrl, false);
+            //    Context.ApplicationInstance.CompleteRequest();
+            //}
+            //catch (Exception exc)
+            //{
+            //    Exceptions.LogException(exc);
+            //    const string headerText = "Error";
+            //    const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
+            //    Skin.AddModuleMessage(this,
+            //        headerText,
+            //        messageText,
+            //        DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            //}
         }
 
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {
-            int vId = (int) dgMaster.DataKeys[dgMaster.SelectedIndex];
-            string url = Globals.NavigateURL( ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(),"EntidadId",vId.ToString());
+            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
+            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
             Response.Redirect(url + "?popUp=true");
         }
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
-            
+
             if (paginaEstado.Ordenar_Campo == e.SortExpression)
                 paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
             else
@@ -432,16 +426,16 @@ namespace SetimMod_Socio
             if (e.Item.ItemType == ListItemType.Footer)
             {
                 e.Item.Cells[0].ColumnSpan = 2;
-                e.Item.Cells[0].Text = string.Format("Página No: {0}",dgMaster.CurrentPageIndex+1);
+                e.Item.Cells[0].Text = string.Format("Página No: {0}", dgMaster.CurrentPageIndex + 1);
                 e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
-                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1 );
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
                 e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
             }
         }
 
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int noFilasPorPagina = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
             paginaEstado.NoFilasPorPagina = noFilasPorPagina;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
@@ -449,7 +443,7 @@ namespace SetimMod_Socio
 
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var ddl = (DropDownList) sender;
+            var ddl = (DropDownList)sender;
             paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
@@ -468,6 +462,7 @@ namespace SetimMod_Socio
         {
             ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
         }
+
     }
 }
 <#
@@ -493,6 +488,10 @@ namespace SetimMod_Socio
         public string NombreNamespace{ get; set; }
         public string Nombre_ascx{ get; set; }
         public string Nombre_ascx_cs { get; set; }
+        public string ascxInherits {get;set;}
+        public string ascxCodeBehind {get ; set;}
+        public string csNamespace {get; set;}
+        public string csClase {get; set;}
         public string SP_NombrePrefijo { get; set; }
         public int Id{ get; set; }
 	    public string Name { get; set; }

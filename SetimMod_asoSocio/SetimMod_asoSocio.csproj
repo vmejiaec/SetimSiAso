@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3708F7BA-D24A-4AB7-9B31-484E102A8A06}</ProjectGuid>
+    <ProjectGuid>{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SetimMod_asoSetimLista</RootNamespace>
-    <AssemblyName>SetimMod_asoSetimLista</AssemblyName>
+    <RootNamespace>SetimMod_asoSocio</RootNamespace>
+    <AssemblyName>SetimMod_asoSocio</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -72,21 +72,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asoSetimLista_View.ascx.cs">
-      <DependentUpon>asoSetimLista_View.ascx</DependentUpon>
+    <Content Include="asoSocio_Edit.ascx" />
+    <Content Include="asoSocio_View.ascx" />
+    <Content Include="module.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="asoSocio_Edit.ascx.cs">
+      <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="asoSetimLista_View.ascx.designer.cs">
-      <DependentUpon>asoSetimLista_View.ascx</DependentUpon>
+    <Compile Include="asoSocio_Edit.ascx.designer.cs">
+      <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSocio_View.ascx.cs">
+      <DependentUpon>asoSocio_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSocio_View.ascx.designer.cs">
+      <DependentUpon>asoSocio_View.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asoSetimLista_View.ascx" />
     <Content Include="Module.build" />
-    <Content Include="module.css" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_LocalResources\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SetimADL\SetimADL.csproj">
       <Project>{081f7b8e-3736-49a7-9e50-e213dd9f54e7}</Project>
@@ -96,9 +108,6 @@
       <Project>{63193768-efe9-473d-af70-e4d6925e9c15}</Project>
       <Name>SetimBasico</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\asoSetimLista_View.ascx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -115,7 +124,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:20590/</IISUrl>
+          <IISUrl>http://localhost:29211/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

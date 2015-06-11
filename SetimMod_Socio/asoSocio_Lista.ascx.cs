@@ -5,13 +5,10 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
-using DotNetNuke.Collections;
-using DotNetNuke.Common.Lists;
 using DotNetNuke.Common;
 
 using SetimBasico;
 using System.Collections.Generic;
-using DotNetNuke.Entities.Portals;
 
 namespace SetimMod_Socio
 {
@@ -23,12 +20,12 @@ namespace SetimMod_Socio
         // Campo por defecto para ordenar la lista
         private string _Ordenar_Campo_Defaul = "Users_Nombre";
         // Estado de la página
-        private PaginaEstado paginaEstado 
+        private PaginaEstado paginaEstado
         {
             get
             {
                 if (Session["paginaEstado"] == null)
-                    Session["paginaEstado"]= new PaginaEstado();
+                    Session["paginaEstado"] = new PaginaEstado();
                 return (PaginaEstado)Session["paginaEstado"];
             }
             set
@@ -60,7 +57,7 @@ namespace SetimMod_Socio
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
                     paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;                    
+                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -101,9 +98,9 @@ namespace SetimMod_Socio
         {
             int entidadId;
             switch (e.CommandName)
-            { 
+            {
                 case "Borrar":
-                    entidadId = int.Parse((string) e.CommandArgument);
+                    entidadId = int.Parse((string)e.CommandArgument);
                     BorrarEntidad(entidadId);
                     break;
                 case "Page":
@@ -123,7 +120,7 @@ namespace SetimMod_Socio
                 //    entidadId = 1;
                 //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
                 //    break;
-            }            
+            }
         }
 
         // Proceso de carga de datos en el GridView
@@ -188,7 +185,7 @@ namespace SetimMod_Socio
             try
             {
                 _EntidadControl._5CopyFromUsers();
-                Response.Redirect(Request.RawUrl,false);
+                Response.Redirect(Request.RawUrl, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception exc)
@@ -205,14 +202,14 @@ namespace SetimMod_Socio
 
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {
-            int vId = (int) dgMaster.DataKeys[dgMaster.SelectedIndex];
-            string url = Globals.NavigateURL( ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(),"EntidadId",vId.ToString());
+            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
+            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
             Response.Redirect(url + "?popUp=true");
         }
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
-            
+
             if (paginaEstado.Ordenar_Campo == e.SortExpression)
                 paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
             else
@@ -229,16 +226,16 @@ namespace SetimMod_Socio
             if (e.Item.ItemType == ListItemType.Footer)
             {
                 e.Item.Cells[0].ColumnSpan = 2;
-                e.Item.Cells[0].Text = string.Format("Página No: {0}",dgMaster.CurrentPageIndex+1);
+                e.Item.Cells[0].Text = string.Format("Página No: {0}", dgMaster.CurrentPageIndex + 1);
                 e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
-                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1 );
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
                 e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
             }
         }
 
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int noFilasPorPagina = int.Parse( ((DropDownList)sender).SelectedValue.ToString());
+            int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
             paginaEstado.NoFilasPorPagina = noFilasPorPagina;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
@@ -246,7 +243,7 @@ namespace SetimMod_Socio
 
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var ddl = (DropDownList) sender;
+            var ddl = (DropDownList)sender;
             paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();

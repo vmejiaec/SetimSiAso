@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_Socio {
+namespace SetimMod_asoSocio {
     
     
     public partial class asoSocio_Edit {

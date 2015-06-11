@@ -1,4 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="asoSocio_Edit.ascx.cs" Inherits="SetimMod_Socio.asoSocio_Edit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" 
+    CodeBehind="asoSocio_Edit.ascx.cs" 
+    Inherits="SetimMod_asoSocio.asoSocio_Edit" %>
 
     <%@ Register Assembly="DotNetNuke.WebControls" Namespace="DotNetNuke.UI.WebControls" TagPrefix="DNN" %>
     <%@ Register TagPrefix="dnn" TagName="Label" Src= "~/controls/LabelControl.ascx" %>
