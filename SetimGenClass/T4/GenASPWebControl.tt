@@ -4,7 +4,7 @@
 <#@ output extension=".txt" #>
 
 <#
-    var TablaBase                   = "asoSocio";
+    var TablaBase                   = "asoSetimListaDet";
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
@@ -133,7 +133,7 @@
 
     <Columns>   
 <#        foreach ( var col in iTabla.Cols) { 
-#>      <asp:BoundColumn DataField="<#=                col.Name #>" HeaderText="<#=                col.Name #>" HeaderStyle-Width="50px" SortExpression="<#=                col.Name #>" HeaderStyle-HorizontalAlign="Center" <#
+#>      <asp:BoundColumn DataField="<#=col.Name #>" HeaderText="<#=col.Name #>" HeaderStyle-Width="50px" SortExpression="<#=col.Name #>" HeaderStyle-HorizontalAlign="Center" <#
             switch (col.CsTypeName) {   
                 case "Int32": 
 #>          DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" <#
@@ -549,7 +549,7 @@ namespace <#=iTabla.View_csNamespace #>
 
 <ul class="dnnActions dnnClear">
     <li><asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar"/></li>
-    <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar" /> </li>
+    <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar"  CausesValidation="false" /> </li>
 </ul>
 <#
         // Generar la clase base de la pantalla del tipo Edit
@@ -628,9 +628,9 @@ namespace SetimMod_<#=iTabla.Name #>
         }#>            
         }
         // Carga un objeto con los datos del formulario
-        protected asoSocio ColocarDatosEnObjeto()
+        protected <#=iTabla.Name #> ColocarDatosEnObjeto()
         {
-            var o = new asoSocio();
+            var o = new <#=iTabla.Name #>();
 <# 
         foreach(var col in iTabla.Cols)
         {

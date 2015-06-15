@@ -72,6 +72,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoSetimListaDet_Edit.ascx.cs">
+      <DependentUpon>asoSetimListaDet_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSetimListaDet_Edit.ascx.designer.cs">
+      <DependentUpon>asoSetimListaDet_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSetimListaDet_View.ascx.cs">
+      <DependentUpon>asoSetimListaDet_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSetimListaDet_View.ascx.designer.cs">
+      <DependentUpon>asoSetimListaDet_View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSetimLista_Edit.ascx.cs">
+      <DependentUpon>asoSetimLista_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSetimLista_Edit.ascx.designer.cs">
+      <DependentUpon>asoSetimLista_Edit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoSetimLista_View.ascx.cs">
       <DependentUpon>asoSetimLista_View.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -82,6 +103,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoSetimListaDet_Edit.ascx" />
+    <Content Include="asoSetimListaDet_View.ascx" />
+    <Content Include="asoSetimLista_Edit.ascx" />
     <Content Include="asoSetimLista_View.ascx" />
     <Content Include="Module.build" />
     <Content Include="module.css" />

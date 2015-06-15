@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="True"
-    CodeBehind="asoSetimLista_View.ascx.cs"
-    Inherits="SetimMod_asoSetimLista.asoSetimLista_View" %>
+    CodeBehind="asoSetimListaDet_View.ascx.cs"
+    Inherits="SetimMod_asoSetimListaDet.asoSetimListaDet_View" %>
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
-    <li><asp:HyperLink runat="server" ID="btAccion" Text="Detalles" CssClass="dnnSecondaryAction" /></li>
+    <li>
+        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -38,10 +38,11 @@
 
     <Columns>
         <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="Nombre" HeaderText="Nombre" HeaderStyle-Width="50px" SortExpression="Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-Width="50px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Detalles" HeaderText="Detalles" HeaderStyle-Width="50px" SortExpression="Detalles" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
+        <asp:BoundColumn DataField="asoSetimLista_Id" HeaderText="asoSetimLista_Id" HeaderStyle-Width="50px" SortExpression="asoSetimLista_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Orden" HeaderText="Orden" HeaderStyle-Width="50px" SortExpression="Orden" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Texto" HeaderText="Texto" HeaderStyle-Width="50px" SortExpression="Texto" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="Valor" HeaderText="Valor" HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>
             <FooterTemplate>
                 No de Filas: 
@@ -56,7 +57,7 @@
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
-                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "DetEdit","EntidadPadreId", _EntidadPadreId.ToString()) %>'
                     Text="Editar" />
             </ItemTemplate>
         </asp:TemplateColumn>
@@ -73,7 +74,7 @@
     </Columns>
 </asp:DataGrid>
 
-<script type="text/javascript">
+<%--<script type="text/javascript">
     jQuery(function ($) {
         $('.confirm').dnnConfirm({
             text: '¿Desea proceder con la operación?',
@@ -82,7 +83,7 @@
             title: 'Confirmación'
         });
     });
-</script>
+</script>--%>
 
 <script type="text/javascript">
     $(document).ready(function () {

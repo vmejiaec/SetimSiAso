@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI.WebControls;
+using DotNetNuke.Collections;
 using System.Collections.Generic;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
@@ -8,13 +9,14 @@ using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
 using SetimBasico;
 
-namespace SetimMod_asoSetimLista
+namespace SetimMod_asoSetimListaDet
 {
-    public partial class asoSetimLista_View : ModuleUserControlBase
+    public partial class asoSetimListaDet_View : ModuleUserControlBase
     {
         // Usuario
         private int _UserId;
         private int _ModuleId;
+        public int? _EntidadPadreId;
         // Campo por defecto para ordenar la lista
         private string _Ordenar_Campo_Defaul = "Id";
         // Estado de la página
@@ -29,7 +31,7 @@ namespace SetimMod_asoSetimLista
             { Session["paginaEstado"] = value; }
         }
         // Entidad base
-        private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
+        private readonly asoSetimListaDetControl _EntidadControl = new asoSetimListaDetControl();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -39,13 +41,23 @@ namespace SetimMod_asoSetimLista
             _UserId = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
-            {
+            {            
+                //Obtiene el identificador de la llamada
+                _EntidadPadreId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
+                // Inicializa el botón de edición usando el padre Id de la llamada
+                addButton.NavigateUrl = ModuleContext.EditUrl("EntidadId", "", "DetEdit", "EntidadPadreId", _EntidadPadreId.ToString());
                 // Verifica el estado de la página
                 if (paginaEstado.ModuleID == _ModuleId)
                 {
                     if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
                     if (paginaEstado.dgMasterItemIndex != -1) dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
+                    // Si existe valor en la entidad padre, entonces la inicializa
+                    if (_EntidadPadreId != -1)
+                    {
+                        paginaEstado.Filtro_Campo = "asoSetimLista_Id";
+                        paginaEstado.Filtro_Valor = _EntidadPadreId;
+                    }
                 }
                 else
                 {
@@ -59,15 +71,13 @@ namespace SetimMod_asoSetimLista
                 // Carga de datos
                 ConsultaDatos();
             }
-            // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
 
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetimLista_Filtro_Campos");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetimListaDet_Filtro_Campos");
             ddlFiltro_Campo.DataSource = lista;
             ddlFiltro_Campo.DataTextField = "Texto";
             ddlFiltro_Campo.DataValueField = "Valor";
@@ -97,12 +107,12 @@ namespace SetimMod_asoSetimLista
                     paginaEstado.PaginaActual = indice;
                     ConsultaDatos();
                     break;
-                case "Select":
-                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
-                    string sEntidadId = e.Item.Cells[0].Text;
-                    entidadId = 1;
-                    btAccion.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "DetView");
-                    break;
+                //case "Select":
+                //    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                //    string sEntidadId = e.Item.Cells[0].Text;
+                //    entidadId = 1;
+                //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
+                //    break;
             }
         }
 
@@ -131,9 +141,9 @@ namespace SetimMod_asoSetimLista
             }
         }
         // Proceso para consultar a la base los datos
-        private IList<asoSetimLista> ConsultaSP()
+        private IList<asoSetimListaDet> ConsultaSP()
         {
-            IList<asoSetimLista> res = new List<asoSetimLista>();
+            IList<asoSetimListaDet> res = new List<asoSetimListaDet>();
             res = _EntidadControl._0SelByAll(
                 paginaEstado.Filtro_Estado,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -161,13 +171,6 @@ namespace SetimMod_asoSetimLista
                     messageText,
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
-        }
-
-        protected void btConfigAportes_OnClick(object sender, EventArgs e)
-        {
-            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
-            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
-            Response.Redirect(url + "?popUp=true");
         }
 
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
