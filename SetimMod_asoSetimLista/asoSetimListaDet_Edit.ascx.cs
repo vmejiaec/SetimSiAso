@@ -10,8 +10,46 @@ namespace SetimMod_asoSetimListaDet
     {
         private int _UserID;
         private int _EntidadId;
-        private int _EntidadPadreId;
         private readonly asoSetimListaDetControl _EntidadControl = new asoSetimListaDetControl();
+        // Nivel de la relación 0-Master0 1-Master1 2-Master2
+        private int _Nivel = 1;
+        // Estado de la páginas
+        private ListaPaginaEstado listaPaginaEstado
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
+                return (ListaPaginaEstado)Session["paginaEstado"];
+            }
+            set
+            {
+                Session["paginaEstado"] = value;
+            }
+        }
+        // Es la página actual
+        private PaginaEstado paginaEstado
+        {
+            get
+            {
+                return listaPaginaEstado.p[_Nivel];
+            }
+            set
+            {
+                listaPaginaEstado.p[_Nivel] = value;
+            }
+        }
+        // Es la página anterior
+        private PaginaEstado paginaEstadoMaster
+        {
+            get
+            {
+                return listaPaginaEstado.p[_Nivel - 1];
+            }
+            set
+            {
+                listaPaginaEstado.p[_Nivel - 1] = value;
+            }
+        }
 
         protected override void OnLoad(EventArgs e)
         {
@@ -19,7 +57,6 @@ namespace SetimMod_asoSetimListaDet
             _UserID = ModuleContext.PortalSettings.UserId;
             //Obtiene el identificador de la llamada
             _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
-            _EntidadPadreId = Request.QueryString.GetValueOrDefault("EntidadPadreId", -1);
             //Verifica si debe cargar datos en el formulario
             if (!IsPostBack)
             {
@@ -36,15 +73,13 @@ namespace SetimMod_asoSetimListaDet
             else
                 _EntidadControl._3Upd(o);
 
-            var url = Globals.NavigateURL("DetView", "EntidadId", _EntidadPadreId.ToString());
-            url = string.Format("{0}/mid/{1}?popUp=true", url, ModuleContext.ModuleId);
+            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Cancela y regresa a la pantalla base
         protected void Cancelar(object sender, EventArgs e)
         {
-            var url = Globals.NavigateURL("DetView","EntidadId",_EntidadPadreId.ToString());
-            url = string.Format("{0}/mid/{1}?popUp=true", url, ModuleContext.ModuleId);
+            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Carga el formulario con los datos de un objeto
@@ -54,7 +89,7 @@ namespace SetimMod_asoSetimListaDet
             {
                 // Valores por defecto para el INSERT
                 tbId.Text = "0";
-                tbasoSetimLista_Id.Text = _EntidadPadreId.ToString();
+                tbasoSetimLista_Id.Text = paginaEstadoMaster.Master_Id.ToString();
                 tbOrden.Text = "";
                 tbTexto.Text = "Texto";
                 tbValor.Text = "Valor";

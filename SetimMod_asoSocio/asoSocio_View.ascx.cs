@@ -19,19 +19,47 @@ namespace SetimMod_asoSocio
         private int _ModuleId;
         // Campo por defecto para ordenar la lista
         private string _Ordenar_Campo_Defaul = "Users_Nombre";
-        // Estado de la página
+        // Entidad base
+        private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        // Nivel de la relación 0-Master0 1-Master1 2-Master2
+        private int _Nivel = 0;
+        // Estado de la páginas
+        private ListaPaginaEstado listaPaginaEstado
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
+                return (ListaPaginaEstado)Session["paginaEstado"];
+            }
+            set
+            {
+                Session["paginaEstado"] = value;
+            }
+        }
+        // Es la página actual
         private PaginaEstado paginaEstado
         {
             get
             {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
-                return (PaginaEstado)Session["paginaEstado"];
+                return listaPaginaEstado.p[_Nivel];
             }
             set
-            { Session["paginaEstado"] = value; }
+            {
+                listaPaginaEstado.p[_Nivel] = value;
+            }
         }
-        // Entidad base
-        private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        // Es la página anterior
+        private PaginaEstado paginaEstadoMaster
+        {
+            get
+            {
+                return listaPaginaEstado.p[_Nivel - 1];
+            }
+            set
+            {
+                listaPaginaEstado.p[_Nivel - 1] = value;
+            }
+        }
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {

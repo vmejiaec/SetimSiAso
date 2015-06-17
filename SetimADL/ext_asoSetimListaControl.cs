@@ -23,26 +23,22 @@ namespace SetimBasico
             {
                 case "Nombre":
                     res = _0SelByAll(
-                        Nombre: (String)valor,
-                        //Estado: estado,
+                        Nombre: "%"+ (String)valor +"%",
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 case "Descripcion":
                     res = _0SelByAll(
-                        Descripcion: (String)valor,
-                        //Estado: estado,
+                        Descripcion: "%" + (String)valor + "%",
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 case "Detalles":
                     res = _0SelByAll(
-                        Detalles: (String)valor,
-                        //Estado: estado,
+                        Detalles: "%" + (String)valor + "%",
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
 
                 default:
                     res = _0SelByAll(
-                        //Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
             }

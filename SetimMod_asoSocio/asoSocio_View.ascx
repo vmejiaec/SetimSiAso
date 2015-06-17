@@ -16,11 +16,6 @@
             OnClick="btCopiarSocios_OnClick"
             Text="Copiar Socios" />
     </li>
-    <%--    <li>
-        <asp:HyperLink runat="server" ID="btConfigAportes"
-            CssClass="dnnSecondaryAction"
-            Text="Configurar Aportes" />
-    </li>--%>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">

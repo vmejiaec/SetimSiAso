@@ -5,8 +5,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -57,7 +56,7 @@
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
-                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "DetEdit","EntidadPadreId", _EntidadPadreId.ToString()) %>'
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "DetEdit") %>'
                     Text="Editar" />
             </ItemTemplate>
         </asp:TemplateColumn>
@@ -74,16 +73,20 @@
     </Columns>
 </asp:DataGrid>
 
-<%--<script type="text/javascript">
+<script type="text/javascript">
     jQuery(function ($) {
-        $('.confirm').dnnConfirm({
-            text: '¿Desea proceder con la operación?',
-            yestext: 'Si',
-            notext: 'No',
-            title: 'Confirmación'
-        });
+        try{
+            $('.confirm').dnnConfirm({
+                text: '¿Desea proceder con la operación?',
+                yestext: 'Si',
+                notext: 'No',
+                title: 'Confirmación'
+            });
+        }
+        catch (e)
+        { }
     });
-</script>--%>
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {

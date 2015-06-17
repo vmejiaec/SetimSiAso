@@ -17,19 +17,48 @@ namespace SetimMod_asoSetimLista
         private int _ModuleId;
         // Campo por defecto para ordenar la lista
         private string _Ordenar_Campo_Defaul = "Id";
-        // Estado de la página
+        // Entidad base
+        private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
+        // Nivel de la relación 0-Master0 1-Master1 2-Master2
+        private int _Nivel = 0;
+        // Estado de la páginas
+        private ListaPaginaEstado listaPaginaEstado
+        {
+            get
+            {
+                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
+                return (ListaPaginaEstado)Session["paginaEstado"];
+            }
+            set
+            {
+                Session["paginaEstado"] = value;
+            }
+        }
+        // Es la página actual
         private PaginaEstado paginaEstado
         {
             get
             {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
-                return (PaginaEstado)Session["paginaEstado"];
+                return listaPaginaEstado.p[_Nivel];
             }
             set
-            { Session["paginaEstado"] = value; }
+            {
+                listaPaginaEstado.p[_Nivel] = value;
+            }
         }
-        // Entidad base
-        private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
+        // Es la página anterior
+        private PaginaEstado paginaEstadoMaster
+        {
+            get
+            {
+                return listaPaginaEstado.p[_Nivel - 1];
+            }
+            set
+            {
+                listaPaginaEstado.p[_Nivel - 1] = value;
+            }
+        }
+        
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -43,9 +72,11 @@ namespace SetimMod_asoSetimLista
                 // Verifica el estado de la página
                 if (paginaEstado.ModuleID == _ModuleId)
                 {
-                    if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    if (paginaEstado.Ordenar_Campo == "")
+                        paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
-                    if (paginaEstado.dgMasterItemIndex != -1) dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
+                    if (paginaEstado.dgMasterItemIndex != -1)
+                        dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
                 }
                 else
                 {
@@ -61,6 +92,7 @@ namespace SetimMod_asoSetimLista
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            btAccion.NavigateUrl = ModuleContext.EditUrl("DetView");
         }
 
         // Carga los campos para filtrar 
@@ -79,11 +111,10 @@ namespace SetimMod_asoSetimLista
         // Organiza los comandos generados por el DataGrid
         protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
         {
-            int entidadId;
             switch (e.CommandName)
             {
                 case "Borrar":
-                    entidadId = int.Parse((string)e.CommandArgument);
+                    int entidadId = int.Parse((string)e.CommandArgument);
                     BorrarEntidad(entidadId);
                     break;
                 case "Page":
@@ -100,8 +131,8 @@ namespace SetimMod_asoSetimLista
                 case "Select":
                     paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
                     string sEntidadId = e.Item.Cells[0].Text;
-                    entidadId = 1;
-                    btAccion.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "DetView");
+                    // Si es el primer master, entonces pone en nullo al segundo master
+                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
                     break;
             }
         }
@@ -163,13 +194,6 @@ namespace SetimMod_asoSetimLista
             }
         }
 
-        protected void btConfigAportes_OnClick(object sender, EventArgs e)
-        {
-            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
-            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
-            Response.Redirect(url + "?popUp=true");
-        }
-
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
 
@@ -184,6 +208,7 @@ namespace SetimMod_asoSetimLista
             ConsultaDatos();
         }
 
+        // Permite acceder y formatear el pie del dg 
         protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Footer)
@@ -216,7 +241,7 @@ namespace SetimMod_asoSetimLista
         {
             var ddl = (DropDownList)sender;
             paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
-            paginaEstado.Filtro_Valor = "%" + tbFiltro_Criterio.Text + "%";
+            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text ;
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }

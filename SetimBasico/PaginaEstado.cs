@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace SetimBasico
 {
+    public class ListaPaginaEstado
+    {
+        public List<PaginaEstado> p { get; set; }
+        public ListaPaginaEstado()
+        {
+            // Primera página para el master 0, las siguientes son el master 1 y 2.
+            p = new List<PaginaEstado>();
+            p.Add(new PaginaEstado());
+            p.Add(new PaginaEstado());
+            p.Add(new PaginaEstado());
+        }
+    }
     public class PaginaEstado
     {
         // Atributos
@@ -18,7 +30,8 @@ namespace SetimBasico
         public string Filtro_Campo { get; set; }
         public object Filtro_Valor { get; set; }
         public string Filtro_Estado { get; set; }
-        public int dgMasterItemIndex { get; set; }
+        public int dgMasterItemIndex { get; set; }  // por confirmar si se cambia el nombre
+        public Int32? Master_Id { get; set; }
         // Constructor
         public PaginaEstado()
         {
@@ -30,6 +43,7 @@ namespace SetimBasico
             Filtro_Estado = null; // por defecto todos los estados
             Filtro_Valor = null; // por defecto todos los valores
             dgMasterItemIndex = -1;
+            Master_Id = null;
         }
     }
 }

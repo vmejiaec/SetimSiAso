@@ -39,10 +39,10 @@
     <Columns>
         <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="Nombre" HeaderText="Nombre" HeaderStyle-Width="50px" SortExpression="Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-Width="50px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Detalles" HeaderText="Detalles" HeaderStyle-Width="50px" SortExpression="Detalles" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
-        <asp:TemplateColumn>
+        <asp:BoundColumn DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-Width="150px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="Detalles" HeaderText="Detalles" HeaderStyle-Width="150px" SortExpression="Detalles" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" ItemStyle-Width="50px" />
+        <asp:TemplateColumn ItemStyle-Width ="20px">
             <FooterTemplate>
                 No de Filas: 
                 <asp:DropDownList ID="ddlNoFilasPorPagina" runat="server" CssClass="DropDownList_Setim" AutoPostBack="true" OnSelectedIndexChanged="ddlNoFilasPorPagina_SelectedIndexChanged">
