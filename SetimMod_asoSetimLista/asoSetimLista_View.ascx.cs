@@ -10,62 +10,17 @@ using SetimBasico;
 
 namespace SetimMod_asoSetimLista
 {
-    public partial class asoSetimLista_View : ModuleUserControlBase
+    public partial class asoSetimLista_View : SetimModulo
     {
-        // Usuario
-        private int _UserId;
-        private int _ModuleId;
-        // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Id";
         // Entidad base
         private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
-        // Nivel de la relación 0-Master0 1-Master1 2-Master2
-        private int _Nivel = 0;
-        // Estado de la páginas
-        private ListaPaginaEstado listaPaginaEstado
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
-                return (ListaPaginaEstado)Session["paginaEstado"];
-            }
-            set
-            {
-                Session["paginaEstado"] = value;
-            }
-        }
-        // Es la página actual
-        private PaginaEstado paginaEstado
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel] = value;
-            }
-        }
-        // Es la página anterior
-        private PaginaEstado paginaEstadoMaster
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel - 1];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel - 1] = value;
-            }
-        }
-        
-        // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            this._Nivel = 0;
             // Datos del módulo y del usuario del DNN
-            _ModuleId = ModuleContext.ModuleId;
-            _UserId = ModuleContext.PortalSettings.UserId;
+            this._ModuleId = ModuleContext.ModuleId;
+            this._UserID = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -73,7 +28,7 @@ namespace SetimMod_asoSetimLista
                 if (paginaEstado.ModuleID == _ModuleId)
                 {
                     if (paginaEstado.Ordenar_Campo == "")
-                        paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                        paginaEstado.Ordenar_Campo = this._Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
                     if (paginaEstado.dgMasterItemIndex != -1)
                         dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
@@ -82,8 +37,8 @@ namespace SetimMod_asoSetimLista
                 {
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
-                    paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    paginaEstado.ModuleID = this._ModuleId;
+                    paginaEstado.Ordenar_Campo = this._Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -94,7 +49,6 @@ namespace SetimMod_asoSetimLista
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
             btAccion.NavigateUrl = ModuleContext.EditUrl("DetView");
         }
-
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()
         {
@@ -131,12 +85,10 @@ namespace SetimMod_asoSetimLista
                 case "Select":
                     paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
                     string sEntidadId = e.Item.Cells[0].Text;
-                    // Si es el primer master, entonces pone en nullo al segundo master
                     paginaEstado.Master_Id = Int32.Parse(sEntidadId);
                     break;
             }
         }
-
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
         {
@@ -193,10 +145,8 @@ namespace SetimMod_asoSetimLista
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
-
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
-
             if (paginaEstado.Ordenar_Campo == e.SortExpression)
                 paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
             else
@@ -207,7 +157,6 @@ namespace SetimMod_asoSetimLista
             // Consulta los datos
             ConsultaDatos();
         }
-
         // Permite acceder y formatear el pie del dg 
         protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
         {
@@ -220,7 +169,6 @@ namespace SetimMod_asoSetimLista
                 e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
             }
         }
-
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
             int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
@@ -228,7 +176,6 @@ namespace SetimMod_asoSetimLista
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ddl = (DropDownList)sender;
@@ -236,7 +183,6 @@ namespace SetimMod_asoSetimLista
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
         protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ddl = (DropDownList)sender;
@@ -245,11 +191,9 @@ namespace SetimMod_asoSetimLista
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
         protected void btBuscar_Click(object sender, EventArgs e)
         {
             ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
         }
-
     }
 }

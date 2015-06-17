@@ -20,11 +20,11 @@
         <legend></legend>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
-            <asp:TextBox runat="server" ID="tbId" Enabled="false" Text="0"/>
+            <asp:TextBox runat="server" ID="tbId" Enabled="false" Text="0" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSetimLista_Id" Text="asoSetimLista_Id:" HelpText="asoSetimLista_Id" />
-            <asp:TextBox runat="server" ID="tbasoSetimLista_Id" Enabled="false"  Text="0"/>
+            <asp:TextBox runat="server" ID="tbasoSetimLista_Id" Enabled="false" Text="0" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbOrden" Text="Orden:" HelpText="Orden" />
@@ -46,6 +46,9 @@
 </div>
 <%--Botones --%>
 <ul class="dnnActions dnnClear">
-    <li><asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar" /></li>
-    <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar" CausesValidation="false" /> </li>
+    <li>
+        <asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar" /></li>
+    <li>
+        <asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar" CausesValidation="false" />
+    </li>
 </ul>

@@ -6,22 +6,21 @@ using SetimBasico;
 
 namespace SetimMod_asoSetimLista
 {
-    public partial class asoSetimLista_Edit : ModuleUserControlBase
+    public partial class asoSetimLista_Edit : SetimModulo
     {
-        private int _UserID;
-        private int _EntidadId;
         private readonly asoSetimListaControl _EntidadControl = new asoSetimListaControl();
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _UserID = ModuleContext.PortalSettings.UserId;
+            this._Nivel = 0;
+            this._UserID = ModuleContext.PortalSettings.UserId;
             //Obtiene el identificador de la llamada
-            _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
+            this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             //Verifica si debe cargar datos en el formulario
-            if (_EntidadId > -1 && !IsPostBack)
+            if (!IsPostBack)
             {
-                ColocarDatosEnFormulario(_EntidadId);
+                ColocarDatosEnFormulario();
             }
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
@@ -42,16 +41,25 @@ namespace SetimMod_asoSetimLista
             Response.Redirect(Globals.NavigateURL());
         }
         // Carga el formulario con los datos de un objeto
-        protected void ColocarDatosEnFormulario(int entidadId)
+        protected void ColocarDatosEnFormulario()
         {
-            // Consulta los datos de la entidad
-            var o = _EntidadControl._1SelById(entidadId);
-            // Pone en los campos los valores del objeto
-            tbId.Text = o.Id.ToString();
-            tbNombre.Text = o.Nombre;
-            tbDescripcion.Text = o.Descripcion;
-            tbDetalles.Text = o.Detalles;
-
+            if (_EntidadId == -1)
+            {
+                // Valores por defecto para el INSERT
+                tbId.Text = "0";
+                tbNombre.Text = "Nombre";
+                tbDescripcion.Text = "Descripcion";
+                tbDetalles.Text = "...";
+            }
+            else
+            {
+                // Consulta los datos de la entidad para UPDATE
+                var o = _EntidadControl._1SelById(this._EntidadId);
+                tbId.Text = o.Id.ToString();
+                tbNombre.Text = o.Nombre;
+                tbDescripcion.Text = o.Descripcion;
+                tbDetalles.Text = o.Detalles;
+            }
         }
         // Carga un objeto con los datos del formulario
         protected asoSetimLista ColocarDatosEnObjeto()

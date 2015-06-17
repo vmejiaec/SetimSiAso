@@ -466,9 +466,7 @@ namespace <#=iTabla.View_csNamespace #>
         // Generar pantalla del tipo Edit
         fileManager.StartNewFile(iTabla.Edit_Nombre_ascx, "","ASP_Control");
 #>
-<%@ Control Language="C#" AutoEventWireup="true" 
-    CodeBehind="<#=iTabla.Edit_ascxCodeBehind #>" 
-    Inherits="<#=iTabla.Edit_ascxInherits #>" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="<#=iTabla.Edit_ascxCodeBehind #>" Inherits="<#=iTabla.Edit_ascxInherits #>" %>
 
     <%@ Register Assembly="DotNetNuke.WebControls" Namespace="DotNetNuke.UI.WebControls" TagPrefix="DNN" %>
     <%@ Register TagPrefix="dnn" TagName="Label" Src= "~/controls/LabelControl.ascx" %>
@@ -476,15 +474,14 @@ namespace <#=iTabla.View_csNamespace #>
     <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
     <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
-<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
-
 <%--Funcion para poner el formato numérico a los campos de Valor--%>
+<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(function ($) {
         $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
     });
 </script>
-
+<%--Formulario de datos --%>
 <div id="dnnUsers" class="dnnForm dnnClear">
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
     <fieldset>
@@ -542,11 +539,9 @@ namespace <#=iTabla.View_csNamespace #>
             } }
 #>
     </fieldset>
-
     <asp:ValidationSummary runat="server" ID="vsResumen" CssClass="dnnFormMessage dnnFormValidationSummary"/>
-
 </div>
-
+<%--Botones --%>
 <ul class="dnnActions dnnClear">
     <li><asp:LinkButton runat="server" ID="saveButton" CssClass="dnnPrimaryAction" OnClick="Guardar" Text="Guardar"/></li>
     <li><asp:LinkButton runat="server" ID="cancelButton" CssClass="dnnSecondaryAction" OnClick="Cancelar" Text="Cancelar"  CausesValidation="false" /> </li>

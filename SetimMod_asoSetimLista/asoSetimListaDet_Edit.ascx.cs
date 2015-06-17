@@ -6,57 +6,17 @@ using SetimBasico;
 
 namespace SetimMod_asoSetimListaDet
 {
-    public partial class asoSetimListaDet_Edit : ModuleUserControlBase
+    public partial class asoSetimListaDet_Edit : SetimModulo
     {
-        private int _UserID;
-        private int _EntidadId;
         private readonly asoSetimListaDetControl _EntidadControl = new asoSetimListaDetControl();
-        // Nivel de la relación 0-Master0 1-Master1 2-Master2
-        private int _Nivel = 1;
-        // Estado de la páginas
-        private ListaPaginaEstado listaPaginaEstado
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
-                return (ListaPaginaEstado)Session["paginaEstado"];
-            }
-            set
-            {
-                Session["paginaEstado"] = value;
-            }
-        }
-        // Es la página actual
-        private PaginaEstado paginaEstado
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel] = value;
-            }
-        }
-        // Es la página anterior
-        private PaginaEstado paginaEstadoMaster
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel - 1];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel - 1] = value;
-            }
-        }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _UserID = ModuleContext.PortalSettings.UserId;
+            this._Nivel = 1;
+            this._UserID = ModuleContext.PortalSettings.UserId;
             //Obtiene el identificador de la llamada
-            _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
+            this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             //Verifica si debe cargar datos en el formulario
             if (!IsPostBack)
             {
@@ -89,13 +49,13 @@ namespace SetimMod_asoSetimListaDet
             {
                 // Valores por defecto para el INSERT
                 tbId.Text = "0";
-                tbasoSetimLista_Id.Text = paginaEstadoMaster.Master_Id.ToString();
+                tbasoSetimLista_Id.Text = this.paginaEstadoMaster.Master_Id.ToString();
                 tbOrden.Text = "";
                 tbTexto.Text = "Texto";
                 tbValor.Text = "Valor";
             }
             else
-            { 
+            {
                 // Consulta los datos de la entidad para UPDATE
                 var o = _EntidadControl._1SelById(_EntidadId);
                 tbId.Text = o.Id.ToString();
@@ -103,7 +63,7 @@ namespace SetimMod_asoSetimListaDet
                 tbOrden.Text = o.Orden.ToString();
                 tbTexto.Text = o.Texto;
                 tbValor.Text = o.Valor;
-            }            
+            }
         }
         // Carga un objeto con los datos del formulario
         protected asoSetimListaDet ColocarDatosEnObjeto()

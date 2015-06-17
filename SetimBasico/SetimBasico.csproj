@@ -33,8 +33,20 @@
     <Reference Include="DotNetNuke">
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebControls, Version=2.4.0.598, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.WebControls.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.1.783, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +58,9 @@
     <Compile Include="LogEventos.cs" />
     <Compile Include="PaginaEstado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetimModulo.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

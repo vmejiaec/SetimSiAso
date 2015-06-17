@@ -1,83 +1,35 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-using DotNetNuke.Collections;
 using System.Collections.Generic;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
-using DotNetNuke.Common;
 using SetimBasico;
 using DotNetNuke.Framework.JavaScriptLibraries;
 
 namespace SetimMod_asoSetimListaDet
 {
-    public partial class asoSetimListaDet_View : ModuleUserControlBase
+    public partial class asoSetimListaDet_View : SetimModulo
     {
-        // Usuario
-        private int _UserId;
-        private int _ModuleId;
-        // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Id";
         // Entidad base
         private readonly asoSetimListaDetControl _EntidadControl = new asoSetimListaDetControl();
-        // Nivel de la relación 0-Master0 1-Master1 2-Master2
-        private int _Nivel = 1;
-        // Estado de la páginas
-        private ListaPaginaEstado listaPaginaEstado
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
-                return (ListaPaginaEstado)Session["paginaEstado"];
-            }
-            set
-            {
-                Session["paginaEstado"] = value;
-            }
-        }
-        // Es la página actual
-        private PaginaEstado paginaEstado
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel] = value;
-            }
-        }
-        // Es la página anterior
-        private PaginaEstado paginaEstadoMaster
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel - 1];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel - 1] = value;
-            }
-        }
-        
-        // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            // Carga el nivel en jerarquía de master/detail 
+            this._Nivel = 1;
             // Carga de jQuery
             JavaScript.RequestRegistration(CommonJs.jQuery);
             JavaScript.RequestRegistration(CommonJs.DnnPlugins);
             JavaScript.RequestRegistration(CommonJs.jQueryUI);
-            
             // Datos del módulo y del usuario del DNN
-            _ModuleId = ModuleContext.ModuleId;
-            _UserId = ModuleContext.PortalSettings.UserId;
+            this._ModuleId = ModuleContext.ModuleId;
+            this._UserID = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
                 // Verifica el estado de la página
-                if (paginaEstado.ModuleID == _ModuleId)
+                if (paginaEstado.ModuleID == this._ModuleId)
                 {
                     if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
@@ -87,8 +39,8 @@ namespace SetimMod_asoSetimListaDet
                 {
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
-                    paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    paginaEstado.ModuleID = this._ModuleId;
+                    paginaEstado.Ordenar_Campo = this._Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -98,50 +50,7 @@ namespace SetimMod_asoSetimListaDet
             // Inicializa el botón para crear ua nueva entidad
             addButton.NavigateUrl = ModuleContext.EditUrl("DetEdit");
         }
-
-        // Carga los campos para filtrar 
-        private void CargarDdl_CamposDelFiltro()
-        {
-            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetimListaDet_Filtro_Campos");
-            ddlFiltro_Campo.DataSource = lista;
-            ddlFiltro_Campo.DataTextField = "Texto";
-            ddlFiltro_Campo.DataValueField = "Valor";
-            ddlFiltro_Campo.DataBind();
-            // Carga el filtro de los campos desde el estado de la pagina
-            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
-            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
-        }
-        // Organiza los comandos generados por el DataGrid
-        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
-        {
-            switch (e.CommandName)
-            {
-                case "Borrar":
-                    int entidadId = int.Parse((string)e.CommandArgument);
-                    BorrarEntidad(entidadId);
-                    break;
-                case "Page":
-                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
-                    string dir = (string)e.CommandArgument;
-                    int indice = ((DataGrid)source).CurrentPageIndex;
-                    if (dir == "Next")
-                        indice = indice + 1;
-                    else
-                        indice = indice - 1;
-                    paginaEstado.PaginaActual = indice;
-                    ConsultaDatos();
-                    break;
-                case "Select":
-                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
-                    string sEntidadId = e.Item.Cells[0].Text;
-                    // Esta es la master 2
-                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
-                    break;
-            }
-        }
-
-        // Proceso de carga de datos en el GridView
+        // Proceso de carga de datos en el GridView desde el SP
         protected void ConsultaDatos()
         {
             // Consulta los datos del SP SelByAll
@@ -165,7 +74,6 @@ namespace SetimMod_asoSetimListaDet
                 ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
             }
         }
-        // Proceso para consultar a la base los datos
         private IList<asoSetimListaDet> ConsultaSP()
         {
             IList<asoSetimListaDet> res = new List<asoSetimListaDet>();
@@ -197,7 +105,33 @@ namespace SetimMod_asoSetimListaDet
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
-
+        // Organiza los comandos generados por el DataGrid
+        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Borrar":
+                    int entidadId = int.Parse((string)e.CommandArgument);
+                    BorrarEntidad(entidadId);
+                    break;
+                case "Page":
+                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
+                    string dir = (string)e.CommandArgument;
+                    int indice = ((DataGrid)source).CurrentPageIndex;
+                    if (dir == "Next")
+                        indice = indice + 1;
+                    else
+                        indice = indice - 1;
+                    paginaEstado.PaginaActual = indice;
+                    ConsultaDatos();
+                    break;
+                case "Select":
+                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                    string sEntidadId = e.Item.Cells[0].Text;
+                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
+                    break;
+            }
+        }
         protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
         {
 
@@ -211,7 +145,6 @@ namespace SetimMod_asoSetimListaDet
             // Consulta los datos
             ConsultaDatos();
         }
-
         protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Footer)
@@ -223,7 +156,6 @@ namespace SetimMod_asoSetimListaDet
                 e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
             }
         }
-
         protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
         {
             int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
@@ -231,7 +163,7 @@ namespace SetimMod_asoSetimListaDet
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
+        // Eventos de los Filtros
         protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ddl = (DropDownList)sender;
@@ -239,7 +171,6 @@ namespace SetimMod_asoSetimListaDet
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
         protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ddl = (DropDownList)sender;
@@ -248,11 +179,22 @@ namespace SetimMod_asoSetimListaDet
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
         protected void btBuscar_Click(object sender, EventArgs e)
         {
             ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
         }
-
+        // Carga los campos para filtrar 
+        private void CargarDdl_CamposDelFiltro()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSetimListaDet_Filtro_Campos");
+            ddlFiltro_Campo.DataSource = lista;
+            ddlFiltro_Campo.DataTextField = "Texto";
+            ddlFiltro_Campo.DataValueField = "Valor";
+            ddlFiltro_Campo.DataBind();
+            // Carga el filtro de los campos desde el estado de la pagina
+            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
+            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
+        }
     }
 }

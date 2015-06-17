@@ -5,7 +5,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li>
+        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -75,7 +76,7 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        try{
+        try {
             $('.confirm').dnnConfirm({
                 text: '¿Desea proceder con la operación?',
                 yestext: 'Si',
