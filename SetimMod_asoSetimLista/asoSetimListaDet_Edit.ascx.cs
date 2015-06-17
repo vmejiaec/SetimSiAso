@@ -15,9 +15,7 @@ namespace SetimMod_asoSetimListaDet
             base.OnLoad(e);
             this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
-            //Obtiene el identificador de la llamada
             this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
-            //Verifica si debe cargar datos en el formulario
             if (!IsPostBack)
             {
                 ColocarDatosEnFormulario();
@@ -48,21 +46,25 @@ namespace SetimMod_asoSetimListaDet
             if (_EntidadId == -1)
             {
                 // Valores por defecto para el INSERT
+                // Si el Nivel = 1, usar this.paginaEstadoMaster.Master_Id.ToString() en el campo de la clave foranea
                 tbId.Text = "0";
                 tbasoSetimLista_Id.Text = this.paginaEstadoMaster.Master_Id.ToString();
-                tbOrden.Text = "";
+                tbOrden.Text = "0";
                 tbTexto.Text = "Texto";
                 tbValor.Text = "Valor";
+
             }
             else
             {
-                // Consulta los datos de la entidad para UPDATE
-                var o = _EntidadControl._1SelById(_EntidadId);
+                // Consulta los datos de la entidad
+                var o = _EntidadControl._1SelById(this._EntidadId);
+                // Pone en los campos los valores del objeto
                 tbId.Text = o.Id.ToString();
                 tbasoSetimLista_Id.Text = o.asoSetimLista_Id.ToString();
                 tbOrden.Text = o.Orden.ToString();
                 tbTexto.Text = o.Texto;
                 tbValor.Text = o.Valor;
+
             }
         }
         // Carga un objeto con los datos del formulario

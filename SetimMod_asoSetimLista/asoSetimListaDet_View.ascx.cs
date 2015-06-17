@@ -4,8 +4,8 @@ using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Skins;
-using SetimBasico;
 using DotNetNuke.Framework.JavaScriptLibraries;
+using SetimBasico;
 
 namespace SetimMod_asoSetimListaDet
 {

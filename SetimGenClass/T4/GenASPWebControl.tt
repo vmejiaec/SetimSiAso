@@ -184,12 +184,16 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        $('.confirm').dnnConfirm({
-            text: '¿Desea proceder con la operación?',
-            yestext: 'Si',
-            notext: 'No',
-            title: 'Confirmación'
-        });
+        try {
+            $('.confirm').dnnConfirm({
+                text: '¿Desea proceder con la operación?',
+                yestext: 'Si',
+                notext: 'No',
+                title: 'Confirmación'
+            });
+        }
+        catch (e)
+        { }
     });
 </script>
 
@@ -211,39 +215,33 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
+using DotNetNuke.Framework.JavaScriptLibraries;
 using SetimBasico;
 
 namespace <#=iTabla.View_csNamespace #> 
 {
-    public partial class <#=iTabla.View_csClase #> : ModuleUserControlBase
+    public partial class <#=iTabla.View_csClase #> : SetimModulo
     {
-        // Usuario
-        private int _UserId;
-        private int _ModuleId;
-        // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Id";
-        // Estado de la página
-        private PaginaEstado paginaEstado
-        { get
-            { if (Session["paginaEstado"] == null) Session["paginaEstado"] = new PaginaEstado();
-              return (PaginaEstado)Session["paginaEstado"];}
-          set
-            { Session["paginaEstado"] = value;}
-        }
         // Entidad base
         private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            // Carga el nivel en jerarquía de master/detail 
+            this._Nivel = 1;
+            // Carga de jQuery
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
             // Datos del módulo y del usuario del DNN
-            _ModuleId = ModuleContext.ModuleId;
-            _UserId = ModuleContext.PortalSettings.UserId;
+            this._ModuleId = ModuleContext.ModuleId;
+            this._UserId = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
                 // Verifica el estado de la página
-                if (paginaEstado.ModuleID == _ModuleId)
+                if (paginaEstado.ModuleID == this._ModuleId)
                 {
                     if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
                     dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
@@ -253,8 +251,8 @@ namespace <#=iTabla.View_csNamespace #>
                 {
                     // Si no se trata del estado de esta página, se inicializa todo el estado
                     paginaEstado = new PaginaEstado();
-                    paginaEstado.ModuleID = _ModuleId;
-                    paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    paginaEstado.ModuleID = this._ModuleId;
+                    paginaEstado.Ordenar_Campo = this._Ordenar_Campo_Defaul;
                 }
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
@@ -265,61 +263,6 @@ namespace <#=iTabla.View_csNamespace #>
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
-        // Carga los estados desde una lista de SetimLista
-        private void CargarDdl_Estados()
-        {
-            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
-            ddlCab_Estado.DataSource = lista;
-            ddlCab_Estado.DataTextField = "Texto";
-            ddlCab_Estado.DataValueField = "Valor";
-            ddlCab_Estado.DataBind();
-            // Carga el estado del estado de la pagina
-            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
-        }
-        // Carga los campos para filtrar 
-        private void CargarDdl_CamposDelFiltro()
-        {
-            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Filtro_Campos");
-            ddlFiltro_Campo.DataSource = lista;
-            ddlFiltro_Campo.DataTextField = "Texto";
-            ddlFiltro_Campo.DataValueField = "Valor";
-            ddlFiltro_Campo.DataBind();
-            // Carga el filtro de los campos desde el estado de la pagina
-            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
-            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
-        }
-        // Organiza los comandos generados por el DataGrid
-        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
-        {
-            int entidadId;
-            switch (e.CommandName)
-            {
-                case "Borrar":
-                    entidadId = int.Parse((string)e.CommandArgument);
-                    BorrarEntidad(entidadId);
-                    break;
-                case "Page":
-                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
-                    string dir = (string)e.CommandArgument;
-                    int indice = ((DataGrid)source).CurrentPageIndex;
-                    if (dir == "Next")
-                        indice = indice + 1;
-                    else
-                        indice = indice - 1;
-                    paginaEstado.PaginaActual = indice;
-                    ConsultaDatos();
-                    break;
-                //case "Select":
-                //    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
-                //    string sEntidadId = e.Item.Cells[0].Text;
-                //    entidadId = 1;
-                //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
-                //    break;
-            }
-        }
-
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
         {
@@ -349,7 +292,7 @@ namespace <#=iTabla.View_csNamespace #>
         {
             IList<<#=iTabla.Name #>> res = new List<<#=iTabla.Name #>>();
             res = _EntidadControl._0SelByAll(
-                paginaEstado.Filtro_Estado,
+                paginaEstadoMaster.Master_Id,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
                 paginaEstado.PaginaActual, paginaEstado.NoFilasPorPagina,
                 paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
@@ -376,7 +319,111 @@ namespace <#=iTabla.View_csNamespace #>
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
-        // Carga masiva de los socios en base de los usuario que tienen rol ="Socio"
+        // Organiza los comandos generados por el DataGrid
+        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            int entidadId;
+            switch (e.CommandName)
+            {
+                case "Borrar":
+                    entidadId = int.Parse((string)e.CommandArgument);
+                    BorrarEntidad(entidadId);
+                    break;
+                case "Page":
+                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
+                    string dir = (string)e.CommandArgument;
+                    int indice = ((DataGrid)source).CurrentPageIndex;
+                    if (dir == "Next")
+                        indice = indice + 1;
+                    else
+                        indice = indice - 1;
+                    paginaEstado.PaginaActual = indice;
+                    ConsultaDatos();
+                    break;
+                case "Select":
+                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                    string sEntidadId = e.Item.Cells[0].Text;
+                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
+                    break;
+            }
+        }
+        protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
+        {
+
+            if (paginaEstado.Ordenar_Campo == e.SortExpression)
+                paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
+            else
+            {
+                paginaEstado.Ordenar_Campo = e.SortExpression;
+                paginaEstado.Ordenar_Sentido = "ASC";
+            }
+            // Consulta los datos
+            ConsultaDatos();
+        }
+        protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                e.Item.Cells[0].ColumnSpan = 2;
+                e.Item.Cells[0].Text = string.Format("Página No: {0}", dgMaster.CurrentPageIndex + 1);
+                e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+            }
+        }
+        protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
+            paginaEstado.NoFilasPorPagina = noFilasPorPagina;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        // Eventos de los filtros
+        protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
+        }
+        // Carga los estados desde una lista 
+        private void CargarDdl_Estados()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
+            ddlCab_Estado.DataSource = lista;
+            ddlCab_Estado.DataTextField = "Texto";
+            ddlCab_Estado.DataValueField = "Valor";
+            ddlCab_Estado.DataBind();
+            // Carga el estado del estado de la pagina
+            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
+        }
+        // Carga los campos para filtrar 
+        private void CargarDdl_CamposDelFiltro()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Filtro_Campos");
+            ddlFiltro_Campo.DataSource = lista;
+            ddlFiltro_Campo.DataTextField = "Texto";
+            ddlFiltro_Campo.DataValueField = "Valor";
+            ddlFiltro_Campo.DataBind();
+            // Carga el filtro de los campos desde el estado de la pagina
+            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
+            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
+        }
+        // Boton para ejecutar una acción
         protected void btAccion_OnClick(object sender, EventArgs e)
         {
             //try
@@ -396,70 +443,13 @@ namespace <#=iTabla.View_csNamespace #>
             //        DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             //}
         }
-
+        // Boton para ejecutar una accion
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {
             int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
             string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
             Response.Redirect(url + "?popUp=true");
         }
-
-        protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
-        {
-
-            if (paginaEstado.Ordenar_Campo == e.SortExpression)
-                paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
-            else
-            {
-                paginaEstado.Ordenar_Campo = e.SortExpression;
-                paginaEstado.Ordenar_Sentido = "ASC";
-            }
-            // Consulta los datos
-            ConsultaDatos();
-        }
-
-        protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Footer)
-            {
-                e.Item.Cells[0].ColumnSpan = 2;
-                e.Item.Cells[0].Text = string.Format("Página No: {0}", dgMaster.CurrentPageIndex + 1);
-                e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
-                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
-                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
-            }
-        }
-
-        protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
-            paginaEstado.NoFilasPorPagina = noFilasPorPagina;
-            paginaEstado.PaginaActual = 0;
-            ConsultaDatos();
-        }
-
-        protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var ddl = (DropDownList)sender;
-            paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
-            paginaEstado.PaginaActual = 0;
-            ConsultaDatos();
-        }
-
-        protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var ddl = (DropDownList)sender;
-            paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
-            paginaEstado.Filtro_Valor = "%"+tbFiltro_Criterio.Text+"%";
-            paginaEstado.PaginaActual = 0;
-            ConsultaDatos();
-        }
-
-        protected void btBuscar_Click(object sender, EventArgs e)
-        {
-            ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
-        }
-
     }
 }
 <#
@@ -558,22 +548,19 @@ using SetimBasico;
 
 namespace SetimMod_<#=iTabla.Name #>
 {
-    public partial class <#=iTabla.Name #>_Edit : ModuleUserControlBase
+    public partial class <#=iTabla.Name #>_Edit : SetimModulo
     {
-        private int _UserID;
-        private int _EntidadId;
         private readonly <#=iTabla.Name #>Control _EntidadControl = new <#=iTabla.Name #>Control();
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _UserID = ModuleContext.PortalSettings.UserId;
-            //Obtiene el identificador de la llamada
-            _EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
-            //Verifica si debe cargar datos en el formulario
-            if (_EntidadId > -1 && !IsPostBack)
+            this._Nivel = 0;
+            this._UserID = ModuleContext.PortalSettings.UserId;
+            this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
+            if (!IsPostBack)
             {
-                ColocarDatosEnFormulario(_EntidadId);
+                ColocarDatosEnFormulario();
             }
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
@@ -586,19 +573,50 @@ namespace SetimMod_<#=iTabla.Name #>
             else
                 _EntidadControl._3Upd(o);
 
-            Response.Redirect(Globals.NavigateURL());
+            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+            Response.Redirect(url);
         }
         // Cancela y regresa a la pantalla base
         protected void Cancelar(object sender, EventArgs e)
         {
-            Response.Redirect(Globals.NavigateURL());
+            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+            Response.Redirect(url);
         }
         // Carga el formulario con los datos de un objeto
-        protected void ColocarDatosEnFormulario(int entidadId)
+        protected void ColocarDatosEnFormulario()
         {
-            // Consulta los datos de la entidad
-            var o = _EntidadControl._1SelById(entidadId);
-            // Pone en los campos los valores del objeto
+            if (_EntidadId == -1)
+            {
+                // Valores por defecto para el INSERT
+                // Usar this.paginaEstadoMaster.Master_Id.ToString() para la clave foranea
+<# 
+        foreach(var col in iTabla.Cols)
+        {
+            switch (col.CsTypeName)
+            {
+                case "String":
+                    if (col.Name.Contains("Estado")) {#>
+            ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el estado inicial
+<#                    } 
+                    else { #>
+            tb<#=col.Name #>.Text = "<#=col.Name #>";            
+<#                    }
+                    break;
+                case "DateTime" :
+#>
+            dnnDP_<#=col.Name #>.SelectedDate = <#=DateTime.Today #>; // Fecha actual por defecto
+<#                    break;
+                default : #>
+            tb<#=col.Name #>.Text = "0";
+<#                    break;
+            }
+        }#>       
+            }
+            else
+            {
+                // Consulta los datos de la entidad
+                var o = _EntidadControl._1SelById(this._EntidadId);
+                // Pone en los campos los valores del objeto
 <# 
         foreach(var col in iTabla.Cols)
         {
@@ -620,7 +638,8 @@ namespace SetimMod_<#=iTabla.Name #>
             tb<#=col.Name #>.Text = o.<#=col.Name #>.ToString();
 <#                    break;
             }
-        }#>            
+        }#>       
+            }     
         }
         // Carga un objeto con los datos del formulario
         protected <#=iTabla.Name #> ColocarDatosEnObjeto()

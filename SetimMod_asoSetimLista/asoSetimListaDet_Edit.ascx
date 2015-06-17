@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="True" CodeBehind="asoSetimListaDet_Edit.ascx.cs" Inherits="SetimMod_asoSetimListaDet.asoSetimListaDet_Edit" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="asoSetimListaDet_Edit.ascx.cs" Inherits="SetimMod_asoSetimListaDet.asoSetimListaDet_Edit" %>
 
 <%@ Register Assembly="DotNetNuke.WebControls" Namespace="DotNetNuke.UI.WebControls" TagPrefix="DNN" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
@@ -20,11 +20,13 @@
         <legend></legend>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
-            <asp:TextBox runat="server" ID="tbId" Enabled="false" Text="0" />
+            <asp:TextBox runat="server" ID="tbId" Enabled="true" />
+            <asp:RequiredFieldValidator ID="rfv_tbId" runat="server" ControlToValidate="tbId" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSetimLista_Id" Text="asoSetimLista_Id:" HelpText="asoSetimLista_Id" />
-            <asp:TextBox runat="server" ID="tbasoSetimLista_Id" Enabled="false" Text="0" />
+            <asp:TextBox runat="server" ID="tbasoSetimLista_Id" Enabled="true" />
+            <asp:RequiredFieldValidator ID="rfv_tbasoSetimLista_Id" runat="server" ControlToValidate="tbasoSetimLista_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSetimLista_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbOrden" Text="Orden:" HelpText="Orden" />
