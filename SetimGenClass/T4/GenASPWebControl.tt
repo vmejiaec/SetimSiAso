@@ -4,7 +4,7 @@
 <#@ output extension=".txt" #>
 
 <#
-    var TablaBase                   = "asoSetimListaDet";
+    var TablaBase                   = "asoPeriodo";
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
@@ -96,7 +96,7 @@
 
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
-    <li><asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction" OnClick="btAccion_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -236,7 +236,7 @@ namespace <#=iTabla.View_csNamespace #>
             JavaScript.RequestRegistration(CommonJs.jQueryUI);
             // Datos del módulo y del usuario del DNN
             this._ModuleId = ModuleContext.ModuleId;
-            this._UserId = ModuleContext.PortalSettings.UserId;
+            this._UserID = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -291,6 +291,7 @@ namespace <#=iTabla.View_csNamespace #>
         private IList<<#=iTabla.Name #>> ConsultaSP()
         {
             IList<<#=iTabla.Name #>> res = new List<<#=iTabla.Name #>>();
+            // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
             res = _EntidadControl._0SelByAll(
                 paginaEstadoMaster.Master_Id,
                 paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
@@ -402,7 +403,7 @@ namespace <#=iTabla.View_csNamespace #>
         private void CargarDdl_Estados()
         {
             asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocio_Estado");
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Estado");
             ddlCab_Estado.DataSource = lista;
             ddlCab_Estado.DataTextField = "Texto";
             ddlCab_Estado.DataValueField = "Valor";
@@ -499,10 +500,7 @@ namespace <#=iTabla.View_csNamespace #>
                         if (col.Name.Contains("Estado")) { #>
         <div class="dnnFormItem">
             <dnn:Label ID="lb<#=col.Name #>" runat="server" Text="<#=col.Name #>:"/>
-            <asp:DropDownList runat="server" ID="ddl<#=col.Name #>">
-                <asp:ListItem Text="Activo" Value="ACT" />
-                <asp:ListItem Text="Inactivo" Value="INA"/>
-            </asp:DropDownList>
+            <asp:DropDownList runat="server" ID="ddl<#=col.Name #>" />
         </div>
 <#                    } else { #>
         <div class="dnnFormItem">
@@ -560,6 +558,7 @@ namespace SetimMod_<#=iTabla.Name #>
             this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             if (!IsPostBack)
             {
+                CargarDdl_Estados();
                 ColocarDatosEnFormulario();
             }
         }
@@ -573,13 +572,17 @@ namespace SetimMod_<#=iTabla.Name #>
             else
                 _EntidadControl._3Upd(o);
 
-            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+            string url = Globals.NavigateURL();
+            if (this._Nivel != 0)
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Cancela y regresa a la pantalla base
         protected void Cancelar(object sender, EventArgs e)
         {
-            string url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+            string url = Globals.NavigateURL();
+            if (this._Nivel != 0)
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Carga el formulario con los datos de un objeto
@@ -604,7 +607,7 @@ namespace SetimMod_<#=iTabla.Name #>
                     break;
                 case "DateTime" :
 #>
-            dnnDP_<#=col.Name #>.SelectedDate = <#=DateTime.Today #>; // Fecha actual por defecto
+            dnnDP_<#=col.Name #>.SelectedDate = DateTime.Today ; // Fecha actual por defecto
 <#                    break;
                 default : #>
             tb<#=col.Name #>.Text = "0";
@@ -679,7 +682,17 @@ namespace SetimMod_<#=iTabla.Name #>
         }#>     
             return o;
         }
-
+        // Carga los estados desde una lista 
+        private void CargarDdl_Estados()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Estado");
+            lista.RemoveAt(0);
+            ddlEstado.DataSource = lista;
+            ddlEstado.DataTextField = "Texto";
+            ddlEstado.DataValueField = "Valor";
+            ddlEstado.DataBind();
+        }
     }
 }
 <#

@@ -1,34 +1,56 @@
 ﻿
 
-//-> asoSetimLista.cs
+//-> asoPeriodo.cs
 
-//-> asoSetimListaControl.cs
+//-> asoPeriodoAporte.cs
 
-//-> asoSetimListaDet.cs
+//-> asoPeriodoAporteControl.cs
 
-//-> asoSetimListaDetControl.cs
+//-> asoPeriodoControl.cs
 
-//-> ext_asoSetimListaControl.cs
+//-> asoPeriodoCuota.cs
 
-//-> ext_asoSetimListaDetControl.cs
+//-> asoPeriodoCuotaControl.cs
 
-//-> asoSetimLista.cs
+//-> asoPeriodoInversion.cs
 
-//-> asoSetimListaControl.cs
+//-> asoPeriodoInversionControl.cs
 
-//-> asoSetimListaDet.cs
+//-> ext_asoPeriodoAporteControl.cs
 
-//-> asoSetimListaDetControl.cs
+//-> ext_asoPeriodoControl.cs
 
-//-> ext_asoSetimListaControl.cs
+//-> ext_asoPeriodoCuotaControl.cs
 
-//-> ext_asoSetimListaDetControl.cs
+//-> ext_asoPeriodoInversionControl.cs
+
+//-> asoPeriodo.cs
+
+//-> asoPeriodoAporte.cs
+
+//-> asoPeriodoAporteControl.cs
+
+//-> asoPeriodoControl.cs
+
+//-> asoPeriodoCuota.cs
+
+//-> asoPeriodoCuotaControl.cs
+
+//-> asoPeriodoInversion.cs
+
+//-> asoPeriodoInversionControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoSetimListaDetControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSetimListaDetControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSetimListaDet.cs
-// SetimSiAso\SetimGenClass\Modelos\ext_asoSetimListaControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSetimListaControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSetimLista.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoCuotaControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuotaControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuota.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoAporteControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporteControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporte.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoInversionControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversionControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversion.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodo.cs

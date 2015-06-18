@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoSetimLista", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoSocio", "SetimMod_asoSocio\SetimMod_asoSocio.csproj", "{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoPeriodo", "SetimMod_asoPeriodo\SetimMod_asoPeriodo.csproj", "{B6E84FB9-6513-4114-83D5-518128550B4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E84FB9-6513-4114-83D5-518128550B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E84FB9-6513-4114-83D5-518128550B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E84FB9-6513-4114-83D5-518128550B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E84FB9-6513-4114-83D5-518128550B4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

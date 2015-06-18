@@ -1,25 +1,25 @@
 ﻿
 
 
-//-> asoSetimListaDet_Edit.ascx
+//-> asoPeriodo_Edit.ascx
 
-//-> asoSetimListaDet_Edit.ascx.cs
+//-> asoPeriodo_Edit.ascx.cs
 
-//-> asoSetimListaDet_View.ascx
+//-> asoPeriodo_View.ascx
 
-//-> asoSetimListaDet_View.ascx.cs
+//-> asoPeriodo_View.ascx.cs
 
-//-> asoSetimListaDet_Edit.ascx.cs
+//-> asoPeriodo_Edit.ascx.cs
 
-//-> asoSetimListaDet_Edit.ascx
+//-> asoPeriodo_Edit.ascx
 
-//-> asoSetimListaDet_View.ascx.cs
+//-> asoPeriodo_View.ascx.cs
 
-//-> asoSetimListaDet_View.ascx
+//-> asoPeriodo_View.ascx
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\ASP_Control\asoSetimListaDet_Edit.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoSetimListaDet_Edit.ascx
-// SetimSiAso\SetimGenClass\ASP_Control\asoSetimListaDet_View.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoSetimListaDet_View.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodo_Edit.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodo_Edit.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodo_View.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodo_View.ascx
