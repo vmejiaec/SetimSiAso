@@ -18,3 +18,6 @@ C:\Victor\SetimDNN\SetimGeneraSPs\Presentation\obj\Debug\SetimGeneraSPs.Properti
 C:\Victor\SetimDNN\SetimGeneraSPs\Presentation\obj\Debug\Windows Forms.csproj.GenerateResource.Cache
 C:\Victor\SetimDNN\SetimGeneraSPs\Presentation\obj\Debug\SetimGeneraSPs.exe
 C:\Victor\SetimDNN\SetimGeneraSPs\Presentation\obj\Debug\SetimGeneraSPs.pdb
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\SetimGeneraSPs.exe.config
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\SetimGeneraSPs.exe
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\SetimGeneraSPs.pdb

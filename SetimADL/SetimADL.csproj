@@ -62,12 +62,14 @@
     <Compile Include="asoSocioAporte.cs" />
     <Compile Include="asoSocioAporteControl.cs" />
     <Compile Include="asoSocioControl.cs" />
+    <Compile Include="ext_asoInversionControl.cs" />
     <Compile Include="ext_asoPeriodoControl.cs" />
     <Compile Include="ext_asoSetimListaControl.cs" />
     <Compile Include="ext_asoSetimListaDetControl.cs" />
     <Compile Include="ext_asoSocioControl.cs" />
     <Compile Include="asoSocioInversion.cs" />
     <Compile Include="asoSocioInversionControl.cs" />
+    <Compile Include="ext_asoSocioInversionControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

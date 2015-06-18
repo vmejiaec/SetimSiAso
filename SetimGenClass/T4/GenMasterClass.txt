@@ -1,56 +1,17 @@
 ﻿
 
-//-> asoPeriodo.cs
+//-> asoSocioInversion.cs
 
-//-> asoPeriodoAporte.cs
+//-> asoSocioInversionControl.cs
 
-//-> asoPeriodoAporteControl.cs
+//-> ext_asoSocioInversionControl.cs
 
-//-> asoPeriodoControl.cs
+//-> asoSocioInversion.cs
 
-//-> asoPeriodoCuota.cs
-
-//-> asoPeriodoCuotaControl.cs
-
-//-> asoPeriodoInversion.cs
-
-//-> asoPeriodoInversionControl.cs
-
-//-> ext_asoPeriodoAporteControl.cs
-
-//-> ext_asoPeriodoControl.cs
-
-//-> ext_asoPeriodoCuotaControl.cs
-
-//-> ext_asoPeriodoInversionControl.cs
-
-//-> asoPeriodo.cs
-
-//-> asoPeriodoAporte.cs
-
-//-> asoPeriodoAporteControl.cs
-
-//-> asoPeriodoControl.cs
-
-//-> asoPeriodoCuota.cs
-
-//-> asoPeriodoCuotaControl.cs
-
-//-> asoPeriodoInversion.cs
-
-//-> asoPeriodoInversionControl.cs
+//-> asoSocioInversionControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoCuotaControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuotaControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoCuota.cs
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoAporteControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporteControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoAporte.cs
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoInversion.cs
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodo.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoSocioInversionControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoSocioInversionControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoSocioInversion.cs
