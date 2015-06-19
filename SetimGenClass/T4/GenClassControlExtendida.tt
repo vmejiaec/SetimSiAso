@@ -34,6 +34,7 @@ namespace <#=tabla.NombreNamespace#>
             IList<<#=tabla.Name#>> res = new List<<#=tabla.Name#>>();
             switch (campo)
             {
+            // Recuerda poner Nombre: "%"+ (String)valor + "%", en los campos tipo String
 <#        foreach(var param in proc.Params)
           {
             if ( param.Name != "@PageIndex" && param.Name != "@PageSize" && param.Name != "@SortField" && param.Name != "@SortDirection") 

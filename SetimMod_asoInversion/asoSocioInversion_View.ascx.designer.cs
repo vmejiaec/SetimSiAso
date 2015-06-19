@@ -7,90 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_Socio {
+namespace SetimMod_asoSocioInversion {
     
     
-    public partial class asoSocio_ConfigAportes {
+    public partial class asoSocioInversion_View {
         
         /// <summary>
-        /// lbTitulo control.
+        /// addButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTitulo;
+        protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// lbId control.
+        /// btAccion2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbId;
+        protected global::System.Web.UI.WebControls.HyperLink btAccion2;
         
         /// <summary>
-        /// tbId control.
+        /// pnFiltros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbId;
+        protected global::System.Web.UI.WebControls.Panel pnFiltros;
         
         /// <summary>
-        /// lbNombre control.
+        /// lbFiltro_Criterio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbNombre;
+        protected global::System.Web.UI.WebControls.Label lbFiltro_Criterio;
         
         /// <summary>
-        /// tbNombre control.
+        /// tbFiltro_Criterio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNombre;
+        protected global::System.Web.UI.WebControls.TextBox tbFiltro_Criterio;
         
         /// <summary>
-        /// lbEstado control.
+        /// ddlFiltro_Campo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Campo;
         
         /// <summary>
-        /// ddlEstado control.
+        /// btBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
+        protected global::System.Web.UI.WebControls.Button btBuscar;
         
         /// <summary>
-        /// saveButton control.
+        /// pnCabecera control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton saveButton;
+        protected global::System.Web.UI.WebControls.Panel pnCabecera;
         
         /// <summary>
-        /// cancelButton control.
+        /// lbCab_Estado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton cancelButton;
+        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
+        
+        /// <summary>
+        /// ddlCab_Estado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
+        
+        /// <summary>
+        /// dgMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid dgMaster;
     }
 }

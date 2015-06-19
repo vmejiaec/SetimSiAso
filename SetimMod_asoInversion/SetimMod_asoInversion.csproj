@@ -72,10 +72,44 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoInversion_Edit.ascx.cs">
+      <DependentUpon>asoInversion_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoInversion_Edit.ascx.designer.cs">
+      <DependentUpon>asoInversion_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoInversion_View.ascx.cs">
+      <DependentUpon>asoInversion_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoInversion_View.ascx.designer.cs">
+      <DependentUpon>asoInversion_View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSocioInversion_Edit.ascx.cs">
+      <DependentUpon>asoSocioInversion_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSocioInversion_Edit.ascx.designer.cs">
+      <DependentUpon>asoSocioInversion_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSocioInversion_View.ascx.cs">
+      <DependentUpon>asoSocioInversion_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSocioInversion_View.ascx.designer.cs">
+      <DependentUpon>asoSocioInversion_View.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Module.build" />
+    <Content Include="asoInversion_Edit.ascx" />
+    <Content Include="asoInversion_View.ascx" />
+    <Content Include="asoSocioInversion_Edit.ascx" />
+    <Content Include="asoSocioInversion_View.ascx" />
+    <Content Include="Module.build">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="module.css" />
   </ItemGroup>
   <ItemGroup>

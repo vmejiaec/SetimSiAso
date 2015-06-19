@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_Socio {
+namespace SetimMod_asoInversion {
     
     
-    public partial class asoSocio_Lista {
+    public partial class asoInversion_View {
         
         /// <summary>
         /// addButton control.
@@ -22,13 +22,13 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// btCopiarSocios control.
+        /// btAccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btCopiarSocios;
+        protected global::System.Web.UI.WebControls.HyperLink btAccion;
         
         /// <summary>
         /// pnFiltros control.
@@ -85,22 +85,22 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.Panel pnCabecera;
         
         /// <summary>
-        /// lbCab_Estado control.
+        /// lbCab_Tipo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
+        protected global::System.Web.UI.WebControls.Label lbCab_Tipo;
         
         /// <summary>
-        /// ddlCab_Estado control.
+        /// ddlCab_Tipo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Tipo;
         
         /// <summary>
         /// dgMaster control.

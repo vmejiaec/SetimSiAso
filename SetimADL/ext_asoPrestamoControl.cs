@@ -8,4 +8,13 @@ using DotNetNuke.Services.Log.EventLog;
 using DotNetNuke.Services.Exceptions;
 using SetimBasico;
 
-namespace 
+namespace SetimBasico
+{
+
+    /// <summary>
+    /// Completa las funciones de la clase generada automáticamente asoPrestamo
+    /// </summary>
+    public partial class asoPrestamoControl
+    {
+    }
+}

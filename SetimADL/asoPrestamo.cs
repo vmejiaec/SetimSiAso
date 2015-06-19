@@ -20,5 +20,7 @@ namespace SetimBasico
         public DateTime Fecha_Inicio { get; set; }
         public String Estado { get; set; }
         public String Descripcion { get; set; }
+        public String asoSocio_Nombre { get; set; }
+        public String asoSocio_Nombre_Garante { get; set; }
     }
 }

@@ -21,3 +21,20 @@ C:\Victor\SetimDNN\SetimGeneraSPs\Presentation\obj\Debug\SetimGeneraSPs.pdb
 C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\SetimGeneraSPs.exe.config
 C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\SetimGeneraSPs.exe
 C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\SetimGeneraSPs.pdb
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\SetimGeneraSPs.exe
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\SetimGeneraSPs.pdb
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\FlexiSqlTools.Core.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\System.Data.Linq.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\System.Xml.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\System.Xml.Linq.dll
+C:\Victor\SetimDNN\SetimSiAso\Presentation\bin\Debug\FlexiSqlTools.Core.pdb
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\Windows Forms.csprojResolveAssemblyReference.cache
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.TemplateDialog.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.frmCompareData.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.CompareSchema.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.EditConnection.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\FlexiSqlTools.Presentation.WindowsFormsApplication.MainForm.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\SetimGeneraSPs.Properties.Resources.resources
+C:\Victor\SetimDNN\SetimSiAso\Presentation\obj\Debug\Windows Forms.csproj.GenerateResource.Cache

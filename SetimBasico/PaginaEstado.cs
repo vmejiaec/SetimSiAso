@@ -30,6 +30,7 @@ namespace SetimBasico
         public string Filtro_Campo { get; set; }
         public object Filtro_Valor { get; set; }
         public string Filtro_Estado { get; set; }
+        public string Filtro_Tipo { get; set; }
         public int dgMasterItemIndex { get; set; }  // por confirmar si se cambia el nombre
         public Int32? Master_Id { get; set; }
         // Constructor
@@ -41,6 +42,7 @@ namespace SetimBasico
             PaginaActual = 0;
             Ordenar_Sentido = "ASC"; // por defecto orden ascendente
             Filtro_Estado = null; // por defecto todos los estados
+            Filtro_Estado = null; // por defecto todos los tipos
             Filtro_Valor = null; // por defecto todos los valores
             dgMasterItemIndex = -1;
             Master_Id = null;

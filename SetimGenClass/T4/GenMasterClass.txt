@@ -1,17 +1,17 @@
 ﻿
 
-//-> asoSocioInversion.cs
+//-> asoPrestamo.cs
 
-//-> asoSocioInversionControl.cs
+//-> asoPrestamoControl.cs
 
-//-> ext_asoSocioInversionControl.cs
+//-> ext_asoPrestamoControl.cs
 
-//-> asoSocioInversion.cs
+//-> asoPrestamo.cs
 
-//-> asoSocioInversionControl.cs
+//-> asoPrestamoControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoSocioInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversion.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPrestamoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPrestamoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPrestamo.cs

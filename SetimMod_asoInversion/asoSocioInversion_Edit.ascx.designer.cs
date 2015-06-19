@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_Socio {
+namespace SetimMod_asoSocioInversion {
     
     
-    public partial class asoSocio_Edit {
+    public partial class asoSocioInversion_Edit {
         
         /// <summary>
         /// lbTitulo control.
@@ -40,193 +40,121 @@ namespace SetimMod_Socio {
         protected global::System.Web.UI.WebControls.TextBox tbId;
         
         /// <summary>
-        /// lbUserId control.
+        /// rfv_tbId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbUserId;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbId;
         
         /// <summary>
-        /// tbUserId control.
+        /// lbasoSocio_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbUserId;
+        protected global::System.Web.UI.UserControl lbasoSocio_Id;
         
         /// <summary>
-        /// lbNombre control.
+        /// tbasoSocio_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbNombre;
+        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Id;
         
         /// <summary>
-        /// tbNombre control.
+        /// rfv_tbasoSocio_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNombre;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id;
         
         /// <summary>
-        /// lbCI control.
+        /// lbasoInversion_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbCI;
+        protected global::System.Web.UI.UserControl lbasoInversion_Id;
         
         /// <summary>
-        /// tbCI control.
+        /// tbasoInversion_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCI;
+        protected global::System.Web.UI.WebControls.TextBox tbasoInversion_Id;
         
         /// <summary>
-        /// rfv_tbCI control.
+        /// rfv_tbasoInversion_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbCI;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoInversion_Id;
         
         /// <summary>
-        /// lbEMail control.
+        /// lbasoSocio_Nombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbEMail;
+        protected global::System.Web.UI.UserControl lbasoSocio_Nombre;
         
         /// <summary>
-        /// tbEMail control.
+        /// tbasoSocio_Nombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEMail;
+        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Nombre;
         
         /// <summary>
-        /// lbDescripcion control.
+        /// rfv_tbasoSocio_Nombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbDescripcion;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
-        /// tbDescripcion control.
+        /// lbNo_Socios_Regs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDescripcion;
+        protected global::System.Web.UI.UserControl lbNo_Socios_Regs;
         
         /// <summary>
-        /// lbFecha_Nacimiento control.
+        /// tbNo_Socios_Regs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl lbFecha_Nacimiento;
+        protected global::System.Web.UI.WebControls.TextBox tbNo_Socios_Regs;
         
         /// <summary>
-        /// dnnDP_Fecha_Nacimiento control.
+        /// rfv_tbNo_Socios_Regs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_Fecha_Nacimiento;
-        
-        /// <summary>
-        /// lbEstado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbEstado;
-        
-        /// <summary>
-        /// ddlEstado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
-        
-        /// <summary>
-        /// lbValor_Accion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbValor_Accion;
-        
-        /// <summary>
-        /// tbValor_Accion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbValor_Accion;
-        
-        /// <summary>
-        /// rfvValor_Accion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Accion;
-        
-        /// <summary>
-        /// lbValor_Ahorro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbValor_Ahorro;
-        
-        /// <summary>
-        /// tbValor_Ahorro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbValor_Ahorro;
-        
-        /// <summary>
-        /// rfvValor_Ahorro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvValor_Ahorro;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbNo_Socios_Regs;
         
         /// <summary>
         /// vsResumen control.

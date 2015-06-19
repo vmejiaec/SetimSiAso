@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimADL", "SetimADL\SetimA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimBasico", "SetimBasico\SetimBasico.csproj", "{63193768-EFE9-473D-AF70-E4D6925E9C15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_Socio", "SetimMod_Socio\SetimMod_Socio.csproj", "{ECD736B1-9821-454A-922C-32430E33CC7C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_ExportaDatos", "SetimMod_ExportaDatos\SetimMod_ExportaDatos.csproj", "{750F0813-A004-409C-920E-A7F0EB0C6C02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoSetimLista", "SetimMod_asoSetimLista\SetimMod_asoSetimLista.csproj", "{3708F7BA-D24A-4AB7-9B31-484E102A8A06}"
@@ -43,10 +41,6 @@ Global
 		{63193768-EFE9-473D-AF70-E4D6925E9C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63193768-EFE9-473D-AF70-E4D6925E9C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63193768-EFE9-473D-AF70-E4D6925E9C15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECD736B1-9821-454A-922C-32430E33CC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECD736B1-9821-454A-922C-32430E33CC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECD736B1-9821-454A-922C-32430E33CC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECD736B1-9821-454A-922C-32430E33CC7C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{750F0813-A004-409C-920E-A7F0EB0C6C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{750F0813-A004-409C-920E-A7F0EB0C6C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750F0813-A004-409C-920E-A7F0EB0C6C02}.Release|Any CPU.ActiveCfg = Release|Any CPU

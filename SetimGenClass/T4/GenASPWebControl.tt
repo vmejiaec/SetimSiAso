@@ -4,7 +4,7 @@
 <#@ output extension=".txt" #>
 
 <#
-    var TablaBase                   = "asoPeriodo";
+    var TablaBase                   = "asoInversion";
     var namespaceName               = "SetimBasico";
     var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
@@ -212,7 +212,6 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.Modules;
 using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
 using DotNetNuke.Framework.JavaScriptLibraries;
@@ -229,7 +228,7 @@ namespace <#=iTabla.View_csNamespace #>
         {
             base.OnLoad(e);
             // Carga el nivel en jerarquía de master/detail 
-            this._Nivel = 1;
+            this._Nivel = 0;
             // Carga de jQuery
             JavaScript.RequestRegistration(CommonJs.jQuery);
             JavaScript.RequestRegistration(CommonJs.DnnPlugins);
@@ -497,7 +496,7 @@ namespace <#=iTabla.View_csNamespace #>
             <asp:TextBox runat="server" ID="tb<#=col.Name #>"  TextMode="MultiLine" />
         </div>
 <#                  } else
-                        if (col.Name.Contains("Estado")) { #>
+                        if (col.Name.Contains("Estado") || col.Name.Contains("Tipo")) { #>
         <div class="dnnFormItem">
             <dnn:Label ID="lb<#=col.Name #>" runat="server" Text="<#=col.Name #>:"/>
             <asp:DropDownList runat="server" ID="ddl<#=col.Name #>" />
@@ -559,6 +558,7 @@ namespace SetimMod_<#=iTabla.Name #>
             if (!IsPostBack)
             {
                 CargarDdl_Estados();
+                CargarDdl_Tipos();
                 ColocarDatosEnFormulario();
             }
         }
@@ -598,8 +598,8 @@ namespace SetimMod_<#=iTabla.Name #>
             switch (col.CsTypeName)
             {
                 case "String":
-                    if (col.Name.Contains("Estado")) {#>
-            ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el estado inicial
+                    if (col.Name.Contains("Estado") || col.Name.Contains("Tipo")) {#>
+            ddl<#=col.Name #>.SelectedValue = "Seleccione..."; // Cambiar por el <#=col.Name #> inicial
 <#                    } 
                     else { #>
             tb<#=col.Name #>.Text = "<#=col.Name #>";            
@@ -626,8 +626,8 @@ namespace SetimMod_<#=iTabla.Name #>
             switch (col.CsTypeName)
             {
                 case "String":
-                    if (col.Name.Contains("Estado")) {#>
-            ddlEstado.SelectedValue = o.Estado;
+                    if (col.Name.Contains("Estado") || col.Name.Contains("Tipo")) {#>
+            ddl<#=col.Name #>.SelectedValue = o.<#=col.Name #>;
 <#                    } 
                     else { #>
             tb<#=col.Name #>.Text = o.<#=col.Name #>;            
@@ -659,7 +659,7 @@ namespace SetimMod_<#=iTabla.Name #>
 <#
                     break;
                 case "String":
-                    if (col.Name.Contains("Estado")) {#>
+                    if (col.Name.Contains("Estado") || col.Name.Contains("Tipo")) {#>
             o.<#=col.Name #> = ddl<#=col.Name #>.SelectedValue;
 <#                    } 
                     else { #>
@@ -692,6 +692,17 @@ namespace SetimMod_<#=iTabla.Name #>
             ddlEstado.DataTextField = "Texto";
             ddlEstado.DataValueField = "Valor";
             ddlEstado.DataBind();
+        }
+        // Carga los Tipos desde una lista 
+        private void CargarDdl_Tipos()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("<#=iTabla.Name #>_Tipo");
+            lista.RemoveAt(0);
+            ddlTipo.DataSource = lista;
+            ddlTipo.DataTextField = "Texto";
+            ddlTipo.DataValueField = "Valor";
+            ddlTipo.DataBind();
         }
     }
 }

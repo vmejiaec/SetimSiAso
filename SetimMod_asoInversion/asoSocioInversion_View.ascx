@@ -1,24 +1,12 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="asoSocio_Lista.ascx.cs" Inherits="SetimMod_Socio.asoSocio_Lista" %>
+﻿<%@ Control Language="C#" AutoEventWireup="True"
+    CodeBehind="asoSocioInversion_View.ascx.cs"
+    Inherits="SetimMod_asoSocioInversion.asoSocioInversion_View" %>
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton"
-            CssClass="dnnPrimaryAction"
-            Text="Nuevo" />
-    </li>
-    <li>
-        <asp:LinkButton runat="server" ID="btCopiarSocios"
-            CssClass="dnnSecondaryAction"
-            OnClick="btCopiarSocios_OnClick"
-            Text="Copiar Socios" />
-    </li>
-    <%--    <li>
-        <asp:HyperLink runat="server" ID="btConfigAportes"
-            CssClass="dnnSecondaryAction"
-            Text="Configurar Aportes" />
-    </li>--%>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:HyperLink runat="server" ID="btAccion2" Text="Detalles" CssClass="dnnSecondaryAction" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -39,14 +27,13 @@
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
     DataKeyField="Id"
     ShowFooter="true"
-    AllowPaging="True" AllowCustomPaging="True"
+    AllowPaging="True" AllowCustomPaging="True" AllowSorting="True"
     PagerStyle-NextPageText="Siguiente &gt;" PagerStyle-PrevPageText="&lt; Anterior"
-    AllowSorting="True"
     OnItemCommand="dgMaster_OnItemCommand"
-    OnSortCommand="dgMaster_SortCommand" OnItemCreated="dgMaster_ItemCreated">
+    OnSortCommand="dgMaster_SortCommand"
+    OnItemCreated="dgMaster_ItemCreated">
 
     <PagerStyle Mode="NextPrev" HorizontalAlign="Left" />
-
     <HeaderStyle CssClass="dnnGridHeader" VerticalAlign="Top" />
     <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
     <AlternatingItemStyle CssClass="dnnGridAltItem" />
@@ -55,17 +42,11 @@
     <FooterStyle CssClass="dnnGridFooter" />
 
     <Columns>
-        <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="35px" FooterText="Página No: " />
-        <asp:BoundColumn DataField="UserID" HeaderText="UserID" HeaderStyle-Width="35px" ItemStyle-HorizontalAlign="Center" Visible="false" />
-        <asp:BoundColumn DataField="CI" HeaderText="CI" HeaderStyle-Width="80px" SortExpression="CI" HeaderStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Users_Nombre" HeaderText="Nombre" HeaderStyle-Width="120px" SortExpression="Users_Nombre" />
-        <asp:BoundColumn DataField="Users_EMail" HeaderText="EMail" HeaderStyle-Width="90px" />
-        <asp:BoundColumn DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-Width="120px" SortExpression="Descripcion" />
-        <asp:BoundColumn DataField="Fecha_Nacimiento" HeaderText="Fecha Nacimiento" HeaderStyle-Width="100px" SortExpression="Fecha_Nacimiento" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Estado" HeaderText="Estado" HeaderStyle-Width="50px" SortExpression="Estado" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Valor_Accion" HeaderText="Valor Accion" HeaderStyle-Width="90px" SortExpression="Valor_Accion" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Valor_Ahorro" HeaderText="Valor Ahorro" HeaderStyle-Width="90px" SortExpression="Valor_Ahorro" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
-
+        <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoSocio_Id" HeaderText="asoSocio_Id" HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoInversion_Id" HeaderText="asoInversion_Id" HeaderStyle-Width="50px" SortExpression="asoInversion_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoSocio_Nombre" HeaderText="asoSocio_Nombre" HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="No_Socios_Regs" HeaderText="No_Socios_Regs" HeaderStyle-Width="50px" SortExpression="No_Socios_Regs" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>
             <FooterTemplate>
@@ -100,12 +81,16 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        $('.confirm').dnnConfirm({
-            text: '¿Desea proceder con la operación?',
-            yestext: 'Si',
-            notext: 'No',
-            title: 'Confirmación'
-        });
+        try {
+            $('.confirm').dnnConfirm({
+                text: '¿Desea proceder con la operación?',
+                yestext: 'Si',
+                notext: 'No',
+                title: 'Confirmación'
+            });
+        }
+        catch (e)
+        { }
     });
 </script>
 

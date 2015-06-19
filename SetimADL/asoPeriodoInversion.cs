@@ -16,5 +16,6 @@ namespace SetimBasico
         public Decimal Valor_Comision { get; set; }
         public String Estado { get; set; }
         public String Descripcion { get; set; }
+        public String asoSocio_Nombre { get; set; }
     }
 }

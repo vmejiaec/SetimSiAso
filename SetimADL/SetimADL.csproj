@@ -63,7 +63,11 @@
     <Compile Include="asoSocioAporteControl.cs" />
     <Compile Include="asoSocioControl.cs" />
     <Compile Include="ext_asoInversionControl.cs" />
+    <Compile Include="ext_asoPeriodoAporteControl.cs" />
     <Compile Include="ext_asoPeriodoControl.cs" />
+    <Compile Include="ext_asoPeriodoCuotaControl.cs" />
+    <Compile Include="ext_asoPeriodoInversionControl.cs" />
+    <Compile Include="ext_asoPrestamoControl.cs" />
     <Compile Include="ext_asoSetimListaControl.cs" />
     <Compile Include="ext_asoSetimListaDetControl.cs" />
     <Compile Include="ext_asoSocioControl.cs" />
