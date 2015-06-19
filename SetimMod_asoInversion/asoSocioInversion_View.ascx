@@ -46,8 +46,7 @@
         <asp:BoundColumn DataField="asoSocio_Id" HeaderText="asoSocio_Id" HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="asoInversion_Id" HeaderText="asoInversion_Id" HeaderStyle-Width="50px" SortExpression="asoInversion_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="asoSocio_Nombre" HeaderText="asoSocio_Nombre" HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="No_Socios_Regs" HeaderText="No_Socios_Regs" HeaderStyle-Width="50px" SortExpression="No_Socios_Regs" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
+        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
         <asp:TemplateColumn>
             <FooterTemplate>
                 No de Filas: 

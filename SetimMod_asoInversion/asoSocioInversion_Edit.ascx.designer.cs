@@ -130,33 +130,6 @@ namespace SetimMod_asoSocioInversion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
-        /// lbNo_Socios_Regs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbNo_Socios_Regs;
-        
-        /// <summary>
-        /// tbNo_Socios_Regs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNo_Socios_Regs;
-        
-        /// <summary>
-        /// rfv_tbNo_Socios_Regs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbNo_Socios_Regs;
-        
-        /// <summary>
         /// vsResumen control.
         /// </summary>
         /// <remarks>

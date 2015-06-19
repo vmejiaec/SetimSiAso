@@ -51,6 +51,8 @@
         <asp:BoundColumn DataField="Tipo" HeaderText="Tipo" HeaderStyle-Width="50px" SortExpression="Tipo" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundColumn DataField="Valor" HeaderText="Valor" HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="No_Periodos" HeaderText="No_Periodos" HeaderStyle-Width="50px" SortExpression="No_Periodos" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="No_Socios_Regs" HeaderText="No_Socios_Regs" HeaderStyle-Width="50px" SortExpression="No_Socios_Regs" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        
         <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
         <asp:TemplateColumn>
             <FooterTemplate>

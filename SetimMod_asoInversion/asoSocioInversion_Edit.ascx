@@ -38,11 +38,6 @@
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
-        <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbNo_Socios_Regs" Text="No_Socios_Regs:" HelpText="No_Socios_Regs" />
-            <asp:TextBox runat="server" ID="tbNo_Socios_Regs" Enabled="true" />
-            <asp:RequiredFieldValidator ID="rfv_tbNo_Socios_Regs" runat="server" ControlToValidate="tbNo_Socios_Regs" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta No_Socios_Regs" SetFocusOnError="true" />
-        </div>
     </fieldset>
     <asp:ValidationSummary runat="server" ID="vsResumen" CssClass="dnnFormMessage dnnFormValidationSummary" />
 </div>

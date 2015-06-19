@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
+         DefaultTargets="Build" 
+         ToolsVersion="4.0" >
+  
+  <Target Name="AfterBuild" DependsOnTargets="CopyBin" />
+  
+  <PropertyGroup>
+    <WebsitePath>C:\websites\dnndev.me</WebsitePath>
+    <WebsiteBinPath>$(WebsitePath)\bin</WebsiteBinPath>
+    <ModuleFolderName>$(WebsitePath)\DesktopModules\Setim</ModuleFolderName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Views Include="*.ascx;"/>
+    <Styles Include="*.css"/>
+    <Resources Include= "App_LocalResources\*.resx" />
+  </ItemGroup>
+  
+  <Target Name="CopyBin">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\bin\Debug\$(AssemblyName).dll" 
+          DestinationFolder="$(WebsiteBinPath)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\bin\Debug\$(AssemblyName).pdb" 
+          DestinationFolder="$(WebsiteBinPath)" />
+  </Target>
+  
+</Project>

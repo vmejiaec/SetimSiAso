@@ -23,7 +23,7 @@ namespace SetimBasico
             {
                 case "Nombre":
                     res = _0SelByAll(
-                        Nombre: "%"+ (String)valor + "%",
+                        Nombre: "%" + (String)valor + "%",
                         Tipo: tipo,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;

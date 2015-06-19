@@ -21,6 +21,7 @@ namespace SetimBasico
             IList<asoSocioInversion> res = new List<asoSocioInversion>();
             switch (campo)
             {
+                // Recuerda poner Nombre: "%"+ (String)valor + "%", en los campos tipo String
                 case "asoSocio_Id":
                     res = _0SelByAll(
                         asoSocio_Id: (Int32?)valor,
@@ -29,7 +30,7 @@ namespace SetimBasico
                     break;
                 case "asoSocio_Nombre":
                     res = _0SelByAll(
-                        asoSocio_Nombre: (String)valor,
+                        asoSocio_Nombre: "%" + (String)valor + "%",
                         asoInversion_Id: asoInversion_Id,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;

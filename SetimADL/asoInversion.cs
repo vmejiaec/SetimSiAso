@@ -15,5 +15,6 @@ namespace SetimBasico
         public String Tipo { get; set; }
         public Decimal Valor { get; set; }
         public Int32 No_Periodos { get; set; }
+        public Int32 No_Socios_Regs { get; set; }
     }
 }

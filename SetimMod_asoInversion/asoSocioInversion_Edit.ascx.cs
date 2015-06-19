@@ -56,8 +56,6 @@ namespace SetimMod_asoSocioInversion
                 tbasoSocio_Id.Text = "0";
                 tbasoInversion_Id.Text = "0";
                 tbasoSocio_Nombre.Text = "asoSocio_Nombre";
-                tbNo_Socios_Regs.Text = "0";
-
             }
             else
             {
@@ -68,8 +66,6 @@ namespace SetimMod_asoSocioInversion
                 tbasoSocio_Id.Text = o.asoSocio_Id.ToString();
                 tbasoInversion_Id.Text = o.asoInversion_Id.ToString();
                 tbasoSocio_Nombre.Text = o.asoSocio_Nombre;
-                tbNo_Socios_Regs.Text = o.No_Socios_Regs.ToString();
-
             }
         }
         // Carga un objeto con los datos del formulario
@@ -80,7 +76,6 @@ namespace SetimMod_asoSocioInversion
             o.asoSocio_Id = Int32.Parse(tbasoSocio_Id.Text);
             o.asoInversion_Id = Int32.Parse(tbasoInversion_Id.Text);
             o.asoSocio_Nombre = tbasoSocio_Nombre.Text;
-            o.No_Socios_Regs = Int32.Parse(tbNo_Socios_Regs.Text);
 
             return o;
         }

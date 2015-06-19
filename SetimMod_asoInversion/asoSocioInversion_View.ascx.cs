@@ -52,7 +52,7 @@ namespace SetimMod_asoSocioInversion
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            addButton.NavigateUrl = ModuleContext.EditUrl("Edit"); 
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
