@@ -52,7 +52,7 @@ namespace SetimMod_asoSocioInversion
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit"); 
+            addButton.NavigateUrl = ModuleContext.EditUrl("DetEdit"); 
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
@@ -193,14 +193,14 @@ namespace SetimMod_asoSocioInversion
         // Carga los estados desde una lista 
         private void CargarDdl_Estados()
         {
-            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
-            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocioInversion_Estado");
-            ddlCab_Estado.DataSource = lista;
-            ddlCab_Estado.DataTextField = "Texto";
-            ddlCab_Estado.DataValueField = "Valor";
-            ddlCab_Estado.DataBind();
-            // Carga el estado del estado de la pagina
-            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
+            //asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            //var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoSocioInversion_Estado");
+            //ddlCab_Estado.DataSource = lista;
+            //ddlCab_Estado.DataTextField = "Texto";
+            //ddlCab_Estado.DataValueField = "Valor";
+            //ddlCab_Estado.DataBind();
+            //// Carga el estado del estado de la pagina
+            //ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
         }
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()

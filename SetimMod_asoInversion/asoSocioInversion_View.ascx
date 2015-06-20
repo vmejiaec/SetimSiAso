@@ -6,7 +6,7 @@
 
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
-    <li><asp:HyperLink runat="server" ID="btAccion2" Text="Detalles" CssClass="dnnSecondaryAction" /></li>
+    <%--<li><asp:HyperLink runat="server" ID="btAccion2" Text="Detalles" CssClass="dnnSecondaryAction" /></li>--%>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -18,10 +18,10 @@
     </div>
 </asp:Panel>
 
-<asp:Panel runat="server" ID="pnCabecera" CssClass="dnnFormMessage dnnFormSuccess">
+<%--<asp:Panel runat="server" ID="pnCabecera" CssClass="dnnFormMessage dnnFormSuccess">
     <asp:Label runat="server" ID="lbCab_Estado" Text="Estado: " />
     <asp:DropDownList runat="server" ID="ddlCab_Estado" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Estado_SelectedIndexChanged" />
-</asp:Panel>
+</asp:Panel>--%>
 
 <asp:DataGrid runat="server" ID="dgMaster"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"

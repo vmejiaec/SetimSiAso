@@ -5,10 +5,9 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
-    <li>
-        <asp:HyperLink runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction confirm" /></li>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:HyperLink runat="server" ID="btSociosRegistrados" Text="Socios Registrados" CssClass="dnnSecondaryAction" /></li>
+    <li><asp:Button runat="server" ID="btRegistroAutomatico" Text="Registro Automático" CssClass="dnnSecondaryAction confirm" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -47,11 +46,11 @@
         <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="Nombre" HeaderText="Nombre" HeaderStyle-Width="50px" SortExpression="Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundColumn DataField="Descripcion" HeaderText="Descripcion" HeaderStyle-Width="50px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Porcentaje_Comision" HeaderText="Porcentaje_Comision" HeaderStyle-Width="50px" SortExpression="Porcentaje_Comision" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Porcentaje_Comision" HeaderText="% Comision" HeaderStyle-Width="50px" SortExpression="Porcentaje_Comision" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="Tipo" HeaderText="Tipo" HeaderStyle-Width="50px" SortExpression="Tipo" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundColumn DataField="Valor" HeaderText="Valor" HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="No_Periodos" HeaderText="No_Periodos" HeaderStyle-Width="50px" SortExpression="No_Periodos" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="No_Socios_Regs" HeaderText="No_Socios_Regs" HeaderStyle-Width="50px" SortExpression="No_Socios_Regs" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="No_Periodos" HeaderText="No Periodos" HeaderStyle-Width="50px" SortExpression="No_Periodos" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="No_Socios_Regs" HeaderText="No Socios Regs" HeaderStyle-Width="50px" SortExpression="No_Socios_Regs" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
         
         <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
         <asp:TemplateColumn>

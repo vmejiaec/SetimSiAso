@@ -22,15 +22,6 @@ namespace SetimMod_asoSocioInversion {
         protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// btAccion2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btAccion2;
-        
-        /// <summary>
         /// pnFiltros control.
         /// </summary>
         /// <remarks>
@@ -74,33 +65,6 @@ namespace SetimMod_asoSocioInversion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btBuscar;
-        
-        /// <summary>
-        /// pnCabecera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnCabecera;
-        
-        /// <summary>
-        /// lbCab_Estado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
-        
-        /// <summary>
-        /// ddlCab_Estado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
         
         /// <summary>
         /// dgMaster control.

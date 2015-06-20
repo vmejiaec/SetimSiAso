@@ -3,6 +3,12 @@ using DotNetNuke.Common;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
+using DotNetNuke.UI.WebControls;
+using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.Web.Services;
 
 namespace SetimMod_asoSocioInversion
 {
@@ -54,8 +60,8 @@ namespace SetimMod_asoSocioInversion
                 // Usar this.paginaEstadoMaster.Master_Id.ToString() para la clave foranea
                 tbId.Text = "0";
                 tbasoSocio_Id.Text = "0";
-                tbasoInversion_Id.Text = "0";
-                tbasoSocio_Nombre.Text = "asoSocio_Nombre";
+                tbasoInversion_Id.Text = this.paginaEstadoMaster.Master_Id.ToString();
+                tbasoSocio_Nombre.Text = "";
             }
             else
             {
@@ -90,5 +96,79 @@ namespace SetimMod_asoSocioInversion
         //    ddlEstado.DataValueField = "Valor";
         //    ddlEstado.DataBind();
         //}
+        
+        // Para el texto sugerido
+        //protected void dnntsNombre_NodeClick(object sender, DNNTextSuggestEventArgs e)
+        //{
+        //    tbasoSocio_Nombre.Text = e.Text;
+        //    tbasoSocio_Id.Text = e.Nodes.Count.ToString();
+        //}
+        // Para el texto sugerido
+        //protected void dnntsNombre_PopulateOnDemand(object sender, DNNTextSuggestEventArgs e)
+        //{
+        //    DNNNode o;
+
+        //    DataTable dt = new DataTable();
+        //    //dt.Columns = new DataColumnCollection();
+        //    dt.Columns.Add("id", typeof(Int32));
+        //    dt.Columns.Add("name", typeof(String));
+        //    //dt.Rows = new DataRowCollection();
+        //    DataRow fila = dt.NewRow();
+        //    fila["id"] = 1; fila["name"] = "A1";
+        //    dt.Rows.Add(fila);
+        //    fila = dt.NewRow();
+        //    fila["id"] = 2; fila["name"] = "A2";
+        //    dt.Rows.Add(fila);
+        //    fila = dt.NewRow();
+        //    fila["id"] = 3; fila["name"] = "A3";
+        //    dt.Rows.Add(fila);
+
+        //    string strText = e.Text.Replace("[", "").Replace("]", "").Replace("'", "''");
+
+        //    dt.CaseSensitive = dnntsNombre.CaseSensitive;
+
+        //    var res = dt.Select("name like '" + strText + "%'");
+
+        //    foreach (var r in res)
+        //    {
+        //        if (dnntsNombre.MaxSuggestRows == 0 || e.Nodes.Count < dnntsNombre.MaxSuggestRows + 1)
+        //        {
+        //            o = new DNNNode((string)r["name"]);
+        //            o.ID = r["id"].ToString();
+        //            e.Nodes.Add(o);
+        //        }
+        //    }
+        //}
+
+        public string GetDatos()
+        {
+            List<dato> lista = new List<dato>();
+            lista.Add(new dato { value = "1", label = "Anibal", desc = "Mil veces" });
+            lista.Add(new dato { value = "2", label = "Beto", desc = "Dos Mil veces" });
+            lista.Add(new dato { value = "3", label = "Carlos", desc = "Tres Mil veces" });
+            lista.Add(new dato { value = "4", label = "Dora", desc = "Cuatro Mil veces" });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
+        }
+
+        [WebMethod]
+        public string WS_GetDatos()
+        {
+            List<dato> lista = new List<dato>();
+            lista.Add(new dato { value = "1", label = "Anibal", desc = "Mil veces" });
+            lista.Add(new dato { value = "2", label = "Beto", desc = "Dos Mil veces" });
+            lista.Add(new dato { value = "3", label = "Carlos", desc = "Tres Mil veces" });
+            lista.Add(new dato { value = "4", label = "Dora", desc = "Cuatro Mil veces" });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
+        }
+    }
+
+    [Serializable]
+    public class dato 
+    { 
+        public string value {get;set;}
+        public string label {get;set;}
+        public string desc {get;set;}
     }
 }

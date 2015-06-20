@@ -34,13 +34,6 @@ namespace SetimBasico
                         asoInversion_Id: asoInversion_Id,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
-                case "No_Socios_Regs":
-                    res = _0SelByAll(
-                        No_Socios_Regs: (Int32?)valor,
-                        asoInversion_Id: asoInversion_Id,
-                        PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
-                    break;
-
                 default:
                     res = _0SelByAll(
                         asoInversion_Id: asoInversion_Id,

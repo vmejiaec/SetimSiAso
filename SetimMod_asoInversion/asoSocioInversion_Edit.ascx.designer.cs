@@ -49,33 +49,6 @@ namespace SetimMod_asoSocioInversion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbId;
         
         /// <summary>
-        /// lbasoSocio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbasoSocio_Id;
-        
-        /// <summary>
-        /// tbasoSocio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Id;
-        
-        /// <summary>
-        /// rfv_tbasoSocio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id;
-        
-        /// <summary>
         /// lbasoInversion_Id control.
         /// </summary>
         /// <remarks>
@@ -101,6 +74,33 @@ namespace SetimMod_asoSocioInversion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoInversion_Id;
+        
+        /// <summary>
+        /// lbasoSocio_Id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbasoSocio_Id;
+        
+        /// <summary>
+        /// tbasoSocio_Id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Id;
+        
+        /// <summary>
+        /// rfv_tbasoSocio_Id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id;
         
         /// <summary>
         /// lbasoSocio_Nombre control.

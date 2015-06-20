@@ -27,11 +27,11 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoSocioInversion> _0SelByAll(Int32? asoSocio_Id = null, Int32? asoInversion_Id = null, String asoSocio_Nombre = null, Int32? No_Socios_Regs = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        public IList<asoSocioInversion> _0SelByAll(Int32? asoSocio_Id = null, Int32? asoInversion_Id = null, String asoSocio_Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoSocioInversion>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocioInversion_0SelByAll"
-                , asoSocio_Id, asoInversion_Id, asoSocio_Nombre, No_Socios_Regs, PageIndex, PageSize, SortField, SortDirection
+                , asoSocio_Id, asoInversion_Id, asoSocio_Nombre, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 

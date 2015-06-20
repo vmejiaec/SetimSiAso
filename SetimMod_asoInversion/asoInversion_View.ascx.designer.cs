@@ -22,13 +22,22 @@ namespace SetimMod_asoInversion {
         protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// btAccion control.
+        /// btSociosRegistrados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btAccion;
+        protected global::System.Web.UI.WebControls.HyperLink btSociosRegistrados;
+        
+        /// <summary>
+        /// btRegistroAutomatico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btRegistroAutomatico;
         
         /// <summary>
         /// pnFiltros control.

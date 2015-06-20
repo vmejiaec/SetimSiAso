@@ -52,7 +52,7 @@ namespace SetimMod_asoInversion
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
-            btAccion.NavigateUrl = ModuleContext.EditUrl("DetView");
+            btSociosRegistrados.NavigateUrl = ModuleContext.EditUrl("DetView");
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
