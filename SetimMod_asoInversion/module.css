@@ -1,9 +1,14 @@
-﻿.DropDownClass
-{
-	min-width: 200px;
-}
-.QueryClass
-{
-	width: 400px;
-	height: 100px;
-}
+﻿/*
+    ui-autocomplete 
+    ui-front 
+    ui-menu 
+    ui-widget 
+    ui-widget-content 
+    ui-corner-all
+
+    ui-menu-item
+    ui-corner-all
+    */
+.ui-autocomplete-loading { background:  white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
+
+	

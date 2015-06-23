@@ -12,6 +12,7 @@ using System.Web.Services;
 using System.Reflection;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
+using System.Web.Script.Services;
 
 namespace SetimMod_asoSocioInversion
 {
@@ -21,7 +22,7 @@ namespace SetimMod_asoSocioInversion
 
         protected override void OnLoad(EventArgs e)
         {
-            if (Request.Headers["X-OFFICIAL-REQUEST"] == "TRUE") AjaxWrapper();
+            if (Request.Headers["X-SETIM-REQUEST"] == "TRUE") AjaxWrapper();
 
             base.OnLoad(e);
             this._Nivel = 1;
@@ -148,15 +149,25 @@ namespace SetimMod_asoSocioInversion
         //    }
         //}
 
-        public string GetDatos(string iniciales)
+        public string GetSociosActivosLikeIniciales(string iniciales)
         {
             asoSocioControl ctlSocio = new asoSocioControl();
             var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", iniciales, 0, 10, "Users_Nombre", "ASC");
             List<dato> lista = new List<dato>();
             foreach (var socio in lstSocios)
-            {
-                lista.Add(new dato { value=socio.Id.ToString(), label=socio.Users_Nombre, desc= socio.Estado });
-            }
+                lista.Add(new dato { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
+        }
+
+        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute(ResponseFormat = ResponseFormat.Json)]
+        public string WS_GetSociosActivosLikeIniciales(string iniciales)
+        {
+            asoSocioControl ctlSocio = new asoSocioControl();
+            var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", iniciales, 0, 10, "Users_Nombre", "ASC");
+            List<dato> lista = new List<dato>();
+            foreach (var socio in lstSocios)
+                lista.Add(new dato { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
             var json = JsonConvert.SerializeObject(lista);
             return json;
         }
@@ -188,18 +199,13 @@ namespace SetimMod_asoSocioInversion
             catch { }
             return;
         }
-
-        public string FunctionName(string param)
-        {
-            return GetDatos(param);
-        }
     }
 
     [Serializable]
     public class dato 
     { 
-        public string value {get;set;}
-        public string label {get;set;}
+        public string valor {get;set;}
+        public string etiqueta {get;set;}
         public string desc {get;set;}
     }
 }

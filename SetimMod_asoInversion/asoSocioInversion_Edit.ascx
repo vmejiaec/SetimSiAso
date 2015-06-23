@@ -42,34 +42,30 @@
                     
         <script type="text/javascript">
 
+            var x = location.href + "/WS_GetSociosActivosLikeIniciales";
+
         $(function () {
             $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
                 minLength: 2,
                 source: function (request, response) {
                     $.ajax({
                         type: "POST",
-                        //async: false,
                         cache: false,
-                        url: location.href,
+                        url: "http://dnndev.me/Test-SetimMod_asoInversion-Page/ctl/DetEdit/mid/443/WS_GetSociosActivosLikeIniciales" , //location.href, // "http://dnndev.me/Test-SetimMod_asoInversion-Page/ctl/DetEdit/mid/443/WS_GetSociosActivosLikeIniciales"
                         dataType: "json",
-                        data: (
-                            { 'FUNCTION': 'FunctionName', 'param0': request.term }
-                        ),
+                        data: ({ 'FUNCTION': 'GetSociosActivosLikeIniciales', 'param0': request.term }),
                         success: function (data) {
-                            response($.map(data, function (item) {   // con .d y sin .d
+                            response($.map(data, function (item) {   
                                 return {
-                                    value: item.value,
-                                    label: item.label,
+                                    value: item.valor,
+                                    label: item.etiqueta,
                                     desc: item.desc
                                 }
                             }))
                         },
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader("X-OFFICIAL-REQUEST", "TRUE");//Used to ID as a AJAX Request
-                        },
-                        error: function (xhr, status, error) {
-                            alert(error);
-                        }
+                        beforeSend: function (xhr) { xhr.setRequestHeader("X-SETIM-REQUEST", "TRUE"); },// Para atajarlo en el Load de la página
+                        error: function (xhr, status, error) { alert(error); },
+                        failure: function (response) { alert(response.responseText); }
                     });
                 },
                 focus: function (event, ui) {
@@ -77,14 +73,19 @@
                     return false;
                 },
                 select: function (event, ui) {
-                    $("#project").val(ui.item.label);
+                    //$("#project").val(ui.item.label);
                     $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
                     //$("#autocomplete-description").html(ui.item.desc);
                     return false;
+                },
+                open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                },
+                close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                 }
             });
         });
-
         </script>
 
         <p id="autocomplete-description"></p>
