@@ -160,18 +160,6 @@ namespace SetimMod_asoSocioInversion
             return json;
         }
 
-        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute(ResponseFormat = ResponseFormat.Json)]
-        public string WS_GetSociosActivosLikeIniciales(string iniciales)
-        {
-            asoSocioControl ctlSocio = new asoSocioControl();
-            var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", iniciales, 0, 10, "Users_Nombre", "ASC");
-            List<dato> lista = new List<dato>();
-            foreach (var socio in lstSocios)
-                lista.Add(new dato { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
-            var json = JsonConvert.SerializeObject(lista);
-            return json;
-        }
-
         public void AjaxWrapper()
         {
             Response.Clear();
