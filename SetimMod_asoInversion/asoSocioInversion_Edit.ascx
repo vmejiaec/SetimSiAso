@@ -41,29 +41,50 @@
         </div>
                     
         <script type="text/javascript">
-            $(function () {
-                var datos = <%= GetDatos()%>;
-                $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
-                    minLength: 2,
-                    source: datos,
-                    focus: function (event, ui) {
-                        $("#<%= tbasoSocio_Nombre.ClientID %>").val(ui.item.label);
-                        return false;
-                    },
-                    select: function (event, ui) {
-                        //$("#project").val(ui.item.label);
-                        $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
-                        $("#autocomplete-description").html(ui.item.desc);
-                        return false;
-                    }
-                })
-                //.autocomplete("instance")._renderItem = function (ul, item) {
-                //    return $("<li>")
-                //      .append("<a>" + item.label + "<br>" + item.desc + "</a>")
-                //      .appendTo(ul);
-                //}
-                ;
+
+        $(function () {
+            $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
+                minLength: 2,
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        //async: false,
+                        cache: false,
+                        url: location.href,
+                        dataType: "json",
+                        data: (
+                            { 'FUNCTION': 'FunctionName', 'param0': request.term }
+                        ),
+                        success: function (data) {
+                            response($.map(data, function (item) {   // con .d y sin .d
+                                return {
+                                    value: item.value,
+                                    label: item.label,
+                                    desc: item.desc
+                                }
+                            }))
+                        },
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("X-OFFICIAL-REQUEST", "TRUE");//Used to ID as a AJAX Request
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                },
+                focus: function (event, ui) {
+                    $("#<%= tbasoSocio_Nombre.ClientID %>").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#project").val(ui.item.label);
+                    $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
+                    //$("#autocomplete-description").html(ui.item.desc);
+                    return false;
+                }
             });
+        });
+
         </script>
 
         <p id="autocomplete-description"></p>

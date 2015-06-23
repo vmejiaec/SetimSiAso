@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Web.Services;
+using System.Reflection;
+using DotNetNuke.Security;
+using DotNetNuke.Services.Exceptions;
 
 namespace SetimMod_asoSocioInversion
 {
@@ -18,6 +21,8 @@ namespace SetimMod_asoSocioInversion
 
         protected override void OnLoad(EventArgs e)
         {
+            if (Request.Headers["X-OFFICIAL-REQUEST"] == "TRUE") AjaxWrapper();
+
             base.OnLoad(e);
             this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
@@ -27,6 +32,9 @@ namespace SetimMod_asoSocioInversion
                 //CargarDdl_Estados();
                 ColocarDatosEnFormulario();
             }
+
+            //
+            
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
         protected void Guardar(object sender, EventArgs e)
@@ -140,27 +148,50 @@ namespace SetimMod_asoSocioInversion
         //    }
         //}
 
-        public string GetDatos()
+        public string GetDatos(string iniciales)
         {
+            asoSocioControl ctlSocio = new asoSocioControl();
+            var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", iniciales, 0, 10, "Users_Nombre", "ASC");
             List<dato> lista = new List<dato>();
-            lista.Add(new dato { value = "1", label = "Anibal", desc = "Mil veces" });
-            lista.Add(new dato { value = "2", label = "Beto", desc = "Dos Mil veces" });
-            lista.Add(new dato { value = "3", label = "Carlos", desc = "Tres Mil veces" });
-            lista.Add(new dato { value = "4", label = "Dora", desc = "Cuatro Mil veces" });
+            foreach (var socio in lstSocios)
+            {
+                lista.Add(new dato { value=socio.Id.ToString(), label=socio.Users_Nombre, desc= socio.Estado });
+            }
             var json = JsonConvert.SerializeObject(lista);
             return json;
         }
 
-        [WebMethod]
-        public string WS_GetDatos()
+        public void AjaxWrapper()
         {
-            List<dato> lista = new List<dato>();
-            lista.Add(new dato { value = "1", label = "Anibal", desc = "Mil veces" });
-            lista.Add(new dato { value = "2", label = "Beto", desc = "Dos Mil veces" });
-            lista.Add(new dato { value = "3", label = "Carlos", desc = "Tres Mil veces" });
-            lista.Add(new dato { value = "4", label = "Dora", desc = "Cuatro Mil veces" });
-            var json = JsonConvert.SerializeObject(lista);
-            return json;
+            Response.Clear();
+            string strData = "";
+            try
+            {
+                MethodInfo mi = GetType().GetMethod(Request.Params["FUNCTION"]);
+                object[] objs = new object[mi.GetParameters().Length];
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i] = (new PortalSecurity()).InputFilter(Request.Params["param" + i], PortalSecurity.FilterFlag.NoMarkup);
+                }
+                strData = mi.Invoke(this, objs).ToString();
+            }
+            catch (Exception ex)
+            {
+                strData = "{Error : Caught}";
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+            //
+            Response.ContentType = "json";
+            Response.Write(strData);
+            Response.Flush();
+            try { Response.End(); }
+            catch { }
+            return;
+        }
+
+        public string FunctionName(string param)
+        {
+            return GetDatos(param);
         }
     }
 
