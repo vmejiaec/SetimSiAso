@@ -1,25 +1,25 @@
 ﻿
 
 
-//-> asoInversion_Edit.ascx
+//-> asoParametro_Edit.ascx
 
-//-> asoInversion_Edit.ascx.cs
+//-> asoParametro_Edit.ascx.cs
 
-//-> asoInversion_View.ascx
+//-> asoParametro_View.ascx
 
-//-> asoInversion_View.ascx.cs
+//-> asoParametro_View.ascx.cs
 
-//-> asoInversion_Edit.ascx.cs
+//-> asoParametro_Edit.ascx.cs
 
-//-> asoInversion_Edit.ascx
+//-> asoParametro_Edit.ascx
 
-//-> asoInversion_View.ascx.cs
+//-> asoParametro_View.ascx.cs
 
-//-> asoInversion_View.ascx
+//-> asoParametro_View.ascx
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\ASP_Control\asoInversion_Edit.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoInversion_Edit.ascx
-// SetimSiAso\SetimGenClass\ASP_Control\asoInversion_View.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoInversion_View.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoParametro_Edit.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoParametro_Edit.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoParametro_View.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoParametro_View.ascx

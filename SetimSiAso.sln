@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoPeriodo", "Seti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoInversion", "SetimMod_asoInversion\SetimMod_asoInversion.csproj", "{FFBF258C-D907-4C2C-85D0-959510763DD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoServicio", "SetimMod_asoServicio\SetimMod_asoServicio.csproj", "{206F3103-FEEA-4DC3-AF9B-E0A241FB78EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoParametro", "SetimMod_asoParametro\SetimMod_asoParametro.csproj", "{C7B99F49-5805-49A4-B29F-7BC86A718EBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,14 @@ Global
 		{FFBF258C-D907-4C2C-85D0-959510763DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFBF258C-D907-4C2C-85D0-959510763DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFBF258C-D907-4C2C-85D0-959510763DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{206F3103-FEEA-4DC3-AF9B-E0A241FB78EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{206F3103-FEEA-4DC3-AF9B-E0A241FB78EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{206F3103-FEEA-4DC3-AF9B-E0A241FB78EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{206F3103-FEEA-4DC3-AF9B-E0A241FB78EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B99F49-5805-49A4-B29F-7BC86A718EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B99F49-5805-49A4-B29F-7BC86A718EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B99F49-5805-49A4-B29F-7BC86A718EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B99F49-5805-49A4-B29F-7BC86A718EBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

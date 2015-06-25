@@ -1,19 +1,19 @@
 ﻿
 
-//-> asoSocioInversion.cs
+//-> asoParametro.cs
 
-//-> asoSocioInversionControl.cs
+//-> asoParametroControl.cs
 
-//-> ext_asoSocioInversionControl.cs
+//-> ext_asoParametroControl.cs
 
-//-> asoSocioInversion.cs
+//-> asoParametro.cs
 
-//-> asoSocioInversionControl.cs
+//-> asoParametroControl.cs
 
-//-> ext_asoSocioInversionControl.cs
+//-> ext_asoParametroControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoSocioInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversionControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioInversion.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoParametroControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoParametroControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoParametro.cs
