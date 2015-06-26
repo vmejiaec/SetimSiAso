@@ -13,12 +13,12 @@ namespace SetimMod_asoPeriodoDebito
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this._Nivel = 0;
+            this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
             this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             if (!IsPostBack)
             {
-                CargarDdl_Estados();                
+                CargarDdl_Estados();
                 ColocarDatosEnFormulario();
             }
         }
@@ -34,7 +34,7 @@ namespace SetimMod_asoPeriodoDebito
 
             string url = Globals.NavigateURL();
             if (this._Nivel != 0)
-                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("Det_ViewDebito"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Cancela y regresa a la pantalla base
@@ -42,7 +42,7 @@ namespace SetimMod_asoPeriodoDebito
         {
             string url = Globals.NavigateURL();
             if (this._Nivel != 0)
-                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("Det_ViewDebito"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Carga el formulario con los datos de un objeto
@@ -61,7 +61,7 @@ namespace SetimMod_asoPeriodoDebito
                 ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el Estado inicial
                 tbDescripcion.Text = "Descripcion";
                 tbasoSocio_Nombre.Text = "asoSocio_Nombre";
-
+                dnnDP_asoPeriodo_Fecha.SelectedDate = DateTime.Today; // Fecha actual por defecto
             }
             else
             {
@@ -77,7 +77,7 @@ namespace SetimMod_asoPeriodoDebito
                 ddlEstado.SelectedValue = o.Estado;
                 tbDescripcion.Text = o.Descripcion;
                 tbasoSocio_Nombre.Text = o.asoSocio_Nombre;
-
+                dnnDP_asoPeriodo_Fecha.SelectedDate = o.asoPeriodo_Fecha;
             }
         }
         // Carga un objeto con los datos del formulario

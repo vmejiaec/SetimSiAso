@@ -76,6 +76,33 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoPeriodo_Id;
         
         /// <summary>
+        /// lbasoPeriodo_Fecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbasoPeriodo_Fecha;
+        
+        /// <summary>
+        /// dnnDP_asoPeriodo_Fecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_asoPeriodo_Fecha;
+        
+        /// <summary>
+        /// rfv_dnnDP_asoPeriodo_Fecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_dnnDP_asoPeriodo_Fecha;
+        
+        /// <summary>
         /// lbasoServicio_Id control.
         /// </summary>
         /// <remarks>

@@ -33,6 +33,7 @@ namespace SetimBasico
         public string Filtro_Tipo { get; set; }
         public int dgMasterItemIndex { get; set; }  // por confirmar si se cambia el nombre
         public Int32? Master_Id { get; set; }
+        public string Avisos { get; set; }
         // Constructor
         public PaginaEstado()
         {

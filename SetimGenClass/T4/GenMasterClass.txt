@@ -1,19 +1,19 @@
 ﻿
 
-//-> asoParametro.cs
+//-> asoPeriodo.cs
 
-//-> asoParametroControl.cs
+//-> asoPeriodoControl.cs
 
-//-> ext_asoParametroControl.cs
+//-> ext_asoPeriodoControl.cs
 
-//-> asoParametro.cs
+//-> asoPeriodo.cs
 
-//-> asoParametroControl.cs
+//-> asoPeriodoControl.cs
 
-//-> ext_asoParametroControl.cs
+//-> ext_asoPeriodoControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoParametroControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoParametroControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoParametro.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodo.cs

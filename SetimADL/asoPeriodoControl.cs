@@ -19,6 +19,14 @@ namespace SetimBasico
     public partial class asoPeriodoControl
     {
         LogEventos _eventos = new LogEventos();
+        public IList<asoPeriodo> _0SelByasoServicio_Id(Int32 p_asoServicio_Id)
+        {
+            return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodo_0SelByasoServicio_Id"
+                , p_asoServicio_Id
+            ));
+        }
+
         public IList<asoPeriodo> _0Sel()
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(

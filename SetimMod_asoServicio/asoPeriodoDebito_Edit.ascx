@@ -29,6 +29,11 @@
             <asp:RequiredFieldValidator ID="rfv_tbasoPeriodo_Id" runat="server" ControlToValidate="tbasoPeriodo_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
+            <dnn:Label ID="lbasoPeriodo_Fecha" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_asoPeriodo_Fecha" Text="asoPeriodo_Fecha" />
+            <dnn:DnnDatePicker runat="server" CssClass="dnnFormInput" ID="dnnDP_asoPeriodo_Fecha" />
+            <asp:RequiredFieldValidator ID="rfv_dnnDP_asoPeriodo_Fecha" runat="server" ControlToValidate="dnnDP_asoPeriodo_Fecha" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Fecha" SetFocusOnError="true" />
+        </div>
+        <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoServicio_Id" Text="asoServicio_Id:" HelpText="asoServicio_Id" />
             <asp:TextBox runat="server" ID="tbasoServicio_Id" Enabled="true" />
             <asp:RequiredFieldValidator ID="rfv_tbasoServicio_Id" runat="server" ControlToValidate="tbasoServicio_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoServicio_Id" SetFocusOnError="true" />

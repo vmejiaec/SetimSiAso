@@ -17,5 +17,6 @@ namespace SetimBasico
         public String Estado { get; set; }
         public String Descripcion { get; set; }
         public String asoSocio_Nombre { get; set; }
+        public DateTime asoPeriodo_Fecha { get; set; }
     }
 }

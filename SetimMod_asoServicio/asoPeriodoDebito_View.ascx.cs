@@ -52,7 +52,9 @@ namespace SetimMod_asoPeriodoDebito
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            addButton.NavigateUrl = ModuleContext.EditUrl("Det_EditDebito");
+            // Publica los avisos
+            lbAvisos.Text = paginaEstado.Avisos;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
@@ -82,9 +84,14 @@ namespace SetimMod_asoPeriodoDebito
         private IList<asoPeriodoDebito> ConsultaSP()
         {
             IList<asoPeriodoDebito> res = new List<asoPeriodoDebito>();
+            // Preparación del filtro por períodos
+            string sServicioId = paginaEstado.Filtro_Tipo;
+            if (string.IsNullOrEmpty(sServicioId)) sServicioId = "-1";
+            int? iServicioId = Int32.Parse(sServicioId);
+            if (iServicioId == -1) iServicioId = null;
             // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
             res = _EntidadControl._0SelByAll(
-                null, //asoPeriodo_Id: null,
+                iServicioId, //asoPeriodo_Id: null,
                 paginaEstadoMaster.Master_Id, //asoServicio_Id: paginaEstadoMaster.Master_Id,
                 null, //asoSocio_Id: null,
                 paginaEstado.Filtro_Estado, //estado: paginaEstado.Filtro_Estado,
@@ -221,17 +228,24 @@ namespace SetimMod_asoPeriodoDebito
         private void CargarDdl_Periodos()
         {
             asoPeriodoControl ctlPeriodo = new asoPeriodoControl();
-            var lista = ctlPeriodo._0SelByAll(PageIndex:0, PageSize: 24);
+            var lista = ctlPeriodo._0SelByasoServicio_Id((int)paginaEstadoMaster.Master_Id);
+            //Transformación linq para poner la fecha en la descripción y utilizarla en el dropdownlist
+            var lst = (from fila in lista
+                        select new asoPeriodo 
+                        { Id = fila.Id, No_Periodo = fila.No_Periodo, Fecha_Periodo = fila.Fecha_Periodo, Estado = fila.Estado, Descripcion = string.Format("{0:d}",fila.Fecha_Periodo) }
+                       ).ToList<asoPeriodo>();
+            // Añade la fila para todos con el id=-1
             asoPeriodo itemTodos = new asoPeriodo();
             itemTodos.Id = -1; // -1 significa todos
             itemTodos.Descripcion = "Todos";
-            lista.Add(itemTodos);
-            ddlCab_Periodo.DataSource = lista;
+            lst.Add(itemTodos);
+            // Carga el dropdownlist con la lista
+            ddlCab_Periodo.DataSource = lst;
             ddlCab_Periodo.DataTextField = "Descripcion";
             ddlCab_Periodo.DataValueField = "Id";
             ddlCab_Periodo.DataBind();
             // Carga el estado del estado de la pagina
-            //ddlCab_Periodo.SelectedValue = "-1";
+            ddlCab_Periodo.SelectedValue = paginaEstado.Filtro_Tipo ?? "-1";
         }
         // --------------------------------------------------------------------
 
@@ -249,24 +263,25 @@ namespace SetimMod_asoPeriodoDebito
             tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
         }
         // Boton para ejecutar una acción
-        protected void btAccion_OnClick(object sender, EventArgs e)
+        protected void btGenerarDebitos_OnClick(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    _EntidadControl._5CopyFromUsers();
-            //    Response.Redirect(Request.RawUrl, false);
-            //    Context.ApplicationInstance.CompleteRequest();
-            //}
-            //catch (Exception exc)
-            //{
-            //    Exceptions.LogException(exc);
-            //    const string headerText = "Error";
-            //    const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
-            //    Skin.AddModuleMessage(this,
-            //        headerText,
-            //        messageText,
-            //        DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
-            //}
+            try
+            {
+                int x = _EntidadControl._5GenerarDebitosDeUnServicio((int)paginaEstadoMaster.Master_Id);
+                paginaEstado.Avisos = string.Format("Debitos generados: {0}", x);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error.";
+                string messageText = string.Format("Hay error al generar los débitos de este servicio: {0} <br/> {1}", exc.Message, exc.InnerException.Message);
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
         }
         // Boton para ejecutar una accion
         protected void btConfigAportes_OnClick(object sender, EventArgs e)

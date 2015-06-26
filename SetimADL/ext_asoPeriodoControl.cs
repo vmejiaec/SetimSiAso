@@ -29,9 +29,9 @@ namespace SetimBasico
                     }
                     catch (Exception e)
                     {
-                        iValor = (Int32?) null;
+                        iValor = (Int32?)null;
                     }
-                    res = _0SelByAll(                        
+                    res = _0SelByAll(
                         No_Periodo: iValor,
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
@@ -44,7 +44,7 @@ namespace SetimBasico
                     break;
                 case "Descripcion":
                     res = _0SelByAll(
-                        Descripcion:"%" + (String)valor + "%",
+                        Descripcion: "%" + (String)valor + "%",
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;

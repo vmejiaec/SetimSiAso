@@ -28,7 +28,7 @@ namespace SetimBasico
                         asoServicio_Id: asoServicio_Id,
                         asoSocio_Id: asoSocio_Id,
                         Estado: estado,
-                        Descripcion: "%"+(String)valor+"%",
+                        Descripcion: "%" + (String)valor + "%",
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 case "asoSocio_Nombre":
@@ -37,7 +37,7 @@ namespace SetimBasico
                         asoServicio_Id: asoServicio_Id,
                         asoSocio_Id: asoSocio_Id,
                         Estado: estado,
-                        asoSocio_Nombre:"%"+ (String)valor+"%",
+                        asoSocio_Nombre: "%" + (String)valor + "%",
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 default:

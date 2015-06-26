@@ -22,13 +22,13 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// btAccion control.
+        /// btGenerarDebitos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btAccion;
+        protected global::System.Web.UI.WebControls.LinkButton btGenerarDebitos;
         
         /// <summary>
         /// pnFiltros control.
@@ -119,6 +119,15 @@ namespace SetimMod_asoPeriodoDebito {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
+        
+        /// <summary>
+        /// lbAvisos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAvisos;
         
         /// <summary>
         /// dgMaster control.
