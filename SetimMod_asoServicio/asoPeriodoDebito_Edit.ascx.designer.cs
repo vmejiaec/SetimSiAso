@@ -40,13 +40,40 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::System.Web.UI.WebControls.TextBox tbId;
         
         /// <summary>
-        /// rfv_tbId control.
+        /// lbasoServicio_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbId;
+        protected global::System.Web.UI.UserControl lbasoServicio_Id;
+        
+        /// <summary>
+        /// tbasoServicio_Id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbasoServicio_Id;
+        
+        /// <summary>
+        /// lbasoServicio_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbasoServicio_Nombre;
+        
+        /// <summary>
+        /// tbasoServicio_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbasoServicio_Nombre;
         
         /// <summary>
         /// lbasoPeriodo_Id control.
@@ -94,42 +121,6 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_asoPeriodo_Fecha;
         
         /// <summary>
-        /// rfv_dnnDP_asoPeriodo_Fecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_dnnDP_asoPeriodo_Fecha;
-        
-        /// <summary>
-        /// lbasoServicio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbasoServicio_Id;
-        
-        /// <summary>
-        /// tbasoServicio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbasoServicio_Id;
-        
-        /// <summary>
-        /// rfv_tbasoServicio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoServicio_Id;
-        
-        /// <summary>
         /// lbasoSocio_Id control.
         /// </summary>
         /// <remarks>
@@ -155,6 +146,33 @@ namespace SetimMod_asoPeriodoDebito {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id;
+        
+        /// <summary>
+        /// lbasoSocio_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbasoSocio_Nombre;
+        
+        /// <summary>
+        /// tbasoSocio_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Nombre;
+        
+        /// <summary>
+        /// rfv_tbasoSocio_Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
         /// lbValor control.
@@ -245,33 +263,6 @@ namespace SetimMod_asoPeriodoDebito {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDescripcion;
-        
-        /// <summary>
-        /// lbasoSocio_Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbasoSocio_Nombre;
-        
-        /// <summary>
-        /// tbasoSocio_Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Nombre;
-        
-        /// <summary>
-        /// rfv_tbasoSocio_Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
         /// vsResumen control.

@@ -7,6 +7,7 @@ using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
 using DotNetNuke.Services.Exceptions;
 using SetimBasico;
+using System.ComponentModel;
 
 namespace SetimBasico
 {
@@ -16,6 +17,7 @@ namespace SetimBasico
     /// </summary>
     public partial class asoPeriodoDebitoControl
     {
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id, Int32? asoServicio_Id, Int32? asoSocio_Id, string estado, string campo, object valor, Int32 PageIndex, Int32 PageSize, String SortField, String SortDirection)
         {
             IList<asoPeriodoDebito> res = new List<asoPeriodoDebito>();

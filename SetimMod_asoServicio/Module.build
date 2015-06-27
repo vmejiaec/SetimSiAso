@@ -16,6 +16,7 @@
     <Styles Include="*.css"/>
     <Resources Include= "App_LocalResources\*.resx" />
     <Servicios Include ="*.asmx"/>
+    <Reportes Include ="*.rdlc"/>
   </ItemGroup>
   
   <Target Name="CopyBin">
@@ -34,6 +35,8 @@
           DestinationFolder="$(ModuleFolderName)" />
     <Copy SourceFiles="@(Resources)"
           DestinationFolder="$(ModuleFolderName)\App_LocalResources" />
+    <Copy SourceFiles="@(Reportes)"
+          DestinationFolder="$(ModuleFolderName)" />
   </Target>
   
 </Project>

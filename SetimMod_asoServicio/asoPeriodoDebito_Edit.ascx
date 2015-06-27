@@ -18,30 +18,36 @@
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
     <fieldset>
         <legend></legend>
-        <div class="dnnFormItem">
+        <div class="dnnFormItem" style="visibility:hidden">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
             <asp:TextBox runat="server" ID="tbId" Enabled="true" />
-            <asp:RequiredFieldValidator ID="rfv_tbId" runat="server" ControlToValidate="tbId" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoPeriodo_Id" Text="asoPeriodo_Id:" HelpText="asoPeriodo_Id" />
+            <dnn:Label runat="server" ID="lbasoServicio_Id" Text="Servicio_Id:" HelpText="asoServicio_Id" />
+            <asp:TextBox runat="server" ID="tbasoServicio_Id" Enabled="false" />            
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lbasoServicio_Nombre" Text="Servicio_Nombre:" HelpText="asoServicio_Nombre" />
+            <asp:TextBox runat="server" ID="tbasoServicio_Nombre" Enabled="false" />            
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lbasoPeriodo_Id" Text="Periodo_Id:" HelpText="asoPeriodo_Id" />
             <asp:TextBox runat="server" ID="tbasoPeriodo_Id" Enabled="true" />
             <asp:RequiredFieldValidator ID="rfv_tbasoPeriodo_Id" runat="server" ControlToValidate="tbasoPeriodo_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label ID="lbasoPeriodo_Fecha" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_asoPeriodo_Fecha" Text="asoPeriodo_Fecha" />
-            <dnn:DnnDatePicker runat="server" CssClass="dnnFormInput" ID="dnnDP_asoPeriodo_Fecha" />
-            <asp:RequiredFieldValidator ID="rfv_dnnDP_asoPeriodo_Fecha" runat="server" ControlToValidate="dnnDP_asoPeriodo_Fecha" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Fecha" SetFocusOnError="true" />
+            <dnn:Label ID="lbasoPeriodo_Fecha" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_asoPeriodo_Fecha" Text="Periodo_Fecha" />
+            <dnn:DnnDatePicker runat="server" CssClass="dnnFormInput" ID="dnnDP_asoPeriodo_Fecha" />           
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoServicio_Id" Text="asoServicio_Id:" HelpText="asoServicio_Id" />
-            <asp:TextBox runat="server" ID="tbasoServicio_Id" Enabled="true" />
-            <asp:RequiredFieldValidator ID="rfv_tbasoServicio_Id" runat="server" ControlToValidate="tbasoServicio_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoServicio_Id" SetFocusOnError="true" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoSocio_Id" Text="asoSocio_Id:" HelpText="asoSocio_Id" />
+            <dnn:Label runat="server" ID="lbasoSocio_Id" Text="asoSocio_Id:" HelpText="Socio_Id" />
             <asp:TextBox runat="server" ID="tbasoSocio_Id" Enabled="true" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Id" runat="server" ControlToValidate="tbasoSocio_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Id" SetFocusOnError="true" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lbasoSocio_Nombre" Text="asoSocio_Nombre:" HelpText="Socio_Nombre" />
+            <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
+            <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label ID="lbValor" runat="server" Text="Valor:" HelpText="Valor" />
@@ -57,16 +63,11 @@
             <dnn:Label ID="lbEstado" runat="server" Text="Estado:" />
             <asp:DropDownList runat="server" ID="ddlEstado" />
         </div>
-
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbDescripcion" Text="Descripcion:" HelpText="Descripcion" />
             <asp:TextBox runat="server" ID="tbDescripcion" TextMode="MultiLine" />
         </div>
-        <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoSocio_Nombre" Text="asoSocio_Nombre:" HelpText="asoSocio_Nombre" />
-            <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
-            <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
-        </div>
+
     </fieldset>
     <asp:ValidationSummary runat="server" ID="vsResumen" CssClass="dnnFormMessage dnnFormValidationSummary" />
 </div>

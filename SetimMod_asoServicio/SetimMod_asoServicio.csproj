@@ -51,6 +51,7 @@
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\SetimMod_ExportaDatos\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -81,6 +82,13 @@
     </Compile>
     <Compile Include="asoPeriodoDebito_Edit.ascx.designer.cs">
       <DependentUpon>asoPeriodoDebito_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoPeriodoDebito_Rep.ascx.cs">
+      <DependentUpon>asoPeriodoDebito_Rep.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoDebito_Rep.ascx.designer.cs">
+      <DependentUpon>asoPeriodoDebito_Rep.ascx</DependentUpon>
     </Compile>
     <Compile Include="asoPeriodoDebito_View.ascx.cs">
       <DependentUpon>asoPeriodoDebito_View.ascx</DependentUpon>
@@ -118,9 +126,19 @@
       <DependentUpon>asoServicio_View.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_dnndev_meDataSet.cs">
+      <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_dnndev_meDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="asoPeriodoDebito_Edit.ascx" />
+    <Content Include="asoPeriodoDebito_Rep.ascx" />
     <Content Include="asoPeriodoDebito_View.ascx" />
     <Content Include="asoServicioSocio_Edit.ascx" />
     <Content Include="asoServicioSocio_View.ascx" />
@@ -140,6 +158,31 @@
       <Project>{63193768-efe9-473d-af70-e4d6925e9c15}</Project>
       <Name>SetimBasico</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <Content Include="_dnndev_meDataSet.xsc">
+      <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="_dnndev_meDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_dnndev_meDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="_dnndev_meDataSet.xss">
+      <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

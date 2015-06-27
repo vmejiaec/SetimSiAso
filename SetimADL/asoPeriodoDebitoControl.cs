@@ -9,6 +9,7 @@ using DotNetNuke.Services.Log.EventLog;
 using DotNetNuke.Services.Exceptions;
 
 using SetimBasico;
+using System.ComponentModel;
 
 namespace SetimBasico
 {
@@ -16,9 +17,13 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoPeriodoDebito
     ///</summary>
+    
+    [DataObjectAttribute()]
     public partial class asoPeriodoDebitoControl
     {
         LogEventos _eventos = new LogEventos();
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0Sel()
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
@@ -27,6 +32,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoServicio_Id = null, Int32? asoSocio_Id = null, Decimal? Valor = null, Decimal? Valor_Comision = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
@@ -35,6 +41,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public asoPeriodoDebito _1SelById(Int32 Id)
         {
             return CBO.FillObject<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(

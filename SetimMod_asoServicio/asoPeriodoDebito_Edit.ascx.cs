@@ -48,13 +48,18 @@ namespace SetimMod_asoPeriodoDebito
         // Carga el formulario con los datos de un objeto
         protected void ColocarDatosEnFormulario()
         {
+            // Consulta el nombre del servicio
+            asoServicioControl ctlServicio = new asoServicioControl();
+            var servicio = ctlServicio._1SelById((int)paginaEstadoMaster.Master_Id);
+
             if (_EntidadId == -1)
             {
                 // Valores por defecto para el INSERT
                 // Usar this.paginaEstadoMaster.Master_Id.ToString() para la clave foranea
                 tbId.Text = "0";
                 tbasoPeriodo_Id.Text = "0";
-                tbasoServicio_Id.Text = "0";
+                tbasoServicio_Id.Text = servicio.Id.ToString();
+                tbasoServicio_Nombre.Text = servicio.Nombre;
                 tbasoSocio_Id.Text = "0";
                 tbValor.Text = "0";
                 tbValor_Comision.Text = "0";
@@ -71,6 +76,7 @@ namespace SetimMod_asoPeriodoDebito
                 tbId.Text = o.Id.ToString();
                 tbasoPeriodo_Id.Text = o.asoPeriodo_Id.ToString();
                 tbasoServicio_Id.Text = o.asoServicio_Id.ToString();
+                tbasoServicio_Nombre.Text = servicio.Nombre;
                 tbasoSocio_Id.Text = o.asoSocio_Id.ToString();
                 tbValor.Text = o.Valor.ToString();
                 tbValor_Comision.Text = o.Valor_Comision.ToString();

@@ -53,8 +53,10 @@ namespace SetimMod_asoPeriodoDebito
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Det_EditDebito");
+            Reporte.NavigateUrl = ModuleContext.EditUrl("Det_DebitoRep");
             // Publica los avisos
             lbAvisos.Text = paginaEstado.Avisos;
+            // Consulta el nombre del servicio
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

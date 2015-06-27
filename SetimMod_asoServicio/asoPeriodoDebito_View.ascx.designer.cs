@@ -13,6 +13,15 @@ namespace SetimMod_asoPeriodoDebito {
     public partial class asoPeriodoDebito_View {
         
         /// <summary>
+        /// lbTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTitulo;
+        
+        /// <summary>
         /// addButton control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace SetimMod_asoPeriodoDebito {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btGenerarDebitos;
+        
+        /// <summary>
+        /// Reporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink Reporte;
         
         /// <summary>
         /// pnFiltros control.
