@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
 using DotNetNuke.Services.Exceptions;
 
 using SetimBasico;
-using System.ComponentModel;
 
 namespace SetimBasico
 {
@@ -19,15 +18,24 @@ namespace SetimBasico
     ///</summary>
 
     [DataObjectAttribute()]
-    public partial class asoPeriodoDebitoControl 
+    public partial class asoPeriodoDebitoControl
     {
         LogEventos _eventos = new LogEventos();
-
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0Sel()
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
                 "sp_asoPeriodoDebito_0Sel"
+
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoDebito> _0SelByasoServicio_Id(Int32 p_asoServicio_Id)
+        {
+            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoDebito_0SelByasoServicio_Id"
+                , p_asoServicio_Id
             ));
         }
 
@@ -48,6 +56,7 @@ namespace SetimBasico
                 , Id
             ));
         }
+
         [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoPeriodoDebito o)
         {
@@ -65,6 +74,7 @@ namespace SetimBasico
                 throw new Exception(mensaje, exc);
             }
         }
+
         [DataObjectMethodAttribute(DataObjectMethodType.Insert, true)]
         public int _2Ins(asoPeriodoDebito o)
         {
@@ -82,6 +92,7 @@ namespace SetimBasico
                 throw new Exception(mensaje, exc);
             }
         }
+
         [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
         public int _3Upd(asoPeriodoDebito o)
         {

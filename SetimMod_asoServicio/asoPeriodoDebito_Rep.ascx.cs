@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Web.UI.WebControls;
-using System.Collections.Generic;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
-using DotNetNuke.Framework.JavaScriptLibraries;
 using SetimBasico;
 using Microsoft.Reporting.WebForms;
 using DotNetNuke.Entities.Users;
-
 
 namespace SetimMod_asoServicio
 {
@@ -25,6 +18,10 @@ namespace SetimMod_asoServicio
         }
         void CargaParametrosAlReporte()
         {
+            // Obtiene los datos para el reporte
+            asoPeriodoDebitoControl ctlPeriodoDebito = new asoPeriodoDebitoControl();
+            var lstDebitos = ctlPeriodoDebito._0SelByasoServicio_Id((int)paginaEstadoMaster.Master_Id);
+            rv_Reporte.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", lstDebitos));
             // Obtiene el nombre del usuario
             UserInfo _currentUser = UserController.Instance.GetCurrentUserInfo();
             string Usuario_Nombre = string.Format("{0} {1}", _currentUser.FirstName, _currentUser.LastName);

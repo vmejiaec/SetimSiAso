@@ -6,20 +6,10 @@
     <li><asp:LinkButton runat="server" ID="btSalir" CssClass="dnnPrimaryAction" OnClick="Salir" Text="Salir" CausesValidation="false" /></li>
 </ul>
 <br/>
-<rsweb:ReportViewer ID="rv_Reporte" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1200px">
+<rsweb:ReportViewer ID="rv_Reporte" runat="server" 
+    Font-Names="Verdana" Font-Size="8pt" 
+    WaitMessageFont-Names="Verdana" 
+    WaitMessageFont-Size="14pt" Width="1200px">
     <LocalReport ReportPath=".\DesktopModules\Setim\SetimMod_asoServicio\asoPeriodoDebito_Rep.rdlc">
-        <DataSources>
-            <rsweb:ReportDataSource DataSourceId="odsDatos" Name="DataSet1" />
-        </DataSources>
     </LocalReport>
 </rsweb:ReportViewer>
-
-<asp:ObjectDataSource
-    ID="odsDatos"
-    runat="server"
-    SelectMethod="_0Sel"
-    TypeName="SetimBasico.asoPeriodoDebitoControl">
-
-</asp:ObjectDataSource>
-
-
