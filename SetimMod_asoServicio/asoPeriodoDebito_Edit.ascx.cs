@@ -18,13 +18,12 @@ namespace SetimMod_asoPeriodoDebito
         protected override void OnLoad(EventArgs e)
         {
             this._Nivel = 1;
+            this._UserID = ModuleContext.PortalSettings.UserId;
+            this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             // Atajar la llamada del Ajax
             if (Request.Headers["X-SETIM-REQUEST"] == "TRUE") AjaxWrapper();
             // Proceso normal
             base.OnLoad(e);
-            this._Nivel = 1;
-            this._UserID = ModuleContext.PortalSettings.UserId;
-            this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             if (!IsPostBack)
             {
                 CargarDdl_Estados();

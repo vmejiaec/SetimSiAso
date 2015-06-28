@@ -76,6 +76,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoPeriodoDebito_Archivo.ascx.cs">
+      <DependentUpon>asoPeriodoDebito_Archivo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoDebito_Archivo.ascx.designer.cs">
+      <DependentUpon>asoPeriodoDebito_Archivo.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoPeriodoDebito_Edit.ascx.cs">
       <DependentUpon>asoPeriodoDebito_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,6 +140,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoPeriodoDebito_Archivo.ascx" />
     <Content Include="asoPeriodoDebito_Edit.ascx" />
     <Content Include="asoPeriodoDebito_Rep.ascx" />
     <Content Include="asoPeriodoDebito_View.ascx" />

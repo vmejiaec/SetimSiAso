@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetNuke.Entities.Users;
 using DotNetNuke.UI.Modules;
 
 namespace SetimBasico
@@ -16,6 +17,15 @@ namespace SetimBasico
         public int _Nivel = 0;
         // Campo por defecto para ordenar la lista
         public string _Ordenar_Campo_Defaul = "Id";
+        // Obtiene el nombre del usuario
+        public string _Usuario_Nombre {
+            get
+            {
+                UserInfo _currentUser = UserController.Instance.GetCurrentUserInfo();
+                string Usuario_Nombre = string.Format("{0} {1}", _currentUser.FirstName, _currentUser.LastName);
+                return Usuario_Nombre;
+            }
+        }
         // Estado de la páginas
         public ListaPaginaEstado listaPaginaEstado
         {
