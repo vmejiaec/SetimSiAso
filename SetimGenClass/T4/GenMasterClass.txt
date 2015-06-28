@@ -1,19 +1,19 @@
 ﻿
 
-//-> asoPeriodoDebito.cs
+//-> asoPeriodo.cs
 
-//-> asoPeriodoDebitoControl.cs
+//-> asoPeriodoControl.cs
 
-//-> ext_asoPeriodoDebitoControl.cs
+//-> ext_asoPeriodoControl.cs
 
-//-> asoPeriodoDebito.cs
-Error processing file asoPeriodoDebitoControl.cs Error HRESULT E_FAIL has been returned from a call to a COM component.
-//-> asoPeriodoDebitoControl.cs
-Error processing file ext_asoPeriodoDebitoControl.cs Error HRESULT E_FAIL has been returned from a call to a COM component.
-//-> ext_asoPeriodoDebitoControl.cs
+//-> asoPeriodo.cs
+
+//-> asoPeriodoControl.cs
+
+//-> ext_asoPeriodoControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoDebitoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoDebitoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoDebito.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodoControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoPeriodo.cs

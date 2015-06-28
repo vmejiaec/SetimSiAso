@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCompletarItem.cs" />
     <Compile Include="Entidad.cs" />
     <Compile Include="LogEventos.cs" />
     <Compile Include="PaginaEstado.cs" />
@@ -61,6 +62,11 @@
     <Compile Include="SetimModulo.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Module.build">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -70,4 +76,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="Module.build" />
 </Project>

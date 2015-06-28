@@ -30,7 +30,7 @@ namespace SetimBasico
                     break;
                 case "Descripcion":
                     res = _0SelByAll(
-                        Descripcion: "%"+ (String)valor + "%",
+                        Descripcion: "%" + (String)valor + "%",
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
@@ -48,7 +48,7 @@ namespace SetimBasico
                     break;
                 case "Users_Nombre":
                     res = _0SelByAll(
-                        Users_Nombre: "%"+ (String)valor + "%",
+                        Users_Nombre: "%" + (String)valor + "%",
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;

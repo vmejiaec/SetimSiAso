@@ -31,6 +31,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodo> _0SelByEstado_ByPrefijo(String p_Estado, String p_Prefijo)
+        {
+            return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodo_0SelByEstado_ByPrefijo"
+                , p_Estado, p_Prefijo
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0Sel()
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(

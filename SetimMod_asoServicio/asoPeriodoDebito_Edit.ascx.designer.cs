@@ -112,13 +112,13 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::System.Web.UI.UserControl lbasoPeriodo_Fecha;
         
         /// <summary>
-        /// dnnDP_asoPeriodo_Fecha control.
+        /// tb_asoPeriodo_Fecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnDatePicker dnnDP_asoPeriodo_Fecha;
+        protected global::System.Web.UI.WebControls.TextBox tb_asoPeriodo_Fecha;
         
         /// <summary>
         /// lbasoSocio_Id control.

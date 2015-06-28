@@ -3,6 +3,11 @@ using DotNetNuke.Common;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Reflection;
+using DotNetNuke.Security;
+using DotNetNuke.Services.Exceptions;
 
 namespace SetimMod_asoPeriodoDebito
 {
@@ -12,6 +17,10 @@ namespace SetimMod_asoPeriodoDebito
 
         protected override void OnLoad(EventArgs e)
         {
+            this._Nivel = 1;
+            // Atajar la llamada del Ajax
+            if (Request.Headers["X-SETIM-REQUEST"] == "TRUE") AjaxWrapper();
+            // Proceso normal
             base.OnLoad(e);
             this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
@@ -66,7 +75,7 @@ namespace SetimMod_asoPeriodoDebito
                 ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el Estado inicial
                 tbDescripcion.Text = "Descripcion";
                 tbasoSocio_Nombre.Text = "asoSocio_Nombre";
-                dnnDP_asoPeriodo_Fecha.SelectedDate = DateTime.Today; // Fecha actual por defecto
+                tb_asoPeriodo_Fecha.Text = ""; // Sin fecha para que la asigne
             }
             else
             {
@@ -83,7 +92,7 @@ namespace SetimMod_asoPeriodoDebito
                 ddlEstado.SelectedValue = o.Estado;
                 tbDescripcion.Text = o.Descripcion;
                 tbasoSocio_Nombre.Text = o.asoSocio_Nombre;
-                dnnDP_asoPeriodo_Fecha.SelectedDate = o.asoPeriodo_Fecha;
+                tb_asoPeriodo_Fecha.Text = string.Format("{0:d}", o.asoPeriodo_Fecha);
             }
         }
         // Carga un objeto con los datos del formulario
@@ -112,6 +121,57 @@ namespace SetimMod_asoPeriodoDebito
             ddlEstado.DataTextField = "Texto";
             ddlEstado.DataValueField = "Valor";
             ddlEstado.DataBind();
+        }
+        public void AjaxWrapper()
+        {
+            Response.Clear();
+            string strData = "";
+            try
+            {
+                MethodInfo mi = GetType().GetMethod(Request.Params["FUNCTION"]);
+                object[] objs = new object[mi.GetParameters().Length];
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i] = (new PortalSecurity()).InputFilter(Request.Params["param" + i], PortalSecurity.FilterFlag.NoMarkup);
+                }
+                strData = mi.Invoke(this, objs).ToString();
+            }
+            catch (Exception ex)
+            {
+                strData = "{Error : Caught}";
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+            //
+            Response.ContentType = "json";
+            Response.Write(strData);
+            Response.Flush();
+            try { Response.End(); }
+            catch { }
+            return;
+        }
+
+        public string GetSociosByServicioPrefijo(string Prefijo)
+        {
+            asoSocioControl ctlSocio = new asoSocioControl();
+            var lstSocios = ctlSocio._0SelBy_asoServicio_Id_By_Prefijo((int)paginaEstadoMaster.Master_Id,Prefijo);
+
+            List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
+            foreach (var socio in lstSocios)
+                lista.Add(new AutoCompletarItem { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
+        }
+
+        public string GetPeriodosByPrefijo(string Prefijo)
+        {
+            asoPeriodoControl ctlPeriodo = new asoPeriodoControl();
+            var lstPeriodos = ctlPeriodo._0SelByEstado_ByPrefijo("ABI",Prefijo);
+
+            List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
+            foreach (var periodo in lstPeriodos)
+                lista.Add(new AutoCompletarItem { valor = periodo.Id.ToString(), etiqueta = string.Format("{0:d}", periodo.Fecha_Periodo), desc = periodo.Estado });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
         }
     }
 }

@@ -37,8 +37,54 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label ID="lbasoPeriodo_Fecha" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_asoPeriodo_Fecha" Text="Periodo_Fecha" />
-            <dnn:DnnDatePicker runat="server" CssClass="dnnFormInput" ID="dnnDP_asoPeriodo_Fecha" />           
+            <asp:TextBox runat="server" ID="tb_asoPeriodo_Fecha" Enabled="true" />
         </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#<%= tb_asoPeriodo_Fecha.ClientID %>").autocomplete({
+                    minLength: 2,
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            cache: false,
+                            url: location.href,
+                            dataType: "json",
+                            data: ({ 'FUNCTION': 'GetPeriodosByPrefijo', 'param0': request.term }),
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.valor,
+                                        label: item.etiqueta,
+                                        desc: item.desc
+                                    }
+                                }))
+                            },
+                            beforeSend: function (xhr) { xhr.setRequestHeader("X-SETIM-REQUEST", "TRUE"); },// Para atajarlo en el Load de la página
+                            error: function (xhr, status, error) { alert(error); },
+                            failure: function (response) { alert(response.responseText); }
+                        });
+                    },
+                    focus: function (event, ui) {
+                        $("#<%= tb_asoPeriodo_Fecha.ClientID %>").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    //$("#project").val(ui.item.label);
+                    $("#<%= tbasoPeriodo_Id.ClientID %>").val(ui.item.value);
+                    //$("#autocomplete-description").html(ui.item.desc);
+                    return false;
+                },
+                open: function () {
+                    $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                },
+                close: function () {
+                    $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                }
+                });
+            });
+    </script>
+
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSocio_Id" Text="asoSocio_Id:" HelpText="Socio_Id" />
             <asp:TextBox runat="server" ID="tbasoSocio_Id" Enabled="true" />
@@ -49,6 +95,50 @@
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
+                    minLength: 2,
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            cache: false,
+                            url: location.href,
+                            dataType: "json",
+                            data: ({ 'FUNCTION': 'GetSociosByServicioPrefijo', 'param0': request.term }),
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        value: item.valor,
+                                        label: item.etiqueta,
+                                        desc: item.desc
+                                    }
+                                }))
+                            },
+                            beforeSend: function (xhr) { xhr.setRequestHeader("X-SETIM-REQUEST", "TRUE"); },// Para atajarlo en el Load de la página
+                            error: function (xhr, status, error) { alert(error); },
+                            failure: function (response) { alert(response.responseText); }
+                        });
+                    },
+                    focus: function (event, ui) {
+                        $("#<%= tbasoSocio_Nombre.ClientID %>").val(ui.item.label);
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
+                        return false;
+                },
+                open: function () {
+                    $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                },
+                close: function () {
+                    $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                }
+                });
+            });
+    </script>
+
         <div class="dnnFormItem">
             <dnn:Label ID="lbValor" runat="server" Text="Valor:" HelpText="Valor" />
             <asp:TextBox runat="server" ID="tbValor" CssClass="TextBox_Setim_Valor" />

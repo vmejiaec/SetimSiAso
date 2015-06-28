@@ -112,7 +112,8 @@ namespace SetimMod_asoServicioSocio
             //ddlTipo.DataValueField = "Valor";
             //ddlTipo.DataBind();
         }
-                public string GetSociosActivosByPrefijo(string Prefijo)
+        
+        public string GetSociosActivosByPrefijo(string Prefijo)
         {
             asoSocioControl ctlSocio = new asoSocioControl();
             var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", Prefijo, 0, 10, "Users_Nombre", "ASC");

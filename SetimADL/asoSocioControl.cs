@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
@@ -16,9 +16,12 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoSocio
     ///</summary>
+
+    [DataObjectAttribute()]
     public partial class asoSocioControl
     {
         LogEventos _eventos = new LogEventos();
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoSocio> _0Sel()
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
@@ -27,6 +30,16 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoSocio> _0SelBy_asoServicio_Id_By_Prefijo(Int32 p_asoServicio_Id, String p_Prefijo)
+        {
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0SelBy_asoServicio_Id_By_Prefijo"
+                , p_asoServicio_Id, p_Prefijo
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoSocio> _0SelByEstado(String Estado)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
@@ -35,6 +48,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoSocio> _0SelByAll(Int32? UserID = null, String CI = null, String Descripcion = null, DateTime? Fecha_Nacimiento = null, String Estado = null, String Users_EMail = null, String Users_Nombre = null, Decimal? Valor_Accion = null, Decimal? Valor_Ahorro = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
@@ -43,6 +57,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public asoSocio _1SelById(Int32 Id)
         {
             return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
@@ -51,6 +66,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoSocio o)
         {
             try
@@ -68,6 +84,7 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Insert, true)]
         public int _2Ins(asoSocio o)
         {
             try
@@ -85,6 +102,7 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
         public int _3Upd(asoSocio o)
         {
             try
