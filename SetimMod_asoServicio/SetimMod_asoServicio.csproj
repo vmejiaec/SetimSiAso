@@ -126,10 +126,6 @@
       <DependentUpon>asoServicio_View.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_dnndev_meDataSet.cs">
-      <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="_dnndev_meDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,15 +156,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
     <Content Include="_dnndev_meDataSet.xsc">
       <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
     </Content>
@@ -182,7 +169,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="asoPeriodoDebito_Rep.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

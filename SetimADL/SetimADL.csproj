@@ -53,7 +53,9 @@
     <Compile Include="asoPeriodoCuota.cs" />
     <Compile Include="asoPeriodoCuotaControl.cs" />
     <Compile Include="asoPeriodoDebito.cs" />
-    <Compile Include="asoPeriodoDebitoControl.cs" />
+    <Compile Include="asoPeriodoDebitoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="asoPeriodoInversion.cs" />
     <Compile Include="asoPeriodoInversionControl.cs" />
     <Compile Include="asoPrestamo.cs" />
@@ -75,7 +77,9 @@
     <Compile Include="ext_asoPeriodoAporteControl.cs" />
     <Compile Include="ext_asoPeriodoControl.cs" />
     <Compile Include="ext_asoPeriodoCuotaControl.cs" />
-    <Compile Include="ext_asoPeriodoDebitoControl.cs" />
+    <Compile Include="ext_asoPeriodoDebitoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ext_asoPeriodoInversionControl.cs" />
     <Compile Include="ext_asoPrestamoControl.cs" />
     <Compile Include="ext_asoServicioControl.cs" />

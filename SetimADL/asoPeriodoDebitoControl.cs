@@ -17,9 +17,9 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoPeriodoDebito
     ///</summary>
-    
+
     [DataObjectAttribute()]
-    public partial class asoPeriodoDebitoControl
+    public partial class asoPeriodoDebitoControl 
     {
         LogEventos _eventos = new LogEventos();
 
@@ -28,7 +28,6 @@ namespace SetimBasico
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
                 "sp_asoPeriodoDebito_0Sel"
-
             ));
         }
 
@@ -49,7 +48,7 @@ namespace SetimBasico
                 , Id
             ));
         }
-
+        [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoPeriodoDebito o)
         {
             try
@@ -66,7 +65,7 @@ namespace SetimBasico
                 throw new Exception(mensaje, exc);
             }
         }
-
+        [DataObjectMethodAttribute(DataObjectMethodType.Insert, true)]
         public int _2Ins(asoPeriodoDebito o)
         {
             try
@@ -83,7 +82,7 @@ namespace SetimBasico
                 throw new Exception(mensaje, exc);
             }
         }
-
+        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
         public int _3Upd(asoPeriodoDebito o)
         {
             try

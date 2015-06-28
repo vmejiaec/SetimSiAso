@@ -12,7 +12,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
@@ -26,11 +26,14 @@ namespace <#=tabla.NombreNamespace#>
     ///<summary>
     ///Controladores para los procedimientos de <#=tabla.Name#>
     ///</summary>
+
+    [DataObjectAttribute()]
     public partial class <#=tabla.Name#>Control
     {
         LogEventos _eventos = new LogEventos();
 <#foreach (var proc in tabla.ProcsSelectVariosRegistros()) 
     {#>
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<<#=tabla.Name#>> <#=proc.Nombre#>(<#=proc.ParamsConTipo() #>)
         {
             return CBO.FillCollection<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
@@ -67,6 +70,7 @@ namespace <#=tabla.NombreNamespace#>
             .Replace("String SortField*","String SortField = \"Id\", ")
             .Replace("String SortDirection","String SortDirection = \"ASC\" ");
 #>
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<<#=tabla.Name#>> <#=proc.Nombre#>(<#=parametros #>)
         {
             return CBO.FillCollection<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
@@ -78,6 +82,7 @@ namespace <#=tabla.NombreNamespace#>
 <#  }#>
 <#foreach (var proc in tabla.ProcsSelectUnRegistro()) 
     {#>
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public <#=tabla.Name#> <#=proc.Nombre#>(<#=proc.ParamsConTipo() #>)
         {
             return CBO.FillObject<<#=tabla.Name#>>(DataProvider.Instance().ExecuteReader(
@@ -89,6 +94,7 @@ namespace <#=tabla.NombreNamespace#>
 <#  }#>
 <#foreach (var proc in tabla.ProcsIUD()) 
     {#>
+        [DataObjectMethodAttribute(DataObjectMethodType.<#=proc.Nombre=="_3Upd"?"Update":(proc.Nombre=="_4Del"?"Delete":"Insert")#>, true)]
         public int <#=proc.Nombre#>(<#=tabla.Name#> o)
         {
             try

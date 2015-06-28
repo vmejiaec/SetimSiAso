@@ -13,30 +13,30 @@ namespace SetimMod_asoServicio {
     public partial class asoPeriodoDebito_Rep {
         
         /// <summary>
-        /// hola control.
+        /// btSalir control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label hola;
+        protected global::System.Web.UI.WebControls.LinkButton btSalir;
         
         /// <summary>
-        /// ReportViewer1 control.
+        /// rv_Reporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_Reporte;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// odsDatos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsDatos;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
@@ -16,9 +16,12 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoPeriodo
     ///</summary>
+
+    [DataObjectAttribute()]
     public partial class asoPeriodoControl
     {
         LogEventos _eventos = new LogEventos();
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0SelByasoServicio_Id(Int32 p_asoServicio_Id)
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
@@ -27,6 +30,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0Sel()
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
@@ -35,6 +39,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0SelByAll(Int32? No_Periodo = null, DateTime? Fecha_Periodo = null, String Estado = null, String Descripcion = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
@@ -43,6 +48,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public asoPeriodo _1SelById(Int32 Id)
         {
             return CBO.FillObject<asoPeriodo>(DataProvider.Instance().ExecuteReader(
@@ -51,6 +57,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
         public int _3Upd(asoPeriodo o)
         {
             try
@@ -68,6 +75,7 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoPeriodo o)
         {
             try
@@ -85,6 +93,7 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Insert, true)]
         public int _2Ins(asoPeriodo o)
         {
             try
