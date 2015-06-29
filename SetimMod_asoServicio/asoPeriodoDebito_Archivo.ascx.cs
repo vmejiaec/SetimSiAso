@@ -100,7 +100,7 @@ namespace SetimMod_asoServicio
                     oDebito.asoServicio_Id = servicio_Id;
                     oDebito.asoSocio_Id = oSocio.Id;
                     oDebito.Valor = dValor;
-                    oDebito.Valor_Comision = dValor * porcentajeComision / 100;
+                    oDebito.Valor_Comision = Math.Round( dValor * porcentajeComision / 100, 2);
                     oDebito.Estado = "PEN";
                     oDebito.Descripcion = sDesc;
                     // Inserta en la tabla el débito
