@@ -99,6 +99,8 @@ namespace FlexiSqlTools.Core
             {
                 return string.Format("({0})", (row.CHARACTER_MAXIMUM_LENGTH == -1) ? "MAX" : row.CHARACTER_MAXIMUM_LENGTH.ToString());
             }
+            if (row.DATA_TYPE == "decimal")
+                return "(12,2)";
             return "";
         }
 

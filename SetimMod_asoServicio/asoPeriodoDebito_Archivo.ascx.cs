@@ -68,19 +68,48 @@ namespace SetimMod_asoServicio
                 asoServicioControl ctlServicio = new asoServicioControl();
                 var oServicio = ctlServicio._1SelById(servicio_Id);
                 decimal porcentajeComision = oServicio.Porcentaje_Comision;
-
-                asoPeriodoDebitoControl ctrPeriodoDebito = new asoPeriodoDebitoControl();
-
+                // Control para grabar los debitos
+                asoPeriodoDebitoControl ctlPeriodoDebito = new asoPeriodoDebitoControl();
+                // Control para consulta de usuarios
+                asoSocioControl ctlSocio = new asoSocioControl();
+                List<asoSocio> lstSocios = (List<asoSocio>) ctlSocio._0SelBy_asoServicio_Id_By_Prefijo(servicio_Id, "");
                 // Si para el período actual existen débitos cargados, primero los borra.
-
-                
-                foreach (var dr in dt.Rows)
+                var lstDebitosActuales = ctlPeriodoDebito._0SelByasoServicio_Id(servicio_Id);
+                foreach (var oDebActual in lstDebitosActuales)
+                {
+                    int resDel = ctlPeriodoDebito._4Del(oDebActual);
+                }
+                // Empieza el proceso del archivo
+                foreach (DataRow dr in dt.Rows)
                 {
                     asoPeriodoDebito oDebito = new asoPeriodoDebito();
-                    oDebito.asoPeriodo_Id = 1; //Período actual
+                    // Obtiene los datos del registro
+                    string sCI = dr["CI"].ToString();
+                    decimal dValor = decimal.Parse(dr["Valor"].ToString());
+                    string sDesc = dr["Descripcion"].ToString();
+                    // Consulta el Id del usuario con el CI del archivo excel
+                    var oSocio = lstSocios.Find(s => s.CI == sCI);
+                    if (oSocio == null)
+                    {
+                        noDebitosError ++; //pasa la mano con 10, jeje
+                        infoError += string.Format(" (*) El socio con CI: {0} no existe o no asignado. ",sCI);
+                        continue;
+                    }                    
+                    // Carga los datos en el objeto debito
+                    oDebito.asoPeriodo_Id = periodoActual_Id; //Período actual
+                    oDebito.asoServicio_Id = servicio_Id;
+                    oDebito.asoSocio_Id = oSocio.Id;
+                    oDebito.Valor = dValor;
+                    oDebito.Valor_Comision = dValor * porcentajeComision / 100;
+                    oDebito.Estado = "PEN";
+                    oDebito.Descripcion = sDesc;
+                    // Inserta en la tabla el débito
+                    ctlPeriodoDebito._2Ins(oDebito);
+                    noDebitosProcesados++;
                 }
 
-                paginaEstado.Avisos = string.Format("Debitos generados: {0}", 1);
+                paginaEstado.Avisos = string.Format("Debitos Procesados: {0}. Errores encontrados {1}. {2}", 
+                    noDebitosProcesados, noDebitosError, infoError);
                 Response.Redirect(Request.RawUrl, false);
                 Context.ApplicationInstance.CompleteRequest();
             }

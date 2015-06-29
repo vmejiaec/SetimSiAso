@@ -31,7 +31,7 @@ namespace FlexiSqlTools.Core
                                  "-- ============================================={1}",
                                  DateTime.Now, Environment.NewLine);
         }
-
+         
         public static string GenerateQueryFromTemplate(string dbName, IEnumerable<vw_SPGenenerator> allColumnsOfTable, StoredProcedureConfig spConfig, string template)
         {
             bool hasIdentity = allColumnsOfTable.HasIdentity();

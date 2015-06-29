@@ -8,3 +8,8 @@ C:\Victor\SetimDNN\SetimGeneraSPs\Core\bin\Debug\FlexiSqlTools.Core.pdb
 C:\Victor\SetimDNN\SetimGeneraSPs\Core\obj\Debug\Flexi Sql Tools Core.csprojResolveAssemblyReference.cache
 C:\Victor\SetimDNN\SetimGeneraSPs\Core\obj\Debug\FlexiSqlTools.Core.dll
 C:\Victor\SetimDNN\SetimGeneraSPs\Core\obj\Debug\FlexiSqlTools.Core.pdb
+C:\Victor\SetimDNN\SetimSiAso\Core\bin\Debug\FlexiSqlTools.Core.dll
+C:\Victor\SetimDNN\SetimSiAso\Core\bin\Debug\FlexiSqlTools.Core.pdb
+C:\Victor\SetimDNN\SetimSiAso\Core\obj\Debug\Flexi Sql Tools Core.csprojResolveAssemblyReference.cache
+C:\Victor\SetimDNN\SetimSiAso\Core\obj\Debug\FlexiSqlTools.Core.dll
+C:\Victor\SetimDNN\SetimSiAso\Core\obj\Debug\FlexiSqlTools.Core.pdb
