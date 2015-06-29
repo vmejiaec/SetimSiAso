@@ -31,21 +31,30 @@ namespace SetimMod_asoServicio {
         protected global::System.Web.UI.WebControls.LinkButton btProcesarArchivo;
         
         /// <summary>
-        /// FileUpload control.
+        /// btSalir control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl FileUpload;
+        protected global::System.Web.UI.WebControls.LinkButton btSalir;
         
         /// <summary>
-        /// FilePicker control.
+        /// lbId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DotNetNuke.Web.UI.WebControls.DnnFilePicker FilePicker;
+        protected global::System.Web.UI.UserControl lbId;
+        
+        /// <summary>
+        /// fpArchivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.Web.UI.WebControls.DnnFilePicker fpArchivo;
     }
 }

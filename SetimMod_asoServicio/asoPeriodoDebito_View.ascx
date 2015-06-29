@@ -10,6 +10,7 @@
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
     <li><asp:LinkButton runat="server" ID="btGenerarDebitos" Text="Generar Débitos" CssClass="dnnSecondaryAction confirm" OnClick="btGenerarDebitos_OnClick" /></li>
+    <li><asp:HyperLink runat="server" ID="hlCargaArchivo" Text="Carga de Archivo" CssClass="dnnSecondaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="Reporte" Text="Reporte" CssClass="dnnSecondaryAction" /></li>
 </ul>
 

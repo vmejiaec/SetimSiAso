@@ -40,6 +40,15 @@ namespace SetimMod_asoPeriodoDebito {
         protected global::System.Web.UI.WebControls.LinkButton btGenerarDebitos;
         
         /// <summary>
+        /// hlCargaArchivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlCargaArchivo;
+        
+        /// <summary>
         /// Reporte control.
         /// </summary>
         /// <remarks>
