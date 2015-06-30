@@ -13,6 +13,15 @@ namespace SetimMod_asoPeriodo {
     public partial class asoPeriodo_View {
         
         /// <summary>
+        /// lbTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTitulo;
+        
+        /// <summary>
         /// btAccion control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,24 @@ namespace SetimMod_asoPeriodo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btAccion;
+        
+        /// <summary>
+        /// lbMarcarPagados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbMarcarPagados;
+        
+        /// <summary>
+        /// lbPeriodoActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbPeriodoActual;
         
         /// <summary>
         /// pnFiltros control.

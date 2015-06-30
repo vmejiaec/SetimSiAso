@@ -51,16 +51,17 @@
     <FooterStyle CssClass="dnnGridFooter" />
 
     <Columns>
-        <asp:BoundColumn DataField="Id"                 HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="asoServicio_Id"     HeaderText="Servicio_Id" HeaderStyle-Width="50px" SortExpression="asoServicio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" Visible="false" />
-        <asp:BoundColumn DataField="asoPeriodo_Id"      HeaderText="Periodo Id" HeaderStyle-Width="50px" SortExpression="asoPeriodo_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="asoPeriodo_Fecha"   HeaderText="Fecha" HeaderStyle-Width="50px" SortExpression="asoPeriodo_Fecha" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="asoSocio_Id"        HeaderText="Socio Id" HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="asoSocio_Nombre"    HeaderText="Socio Nombre" HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
-        <asp:BoundColumn DataField="Valor"              HeaderText="Valor" HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="Valor_Comision"     HeaderText="Valor Comision" HeaderStyle-Width="50px" SortExpression="Valor_Comision" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="Estado"             HeaderText="Estado" HeaderStyle-Width="50px" SortExpression="Estado" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripcion" HeaderStyle-Width="50px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="Id"                 HeaderText="Id"                 HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoServicio_Id"     HeaderText="Servicio_Id"        HeaderStyle-Width="50px" SortExpression="asoServicio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" Visible="false" />
+        <asp:BoundColumn DataField="asoPeriodo_Id"      HeaderText="Periodo Id"         HeaderStyle-Width="50px" SortExpression="asoPeriodo_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="asoPeriodo_Fecha"   HeaderText="Fecha"              HeaderStyle-Width="50px" SortExpression="asoPeriodo_Fecha" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="asoSocio_Id"        HeaderText="Socio Id"           HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="asoSocio_Nombre"    HeaderText="Socio Nombre"       HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="Valor"              HeaderText="Valor"              HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Valor_Comision"     HeaderText="Valor Comision"     HeaderStyle-Width="50px" SortExpression="Valor_Comision" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Valor_Mas_Comision" HeaderText="Valor más Comision" HeaderStyle-Width="50px" SortExpression="Valor_Mas_Comision" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="Estado"             HeaderText="Estado"             HeaderStyle-Width="50px" SortExpression="Estado" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundColumn DataField="Descripcion"        HeaderText="Descripción"        HeaderStyle-Width="50px" SortExpression="Descripcion" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
 
         <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>

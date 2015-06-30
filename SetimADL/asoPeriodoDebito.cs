@@ -18,5 +18,10 @@ namespace SetimBasico
         public String Descripcion { get; set; }
         public String asoSocio_Nombre { get; set; }
         public DateTime asoPeriodo_Fecha { get; set; }
+        public Decimal Valor_Mas_Comision { get; set; }
+        public Int32 No_Cuotas { get; set; }
+        public Int32 No_Cuotas_PEN { get; set; }
+        public Int32 No_Cuotas_COB { get; set; }
+        public String Desc_Coutas { get; set; }
     }
 }

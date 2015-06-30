@@ -51,6 +51,10 @@ namespace SetimMod_asoPeriodo
                 // Carga de datos
                 ConsultaDatos();
             }
+            // Publica en el título el período actual
+            asoParametroControl ctlParam = new asoParametroControl();
+            var oParam = ctlParam._1SelById(1);
+            lbTitulo.Text = string.Format("Periódo actual: ({0}) {1:d}", oParam.asoPeriodo_Id_Actual, oParam.asoPeriodo_Actual_Fecha);
             // Inicializa el botón de edición
             //addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
         }
@@ -234,12 +238,48 @@ namespace SetimMod_asoPeriodo
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
-        // Boton para ejecutar una accion
-        protected void btConfigAportes_OnClick(object sender, EventArgs e)
+        // Boton para marcar pagados los débitos, aportes y cuotas del período actual 
+        protected void lbMarcarPagados_OnClick(object sender, EventArgs e)
         {
-            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
-            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
-            Response.Redirect(url + "?popUp=true");
+            try
+            {
+                _EntidadControl._5MarcarPagados((int)paginaEstado.Master_Id);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Error al marcar como pagados. Mire en el visor de eventos.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+        // Boton para hacer que el período seleccionado sea el período actual
+        protected void lbPeriodoActual_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                asoParametroControl ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+                oParam.asoPeriodo_Id_Actual = (int) paginaEstado.Master_Id;
+                ctlParam._3Upd(oParam);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Error al poner el período actual. Mire en el visor de eventos.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
         }
     }
 }

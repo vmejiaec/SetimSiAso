@@ -4,6 +4,10 @@
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
+<asp:Label runat="server" ID="lbTitulo" ForeColor="#3399FF" Font-Italic="true" Font-Bold="true"></asp:Label>
+
+<br />
+
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="btSociosRegistrados" Text="Socios Registrados" CssClass="dnnSecondaryAction" /></li>

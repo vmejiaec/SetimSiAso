@@ -167,6 +167,13 @@
     <Content Include="_dnndev_meDataSet.xsc">
       <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
     <None Include="_dnndev_meDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>_dnndev_meDataSet.Designer.cs</LastGenOutput>

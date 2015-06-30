@@ -20,7 +20,7 @@
         <legend></legend>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
-            <asp:TextBox runat="server" ID="tbId" Enabled="true" />
+            <asp:TextBox runat="server" ID="tbId" Enabled="false" />
             <asp:RequiredFieldValidator ID="rfv_tbId" runat="server" ControlToValidate="tbId" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">

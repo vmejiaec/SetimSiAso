@@ -24,7 +24,7 @@ namespace SetimMod_asoServicio {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class _dnndev_meDataSet : global::System.Data.DataSet {
         
-        private sp_asoPeriodoDebito_0SelDataTable tablesp_asoPeriodoDebito_0Sel;
+        private asoPeriodoDebitoDataTable tableasoPeriodoDebito;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace SetimMod_asoServicio {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["sp_asoPeriodoDebito_0Sel"] != null)) {
-                    base.Tables.Add(new sp_asoPeriodoDebito_0SelDataTable(ds.Tables["sp_asoPeriodoDebito_0Sel"]));
+                if ((ds.Tables["asoPeriodoDebito"] != null)) {
+                    base.Tables.Add(new asoPeriodoDebitoDataTable(ds.Tables["asoPeriodoDebito"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace SetimMod_asoServicio {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sp_asoPeriodoDebito_0SelDataTable sp_asoPeriodoDebito_0Sel {
+        public asoPeriodoDebitoDataTable asoPeriodoDebito {
             get {
-                return this.tablesp_asoPeriodoDebito_0Sel;
+                return this.tableasoPeriodoDebito;
             }
         }
         
@@ -152,8 +152,8 @@ namespace SetimMod_asoServicio {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["sp_asoPeriodoDebito_0Sel"] != null)) {
-                    base.Tables.Add(new sp_asoPeriodoDebito_0SelDataTable(ds.Tables["sp_asoPeriodoDebito_0Sel"]));
+                if ((ds.Tables["asoPeriodoDebito"] != null)) {
+                    base.Tables.Add(new asoPeriodoDebitoDataTable(ds.Tables["asoPeriodoDebito"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace SetimMod_asoServicio {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablesp_asoPeriodoDebito_0Sel = ((sp_asoPeriodoDebito_0SelDataTable)(base.Tables["sp_asoPeriodoDebito_0Sel"]));
+            this.tableasoPeriodoDebito = ((asoPeriodoDebitoDataTable)(base.Tables["asoPeriodoDebito"]));
             if ((initTable == true)) {
-                if ((this.tablesp_asoPeriodoDebito_0Sel != null)) {
-                    this.tablesp_asoPeriodoDebito_0Sel.InitVars();
+                if ((this.tableasoPeriodoDebito != null)) {
+                    this.tableasoPeriodoDebito.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace SetimMod_asoServicio {
             this.Namespace = "http://tempuri.org/_dnndev_meDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablesp_asoPeriodoDebito_0Sel = new sp_asoPeriodoDebito_0SelDataTable();
-            base.Tables.Add(this.tablesp_asoPeriodoDebito_0Sel);
+            this.tableasoPeriodoDebito = new asoPeriodoDebitoDataTable();
+            base.Tables.Add(this.tableasoPeriodoDebito);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializesp_asoPeriodoDebito_0Sel() {
+        private bool ShouldSerializeasoPeriodoDebito() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace SetimMod_asoServicio {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void sp_asoPeriodoDebito_0SelRowChangeEventHandler(object sender, sp_asoPeriodoDebito_0SelRowChangeEvent e);
+        public delegate void asoPeriodoDebitoRowChangeEventHandler(object sender, asoPeriodoDebitoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sp_asoPeriodoDebito_0SelDataTable : global::System.Data.TypedTableBase<sp_asoPeriodoDebito_0SelRow> {
+        public partial class asoPeriodoDebitoDataTable : global::System.Data.TypedTableBase<asoPeriodoDebitoRow> {
             
             private global::System.Data.DataColumn columnId;
             
@@ -299,10 +299,20 @@ namespace SetimMod_asoServicio {
             
             private global::System.Data.DataColumn columnasoPeriodo_Fecha;
             
+            private global::System.Data.DataColumn columnValor_Mas_Comision;
+            
+            private global::System.Data.DataColumn columnNo_Cuotas;
+            
+            private global::System.Data.DataColumn columnNo_Cuotas_PEN;
+            
+            private global::System.Data.DataColumn columnNo_Cuotas_COB;
+            
+            private global::System.Data.DataColumn columnDesc_Coutas;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelDataTable() {
-                this.TableName = "sp_asoPeriodoDebito_0Sel";
+            public asoPeriodoDebitoDataTable() {
+                this.TableName = "asoPeriodoDebito";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -310,7 +320,7 @@ namespace SetimMod_asoServicio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_asoPeriodoDebito_0SelDataTable(global::System.Data.DataTable table) {
+            internal asoPeriodoDebitoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -327,7 +337,7 @@ namespace SetimMod_asoServicio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected sp_asoPeriodoDebito_0SelDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected asoPeriodoDebitoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -414,6 +424,46 @@ namespace SetimMod_asoServicio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Valor_Mas_ComisionColumn {
+                get {
+                    return this.columnValor_Mas_Comision;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn No_CuotasColumn {
+                get {
+                    return this.columnNo_Cuotas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn No_Cuotas_PENColumn {
+                get {
+                    return this.columnNo_Cuotas_PEN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn No_Cuotas_COBColumn {
+                get {
+                    return this.columnNo_Cuotas_COB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Desc_CoutasColumn {
+                get {
+                    return this.columnDesc_Coutas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -423,34 +473,34 @@ namespace SetimMod_asoServicio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRow this[int index] {
+            public asoPeriodoDebitoRow this[int index] {
                 get {
-                    return ((sp_asoPeriodoDebito_0SelRow)(this.Rows[index]));
+                    return ((asoPeriodoDebitoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_asoPeriodoDebito_0SelRowChangeEventHandler sp_asoPeriodoDebito_0SelRowChanging;
+            public event asoPeriodoDebitoRowChangeEventHandler asoPeriodoDebitoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_asoPeriodoDebito_0SelRowChangeEventHandler sp_asoPeriodoDebito_0SelRowChanged;
+            public event asoPeriodoDebitoRowChangeEventHandler asoPeriodoDebitoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_asoPeriodoDebito_0SelRowChangeEventHandler sp_asoPeriodoDebito_0SelRowDeleting;
+            public event asoPeriodoDebitoRowChangeEventHandler asoPeriodoDebitoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event sp_asoPeriodoDebito_0SelRowChangeEventHandler sp_asoPeriodoDebito_0SelRowDeleted;
+            public event asoPeriodoDebitoRowChangeEventHandler asoPeriodoDebitoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addsp_asoPeriodoDebito_0SelRow(sp_asoPeriodoDebito_0SelRow row) {
+            public void AddasoPeriodoDebitoRow(asoPeriodoDebitoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRow Addsp_asoPeriodoDebito_0SelRow(int asoPeriodo_Id, int asoServicio_Id, int asoSocio_Id, decimal Valor, decimal Valor_Comision, string Estado, string Descripcion, string asoSocio_Nombre, System.DateTime asoPeriodo_Fecha) {
-                sp_asoPeriodoDebito_0SelRow rowsp_asoPeriodoDebito_0SelRow = ((sp_asoPeriodoDebito_0SelRow)(this.NewRow()));
+            public asoPeriodoDebitoRow AddasoPeriodoDebitoRow(int asoPeriodo_Id, int asoServicio_Id, int asoSocio_Id, decimal Valor, decimal Valor_Comision, string Estado, string Descripcion, string asoSocio_Nombre, System.DateTime asoPeriodo_Fecha, decimal Valor_Mas_Comision, int No_Cuotas, int No_Cuotas_PEN, int No_Cuotas_COB, string Desc_Coutas) {
+                asoPeriodoDebitoRow rowasoPeriodoDebitoRow = ((asoPeriodoDebitoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         asoPeriodo_Id,
@@ -461,23 +511,28 @@ namespace SetimMod_asoServicio {
                         Estado,
                         Descripcion,
                         asoSocio_Nombre,
-                        asoPeriodo_Fecha};
-                rowsp_asoPeriodoDebito_0SelRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsp_asoPeriodoDebito_0SelRow);
-                return rowsp_asoPeriodoDebito_0SelRow;
+                        asoPeriodo_Fecha,
+                        Valor_Mas_Comision,
+                        No_Cuotas,
+                        No_Cuotas_PEN,
+                        No_Cuotas_COB,
+                        Desc_Coutas};
+                rowasoPeriodoDebitoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowasoPeriodoDebitoRow);
+                return rowasoPeriodoDebitoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRow FindById(int Id) {
-                return ((sp_asoPeriodoDebito_0SelRow)(this.Rows.Find(new object[] {
+            public asoPeriodoDebitoRow FindById(int Id) {
+                return ((asoPeriodoDebitoRow)(this.Rows.Find(new object[] {
                             Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sp_asoPeriodoDebito_0SelDataTable cln = ((sp_asoPeriodoDebito_0SelDataTable)(base.Clone()));
+                asoPeriodoDebitoDataTable cln = ((asoPeriodoDebitoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -485,7 +540,7 @@ namespace SetimMod_asoServicio {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sp_asoPeriodoDebito_0SelDataTable();
+                return new asoPeriodoDebitoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -501,6 +556,11 @@ namespace SetimMod_asoServicio {
                 this.columnDescripcion = base.Columns["Descripcion"];
                 this.columnasoSocio_Nombre = base.Columns["asoSocio_Nombre"];
                 this.columnasoPeriodo_Fecha = base.Columns["asoPeriodo_Fecha"];
+                this.columnValor_Mas_Comision = base.Columns["Valor_Mas_Comision"];
+                this.columnNo_Cuotas = base.Columns["No_Cuotas"];
+                this.columnNo_Cuotas_PEN = base.Columns["No_Cuotas_PEN"];
+                this.columnNo_Cuotas_COB = base.Columns["No_Cuotas_COB"];
+                this.columnDesc_Coutas = base.Columns["Desc_Coutas"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -526,9 +586,21 @@ namespace SetimMod_asoServicio {
                 base.Columns.Add(this.columnasoSocio_Nombre);
                 this.columnasoPeriodo_Fecha = new global::System.Data.DataColumn("asoPeriodo_Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnasoPeriodo_Fecha);
+                this.columnValor_Mas_Comision = new global::System.Data.DataColumn("Valor_Mas_Comision", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValor_Mas_Comision);
+                this.columnNo_Cuotas = new global::System.Data.DataColumn("No_Cuotas", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNo_Cuotas);
+                this.columnNo_Cuotas_PEN = new global::System.Data.DataColumn("No_Cuotas_PEN", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNo_Cuotas_PEN);
+                this.columnNo_Cuotas_COB = new global::System.Data.DataColumn("No_Cuotas_COB", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNo_Cuotas_COB);
+                this.columnDesc_Coutas = new global::System.Data.DataColumn("Desc_Coutas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDesc_Coutas);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
+                this.columnId.AutoIncrementSeed = -1;
+                this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
                 this.columnId.ReadOnly = true;
                 this.columnId.Unique = true;
@@ -544,32 +616,38 @@ namespace SetimMod_asoServicio {
                 this.columnasoSocio_Nombre.ReadOnly = true;
                 this.columnasoSocio_Nombre.MaxLength = 100;
                 this.columnasoPeriodo_Fecha.ReadOnly = true;
+                this.columnValor_Mas_Comision.ReadOnly = true;
+                this.columnNo_Cuotas.ReadOnly = true;
+                this.columnNo_Cuotas_PEN.ReadOnly = true;
+                this.columnNo_Cuotas_COB.ReadOnly = true;
+                this.columnDesc_Coutas.ReadOnly = true;
+                this.columnDesc_Coutas.MaxLength = 9;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRow Newsp_asoPeriodoDebito_0SelRow() {
-                return ((sp_asoPeriodoDebito_0SelRow)(this.NewRow()));
+            public asoPeriodoDebitoRow NewasoPeriodoDebitoRow() {
+                return ((asoPeriodoDebitoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sp_asoPeriodoDebito_0SelRow(builder);
+                return new asoPeriodoDebitoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sp_asoPeriodoDebito_0SelRow);
+                return typeof(asoPeriodoDebitoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sp_asoPeriodoDebito_0SelRowChanged != null)) {
-                    this.sp_asoPeriodoDebito_0SelRowChanged(this, new sp_asoPeriodoDebito_0SelRowChangeEvent(((sp_asoPeriodoDebito_0SelRow)(e.Row)), e.Action));
+                if ((this.asoPeriodoDebitoRowChanged != null)) {
+                    this.asoPeriodoDebitoRowChanged(this, new asoPeriodoDebitoRowChangeEvent(((asoPeriodoDebitoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -577,8 +655,8 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sp_asoPeriodoDebito_0SelRowChanging != null)) {
-                    this.sp_asoPeriodoDebito_0SelRowChanging(this, new sp_asoPeriodoDebito_0SelRowChangeEvent(((sp_asoPeriodoDebito_0SelRow)(e.Row)), e.Action));
+                if ((this.asoPeriodoDebitoRowChanging != null)) {
+                    this.asoPeriodoDebitoRowChanging(this, new asoPeriodoDebitoRowChangeEvent(((asoPeriodoDebitoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -586,8 +664,8 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sp_asoPeriodoDebito_0SelRowDeleted != null)) {
-                    this.sp_asoPeriodoDebito_0SelRowDeleted(this, new sp_asoPeriodoDebito_0SelRowChangeEvent(((sp_asoPeriodoDebito_0SelRow)(e.Row)), e.Action));
+                if ((this.asoPeriodoDebitoRowDeleted != null)) {
+                    this.asoPeriodoDebitoRowDeleted(this, new asoPeriodoDebitoRowChangeEvent(((asoPeriodoDebitoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -595,14 +673,14 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sp_asoPeriodoDebito_0SelRowDeleting != null)) {
-                    this.sp_asoPeriodoDebito_0SelRowDeleting(this, new sp_asoPeriodoDebito_0SelRowChangeEvent(((sp_asoPeriodoDebito_0SelRow)(e.Row)), e.Action));
+                if ((this.asoPeriodoDebitoRowDeleting != null)) {
+                    this.asoPeriodoDebitoRowDeleting(this, new asoPeriodoDebitoRowChangeEvent(((asoPeriodoDebitoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removesp_asoPeriodoDebito_0SelRow(sp_asoPeriodoDebito_0SelRow row) {
+            public void RemoveasoPeriodoDebitoRow(asoPeriodoDebitoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -629,7 +707,7 @@ namespace SetimMod_asoServicio {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sp_asoPeriodoDebito_0SelDataTable";
+                attribute2.FixedValue = "asoPeriodoDebitoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -673,25 +751,25 @@ namespace SetimMod_asoServicio {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sp_asoPeriodoDebito_0SelRow : global::System.Data.DataRow {
+        public partial class asoPeriodoDebitoRow : global::System.Data.DataRow {
             
-            private sp_asoPeriodoDebito_0SelDataTable tablesp_asoPeriodoDebito_0Sel;
+            private asoPeriodoDebitoDataTable tableasoPeriodoDebito;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal sp_asoPeriodoDebito_0SelRow(global::System.Data.DataRowBuilder rb) : 
+            internal asoPeriodoDebitoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesp_asoPeriodoDebito_0Sel = ((sp_asoPeriodoDebito_0SelDataTable)(this.Table));
+                this.tableasoPeriodoDebito = ((asoPeriodoDebitoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    return ((int)(this[this.tablesp_asoPeriodoDebito_0Sel.IdColumn]));
+                    return ((int)(this[this.tableasoPeriodoDebito.IdColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.IdColumn] = value;
+                    this[this.tableasoPeriodoDebito.IdColumn] = value;
                 }
             }
             
@@ -699,10 +777,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int asoPeriodo_Id {
                 get {
-                    return ((int)(this[this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_IdColumn]));
+                    return ((int)(this[this.tableasoPeriodoDebito.asoPeriodo_IdColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_IdColumn] = value;
+                    this[this.tableasoPeriodoDebito.asoPeriodo_IdColumn] = value;
                 }
             }
             
@@ -710,10 +788,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int asoServicio_Id {
                 get {
-                    return ((int)(this[this.tablesp_asoPeriodoDebito_0Sel.asoServicio_IdColumn]));
+                    return ((int)(this[this.tableasoPeriodoDebito.asoServicio_IdColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.asoServicio_IdColumn] = value;
+                    this[this.tableasoPeriodoDebito.asoServicio_IdColumn] = value;
                 }
             }
             
@@ -721,10 +799,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int asoSocio_Id {
                 get {
-                    return ((int)(this[this.tablesp_asoPeriodoDebito_0Sel.asoSocio_IdColumn]));
+                    return ((int)(this[this.tableasoPeriodoDebito.asoSocio_IdColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.asoSocio_IdColumn] = value;
+                    this[this.tableasoPeriodoDebito.asoSocio_IdColumn] = value;
                 }
             }
             
@@ -732,10 +810,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Valor {
                 get {
-                    return ((decimal)(this[this.tablesp_asoPeriodoDebito_0Sel.ValorColumn]));
+                    return ((decimal)(this[this.tableasoPeriodoDebito.ValorColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.ValorColumn] = value;
+                    this[this.tableasoPeriodoDebito.ValorColumn] = value;
                 }
             }
             
@@ -743,10 +821,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Valor_Comision {
                 get {
-                    return ((decimal)(this[this.tablesp_asoPeriodoDebito_0Sel.Valor_ComisionColumn]));
+                    return ((decimal)(this[this.tableasoPeriodoDebito.Valor_ComisionColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.Valor_ComisionColumn] = value;
+                    this[this.tableasoPeriodoDebito.Valor_ComisionColumn] = value;
                 }
             }
             
@@ -754,10 +832,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Estado {
                 get {
-                    return ((string)(this[this.tablesp_asoPeriodoDebito_0Sel.EstadoColumn]));
+                    return ((string)(this[this.tableasoPeriodoDebito.EstadoColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.EstadoColumn] = value;
+                    this[this.tableasoPeriodoDebito.EstadoColumn] = value;
                 }
             }
             
@@ -765,10 +843,10 @@ namespace SetimMod_asoServicio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Descripcion {
                 get {
-                    return ((string)(this[this.tablesp_asoPeriodoDebito_0Sel.DescripcionColumn]));
+                    return ((string)(this[this.tableasoPeriodoDebito.DescripcionColumn]));
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.DescripcionColumn] = value;
+                    this[this.tableasoPeriodoDebito.DescripcionColumn] = value;
                 }
             }
             
@@ -777,15 +855,14 @@ namespace SetimMod_asoServicio {
             public string asoSocio_Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tablesp_asoPeriodoDebito_0Sel.asoSocio_NombreColumn]));
+                        return ((string)(this[this.tableasoPeriodoDebito.asoSocio_NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'asoSocio_Nombre\' in table \'sp_asoPeriodoDebito_0Sel\' is DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'asoSocio_Nombre\' in table \'asoPeriodoDebito\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.asoSocio_NombreColumn] = value;
+                    this[this.tableasoPeriodoDebito.asoSocio_NombreColumn] = value;
                 }
             }
             
@@ -794,40 +871,179 @@ namespace SetimMod_asoServicio {
             public System.DateTime asoPeriodo_Fecha {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_FechaColumn]));
+                        return ((global::System.DateTime)(this[this.tableasoPeriodoDebito.asoPeriodo_FechaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'asoPeriodo_Fecha\' in table \'sp_asoPeriodoDebito_0Sel\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'asoPeriodo_Fecha\' in table \'asoPeriodoDebito\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_FechaColumn] = value;
+                    this[this.tableasoPeriodoDebito.asoPeriodo_FechaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Valor_Mas_Comision {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableasoPeriodoDebito.Valor_Mas_ComisionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Valor_Mas_Comision\' in table \'asoPeriodoDebito\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableasoPeriodoDebito.Valor_Mas_ComisionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int No_Cuotas {
+                get {
+                    try {
+                        return ((int)(this[this.tableasoPeriodoDebito.No_CuotasColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'No_Cuotas\' in table \'asoPeriodoDebito\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableasoPeriodoDebito.No_CuotasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int No_Cuotas_PEN {
+                get {
+                    try {
+                        return ((int)(this[this.tableasoPeriodoDebito.No_Cuotas_PENColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'No_Cuotas_PEN\' in table \'asoPeriodoDebito\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableasoPeriodoDebito.No_Cuotas_PENColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int No_Cuotas_COB {
+                get {
+                    try {
+                        return ((int)(this[this.tableasoPeriodoDebito.No_Cuotas_COBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'No_Cuotas_COB\' in table \'asoPeriodoDebito\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableasoPeriodoDebito.No_Cuotas_COBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Desc_Coutas {
+                get {
+                    try {
+                        return ((string)(this[this.tableasoPeriodoDebito.Desc_CoutasColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Desc_Coutas\' in table \'asoPeriodoDebito\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableasoPeriodoDebito.Desc_CoutasColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsasoSocio_NombreNull() {
-                return this.IsNull(this.tablesp_asoPeriodoDebito_0Sel.asoSocio_NombreColumn);
+                return this.IsNull(this.tableasoPeriodoDebito.asoSocio_NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetasoSocio_NombreNull() {
-                this[this.tablesp_asoPeriodoDebito_0Sel.asoSocio_NombreColumn] = global::System.Convert.DBNull;
+                this[this.tableasoPeriodoDebito.asoSocio_NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsasoPeriodo_FechaNull() {
-                return this.IsNull(this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_FechaColumn);
+                return this.IsNull(this.tableasoPeriodoDebito.asoPeriodo_FechaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetasoPeriodo_FechaNull() {
-                this[this.tablesp_asoPeriodoDebito_0Sel.asoPeriodo_FechaColumn] = global::System.Convert.DBNull;
+                this[this.tableasoPeriodoDebito.asoPeriodo_FechaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsValor_Mas_ComisionNull() {
+                return this.IsNull(this.tableasoPeriodoDebito.Valor_Mas_ComisionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetValor_Mas_ComisionNull() {
+                this[this.tableasoPeriodoDebito.Valor_Mas_ComisionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNo_CuotasNull() {
+                return this.IsNull(this.tableasoPeriodoDebito.No_CuotasColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNo_CuotasNull() {
+                this[this.tableasoPeriodoDebito.No_CuotasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNo_Cuotas_PENNull() {
+                return this.IsNull(this.tableasoPeriodoDebito.No_Cuotas_PENColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNo_Cuotas_PENNull() {
+                this[this.tableasoPeriodoDebito.No_Cuotas_PENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNo_Cuotas_COBNull() {
+                return this.IsNull(this.tableasoPeriodoDebito.No_Cuotas_COBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNo_Cuotas_COBNull() {
+                this[this.tableasoPeriodoDebito.No_Cuotas_COBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDesc_CoutasNull() {
+                return this.IsNull(this.tableasoPeriodoDebito.Desc_CoutasColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDesc_CoutasNull() {
+                this[this.tableasoPeriodoDebito.Desc_CoutasColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -835,22 +1051,22 @@ namespace SetimMod_asoServicio {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class sp_asoPeriodoDebito_0SelRowChangeEvent : global::System.EventArgs {
+        public class asoPeriodoDebitoRowChangeEvent : global::System.EventArgs {
             
-            private sp_asoPeriodoDebito_0SelRow eventRow;
+            private asoPeriodoDebitoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRowChangeEvent(sp_asoPeriodoDebito_0SelRow row, global::System.Data.DataRowAction action) {
+            public asoPeriodoDebitoRowChangeEvent(asoPeriodoDebitoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sp_asoPeriodoDebito_0SelRow Row {
+            public asoPeriodoDebitoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -878,7 +1094,7 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sp_asoPeriodoDebito_0SelTableAdapter : global::System.ComponentModel.Component {
+    public partial class asoPeriodoDebitoTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -892,7 +1108,7 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public sp_asoPeriodoDebito_0SelTableAdapter() {
+        public asoPeriodoDebitoTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -989,7 +1205,7 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "sp_asoPeriodoDebito_0Sel";
+            tableMapping.DataSetTable = "asoPeriodoDebito";
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("asoPeriodo_Id", "asoPeriodo_Id");
             tableMapping.ColumnMappings.Add("asoServicio_Id", "asoServicio_Id");
@@ -1000,7 +1216,42 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
             tableMapping.ColumnMappings.Add("asoSocio_Nombre", "asoSocio_Nombre");
             tableMapping.ColumnMappings.Add("asoPeriodo_Fecha", "asoPeriodo_Fecha");
+            tableMapping.ColumnMappings.Add("Valor_Mas_Comision", "Valor_Mas_Comision");
+            tableMapping.ColumnMappings.Add("No_Cuotas", "No_Cuotas");
+            tableMapping.ColumnMappings.Add("No_Cuotas_PEN", "No_Cuotas_PEN");
+            tableMapping.ColumnMappings.Add("No_Cuotas_COB", "No_Cuotas_COB");
+            tableMapping.ColumnMappings.Add("Desc_Coutas", "Desc_Coutas");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [asoPeriodoDebito] WHERE (([Id] = @Original_Id))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [asoPeriodoDebito] ([asoPeriodo_Id], [asoServicio_Id], [asoSocio_Id]," +
+                " [Valor], [Valor_Comision], [Estado], [Descripcion]) VALUES (@asoPeriodo_Id, @as" +
+                "oServicio_Id, @asoSocio_Id, @Valor, @Valor_Comision, @Estado, @Descripcion)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoPeriodo_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoPeriodo_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoServicio_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoServicio_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoSocio_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoSocio_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 12, 2, "Valor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor_Comision", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 12, 2, "Valor_Comision", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Estado", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [asoPeriodoDebito] SET [asoPeriodo_Id] = @asoPeriodo_Id, [asoServicio_Id] = @asoServicio_Id, [asoSocio_Id] = @asoSocio_Id, [Valor] = @Valor, [Valor_Comision] = @Valor_Comision, [Estado] = @Estado, [Descripcion] = @Descripcion WHERE (([Id] = @Original_Id))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoPeriodo_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoPeriodo_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoServicio_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoServicio_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@asoSocio_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "asoSocio_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 12, 2, "Valor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor_Comision", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 12, 2, "Valor_Comision", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Estado", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1016,16 +1267,17 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sp_asoPeriodoDebito_0Sel";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = @"SELECT        Id, asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, Valor_Mas_Comision, 
+                         No_Cuotas, No_Cuotas_PEN, No_Cuotas_COB, Desc_Coutas
+FROM            asoPeriodoDebito";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_dnndev_meDataSet.sp_asoPeriodoDebito_0SelDataTable dataTable) {
+        public virtual int Fill(_dnndev_meDataSet.asoPeriodoDebitoDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1038,11 +1290,139 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _dnndev_meDataSet.sp_asoPeriodoDebito_0SelDataTable GetData() {
+        public virtual _dnndev_meDataSet.asoPeriodoDebitoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _dnndev_meDataSet.sp_asoPeriodoDebito_0SelDataTable dataTable = new _dnndev_meDataSet.sp_asoPeriodoDebito_0SelDataTable();
+            _dnndev_meDataSet.asoPeriodoDebitoDataTable dataTable = new _dnndev_meDataSet.asoPeriodoDebitoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(_dnndev_meDataSet.asoPeriodoDebitoDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(_dnndev_meDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "asoPeriodoDebito");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_Id) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int asoPeriodo_Id, int asoServicio_Id, int asoSocio_Id, decimal Valor, decimal Valor_Comision, string Estado, string Descripcion) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(asoPeriodo_Id));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(asoServicio_Id));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(asoSocio_Id));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(Valor));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(Valor_Comision));
+            if ((Estado == null)) {
+                throw new global::System.ArgumentNullException("Estado");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Estado));
+            }
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Descripcion));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int asoPeriodo_Id, int asoServicio_Id, int asoSocio_Id, decimal Valor, decimal Valor_Comision, string Estado, string Descripcion, int Original_Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(asoPeriodo_Id));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(asoServicio_Id));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(asoSocio_Id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(Valor));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(Valor_Comision));
+            if ((Estado == null)) {
+                throw new global::System.ArgumentNullException("Estado");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Estado));
+            }
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Descripcion));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
         }
     }
     
@@ -1058,6 +1438,8 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
+        private asoPeriodoDebitoTableAdapter _asoPeriodoDebitoTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -1070,6 +1452,20 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public asoPeriodoDebitoTableAdapter asoPeriodoDebitoTableAdapter {
+            get {
+                return this._asoPeriodoDebitoTableAdapter;
+            }
+            set {
+                this._asoPeriodoDebitoTableAdapter = value;
             }
         }
         
@@ -1092,6 +1488,10 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._asoPeriodoDebitoTableAdapter != null) 
+                            && (this._asoPeriodoDebitoTableAdapter.Connection != null))) {
+                    return this._asoPeriodoDebitoTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -1105,6 +1505,9 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -1116,6 +1519,15 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(_dnndev_meDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.asoPeriodoDebito.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._asoPeriodoDebitoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -1126,6 +1538,14 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(_dnndev_meDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.asoPeriodoDebito.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._asoPeriodoDebitoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -1136,6 +1556,14 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(_dnndev_meDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.asoPeriodoDebito.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._asoPeriodoDebitoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             return result;
         }
         
@@ -1175,6 +1603,11 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
+            if (((this._asoPeriodoDebitoTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._asoPeriodoDebitoTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -1207,6 +1640,15 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                    revertConnections.Add(this._asoPeriodoDebitoTableAdapter, this._asoPeriodoDebitoTableAdapter.Connection);
+                    this._asoPeriodoDebitoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._asoPeriodoDebitoTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._asoPeriodoDebitoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._asoPeriodoDebitoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._asoPeriodoDebitoTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -1264,6 +1706,10 @@ namespace SetimMod_asoServicio._dnndev_meDataSetTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._asoPeriodoDebitoTableAdapter != null)) {
+                    this._asoPeriodoDebitoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._asoPeriodoDebitoTableAdapter]));
+                    this._asoPeriodoDebitoTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

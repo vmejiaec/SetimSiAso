@@ -24,7 +24,11 @@ namespace SetimMod_asoServicio
                 // Obtiene el nombre del servicio
                 asoServicioControl ctrServicio = new asoServicioControl();
                 var oServicio = ctrServicio._1SelById((int)paginaEstadoMaster.Master_Id); 
-                lbTitulo.Text = oServicio.Nombre;
+                // Obtiene el período actual
+                asoParametroControl ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+
+                lbTitulo.Text = string.Format("{0} .   Los débitos se cargarán en el periódo actual: ({1}) {2:d}", oServicio.Nombre, oParam.asoPeriodo_Id_Actual, oParam.asoPeriodo_Actual_Fecha);
             }
         }
 
@@ -32,24 +36,34 @@ namespace SetimMod_asoServicio
         protected void btProcesarArchivo_OnClick(object sender, EventArgs e)
         {
             try
-            {
-                var x = fpArchivo.FilePath;
-                var y = fpArchivo.FileID;                
-                var z = FileManager.Instance.GetFile(y);
+            {                
+                // Parámetros para la carga
+                asoParametroControl ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+                int periodoActual_Id = oParam.asoPeriodo_Id_Actual;
+                //  Servicio Id
+                int servicio_Id = (int)paginaEstadoMaster.Master_Id;
+                //  Porcentaje de la comisión para el servicio 
+                asoServicioControl ctlServicio = new asoServicioControl();
+                var oServicio = ctlServicio._1SelById(servicio_Id);
+                decimal porcentajeComision = oServicio.Porcentaje_Comision;
+                // Control de que el servicio sea del tipo ARC de archivo
+                if (oServicio.Tipo != "ARC")
+                    throw new System.ArgumentException(string.Format("El servicio ({0}) {1}, no es del tipo ARC.", oServicio.Id, oServicio.Nombre));
 
-                string archivoExcel = z.PhysicalPath;
+                // Lectura del archivo
+                var infoArchivo = FileManager.Instance.GetFile(fpArchivo.FileID);
+                string archivoExcel = infoArchivo.PhysicalPath;
 
                 string ConnectionString =string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=0\";", archivoExcel);
                 System.Data.OleDb.OleDbConnection objConnection =
                     new System.Data.OleDb.OleDbConnection(ConnectionString);
 
                 objConnection.Open();
-
                 System.Data.OleDb.OleDbCommand objCommand = new System.Data.OleDb.OleDbCommand();
                 objCommand.Connection = objConnection;
                 objCommand.CommandType = System.Data.CommandType.Text;
                 objCommand.CommandText = "SELECT [CI], [Valor], [Descripcion] FROM [Debitos$];";
-
                 DataTable dt = DotNetNuke.Common.Globals.ConvertDataReaderToDataTable(objCommand.ExecuteReader());
                 objConnection.Close();
 
@@ -57,28 +71,13 @@ namespace SetimMod_asoServicio
                 int noDebitosError = 0;
                 string infoError = "";
 
-                // Parámetros para la carga
-                //  Período actual
-                asoParametroControl ctlParam = new asoParametroControl();
-                var oParam = ctlParam._1SelById(1);
-                int periodoActual_Id = oParam.asoPeriodo_Id_Actual;
-                //  Servicio Id
-                int servicio_Id = (int) paginaEstadoMaster.Master_Id;
-                //  Porcentaje de la comisión para el servicio 
-                asoServicioControl ctlServicio = new asoServicioControl();
-                var oServicio = ctlServicio._1SelById(servicio_Id);
-                decimal porcentajeComision = oServicio.Porcentaje_Comision;
                 // Control para grabar los debitos
                 asoPeriodoDebitoControl ctlPeriodoDebito = new asoPeriodoDebitoControl();
                 // Control para consulta de usuarios
                 asoSocioControl ctlSocio = new asoSocioControl();
                 List<asoSocio> lstSocios = (List<asoSocio>) ctlSocio._0SelBy_asoServicio_Id_By_Prefijo(servicio_Id, "");
-                // Si para el período actual existen débitos cargados, primero los borra.
-                var lstDebitosActuales = ctlPeriodoDebito._0SelByasoServicio_Id(servicio_Id);
-                foreach (var oDebActual in lstDebitosActuales)
-                {
-                    int resDel = ctlPeriodoDebito._4Del(oDebActual);
-                }
+                // Si para el período actual existen débitos cargados, primero los borra, en el período actual.
+                ctlPeriodoDebito._5BorrarDebitosPEN(servicio_Id, periodoActual_Id);
                 // Empieza el proceso del archivo
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -102,7 +101,7 @@ namespace SetimMod_asoServicio
                     oDebito.Valor = dValor;
                     oDebito.Valor_Comision = Math.Round( dValor * porcentajeComision / 100, 2);
                     oDebito.Estado = "PEN";
-                    oDebito.Descripcion = sDesc;
+                    oDebito.Descripcion = string.Format("{0} - Carga desde el archivo: {1}", sDesc, infoArchivo.FileName) ;
                     // Inserta en la tabla el débito
                     ctlPeriodoDebito._2Ins(oDebito);
                     noDebitosProcesados++;
@@ -110,8 +109,8 @@ namespace SetimMod_asoServicio
 
                 paginaEstado.Avisos = string.Format("Debitos Procesados: {0}. Errores encontrados {1}. {2}", 
                     noDebitosProcesados, noDebitosError, infoError);
-                Response.Redirect(Request.RawUrl, false);
-                Context.ApplicationInstance.CompleteRequest();
+
+                Salir(sender, e);
             }
             catch (Exception exc)
             {

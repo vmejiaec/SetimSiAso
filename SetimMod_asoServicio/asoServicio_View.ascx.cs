@@ -47,6 +47,10 @@ namespace SetimMod_asoServicio
                 // Inicializa la lista de estados en el filtro
                 CargarDdl_CamposDelFiltro();
                 CargarDdl_Estados();
+                // Publica en el título el período actual
+                asoParametroControl ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+                lbTitulo.Text = string.Format("Periódo actual: ({0}) {1:d}", oParam.asoPeriodo_Id_Actual, oParam.asoPeriodo_Actual_Fecha);
                 // Carga de datos
                 ConsultaDatos();
             }

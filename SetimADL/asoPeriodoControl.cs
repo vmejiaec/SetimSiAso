@@ -66,24 +66,6 @@ namespace SetimBasico
             ));
         }
 
-        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
-        public int _3Upd(asoPeriodo o)
-        {
-            try
-            {
-                return DataProvider.Instance().ExecuteScalar<int>(
-                    "sp_asoPeriodo_3Upd"
-                    , o.Id, o.No_Periodo, o.Fecha_Periodo, o.Estado, o.Descripcion
-                    );
-            }
-            catch (Exception exc)
-            {
-                Exceptions.LogException(exc);
-                string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_3Upd, registro {0}.", o.Id);
-                throw new Exception(mensaje, exc);
-            }
-        }
-
         [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoPeriodo o)
         {
@@ -120,6 +102,24 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
+        public int _3Upd(asoPeriodo o)
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoPeriodo_3Upd"
+                    , o.Id, o.No_Periodo, o.Fecha_Periodo, o.Estado, o.Descripcion
+                    );
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_3Upd, registro {0}.", o.Id);
+                throw new Exception(mensaje, exc);
+            }
+        }
+
         public int _5GenerarPeriodos(Int32 p_No_Periodos_a_Generar)
         {
             try
@@ -133,6 +133,23 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_5GenerarPeriodos, parámetros. p_No_Periodos_a_Generar:> {0}", p_No_Periodos_a_Generar);
+                throw new Exception(mensaje, exc);
+            }
+        }
+
+        public int _5MarcarPagados(Int32 p_asoPeriodo_Id)
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoPeriodo_5MarcarPagados"
+                    , p_asoPeriodo_Id
+                    );
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_5MarcarPagados, parámetros. p_asoPeriodo_Id:> {0}", p_asoPeriodo_Id);
                 throw new Exception(mensaje, exc);
             }
         }

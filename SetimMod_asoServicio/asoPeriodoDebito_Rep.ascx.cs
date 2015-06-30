@@ -20,7 +20,7 @@ namespace SetimMod_asoServicio
         {
             // Obtiene los datos para el reporte
             asoPeriodoDebitoControl ctlPeriodoDebito = new asoPeriodoDebitoControl();
-            var lstDebitos = ctlPeriodoDebito._0SelByasoServicio_Id((int)paginaEstadoMaster.Master_Id);
+            var lstDebitos = ctlPeriodoDebito._0SelByasoServicio_Id_Desc_Coutas((int)paginaEstadoMaster.Master_Id);
             rv_Reporte.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", lstDebitos));
             // Obtiene el nombre del servicio
             asoServicioControl ctrServicio = new asoServicioControl();

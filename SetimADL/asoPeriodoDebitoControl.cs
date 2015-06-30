@@ -22,15 +22,6 @@ namespace SetimBasico
     {
         LogEventos _eventos = new LogEventos();
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public IList<asoPeriodoDebito> _0Sel()
-        {
-            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
-                "sp_asoPeriodoDebito_0Sel"
-
-            ));
-        }
-
-        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0SelByasoServicio_Id(Int32 p_asoServicio_Id)
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
@@ -40,11 +31,29 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoServicio_Id = null, Int32? asoSocio_Id = null, Decimal? Valor = null, Decimal? Valor_Comision = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        public IList<asoPeriodoDebito> _0Sel()
+        {
+            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoDebito_0Sel"
+
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoDebito> _0SelByasoServicio_Id_Desc_Coutas(Int32 p_asoServicio_Id)
+        {
+            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoDebito_0SelByasoServicio_Id_Desc_Coutas"
+                , p_asoServicio_Id
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoServicio_Id = null, Int32? asoSocio_Id = null, Decimal? Valor = null, Decimal? Valor_Comision = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Decimal? Valor_Mas_Comision = null, Int32? No_Cuotas = null, Int32? No_Cuotas_PEN = null, Int32? No_Cuotas_COB = null, String Desc_Coutas = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
                 "sp_asoPeriodoDebito_0SelByAll"
-                , asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, PageIndex, PageSize, SortField, SortDirection
+                , asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, Valor_Mas_Comision, No_Cuotas, No_Cuotas_PEN, No_Cuotas_COB, Desc_Coutas, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
@@ -124,6 +133,23 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoPeriodoDebito, operacion: sp_asoPeriodoDebito_5GenerarDebitosDeUnServicio, parámetros. p_asoServicio_Id:> {0}", p_asoServicio_Id);
+                throw new Exception(mensaje, exc);
+            }
+        }
+
+        public int _5BorrarDebitosPEN(Int32 p_asoServicio_Id, Int32 p_asoPeriodo_Id)
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoPeriodoDebito_5BorrarDebitosPEN"
+                    , p_asoServicio_Id, p_asoPeriodo_Id
+                    );
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoPeriodoDebito, operacion: sp_asoPeriodoDebito_5BorrarDebitosPEN, parámetros. p_asoServicio_Id:> {0}p_asoPeriodo_Id:> {1}", p_asoServicio_Id, p_asoPeriodo_Id);
                 throw new Exception(mensaje, exc);
             }
         }

@@ -4,11 +4,16 @@
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
+<asp:Label runat="server" ID="lbTitulo" ForeColor="#3399FF" Font-Italic="true" Font-Bold="true"></asp:Label>
+
+<br />
 <ul class="dnnActions dnnClear">
     <%--<li>
         <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>--%>
-    <li>
-        <asp:LinkButton runat="server" ID="btAccion" Text="Generar 6 Períodos" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="btAccion" Text="Generar 6 Períodos" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="lbMarcarPagados" Text="Marcar Pagados" CssClass="dnnSecondaryAction confirm" OnClick="lbMarcarPagados_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="lbPeriodoActual" Text="Asignar período actual" CssClass="dnnSecondaryAction confirm" OnClick="lbPeriodoActual_OnClick" /></li>
+
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
