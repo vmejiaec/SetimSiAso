@@ -72,6 +72,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoPeriodoAporte_Edit.ascx.cs">
+      <DependentUpon>asoPeriodoAporte_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoAporte_Edit.ascx.designer.cs">
+      <DependentUpon>asoPeriodoAporte_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoPeriodoAporte_View.ascx.cs">
+      <DependentUpon>asoPeriodoAporte_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoAporte_View.ascx.designer.cs">
+      <DependentUpon>asoPeriodoAporte_View.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoPeriodo_Edit.ascx.cs">
       <DependentUpon>asoPeriodo_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -89,6 +103,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoPeriodoAporte_Edit.ascx" />
+    <Content Include="asoPeriodoAporte_View.ascx" />
     <Content Include="asoPeriodo_Edit.ascx" />
     <Content Include="asoPeriodo_View.ascx" />
     <Content Include="Module.build" />

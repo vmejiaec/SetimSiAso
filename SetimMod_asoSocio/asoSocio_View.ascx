@@ -5,17 +5,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton"
-            CssClass="dnnPrimaryAction"
-            Text="Nuevo" />
-    </li>
-    <li>
-        <asp:LinkButton runat="server" ID="btCopiarSocios"
-            CssClass="dnnSecondaryAction"
-            OnClick="btCopiarSocios_OnClick"
-            Text="Copiar Socios" />
-    </li>
+    <li><asp:LinkButton runat="server" ID="btCopiarSocios" CssClass="dnnSecondaryAction" OnClick="btCopiarSocios_OnClick" Text="Copiar Socios" /> </li>
+    <li><asp:HyperLink runat="server" ID="hlEstadoCta" CssClass="dnnSecondaryAction" Text="Estado de Cta." /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -63,7 +54,7 @@
         <asp:BoundColumn DataField="Valor_Accion" HeaderText="Valor Accion" HeaderStyle-Width="90px" SortExpression="Valor_Accion" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
         <asp:BoundColumn DataField="Valor_Ahorro" HeaderText="Valor Ahorro" HeaderStyle-Width="90px" SortExpression="Valor_Ahorro" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Center" />
 
-        <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
+        <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />
         <asp:TemplateColumn>
             <FooterTemplate>
                 No de Filas: 

@@ -13,15 +13,6 @@ namespace SetimMod_asoSocio {
     public partial class asoSocio_View {
         
         /// <summary>
-        /// addButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink addButton;
-        
-        /// <summary>
         /// btCopiarSocios control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace SetimMod_asoSocio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btCopiarSocios;
+        
+        /// <summary>
+        /// hlEstadoCta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlEstadoCta;
         
         /// <summary>
         /// pnFiltros control.

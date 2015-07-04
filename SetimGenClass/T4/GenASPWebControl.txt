@@ -1,25 +1,25 @@
 ﻿
 
 
-//-> asoPeriodoDebito_Edit.ascx
+//-> asoPeriodoCuota_Edit.ascx
 
-//-> asoPeriodoDebito_Edit.ascx.cs
+//-> asoPeriodoCuota_Edit.ascx.cs
 
-//-> asoPeriodoDebito_View.ascx
+//-> asoPeriodoCuota_View.ascx
 
-//-> asoPeriodoDebito_View.ascx.cs
+//-> asoPeriodoCuota_View.ascx.cs
 
-//-> asoPeriodoDebito_Edit.ascx.cs
+//-> asoPeriodoCuota_Edit.ascx.cs
 
-//-> asoPeriodoDebito_Edit.ascx
+//-> asoPeriodoCuota_Edit.ascx
 
-//-> asoPeriodoDebito_View.ascx.cs
+//-> asoPeriodoCuota_View.ascx.cs
 
-//-> asoPeriodoDebito_View.ascx
+//-> asoPeriodoCuota_View.ascx
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoDebito_Edit.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoDebito_Edit.ascx
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoDebito_View.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoDebito_View.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_Edit.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_Edit.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_View.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_View.ascx

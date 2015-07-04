@@ -23,5 +23,6 @@ namespace SetimBasico
         public Int32 No_Cuotas_PEN { get; set; }
         public Int32 No_Cuotas_COB { get; set; }
         public String Desc_Coutas { get; set; }
+        public String asoServicio_Nombre { get; set; }
     }
 }

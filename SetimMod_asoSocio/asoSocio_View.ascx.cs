@@ -9,64 +9,29 @@ using DotNetNuke.Common;
 
 using SetimBasico;
 using System.Collections.Generic;
+using DotNetNuke.Framework.JavaScriptLibraries;
 
 namespace SetimMod_asoSocio
 {
-    public partial class asoSocio_View : ModuleUserControlBase
-    {
-        // Usuario
-        private int _UserId;
-        private int _ModuleId;
-        // Campo por defecto para ordenar la lista
-        private string _Ordenar_Campo_Defaul = "Users_Nombre";
+    public partial class asoSocio_View : SetimModulo
+    {        
         // Entidad base
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
-        // Nivel de la relación 0-Master0 1-Master1 2-Master2
-        private int _Nivel = 0;
-        // Estado de la páginas
-        private ListaPaginaEstado listaPaginaEstado
-        {
-            get
-            {
-                if (Session["paginaEstado"] == null) Session["paginaEstado"] = new ListaPaginaEstado();
-                return (ListaPaginaEstado)Session["paginaEstado"];
-            }
-            set
-            {
-                Session["paginaEstado"] = value;
-            }
-        }
-        // Es la página actual
-        private PaginaEstado paginaEstado
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel] = value;
-            }
-        }
-        // Es la página anterior
-        private PaginaEstado paginaEstadoMaster
-        {
-            get
-            {
-                return listaPaginaEstado.p[_Nivel - 1];
-            }
-            set
-            {
-                listaPaginaEstado.p[_Nivel - 1] = value;
-            }
-        }
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            // Nivel de la relación 0-Master0 1-Master1 2-Master2
+            this._Nivel = 0;
+            // Campo por defecto para ordenar la lista
+            this._Ordenar_Campo_Defaul = "Users_Nombre";
             // Datos del módulo y del usuario del DNN
-            _ModuleId = ModuleContext.ModuleId;
-            _UserId = ModuleContext.PortalSettings.UserId;
+            this._ModuleId = ModuleContext.ModuleId;
+            this._UserID = ModuleContext.PortalSettings.UserId;
+            // Carga de jQuery
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -90,8 +55,8 @@ namespace SetimMod_asoSocio
                 // Carga de datos
                 ConsultaDatos();
             }
-            // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            // Inicializa los links
+            hlEstadoCta.NavigateUrl = ModuleContext.EditUrl("View_EstadoCta");
         }
         // Carga los estados desde una lista de SetimLista
         private void CargarDdl_Estados()
@@ -139,12 +104,11 @@ namespace SetimMod_asoSocio
                     paginaEstado.PaginaActual = indice;
                     ConsultaDatos();
                     break;
-                //case "Select":
-                //    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
-                //    string sEntidadId = e.Item.Cells[0].Text;
-                //    entidadId = 1;
-                //    btConfigAportes.NavigateUrl = ModuleContext.EditUrl("EntidadId", sEntidadId, "ConfigAportes");
-                //    break;
+                case "Select":
+                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                    string sEntidadId = e.Item.Cells[0].Text;
+                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
+                    break;
             }
         }
 

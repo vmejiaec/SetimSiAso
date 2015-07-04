@@ -49,6 +49,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodo> _0SelByPeriodo_Actual_7Regs(Int32 p_Dummy)
+        {
+            return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodo_0SelByPeriodo_Actual_7Regs"
+                , p_Dummy
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0SelByAll(Int32? No_Periodo = null, DateTime? Fecha_Periodo = null, String Estado = null, String Descripcion = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
@@ -150,6 +159,23 @@ namespace SetimBasico
             {
                 Exceptions.LogException(exc);
                 string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_5MarcarPagados, parámetros. p_asoPeriodo_Id:> {0}", p_asoPeriodo_Id);
+                throw new Exception(mensaje, exc);
+            }
+        }
+
+        public int _5GenerarAportes(Int32 p_asoPeriodo_Id)
+        {
+            try
+            {
+                return DataProvider.Instance().ExecuteScalar<int>(
+                    "sp_asoPeriodo_5GenerarAportes"
+                    , p_asoPeriodo_Id
+                    );
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                string mensaje = string.Format("Error en: asoPeriodo, operacion: sp_asoPeriodo_5GenerarAportes, parámetros. p_asoPeriodo_Id:> {0}", p_asoPeriodo_Id);
                 throw new Exception(mensaje, exc);
             }
         }

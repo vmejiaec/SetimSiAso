@@ -39,8 +39,8 @@
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
     </fieldset>
-        <script type="text/javascript">
-            $(function () {
+    <script type="text/javascript">
+        $(function () {
                 $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
                 minLength: 2,
                 source: function (request, response) {

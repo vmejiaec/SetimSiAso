@@ -31,8 +31,10 @@ namespace SetimBasico
         public object Filtro_Valor { get; set; }
         public string Filtro_Estado { get; set; }
         public string Filtro_Tipo { get; set; }
+        public Int32? Filtro_Periodo { get; set; }
         public int dgMasterItemIndex { get; set; }  // por confirmar si se cambia el nombre
         public Int32? Master_Id { get; set; }
+        public string Master_Nombre { get; set; }  // Para llevar y traer los títulos
         public string Avisos { get; set; }
         // Constructor
         public PaginaEstado()

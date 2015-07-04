@@ -18,25 +18,25 @@
     <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
     <fieldset>
         <legend></legend>
-        <div class="dnnFormItem" style="visibility:hidden">
-            <dnn:Label runat="server" ID="lbId" Text="Id:" HelpText="Id" />
+        <div class="dnnFormItem" style="visibility: hidden">
+            <dnn:label runat="server" id="lbId" text="Id:" helptext="Id" />
             <asp:TextBox runat="server" ID="tbId" Enabled="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoServicio_Id" Text="Servicio_Id:" HelpText="asoServicio_Id" />
-            <asp:TextBox runat="server" ID="tbasoServicio_Id" Enabled="false" />            
+            <dnn:label runat="server" id="lbasoServicio_Id" text="Servicio_Id:" helptext="asoServicio_Id" />
+            <asp:TextBox runat="server" ID="tbasoServicio_Id" Enabled="false" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoServicio_Nombre" Text="Servicio_Nombre:" HelpText="asoServicio_Nombre" />
-            <asp:TextBox runat="server" ID="tbasoServicio_Nombre" Enabled="false" />            
+            <dnn:label runat="server" id="lbasoServicio_Nombre" text="Servicio_Nombre:" helptext="asoServicio_Nombre" />
+            <asp:TextBox runat="server" ID="tbasoServicio_Nombre" Enabled="false" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoPeriodo_Id" Text="Periodo_Id:" HelpText="asoPeriodo_Id" />
+            <dnn:label runat="server" id="lbasoPeriodo_Id" text="Periodo_Id:" helptext="asoPeriodo_Id" />
             <asp:TextBox runat="server" ID="tbasoPeriodo_Id" Enabled="true" />
             <asp:RequiredFieldValidator ID="rfv_tbasoPeriodo_Id" runat="server" ControlToValidate="tbasoPeriodo_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label ID="lbasoPeriodo_Fecha" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_asoPeriodo_Fecha" Text="Periodo_Fecha" />
+            <dnn:label id="lbasoPeriodo_Fecha" runat="server" cssclass="dnnFormLabel" associatedcontrolid="dnnDP_asoPeriodo_Fecha" text="Periodo_Fecha" />
             <asp:TextBox runat="server" ID="tb_asoPeriodo_Fecha" Enabled="true" />
         </div>
 
@@ -67,11 +67,11 @@
                     },
                     focus: function (event, ui) {
                         $("#<%= tb_asoPeriodo_Fecha.ClientID %>").val(ui.item.label);
-                    return false;
-                },
-                select: function (event, ui) {
-                    //$("#project").val(ui.item.label);
-                    $("#<%= tbasoPeriodo_Id.ClientID %>").val(ui.item.value);
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        //$("#project").val(ui.item.label);
+                        $("#<%= tbasoPeriodo_Id.ClientID %>").val(ui.item.value);
                     //$("#autocomplete-description").html(ui.item.desc);
                     return false;
                 },
@@ -83,15 +83,15 @@
                 }
                 });
             });
-    </script>
+        </script>
 
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoSocio_Id" Text="asoSocio_Id:" HelpText="Socio_Id" />
+            <dnn:label runat="server" id="lbasoSocio_Id" text="asoSocio_Id:" helptext="Socio_Id" />
             <asp:TextBox runat="server" ID="tbasoSocio_Id" Enabled="true" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Id" runat="server" ControlToValidate="tbasoSocio_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoSocio_Nombre" Text="asoSocio_Nombre:" HelpText="Socio_Nombre" />
+            <dnn:label runat="server" id="lbasoSocio_Nombre" text="asoSocio_Nombre:" helptext="Socio_Nombre" />
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
@@ -128,33 +128,33 @@
                     select: function (event, ui) {
                         $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
                         return false;
-                },
-                open: function () {
-                    $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                },
-                close: function () {
-                    $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-                }
+                    },
+                    open: function () {
+                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                    },
+                    close: function () {
+                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                    }
                 });
             });
-    </script>
+        </script>
 
         <div class="dnnFormItem">
-            <dnn:Label ID="lbValor" runat="server" Text="Valor:" HelpText="Valor" />
+            <dnn:label id="lbValor" runat="server" text="Valor:" helptext="Valor" />
             <asp:TextBox runat="server" ID="tbValor" CssClass="TextBox_Setim_Valor" />
             <asp:RequiredFieldValidator ID="rfv_Valor" runat="server" ControlToValidate="tbValor" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label ID="lbValor_Comision" runat="server" Text="Valor_Comision:" HelpText="Valor_Comision" />
+            <dnn:label id="lbValor_Comision" runat="server" text="Valor_Comision:" helptext="Valor_Comision" />
             <asp:TextBox runat="server" ID="tbValor_Comision" CssClass="TextBox_Setim_Valor" />
             <asp:RequiredFieldValidator ID="rfv_Valor_Comision" runat="server" ControlToValidate="tbValor_Comision" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor_Comision" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label ID="lbEstado" runat="server" Text="Estado:" />
+            <dnn:label id="lbEstado" runat="server" text="Estado:" />
             <asp:DropDownList runat="server" ID="ddlEstado" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbDescripcion" Text="Descripcion:" HelpText="Descripcion" />
+            <dnn:label runat="server" id="lbDescripcion" text="Descripcion:" helptext="Descripcion" />
             <asp:TextBox runat="server" ID="tbDescripcion" TextMode="MultiLine" />
         </div>
 

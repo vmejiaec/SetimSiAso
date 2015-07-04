@@ -54,7 +54,7 @@ namespace SetimMod_asoPeriodoDebito
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Det_EditDebito");
             Reporte.NavigateUrl = ModuleContext.EditUrl("Det_DebitoRep");
-            hlCargaArchivo.NavigateUrl = ModuleContext.EditUrl("Det_DebitoArc");            
+            hlCargaArchivo.NavigateUrl = ModuleContext.EditUrl("Det_DebitoArc");
             // Publica los avisos
             lbAvisos.Text = paginaEstado.Avisos;
             // Consulta el nombre del servicio
@@ -88,13 +88,13 @@ namespace SetimMod_asoPeriodoDebito
         {
             IList<asoPeriodoDebito> res = new List<asoPeriodoDebito>();
             // Preparación del filtro por períodos
-            string sServicioId = paginaEstado.Filtro_Tipo;
-            if (string.IsNullOrEmpty(sServicioId)) sServicioId = "-1";
-            int? iServicioId = Int32.Parse(sServicioId);
-            if (iServicioId == -1) iServicioId = null;
+            string sPeriodoId = paginaEstado.Filtro_Tipo;
+            if (string.IsNullOrEmpty(sPeriodoId)) sPeriodoId = "-1";
+            int? iPeriodoId = Int32.Parse(sPeriodoId);
+            if (iPeriodoId == -1) iPeriodoId = null;
             // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
             res = _EntidadControl._0SelByAll(
-                iServicioId, //asoPeriodo_Id: null,
+                iPeriodoId, //asoPeriodo_Id: null,
                 paginaEstadoMaster.Master_Id, //asoServicio_Id: paginaEstadoMaster.Master_Id,
                 null, //asoSocio_Id: null,
                 paginaEstado.Filtro_Estado, //estado: paginaEstado.Filtro_Estado,
@@ -199,8 +199,6 @@ namespace SetimMod_asoPeriodoDebito
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-
-        // Por cambiar todo esto
         protected void ddlFiltro_Periodo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ddl = (DropDownList)sender;
@@ -208,8 +206,6 @@ namespace SetimMod_asoPeriodoDebito
             paginaEstado.PaginaActual = 0;
             ConsultaDatos();
         }
-        // Fin
-
         protected void btBuscar_Click(object sender, EventArgs e)
         {
             ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
@@ -234,8 +230,7 @@ namespace SetimMod_asoPeriodoDebito
             var lista = ctlPeriodo._0SelByasoServicio_Id((int)paginaEstadoMaster.Master_Id);
             //Transformación linq para poner la fecha en la descripción y utilizarla en el dropdownlist
             var lst = (from fila in lista
-                        select new asoPeriodo 
-                        { Id = fila.Id, No_Periodo = fila.No_Periodo, Fecha_Periodo = fila.Fecha_Periodo, Estado = fila.Estado, Descripcion = string.Format("{0:d}",fila.Fecha_Periodo) }
+                       select new asoPeriodo { Id = fila.Id, No_Periodo = fila.No_Periodo, Fecha_Periodo = fila.Fecha_Periodo, Estado = fila.Estado, Descripcion = string.Format("{0:d}", fila.Fecha_Periodo) }
                        ).ToList<asoPeriodo>();
             // Añade la fila para todos con el id=-1
             asoPeriodo itemTodos = new asoPeriodo();

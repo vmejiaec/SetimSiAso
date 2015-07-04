@@ -30,6 +30,7 @@ namespace SetimMod_asoServicioSocio
                 CargarDdl_Tipos();
                 ColocarDatosEnFormulario();
             }
+            
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
         protected void Guardar(object sender, EventArgs e)
@@ -117,9 +118,9 @@ namespace SetimMod_asoServicioSocio
         {
             asoSocioControl ctlSocio = new asoSocioControl();
             var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", Prefijo, 0, 10, "Users_Nombre", "ASC");
-            List<dato> lista = new List<dato>();
+            List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
             foreach (var socio in lstSocios)
-                lista.Add(new dato { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
+                lista.Add(new AutoCompletarItem { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
             var json = JsonConvert.SerializeObject(lista);
             return json;
         }
@@ -151,12 +152,5 @@ namespace SetimMod_asoServicioSocio
             catch { }
             return;
         }
-    }
-    [Serializable]
-    public class dato
-    {
-        public string valor { get; set; }
-        public string etiqueta { get; set; }
-        public string desc { get; set; }
     }
 }

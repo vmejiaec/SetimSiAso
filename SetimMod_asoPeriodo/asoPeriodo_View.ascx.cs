@@ -56,7 +56,7 @@ namespace SetimMod_asoPeriodo
             var oParam = ctlParam._1SelById(1);
             lbTitulo.Text = string.Format("Periódo actual: ({0}) {1:d}", oParam.asoPeriodo_Id_Actual, oParam.asoPeriodo_Actual_Fecha);
             // Inicializa el botón de edición
-            //addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            hlAportes.NavigateUrl = ModuleContext.EditUrl("View_Aporte");
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()
@@ -121,8 +121,8 @@ namespace SetimMod_asoPeriodo
             switch (e.CommandName)
             {
                 case "Borrar":
-                    entidadId = int.Parse((string)e.CommandArgument);
-                    BorrarEntidad(entidadId);
+                    //entidadId = int.Parse((string)e.CommandArgument);
+                    //BorrarEntidad(entidadId);
                     break;
                 case "Page":
                     // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
@@ -139,6 +139,9 @@ namespace SetimMod_asoPeriodo
                     paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
                     string sEntidadId = e.Item.Cells[0].Text;
                     paginaEstado.Master_Id = Int32.Parse(sEntidadId);
+                    // Consulta el registro seleccionado
+                    var oEntidad = this._EntidadControl._1SelById((Int32)paginaEstado.Master_Id);
+                    paginaEstado.Master_Nombre = string.Format("{0:d}",oEntidad.Fecha_Periodo);
                     break;
             }
         }
@@ -252,6 +255,26 @@ namespace SetimMod_asoPeriodo
                 Exceptions.LogException(exc);
                 const string headerText = "Error";
                 const string messageText = "Error al marcar como pagados. Mire en el visor de eventos.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+        // Boton para marcar pagados los débitos, aportes y cuotas del período actual 
+        protected void lbCrearAportes_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                _EntidadControl._5GenerarAportes((int)paginaEstado.Master_Id);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Error al crear los aportes en el período seleccionado. Mire en el visor de eventos.";
                 Skin.AddModuleMessage(this,
                     headerText,
                     messageText,

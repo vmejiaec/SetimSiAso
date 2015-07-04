@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="asoSocio_Edit.ascx" />
+    <Content Include="asoSocio_Estado_Cta.ascx" />
     <Content Include="asoSocio_View.ascx" />
     <Content Include="module.css" />
   </ItemGroup>
@@ -83,6 +84,13 @@
     </Compile>
     <Compile Include="asoSocio_Edit.ascx.designer.cs">
       <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="asoSocio_Estado_Cta.ascx.cs">
+      <DependentUpon>asoSocio_Estado_Cta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoSocio_Estado_Cta.ascx.designer.cs">
+      <DependentUpon>asoSocio_Estado_Cta.ascx</DependentUpon>
     </Compile>
     <Compile Include="asoSocio_View.ascx.cs">
       <DependentUpon>asoSocio_View.ascx</DependentUpon>

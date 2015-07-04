@@ -152,7 +152,7 @@ namespace SetimMod_asoPeriodoDebito
         public string GetSociosByServicioPrefijo(string Prefijo)
         {
             asoSocioControl ctlSocio = new asoSocioControl();
-            var lstSocios = ctlSocio._0SelBy_asoServicio_Id_By_Prefijo((int)paginaEstadoMaster.Master_Id,Prefijo);
+            var lstSocios = ctlSocio._0SelBy_asoServicio_Id_By_Prefijo((int)paginaEstadoMaster.Master_Id, Prefijo);
 
             List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
             foreach (var socio in lstSocios)
@@ -164,7 +164,7 @@ namespace SetimMod_asoPeriodoDebito
         public string GetPeriodosByPrefijo(string Prefijo)
         {
             asoPeriodoControl ctlPeriodo = new asoPeriodoControl();
-            var lstPeriodos = ctlPeriodo._0SelByEstado_ByPrefijo("ABI",Prefijo);
+            var lstPeriodos = ctlPeriodo._0SelByEstado_ByPrefijo("ABI", Prefijo);
 
             List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
             foreach (var periodo in lstPeriodos)

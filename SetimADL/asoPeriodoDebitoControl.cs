@@ -31,6 +31,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoDebito> _0SelByasoSocio_Id_Desc_Coutas(Int32 p_asoSocio_Id, Int32 p_asoPeriodo_Id)
+        {
+            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoDebito_0SelByasoSocio_Id_Desc_Coutas"
+                , p_asoSocio_Id, p_asoPeriodo_Id
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0Sel()
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
@@ -49,11 +58,11 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoServicio_Id = null, Int32? asoSocio_Id = null, Decimal? Valor = null, Decimal? Valor_Comision = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Decimal? Valor_Mas_Comision = null, Int32? No_Cuotas = null, Int32? No_Cuotas_PEN = null, Int32? No_Cuotas_COB = null, String Desc_Coutas = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        public IList<asoPeriodoDebito> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoServicio_Id = null, Int32? asoSocio_Id = null, Decimal? Valor = null, Decimal? Valor_Comision = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Decimal? Valor_Mas_Comision = null, Int32? No_Cuotas = null, Int32? No_Cuotas_PEN = null, Int32? No_Cuotas_COB = null, String Desc_Coutas = null, String asoServicio_Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
                 "sp_asoPeriodoDebito_0SelByAll"
-                , asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, Valor_Mas_Comision, No_Cuotas, No_Cuotas_PEN, No_Cuotas_COB, Desc_Coutas, PageIndex, PageSize, SortField, SortDirection
+                , asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, Valor_Mas_Comision, No_Cuotas, No_Cuotas_PEN, No_Cuotas_COB, Desc_Coutas, asoServicio_Nombre, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 

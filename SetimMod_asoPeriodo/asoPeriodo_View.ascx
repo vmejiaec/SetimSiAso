@@ -8,12 +8,11 @@
 
 <br />
 <ul class="dnnActions dnnClear">
-    <%--<li>
-        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>--%>
     <li><asp:LinkButton runat="server" ID="btAccion" Text="Generar 6 Períodos" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
-    <li><asp:LinkButton runat="server" ID="lbMarcarPagados" Text="Marcar Pagados" CssClass="dnnSecondaryAction confirm" OnClick="lbMarcarPagados_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="lbMarcarPagados" Text="Marcar pagados" CssClass="dnnSecondaryAction confirm" OnClick="lbMarcarPagados_OnClick" /></li>
     <li><asp:LinkButton runat="server" ID="lbPeriodoActual" Text="Asignar período actual" CssClass="dnnSecondaryAction confirm" OnClick="lbPeriodoActual_OnClick" /></li>
-
+    <li><asp:LinkButton runat="server" ID="lbCrearAportes" Text="Crear aportes" CssClass="dnnSecondaryAction confirm" OnClick="lbCrearAportes_OnClick" /></li>
+    <li><asp:HyperLink runat="server" ID="hlAportes" CssClass="dnnPrimaryAction" Text="Aportes" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">

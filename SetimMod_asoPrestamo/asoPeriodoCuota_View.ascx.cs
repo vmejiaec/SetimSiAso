@@ -1,0 +1,293 @@
+﻿using System;
+using System.Linq;
+using System.Web.UI.WebControls;
+using System.Collections.Generic;
+using DotNetNuke.Services.Exceptions;
+using DotNetNuke.UI.Skins;
+using DotNetNuke.Common;
+using DotNetNuke.Framework.JavaScriptLibraries;
+using SetimBasico;
+
+namespace SetimMod_asoPeriodoCuota
+{
+    public partial class asoPeriodoCuota_View : SetimModulo
+    {
+        // Entidad base
+        private readonly asoPeriodoCuotaControl _EntidadControl = new asoPeriodoCuotaControl();
+        // Cada vez que se llama a la página
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            // Carga el nivel en jerarquía de master/detail 
+            this._Nivel = 1;
+            // Carga de jQuery
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
+            // Datos del módulo y del usuario del DNN
+            this._ModuleId = ModuleContext.ModuleId;
+            this._UserID = ModuleContext.PortalSettings.UserId;
+            // Solo si es primera vez, carga los datos por defecto.
+            if (!IsPostBack)
+            {
+                // Verifica el estado de la página
+                if (paginaEstado.ModuleID == this._ModuleId)
+                {
+                    if (paginaEstado.Ordenar_Campo == "") paginaEstado.Ordenar_Campo = _Ordenar_Campo_Defaul;
+                    dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                    if (paginaEstado.dgMasterItemIndex != -1) dgMaster.SelectedIndex = paginaEstado.dgMasterItemIndex;
+                }
+                else
+                {
+                    // Si no se trata del estado de esta página, se inicializa todo el estado
+                    paginaEstado = new PaginaEstado();
+                    paginaEstado.ModuleID = this._ModuleId;
+                    paginaEstado.Ordenar_Campo = this._Ordenar_Campo_Defaul;
+                }
+                // Inicializa la lista de estados en el filtro
+                CargarDdl_CamposDelFiltro();
+                CargarDdl_Estados();
+                // Carga de datos
+                ConsultaDatos();
+            }
+            // Inicializa el botón de edición
+            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            hlReporteCuotas.NavigateUrl = ModuleContext.EditUrl("Rep_Cuotas");
+            // Pone el título en la pantalla
+            lbTitulo.Text = paginaEstadoMaster.Master_Nombre;
+        }
+        // Proceso de carga de datos en el GridView
+        protected void ConsultaDatos()
+        {
+            // Consulta los datos del SP SelByAll
+            var datos = ConsultaSP();
+            // Calcula la página que el toca en el datagrid
+            int noDatos = datos.Count();
+            if (noDatos > 0 || (noDatos == 0 && paginaEstado.PaginaActual == 0))
+            {
+                dgMaster.VirtualItemCount = noDatos < paginaEstado.NoFilasPorPagina ?
+                      (paginaEstado.PaginaActual) * paginaEstado.NoFilasPorPagina + noDatos
+                    : (paginaEstado.PaginaActual + 2) * paginaEstado.NoFilasPorPagina;
+                dgMaster.CurrentPageIndex = paginaEstado.PaginaActual;
+                dgMaster.PageSize = paginaEstado.NoFilasPorPagina;
+                // Coloca los datos en el grid
+                dgMaster.DataSource = datos;
+                dgMaster.DataBind();
+                // Accede al Footer del DataGrid y pone el número de registros por página
+                int NoRegs = dgMaster.Controls[0].Controls.Count;
+                var footer = (DataGridItem)dgMaster.Controls[0].Controls[NoRegs - 2];
+                var ddlNoFilasPorPagina = (DropDownList)(footer.FindControl("ddlNoFilasPorPagina"));
+                ddlNoFilasPorPagina.SelectedValue = dgMaster.PageSize.ToString();
+            }
+        }
+        // Proceso para consultar a la base los datos
+        private IList<asoPeriodoCuota> ConsultaSP()
+        {
+            IList<asoPeriodoCuota> res = new List<asoPeriodoCuota>();
+            // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
+            res = _EntidadControl._0SelByAll(
+                paginaEstadoMaster.Master_Id, // asoPrestamo_Id
+                paginaEstado.Filtro_Estado,
+                paginaEstado.Filtro_Campo, paginaEstado.Filtro_Valor,
+                paginaEstado.PaginaActual, paginaEstado.NoFilasPorPagina,
+                paginaEstado.Ordenar_Campo, paginaEstado.Ordenar_Sentido);
+            return res;
+        }
+        // Proceso de borrado de la fila
+        protected void BorrarEntidad(int entidadId)
+        {
+            try
+            {
+                var oSocio = _EntidadControl._1SelById(entidadId);
+                int res = _EntidadControl._4Del(oSocio);
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Al borrar hay error. Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+        // Organiza los comandos generados por el DataGrid
+        protected void dgMaster_OnItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            int entidadId;
+            switch (e.CommandName)
+            {
+                case "Borrar":
+                    entidadId = int.Parse((string)e.CommandArgument);
+                    BorrarEntidad(entidadId);
+                    break;
+                case "Page":
+                    // recibe de argumento: Next o Prev y lo traduce en el índice de la nueva página
+                    string dir = (string)e.CommandArgument;
+                    int indice = ((DataGrid)source).CurrentPageIndex;
+                    if (dir == "Next")
+                        indice = indice + 1;
+                    else
+                        indice = indice - 1;
+                    paginaEstado.PaginaActual = indice;
+                    ConsultaDatos();
+                    break;
+                case "Select":
+                    paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
+                    string sEntidadId = e.Item.Cells[0].Text;
+                    paginaEstado.Master_Id = Int32.Parse(sEntidadId);
+                    break;
+            }
+        }
+        protected void dgMaster_SortCommand(object source, DataGridSortCommandEventArgs e)
+        {
+
+            if (paginaEstado.Ordenar_Campo == e.SortExpression)
+                paginaEstado.Ordenar_Sentido = paginaEstado.Ordenar_Sentido == "ASC" ? "DESC" : "ASC";
+            else
+            {
+                paginaEstado.Ordenar_Campo = e.SortExpression;
+                paginaEstado.Ordenar_Sentido = "ASC";
+            }
+            // Consulta los datos
+            ConsultaDatos();
+        }
+        protected void dgMaster_ItemCreated(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                e.Item.Cells[0].ColumnSpan = 2;
+                e.Item.Cells[0].Text = string.Format("Página No: {0}", dgMaster.CurrentPageIndex + 1);
+                e.Item.Cells[e.Item.Cells.Count - 3].ColumnSpan = 2;
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+                e.Item.Cells.RemoveAt(e.Item.Cells.Count - 1);
+            }
+        }
+        protected void ddlNoFilasPorPagina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int noFilasPorPagina = int.Parse(((DropDownList)sender).SelectedValue.ToString());
+            paginaEstado.NoFilasPorPagina = noFilasPorPagina;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        // Eventos de los filtros
+        protected void ddlFiltro_Estado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Estado = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro_Campo = ddl.SelectedValue == "TOD" ? null : ddl.SelectedValue;
+            paginaEstado.Filtro_Valor = tbFiltro_Criterio.Text;
+            paginaEstado.PaginaActual = 0;
+            ConsultaDatos();
+        }
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            ddlFiltro_Campo_SelectedIndexChanged(ddlFiltro_Campo, e);
+        }
+        // Carga los estados desde una lista 
+        private void CargarDdl_Estados()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoPeriodoCuota_Estado");
+            ddlCab_Estado.DataSource = lista;
+            ddlCab_Estado.DataTextField = "Texto";
+            ddlCab_Estado.DataValueField = "Valor";
+            ddlCab_Estado.DataBind();
+            // Carga el estado del estado de la pagina
+            ddlCab_Estado.SelectedValue = paginaEstado.Filtro_Estado ?? "TOD";
+        }
+        // Carga los campos para filtrar 
+        private void CargarDdl_CamposDelFiltro()
+        {
+            asoSetimListaDetControl SetimLista = new asoSetimListaDetControl();
+            var lista = SetimLista._0SelBy_asoSetimLista_Nombre("asoPeriodoCuota_Filtro_Campos");
+            ddlFiltro_Campo.DataSource = lista;
+            ddlFiltro_Campo.DataTextField = "Texto";
+            ddlFiltro_Campo.DataValueField = "Valor";
+            ddlFiltro_Campo.DataBind();
+            // Carga el filtro de los campos desde el estado de la pagina
+            ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
+            tbFiltro_Criterio.Text = paginaEstado.Filtro_Campo == null ? "" : paginaEstado.Filtro_Valor.ToString(); //Posible problema cuando no sea un string sino un int, decimal o fecha
+        }
+        // Boton para ejecutar una acción
+        protected void btGenerarCuotas_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                // El prestamo del Id
+                int Prestamo_Id = (int)paginaEstadoMaster.Master_Id;
+                // Consulta el período actual de los parámetros
+                asoParametroControl ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+                //Consulta los parámetros del crédito
+                asoPrestamoControl ctlPres = new asoPrestamoControl();
+                var oPres = ctlPres._1SelById(Prestamo_Id);
+                if (oPres.Estado != "PEN") throw new Exception("El estado del préstamo no es PEN.");
+                // Borra las cuotas existentes para el préstamo seleccionado
+                asoPeriodoCuotaControl ctlCuotas = new asoPeriodoCuotaControl();
+                var lstCoutasABorrar = ctlCuotas._0SelByasoPrestamo_Id(Prestamo_Id);
+                foreach (var cuotaABorrar in lstCoutasABorrar)
+                {
+                    ctlCuotas._4Del(cuotaABorrar);
+                }
+                // Prepara la lista de cuotas en blanco
+                List<asoPeriodoCuota> lstCuotas = new List<asoPeriodoCuota>();
+                //Realiza el cálculo de la tabla de amortización
+                decimal abonoCapitalMensual = Math.Round(oPres.Valor / oPres.No_Periodos, 2);
+                decimal interesMensual = oPres.Tasa_Interes / 100 / 12;
+                for (int i = 0; i < oPres.No_Periodos; i++)
+                {
+                    var oCuota = new asoPeriodoCuota();
+                    oCuota.asoPeriodo_Id = oParam.asoPeriodo_Id_Actual + i;
+                    oCuota.asoPrestamo_Id = Prestamo_Id;
+                    oCuota.Valor_Capital = abonoCapitalMensual;
+                    oCuota.Valor_Interes = Math.Round((oPres.Valor - i * abonoCapitalMensual) * interesMensual, 2);
+                    oCuota.Estado = "PEN";
+                    oCuota.Descripcion = string.Format("Generado el {0:d}", DateTime.Today);
+                    // Alimenta la lista
+                    lstCuotas.Add(oCuota);
+                }
+                // Se cuadran los decimales en la última cuota
+                decimal Total = lstCuotas.Sum(x => x.Valor_Capital);
+                decimal diferencia = oPres.Valor - Total;
+                if (diferencia != 0)
+                    lstCuotas.Last().Valor_Capital += diferencia;
+                //Guarda las cuotas con estado PEN
+
+                foreach (var cuota in lstCuotas)
+                {
+                    ctlCuotas._2Ins(cuota);
+                }
+                // Fin.
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Error al generar cuotas. <br/> Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+        // Boton para ejecutar una accion
+        protected void btConfigAportes_OnClick(object sender, EventArgs e)
+        {
+            int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];
+            string url = Globals.NavigateURL(ModuleContext.PortalSettings.ActiveTab.TabID, "Edit", "mid", ModuleContext.ModuleId.ToString(), "EntidadId", vId.ToString());
+            Response.Redirect(url + "?popUp=true");
+        }
+    }
+}
