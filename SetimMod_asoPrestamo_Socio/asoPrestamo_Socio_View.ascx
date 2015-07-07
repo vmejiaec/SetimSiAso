@@ -6,7 +6,7 @@
 
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Crear Solicitud" CssClass="dnnPrimaryAction" /></li>
-    <li><asp:HyperLink runat="server" ID="hlReporteSolicitudPrestamo" Text="Solicitud" CssClass="dnnPrimaryAction" /></li>
+    <li><asp:HyperLink runat="server" ID="hlReporteSolicitudPrestamo" Text="Solicitud" CssClass="dnnSecondaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="hlTablaAmortizacion" Text="Tabla de Amortización" CssClass="dnnSecondaryAction" /></li>
 </ul>
 
@@ -30,8 +30,6 @@
 
     <Columns>
         <asp:BoundColumn DataField="Id"                     HeaderText="Id"             HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="asoSocio_Id"            HeaderText="Socio Id"       HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundColumn DataField="asoSocio_Nombre"        HeaderText="Socio Nombre"   HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
         <asp:BoundColumn DataField="Valor"                  HeaderText="Valor"          HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="Tasa_Interes"           HeaderText="Tasa Interes"   HeaderStyle-Width="50px" SortExpression="Tasa_Interes" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
         <asp:BoundColumn DataField="No_Periodos"            HeaderText="No Periodos"    HeaderStyle-Width="50px" SortExpression="No_Periodos" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Center" />

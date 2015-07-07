@@ -15,6 +15,7 @@ namespace SetimMod_asoPrestamo
         // Entidad base
         private readonly asoPrestamoControl _EntidadControl = new asoPrestamoControl();
         private int SocioId;
+        private string SocioNombre;
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -32,6 +33,7 @@ namespace SetimMod_asoPrestamo
             var ctlSocio = new asoSocioControl();
             var oSocio = ctlSocio._1SelByUserID(this._UserID);
             SocioId = oSocio == null ? -1 : oSocio.Id;
+            SocioNombre = oSocio == null ? "" : oSocio.Users_Nombre;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -140,10 +142,10 @@ namespace SetimMod_asoPrestamo
                 case "Select":
                     paginaEstado.dgMasterItemIndex = e.Item.ItemIndex;
                     string sEntidadId = e.Item.Cells[0].Text;
-                    string sSocioId = e.Item.Cells[1].Text;
-                    string sSocioNombre = e.Item.Cells[2].Text;
+                    string sValor =e.Item.Cells[1].Text;
+                    string sTasa = e.Item.Cells[2].Text;
                     paginaEstado.Master_Id = Int32.Parse(sEntidadId);
-                    paginaEstado.Master_Nombre = string.Format("Préstamo Id: ({0}), Socio: ({1}) {2}.", sEntidadId, sSocioId, sSocioNombre);
+                    paginaEstado.Master_Nombre = string.Format("Préstamo Id: ({0}), Valor: {1}, Tasa de interés anual: {2}.", sEntidadId, sValor, sTasa);
                     break;
             }
         }

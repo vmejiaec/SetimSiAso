@@ -17,7 +17,7 @@
 </script>
 <%--Formulario de datos --%>
 <div id="dnnUsers" class="dnnForm dnnClear">
-    <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Formulario para actualizar datos." />
+    <asp:Label ID="lbTitulo" runat="server" CssClass="dnnFormMessage dnnFormInfo" Text="Solicitud de Préstamo." />
     <fieldset>
         <legend></legend>
         <div class="dnnFormItem">
@@ -27,23 +27,21 @@
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSocio_Id" Text="Socio_Id:" HelpText="asoSocio_Id" />
             <asp:TextBox runat="server" ID="tbasoSocio_Id" Enabled="false" />
-            <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Id" runat="server" ControlToValidate="tbasoSocio_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSocio_Nombre" Text="Socio_Nombre:" HelpText="asoSocio_Nombre" />
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" Enabled="false" />
-            <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
 
         <div class="dnnFormItem">
             <dnn:Label ID="lbValor" runat="server" Text="Valor:" HelpText="Valor" />
             <asp:TextBox runat="server" ID="tbValor" CssClass="TextBox_Setim_Valor" />
             <asp:RequiredFieldValidator ID="rfv_Valor" runat="server" ControlToValidate="tbValor" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor" SetFocusOnError="true" />
+            <asp:RangeValidator MinimumValue="10.00" MaximumValue="100000.00" Type="Double" ControlToValidate="tbValor" Text="Mayor que 10 dólares"  Display="Dynamic" ErrorMessage="El valor debe ser mayor a 10 dóalres" SetFocusOnError="true" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label ID="lbTasa_Interes" runat="server" Text="Tasa_Interes:" HelpText="Tasa_Interes" />
             <asp:TextBox runat="server" ID="tbTasa_Interes" CssClass="TextBox_Setim_Valor" Enabled="false" />
-            <asp:RequiredFieldValidator ID="rfv_Tasa_Interes" runat="server" ControlToValidate="tbTasa_Interes" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Tasa_Interes" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbNo_Periodos" Text="No_Periodos:" HelpText="No_Periodos" />
@@ -57,11 +55,9 @@
             <dnn:Label ID="lbFecha_Solicitud" runat="server" CssClass="dnnFormLabel" AssociatedControlID="dnnDP_Fecha_Solicitud" Text="Fecha_Solicitud" />
             <asp:TextBox runat="server" ID="tbFecha_Solicitud" Enabled="false" />
         </div>
-        <div class="dnnFormItem">
-            <dnn:Label runat="server" ID="lbasoSocio_Id_Garante" Text="asoSocio_Id_Garante:" HelpText="asoSocio_Id_Garante" />
+                    
             <asp:HiddenField runat ="server" ID="hfasoSocio_Id_Garante" />
-            <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Id_Garante" runat="server" ControlToValidate="tbasoSocio_Id_Garante" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Id_Garante" SetFocusOnError="true" />
-        </div>
+        
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbasoSocio_Nombre_Garante" Text="asoSocio_Nombre_Garante:" HelpText="asoSocio_Nombre_Garante" />
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre_Garante" />

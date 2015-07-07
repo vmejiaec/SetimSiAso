@@ -58,15 +58,6 @@ namespace SetimMod_asoPrestamo {
         protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Id;
         
         /// <summary>
-        /// rfv_tbasoSocio_Id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id;
-        
-        /// <summary>
         /// lbasoSocio_Nombre control.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace SetimMod_asoPrestamo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbasoSocio_Nombre;
-        
-        /// <summary>
-        /// rfv_tbasoSocio_Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
         /// lbValor control.
@@ -137,15 +119,6 @@ namespace SetimMod_asoPrestamo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbTasa_Interes;
-        
-        /// <summary>
-        /// rfv_Tasa_Interes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Tasa_Interes;
         
         /// <summary>
         /// lbNo_Periodos control.
@@ -202,15 +175,6 @@ namespace SetimMod_asoPrestamo {
         protected global::System.Web.UI.WebControls.TextBox tbFecha_Solicitud;
         
         /// <summary>
-        /// lbasoSocio_Id_Garante control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UserControl lbasoSocio_Id_Garante;
-        
-        /// <summary>
         /// hfasoSocio_Id_Garante control.
         /// </summary>
         /// <remarks>
@@ -218,15 +182,6 @@ namespace SetimMod_asoPrestamo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfasoSocio_Id_Garante;
-        
-        /// <summary>
-        /// rfv_tbasoSocio_Id_Garante control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Id_Garante;
         
         /// <summary>
         /// lbasoSocio_Nombre_Garante control.

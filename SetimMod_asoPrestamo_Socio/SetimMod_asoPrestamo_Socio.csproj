@@ -51,6 +51,7 @@
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\SetimMod_ExportaDatos\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -75,6 +76,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx.cs">
+      <DependentUpon>asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx.designer.cs">
+      <DependentUpon>asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoPrestamo_Socio_Edit.ascx.cs">
       <DependentUpon>asoPrestamo_Socio_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -92,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx" />
     <Content Include="asoPrestamo_Socio_Edit.ascx" />
     <Content Include="asoPrestamo_Socio_View.ascx" />
     <Content Include="Module.build" />
@@ -105,6 +114,9 @@
       <Project>{63193768-efe9-473d-af70-e4d6925e9c15}</Project>
       <Name>SetimBasico</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="asoPeriodoCuota_ByPrestamo_SocioTabla_Rep.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

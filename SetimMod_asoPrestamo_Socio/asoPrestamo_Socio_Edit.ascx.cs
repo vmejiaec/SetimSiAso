@@ -16,6 +16,7 @@ namespace SetimMod_asoPrestamo
     {
         private readonly asoPrestamoControl _EntidadControl = new asoPrestamoControl();
         private int SocioId;
+        private string SocioNombre;
         protected override void OnLoad(EventArgs e)
         {
             // Atajar la llamada del Ajax
@@ -25,6 +26,7 @@ namespace SetimMod_asoPrestamo
             var ctlSocio = new asoSocioControl();
             var oSocio = ctlSocio._1SelByUserID(this._UserID);
             SocioId = oSocio == null ? -1 : oSocio.Id;
+            SocioNombre = oSocio == null ? "..." : oSocio.Users_Nombre;
             // Proceso normal
             base.OnLoad(e);
             this._Nivel = 0;
@@ -40,6 +42,21 @@ namespace SetimMod_asoPrestamo
         protected void Guardar(object sender, EventArgs e)
         {
             var o = ColocarDatosEnObjeto();
+
+            // Validación del monto
+            if (o.Valor < 10 || o.Valor > 50000)
+            {
+                lbTitulo.Text = "El valor debe ser mayor a 10 y menor a 50.000.";
+                return;
+            }
+            // Validación del estado
+            if (o.Estado != "PEN")
+            {
+                lbTitulo.Text = "La solicitud no puede ser modificada por que su estado no es PEN.";
+                return;
+            }
+
+            lbTitulo.Text = "Solicitud de Préstamo.";
 
             if (_EntidadId == -1)
                 _EntidadControl._2Ins(o);
@@ -77,7 +94,7 @@ namespace SetimMod_asoPrestamo
                 hfasoSocio_Id_Garante.Value = "-1"; //tbasoSocio_Id_Garante.Text = "0";
                 tbEstado.Text = "PEN"; //ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el Estado inicial
                 tbDescripcion.Text = "Agregar observaciones.";
-                tbasoSocio_Nombre.Text = "Digite 2 letras del nombre...";
+                tbasoSocio_Nombre.Text = SocioNombre;
                 tbasoSocio_Nombre_Garante.Text = "Digite 2 letras del nombre...";
                 tbFecha_Solicitud.Text = string.Format("{0:d}", DateTime.Today); // dnnDP_Fecha_Solicitud.SelectedDate = DateTime.Today;
             }
