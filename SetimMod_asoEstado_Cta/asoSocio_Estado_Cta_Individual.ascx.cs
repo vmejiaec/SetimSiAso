@@ -10,11 +10,12 @@ using SetimBasico;
 
 namespace SetimMod_asoSocio
 {
-    public partial class asoSocio_Estado_Cta : SetimModulo
+    public partial class asoSocio_Estado_Cta_Individual : SetimModulo
     {
         // Entidad base
         private readonly asoPeriodoAporteControl _EntidadControl = new asoPeriodoAporteControl();
         private int Periodo_Actual_Id = -1;
+        private int SocioId;
         // Cada vez que se llama a la página
         protected override void OnLoad(EventArgs e)
         {
@@ -23,15 +24,19 @@ namespace SetimMod_asoSocio
             asoParametroControl ctlParam = new asoParametroControl();
             var oParam = ctlParam._1SelById(1);
             Periodo_Actual_Id = oParam.asoPeriodo_Id_Actual;
+            // Consulta el usuario y el socio
+            this._UserID = ModuleContext.PortalSettings.UserId;
+            var ctlSocio = new asoSocioControl();
+            var oSocio = ctlSocio._1SelByUserID(this._UserID);
+            SocioId = oSocio == null ? -1 : oSocio.Id;
             // Carga el nivel en jerarquía de master/detail 
-            this._Nivel = 1;
+            this._Nivel = 0;
             // Carga de jQuery
             JavaScript.RequestRegistration(CommonJs.jQuery);
             JavaScript.RequestRegistration(CommonJs.DnnPlugins);
             JavaScript.RequestRegistration(CommonJs.jQueryUI);
             // Datos del módulo y del usuario del DNN
             this._ModuleId = ModuleContext.ModuleId;
-            this._UserID = ModuleContext.PortalSettings.UserId;
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -89,7 +94,7 @@ namespace SetimMod_asoSocio
             IList<asoPeriodoAporte> res = new List<asoPeriodoAporte>();
             res = _EntidadControl._0SelByPeriodoYSocio_ConSaldos(
                     Int32.Parse((string)paginaEstado.Filtro_Valor), //Periodo_Actual_Id,
-                    (int)paginaEstadoMaster.Master_Id
+                    SocioId  // usuario
                 );
             return res;
         }
@@ -99,7 +104,7 @@ namespace SetimMod_asoSocio
             // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
             asoPeriodoCuotaControl ctlCuota = new asoPeriodoCuotaControl();
             res = ctlCuota._0SelByasoSocio_Id(
-                    (int)paginaEstadoMaster.Master_Id,
+                    SocioId,  // usuario
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
                 );            
             return res;
@@ -110,7 +115,7 @@ namespace SetimMod_asoSocio
             // En caso de filtrar por estado, utilizar paginaEstado.Filtro_Estado
             asoPeriodoDebitoControl ctlDebito = new asoPeriodoDebitoControl();
             res = ctlDebito._0SelByasoSocio_Id_Desc_Coutas(
-                    (int)paginaEstadoMaster.Master_Id,
+                    SocioId, // usuario
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
                 );
             return res;
@@ -128,8 +133,6 @@ namespace SetimMod_asoSocio
             ddlFiltro_Campo.DataValueField = "Id";
             ddlFiltro_Campo.DataBind();
             // Carga el filtro de los campos desde el estado de la pagina
-            //ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
-            //ddlFiltro_Campo.SelectedIndex = 0;
             paginaEstado.Filtro_Valor = ddlFiltro_Campo.SelectedValue;
         }
         // Cambio del período

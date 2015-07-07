@@ -31,6 +31,15 @@ namespace SetimMod_asoSocio {
         protected global::System.Web.UI.WebControls.HyperLink hlEstadoCta;
         
         /// <summary>
+        /// btAplicarReingreso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btAplicarReingreso;
+        
+        /// <summary>
         /// pnFiltros control.
         /// </summary>
         /// <remarks>

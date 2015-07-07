@@ -66,6 +66,15 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public asoSocio _1SelByUserID(Int32 p_UserID)
+        {
+            return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_1SelByUserID"
+                , p_UserID
+            ));
+        }
+
         [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoSocio o)
         {

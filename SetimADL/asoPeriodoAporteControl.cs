@@ -40,6 +40,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoAporte> _0SelBy_asoPeriodo_Id_12Regs(Int32 p_asoPeriodo_Id)
+        {
+            return CBO.FillCollection<asoPeriodoAporte>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoAporte_0SelBy_asoPeriodo_Id_12Regs"
+                , p_asoPeriodo_Id
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoAporte> _0SelByAll(Int32? asoPeriodo_Id = null, Int32? asoSocio_Id = null, String Tipo = null, String Estado = null, String Descripcion = null, String asoSocio_Nombre = null, DateTime? asoPeriodo_Fecha = null, Decimal? Valor_Accion = null, Decimal? Valor_Ahorro = null, Decimal? Valor_Voluntario = null, Decimal? Valor_Suma = null, Decimal? Valor_Saldo_Accion = null, Decimal? Valor_Saldo_Ahorro = null, Decimal? Valor_Saldo_Voluntario = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoPeriodoAporte>(DataProvider.Instance().ExecuteReader(

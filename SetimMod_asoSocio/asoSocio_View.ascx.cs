@@ -189,6 +189,59 @@ namespace SetimMod_asoSocio
             }
         }
 
+        // Aplica los parámetros de los aportes de reingreso
+        // Crea los reingresos de aportes de acuerdo con los datos de los parámetros y del socio seleccionado
+        protected void btAplicarReingreso_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                // Consulta al usuario
+                int SocioId = (int) paginaEstado.Master_Id;
+                var ctlSocio = new asoSocioControl();
+                var oSocio = ctlSocio._1SelById(SocioId);
+                decimal valorAhorro = oSocio.Valor_Ahorro;
+                // Consulta los parámetros
+                var ctlParam = new asoParametroControl();
+                var oParam = ctlParam._1SelById(1);
+                int PeriodoActual = oParam.asoPeriodo_Id_Actual;
+                int noPeriodosReingreso = oParam.No_Periodos_Reingreso;
+                decimal valorReingreso = oParam.Valor_Reingreso;
+                // Consulta los aportes que existan en los períodos que se van a generar y los borra
+                var ctlAportes = new asoPeriodoAporteControl();
+                var lstAportesABorrar = ctlAportes._0SelBy_asoPeriodo_Id_12Regs(PeriodoActual);
+                foreach (var aporte in lstAportesABorrar)
+                    ctlAportes._4Del(aporte);
+                // Genera los aportes                
+                for (int i = 0; i < noPeriodosReingreso; i++)
+                {
+                    var aporte = new asoPeriodoAporte();
+                    aporte.asoPeriodo_Id = PeriodoActual + i;
+                    aporte.asoSocio_Id = SocioId;
+                    aporte.Descripcion = string.Format("Aporte por reingreso {0}/{1}", i+1, noPeriodosReingreso);
+                    aporte.Tipo = "ING";
+                    aporte.Estado = "PEN";
+                    aporte.Valor_Accion = valorReingreso;
+                    aporte.Valor_Ahorro = valorAhorro;
+                    aporte.Valor_Voluntario = 0;
+
+                    ctlAportes._2Ins(aporte);
+                }
+                // Fin
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Al copiar los usuarios hay error. <br/> Mire en el visor.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
+
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {
             int vId = (int)dgMaster.DataKeys[dgMaster.SelectedIndex];

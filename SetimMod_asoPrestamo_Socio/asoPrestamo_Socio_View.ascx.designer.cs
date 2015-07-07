@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_asoSocio {
+namespace SetimMod_asoPrestamo {
     
     
-    public partial class asoSocio_Estado_Cta {
+    public partial class asoPrestamo_Socio_View {
         
         /// <summary>
-        /// pnFiltros control.
+        /// addButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnFiltros;
+        protected global::System.Web.UI.WebControls.HyperLink addButton;
         
         /// <summary>
-        /// lbFiltro_Criterio control.
+        /// hlReporteSolicitudPrestamo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFiltro_Criterio;
+        protected global::System.Web.UI.WebControls.HyperLink hlReporteSolicitudPrestamo;
         
         /// <summary>
-        /// ddlFiltro_Campo control.
+        /// hlTablaAmortizacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Campo;
+        protected global::System.Web.UI.WebControls.HyperLink hlTablaAmortizacion;
         
         /// <summary>
-        /// dgMasterAportes control.
+        /// dgMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dgMasterAportes;
-        
-        /// <summary>
-        /// dgMasterCuotas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dgMasterCuotas;
-        
-        /// <summary>
-        /// dgMasterDebito control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dgMasterDebito;
+        protected global::System.Web.UI.WebControls.DataGrid dgMaster;
     }
 }

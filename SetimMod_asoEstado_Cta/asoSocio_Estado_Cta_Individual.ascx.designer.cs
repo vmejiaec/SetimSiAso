@@ -10,7 +10,7 @@
 namespace SetimMod_asoSocio {
     
     
-    public partial class asoSocio_Estado_Cta {
+    public partial class asoSocio_Estado_Cta_Individual {
         
         /// <summary>
         /// pnFiltros control.

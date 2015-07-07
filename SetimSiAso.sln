@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoParametro", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoPrestamo", "SetimMod_asoPrestamo\SetimMod_asoPrestamo.csproj", "{E830CAD2-62C3-444F-9BDA-6DAE7ED6FC45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoEstado_Cta", "SetimMod_asoEstado_Cta\SetimMod_asoEstado_Cta.csproj", "{4B9EE0FB-D188-4A9E-8BFA-C35C584F35D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoPrestamo_Socio", "SetimMod_asoPrestamo_Socio\SetimMod_asoPrestamo_Socio.csproj", "{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{E830CAD2-62C3-444F-9BDA-6DAE7ED6FC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E830CAD2-62C3-444F-9BDA-6DAE7ED6FC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E830CAD2-62C3-444F-9BDA-6DAE7ED6FC45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B9EE0FB-D188-4A9E-8BFA-C35C584F35D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B9EE0FB-D188-4A9E-8BFA-C35C584F35D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B9EE0FB-D188-4A9E-8BFA-C35C584F35D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B9EE0FB-D188-4A9E-8BFA-C35C584F35D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

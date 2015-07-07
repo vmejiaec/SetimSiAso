@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
+         DefaultTargets="Build" 
+         ToolsVersion="4.0" >
+  
+  <Target Name="AfterBuild" DependsOnTargets="CopyBin;CopyFiles" />
+  
+  <PropertyGroup>
+    <WebsitePath>C:\websites\dnndev.me</WebsitePath>
+    <WebsiteBinPath>$(WebsitePath)\bin</WebsiteBinPath>
+    <ModuleFolderName>$(WebsitePath)\DesktopModules\Setim\SetimMod_asoEstado_Cta</ModuleFolderName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Views Include="*.ascx;"/>
+    <Styles Include="*.css"/>
+    <Resources Include= "App_LocalResources\*.resx" />
+    <Servicios Include ="*.asmx"/>
+    <Reportes Include ="*.rdlc"/>
+  </ItemGroup>
+  
+  <Target Name="CopyBin">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\bin\$(AssemblyName).dll" 
+          DestinationFolder="$(WebsiteBinPath)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\bin\$(AssemblyName).pdb" 
+          DestinationFolder="$(WebsiteBinPath)" />
+  </Target>
+
+  <Target Name="CopyFiles">
+    <Copy SourceFiles="@(Views)" 
+          DestinationFolder="$(ModuleFolderName)" />
+    <Copy SourceFiles="@(Styles)"  
+          DestinationFolder="$(ModuleFolderName)" />
+    <Copy SourceFiles="@(Servicios)"  
+          DestinationFolder="$(ModuleFolderName)" />
+    <Copy SourceFiles="@(Resources)"
+          DestinationFolder="$(ModuleFolderName)\App_LocalResources" />
+    <Copy SourceFiles="@(Reportes)"
+          DestinationFolder="$(ModuleFolderName)" />
+  </Target>
+  
+</Project>

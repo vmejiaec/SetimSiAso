@@ -1,4 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="asoSocio_Estado_Cta.ascx.cs" Inherits="SetimMod_asoSocio.asoSocio_Estado_Cta" %>
+﻿<%@ Control Language="C#" AutoEventWireup="True" 
+    CodeBehind="asoSocio_Estado_Cta_Individual.ascx.cs" 
+    Inherits="SetimMod_asoSocio.asoSocio_Estado_Cta_Individual" %>
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 

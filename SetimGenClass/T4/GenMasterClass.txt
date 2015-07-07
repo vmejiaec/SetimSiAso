@@ -1,19 +1,19 @@
 ﻿
 
-//-> asoPeriodoDebito.cs
+//-> asoSocio.cs
 
-//-> asoPeriodoDebitoControl.cs
+//-> asoSocioControl.cs
 
-//-> ext_asoPeriodoDebitoControl.cs
+//-> ext_asoSocioControl.cs
 
-//-> asoPeriodoDebito.cs
+//-> asoSocio.cs
 
-//-> asoPeriodoDebitoControl.cs
+//-> asoSocioControl.cs
 
-//-> ext_asoPeriodoDebitoControl.cs
+//-> ext_asoSocioControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoPeriodoDebitoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoDebitoControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoPeriodoDebito.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoSocioControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoSocioControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoSocio.cs

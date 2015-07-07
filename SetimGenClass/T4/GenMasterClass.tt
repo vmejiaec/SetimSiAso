@@ -12,7 +12,7 @@
     var vTablas = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
-            && (so.Name.Equals("asoPeriodoDebito"))))
+            && (so.Name.Equals("asoSocio"))))
         .ToArray ();
 
     foreach(var vTabla in vTablas)
