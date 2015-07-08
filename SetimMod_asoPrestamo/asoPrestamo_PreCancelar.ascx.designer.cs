@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SetimMod_asoPeriodoCuota {
+namespace SetimMod_asoPrestamo {
     
     
-    public partial class asoPeriodoCuota_View {
+    public partial class asoPrestamo_PreCancelar {
         
         /// <summary>
         /// lbTitulo control.
@@ -22,111 +22,147 @@ namespace SetimMod_asoPeriodoCuota {
         protected global::System.Web.UI.WebControls.Label lbTitulo;
         
         /// <summary>
-        /// btGenerarCuotas control.
+        /// lbTasaInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btGenerarCuotas;
+        protected global::System.Web.UI.UserControl lbTasaInteres;
         
         /// <summary>
-        /// hlReporteCuotas control.
+        /// tbTasaInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlReporteCuotas;
+        protected global::System.Web.UI.WebControls.TextBox tbTasaInteres;
         
         /// <summary>
-        /// hlPrecancelar control.
+        /// lbCapital control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPrecancelar;
+        protected global::System.Web.UI.UserControl lbCapital;
         
         /// <summary>
-        /// pnFiltros control.
+        /// tbCapital control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnFiltros;
+        protected global::System.Web.UI.WebControls.TextBox tbCapital;
         
         /// <summary>
-        /// lbFiltro_Criterio control.
+        /// lbInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFiltro_Criterio;
+        protected global::System.Web.UI.UserControl lbInteres;
         
         /// <summary>
-        /// tbFiltro_Criterio control.
+        /// tbInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFiltro_Criterio;
+        protected global::System.Web.UI.WebControls.TextBox tbInteres;
         
         /// <summary>
-        /// ddlFiltro_Campo control.
+        /// lbCapitalMasInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltro_Campo;
+        protected global::System.Web.UI.UserControl lbCapitalMasInteres;
         
         /// <summary>
-        /// btBuscar control.
+        /// tbCapitalMasInteres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btBuscar;
+        protected global::System.Web.UI.WebControls.TextBox tbCapitalMasInteres;
         
         /// <summary>
-        /// pnCabecera control.
+        /// lbPeriodosQueFaltan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnCabecera;
+        protected global::System.Web.UI.UserControl lbPeriodosQueFaltan;
         
         /// <summary>
-        /// lbCab_Estado control.
+        /// tbPeriodosQueFaltan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCab_Estado;
+        protected global::System.Web.UI.WebControls.TextBox tbPeriodosQueFaltan;
         
         /// <summary>
-        /// ddlCab_Estado control.
+        /// lbAbono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCab_Estado;
+        protected global::System.Web.UI.UserControl lbAbono;
         
         /// <summary>
-        /// dgMaster control.
+        /// tbAbono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dgMaster;
+        protected global::System.Web.UI.WebControls.TextBox tbAbono;
+        
+        /// <summary>
+        /// rfv_Abono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Abono;
+        
+        /// <summary>
+        /// vsResumen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsResumen;
+        
+        /// <summary>
+        /// saveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton saveButton;
+        
+        /// <summary>
+        /// cancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton cancelButton;
     }
 }

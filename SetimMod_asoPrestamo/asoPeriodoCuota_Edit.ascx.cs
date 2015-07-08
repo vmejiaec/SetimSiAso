@@ -13,7 +13,7 @@ namespace SetimMod_asoPeriodoCuota
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this._Nivel = 0;
+            this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
             this._EntidadId = Request.QueryString.GetValueOrDefault("EntidadId", -1);
             if (!IsPostBack)
@@ -34,7 +34,7 @@ namespace SetimMod_asoPeriodoCuota
 
             string url = Globals.NavigateURL();
             if (this._Nivel != 0)
-                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("View_Cuotas"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Cancela y regresa a la pantalla base
@@ -42,7 +42,7 @@ namespace SetimMod_asoPeriodoCuota
         {
             string url = Globals.NavigateURL();
             if (this._Nivel != 0)
-                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("DetView"), ModuleContext.ModuleId);
+                url = string.Format("{0}/mid/{1}?popUp=true", Globals.NavigateURL("View_Cuotas"), ModuleContext.ModuleId);
             Response.Redirect(url);
         }
         // Carga el formulario con los datos de un objeto

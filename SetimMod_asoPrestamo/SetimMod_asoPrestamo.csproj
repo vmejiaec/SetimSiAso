@@ -109,6 +109,13 @@
     <Compile Include="asoPrestamo_Edit.ascx.designer.cs">
       <DependentUpon>asoPrestamo_Edit.ascx</DependentUpon>
     </Compile>
+    <Compile Include="asoPrestamo_PreCancelar.ascx.cs">
+      <DependentUpon>asoPrestamo_PreCancelar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPrestamo_PreCancelar.ascx.designer.cs">
+      <DependentUpon>asoPrestamo_PreCancelar.ascx</DependentUpon>
+    </Compile>
     <Compile Include="asoPrestamo_View.ascx.cs">
       <DependentUpon>asoPrestamo_View.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -125,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="asoPrestamo_Edit.ascx" />
+    <Content Include="asoPrestamo_PreCancelar.ascx" />
     <Content Include="asoPrestamo_View.ascx" />
     <Content Include="Module.build" />
   </ItemGroup>

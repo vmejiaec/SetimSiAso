@@ -97,12 +97,20 @@
     <Compile Include="asoPrestamo_Socio_View.ascx.designer.cs">
       <DependentUpon>asoPrestamo_Socio_View.ascx</DependentUpon>
     </Compile>
+    <Compile Include="asoPrestamo_Solicitud_Socio.ascx.cs">
+      <DependentUpon>asoPrestamo_Solicitud_Socio.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPrestamo_Solicitud_Socio.ascx.designer.cs">
+      <DependentUpon>asoPrestamo_Solicitud_Socio.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="asoPeriodoCuota_ByPrestamo SocioTabla_Rep.ascx" />
     <Content Include="asoPrestamo_Socio_Edit.ascx" />
     <Content Include="asoPrestamo_Socio_View.ascx" />
+    <Content Include="asoPrestamo_Solicitud_Socio.ascx" />
     <Content Include="Module.build" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="asoPeriodoCuota_ByPrestamo_SocioTabla_Rep.rdlc" />
+    <EmbeddedResource Include="asoPrestamo_Solicitud_Socio.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

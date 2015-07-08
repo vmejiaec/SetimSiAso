@@ -51,8 +51,9 @@ namespace SetimMod_asoPeriodoCuota
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            //addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
             hlReporteCuotas.NavigateUrl = ModuleContext.EditUrl("Rep_Cuotas");
+            hlPrecancelar.NavigateUrl = ModuleContext.EditUrl("Edit_PreCancela");
             // Pone el título en la pantalla
             lbTitulo.Text = paginaEstadoMaster.Master_Nombre;
         }
