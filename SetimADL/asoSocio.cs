@@ -18,5 +18,6 @@ namespace SetimBasico
         public String Users_Nombre { get; set; }
         public Decimal Valor_Accion { get; set; }
         public Decimal Valor_Ahorro { get; set; }
+        public Decimal Valor_Voluntario { get; set; }
     }
 }

@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoEstado_Cta", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_asoPrestamo_Socio", "SetimMod_asoPrestamo_Socio\SetimMod_asoPrestamo_Socio.csproj", "{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_Calendario", "SetimMod_Calendario\SetimMod_Calendario.csproj", "{5D2EAFDA-B8F2-4019-9598-C4F9FECBCC90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetimMod_EjecutaProcesos", "SetimMod_EjecutaProcesos\SetimMod_EjecutaProcesos.csproj", "{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94811ACE-4C0E-4EF8-93C7-DD0222D1CF0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2EAFDA-B8F2-4019-9598-C4F9FECBCC90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2EAFDA-B8F2-4019-9598-C4F9FECBCC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2EAFDA-B8F2-4019-9598-C4F9FECBCC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2EAFDA-B8F2-4019-9598-C4F9FECBCC90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

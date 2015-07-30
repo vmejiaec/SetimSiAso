@@ -71,6 +71,11 @@
             <asp:TextBox runat="server" ID="tbValor_Ahorro" CssClass="TextBox_Setim_Valor" />
             <asp:RequiredFieldValidator ID="rfv_Valor_Ahorro" runat="server" ControlToValidate="tbValor_Ahorro" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor_Ahorro" SetFocusOnError="true" />
         </div>
+        <div class="dnnFormItem">
+            <dnn:Label ID="lbValor_Voluntario" runat="server" Text="Valor_Ahorro:" HelpText="Valor_Ahorro" />
+            <asp:TextBox runat="server" ID="tbValor_Voluntario" CssClass="TextBox_Setim_Valor" />
+            <asp:RequiredFieldValidator ID="rfv_Valor_Voluntario" runat="server" ControlToValidate="tbValor_Voluntario" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor_Voluntario" SetFocusOnError="true" />
+        </div>
     </fieldset>
 
     <asp:ValidationSummary runat="server" ID="vsResumen" CssClass="dnnFormMessage dnnFormValidationSummary" />

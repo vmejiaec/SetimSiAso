@@ -22,15 +22,6 @@ namespace SetimBasico
     {
         LogEventos _eventos = new LogEventos();
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public IList<asoSocio> _0Sel()
-        {
-            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSocio_0Sel"
-
-            ));
-        }
-
-        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoSocio> _0SelBy_asoServicio_Id_By_Prefijo(Int32 p_asoServicio_Id, String p_Prefijo)
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
@@ -49,20 +40,20 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public IList<asoSocio> _0SelByAll(Int32? UserID = null, String CI = null, String Descripcion = null, DateTime? Fecha_Nacimiento = null, String Estado = null, String Users_EMail = null, String Users_Nombre = null, Decimal? Valor_Accion = null, Decimal? Valor_Ahorro = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        public IList<asoSocio> _0Sel()
         {
             return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSocio_0SelByAll"
-                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, Users_EMail, Users_Nombre, Valor_Accion, Valor_Ahorro, PageIndex, PageSize, SortField, SortDirection
+                "sp_asoSocio_0Sel"
+
             ));
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public asoSocio _1SelById(Int32 Id)
+        public IList<asoSocio> _0SelByAll(Int32? UserID = null, String CI = null, String Descripcion = null, DateTime? Fecha_Nacimiento = null, String Estado = null, String Users_EMail = null, String Users_Nombre = null, Decimal? Valor_Accion = null, Decimal? Valor_Ahorro = null, Decimal? Valor_Voluntario = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
-            return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
-                "sp_asoSocio_1SelById"
-                , Id
+            return CBO.FillCollection<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_0SelByAll"
+                , UserID, CI, Descripcion, Fecha_Nacimiento, Estado, Users_EMail, Users_Nombre, Valor_Accion, Valor_Ahorro, Valor_Voluntario, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
@@ -72,6 +63,15 @@ namespace SetimBasico
             return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoSocio_1SelByUserID"
                 , p_UserID
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public asoSocio _1SelById(Int32 Id)
+        {
+            return CBO.FillObject<asoSocio>(DataProvider.Instance().ExecuteReader(
+                "sp_asoSocio_1SelById"
+                , Id
             ));
         }
 
@@ -100,7 +100,7 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSocio_2Ins"
-                    , o.UserID, o.CI, o.Descripcion, o.Fecha_Nacimiento, o.Estado, o.Valor_Accion, o.Valor_Ahorro
+                    , o.UserID, o.CI, o.Descripcion, o.Fecha_Nacimiento, o.Estado, o.Valor_Accion, o.Valor_Ahorro, o.Valor_Voluntario
                     );
             }
             catch (Exception exc)
@@ -118,7 +118,7 @@ namespace SetimBasico
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoSocio_3Upd"
-                    , o.Id, o.UserID, o.CI, o.Descripcion, o.Fecha_Nacimiento, o.Estado, o.Valor_Accion, o.Valor_Ahorro
+                    , o.Id, o.UserID, o.CI, o.Descripcion, o.Fecha_Nacimiento, o.Estado, o.Valor_Accion, o.Valor_Ahorro, o.Valor_Voluntario
                     );
             }
             catch (Exception exc)

@@ -1,25 +1,17 @@
 ﻿
 
 
-//-> asoPeriodoCuota_Edit.ascx
+//-> asoPrestamoTmp_Edit.ascx
 
-//-> asoPeriodoCuota_Edit.ascx.cs
+//-> asoPrestamoTmp_Edit.ascx.cs
 
-//-> asoPeriodoCuota_View.ascx
+//-> asoPrestamoTmp_View.ascx
 
-//-> asoPeriodoCuota_View.ascx.cs
-
-//-> asoPeriodoCuota_Edit.ascx.cs
-
-//-> asoPeriodoCuota_Edit.ascx
-
-//-> asoPeriodoCuota_View.ascx.cs
-
-//-> asoPeriodoCuota_View.ascx
+//-> asoPrestamoTmp_View.ascx.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_Edit.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_Edit.ascx
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_View.ascx.cs
-// SetimSiAso\SetimGenClass\ASP_Control\asoPeriodoCuota_View.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPrestamoTmp_Edit.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPrestamoTmp_Edit.ascx
+// SetimSiAso\SetimGenClass\ASP_Control\asoPrestamoTmp_View.ascx.cs
+// SetimSiAso\SetimGenClass\ASP_Control\asoPrestamoTmp_View.ascx

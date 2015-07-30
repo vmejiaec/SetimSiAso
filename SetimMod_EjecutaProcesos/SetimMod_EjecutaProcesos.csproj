@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{46ADCCD7-9412-4F5C-AF2B-55CA80F655D1}</ProjectGuid>
+    <ProjectGuid>{1BBCDFB5-6A95-462E-B01A-7919C8865D1C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SetimMod_asoSocio</RootNamespace>
-    <AssemblyName>SetimMod_asoSocio</AssemblyName>
+    <RootNamespace>SetimMod_EjecutaProcesos</RootNamespace>
+    <AssemblyName>SetimMod_EjecutaProcesos</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -44,8 +44,7 @@
     <Reference Include="DotNetNuke.Web">
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Client, Version=7.4.0.353, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DotNetNuke.Web.Client">
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.Web.Client.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.WebControls">
@@ -55,6 +54,9 @@
       <HintPath>..\..\..\..\websites\dnndev.me\bin\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\SetimMod_ExportaDatos\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -76,42 +78,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asoSocio_Edit.ascx" />
-    <Content Include="asoSocio_Estado_Cta.ascx" />
-    <Content Include="asoSocio_View.ascx" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="Inicio.html" />
-    <Content Include="module.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="asoSocio_Edit.ascx.cs">
-      <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
+    <Compile Include="asoPrestamoTmp_Edit.ascx.cs">
+      <DependentUpon>asoPrestamoTmp_Edit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="asoSocio_Edit.ascx.designer.cs">
-      <DependentUpon>asoSocio_Edit.ascx</DependentUpon>
+    <Compile Include="asoPrestamoTmp_Edit.ascx.designer.cs">
+      <DependentUpon>asoPrestamoTmp_Edit.ascx</DependentUpon>
     </Compile>
-    <Compile Include="asoSocio_Estado_Cta.ascx.cs">
-      <DependentUpon>asoSocio_Estado_Cta.ascx</DependentUpon>
+    <Compile Include="asoPrestamoTmp_View.ascx.cs">
+      <DependentUpon>asoPrestamoTmp_View.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="asoSocio_Estado_Cta.ascx.designer.cs">
-      <DependentUpon>asoSocio_Estado_Cta.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="asoSocio_View.ascx.cs">
-      <DependentUpon>asoSocio_View.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="asoSocio_View.ascx.designer.cs">
-      <DependentUpon>asoSocio_View.ascx</DependentUpon>
+    <Compile Include="asoPrestamoTmp_View.ascx.designer.cs">
+      <DependentUpon>asoPrestamoTmp_View.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asoPrestamoTmp_Edit.ascx" />
+    <Content Include="asoPrestamoTmp_View.ascx" />
     <Content Include="Module.build" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SetimADL\SetimADL.csproj">
@@ -138,7 +124,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:29211/</IISUrl>
+          <IISUrl>http://localhost:18704/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

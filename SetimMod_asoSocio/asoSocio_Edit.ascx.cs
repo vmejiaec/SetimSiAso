@@ -56,8 +56,8 @@ namespace SetimMod_asoSocio
             tbUsers_EMail.Text = o.Users_EMail;
             tbUsers_Nombre.Text = o.Users_Nombre;
             tbValor_Accion.Text = string.Format("{0:N2}",o.Valor_Accion);
-            tbValor_Ahorro.Text = string.Format("{0:N2}", o.Valor_Ahorro); 
-
+            tbValor_Ahorro.Text = string.Format("{0:N2}", o.Valor_Ahorro);
+            tbValor_Voluntario.Text = string.Format("{0:N2}", o.Valor_Voluntario); 
         }
         // Carga un objeto con los datos del formulario
         protected asoSocio ColocarDatosEnObjeto()
@@ -73,6 +73,7 @@ namespace SetimMod_asoSocio
             o.Users_Nombre = tbUsers_Nombre.Text;
             o.Valor_Accion = string.IsNullOrWhiteSpace(tbValor_Accion.Text) ? 0 : decimal.Parse(tbValor_Accion.Text);
             o.Valor_Ahorro = string.IsNullOrWhiteSpace(tbValor_Ahorro.Text) ? 0 : decimal.Parse(tbValor_Ahorro.Text);
+            o.Valor_Voluntario = string.IsNullOrWhiteSpace(tbValor_Voluntario.Text) ? 0 : decimal.Parse(tbValor_Voluntario.Text);
 
             return o;
         }

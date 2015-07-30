@@ -220,9 +220,9 @@ namespace SetimMod_asoSocio
                     aporte.Descripcion = string.Format("Aporte por reingreso {0}/{1}", i+1, noPeriodosReingreso);
                     aporte.Tipo = "ING";
                     aporte.Estado = "PEN";
-                    aporte.Valor_Accion = valorReingreso;
+                    aporte.Valor_Accion = oSocio.Valor_Accion + valorReingreso;
                     aporte.Valor_Ahorro = valorAhorro;
-                    aporte.Valor_Voluntario = 0;
+                    aporte.Valor_Voluntario = oSocio.Valor_Voluntario;
 
                     ctlAportes._2Ins(aporte);
                 }

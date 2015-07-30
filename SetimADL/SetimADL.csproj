@@ -58,6 +58,8 @@
     <Compile Include="asoPeriodoInversionControl.cs" />
     <Compile Include="asoPrestamo.cs" />
     <Compile Include="asoPrestamoControl.cs" />
+    <Compile Include="asoPrestamoTmp.cs" />
+    <Compile Include="asoPrestamoTmpControl.cs" />
     <Compile Include="asoServicio.cs" />
     <Compile Include="asoServicioControl.cs" />
     <Compile Include="asoServicioSocio.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="ext_asoPeriodoDebitoControl.cs" />
     <Compile Include="ext_asoPeriodoInversionControl.cs" />
     <Compile Include="ext_asoPrestamoControl.cs" />
+    <Compile Include="ext_asoPrestamoTmpControl.cs" />
     <Compile Include="ext_asoServicioControl.cs" />
     <Compile Include="ext_asoServicioSocioControl.cs" />
     <Compile Include="ext_asoSetimListaControl.cs" />
