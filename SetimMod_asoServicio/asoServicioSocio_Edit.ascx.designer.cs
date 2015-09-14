@@ -130,6 +130,60 @@ namespace SetimMod_asoServicioSocio {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbasoSocio_Nombre;
         
         /// <summary>
+        /// lbValor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbValor;
+        
+        /// <summary>
+        /// tbValor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbValor;
+        
+        /// <summary>
+        /// rfv_Valor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Valor;
+        
+        /// <summary>
+        /// lbNo_Periodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl lbNo_Periodos;
+        
+        /// <summary>
+        /// tbNo_Periodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNo_Periodos;
+        
+        /// <summary>
+        /// rfv_tbNo_Periodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_tbNo_Periodos;
+        
+        /// <summary>
         /// vsResumen control.
         /// </summary>
         /// <remarks>

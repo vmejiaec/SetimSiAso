@@ -275,8 +275,8 @@ namespace SetimMod_asoPeriodoCuota
             catch (Exception exc)
             {
                 Exceptions.LogException(exc);
-                const string headerText = "Error";
-                const string messageText = "Error al generar cuotas. <br/> Mire en el visor.";
+                string headerText = string.Format( "Error: {0}", exc.Message);
+                string messageText = "Error al generar cuotas. <br/> Mire en el visor.";
                 Skin.AddModuleMessage(this,
                     headerText,
                     messageText,

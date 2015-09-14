@@ -209,7 +209,8 @@ namespace SetimMod_asoSocio
                 // Consulta los aportes que existan en los períodos que se van a generar y los borra
                 var ctlAportes = new asoPeriodoAporteControl();
                 var lstAportesABorrar = ctlAportes._0SelBy_asoPeriodo_Id_12Regs(PeriodoActual);
-                foreach (var aporte in lstAportesABorrar)
+                var lstAportesABorrar_Enum = lstAportesABorrar.Where(ap => ap.asoSocio_Id == oSocio.Id);
+                foreach (var aporte in lstAportesABorrar_Enum)
                     ctlAportes._4Del(aporte);
                 // Genera los aportes                
                 for (int i = 0; i < noPeriodosReingreso; i++)
@@ -217,7 +218,7 @@ namespace SetimMod_asoSocio
                     var aporte = new asoPeriodoAporte();
                     aporte.asoPeriodo_Id = PeriodoActual + i;
                     aporte.asoSocio_Id = SocioId;
-                    aporte.Descripcion = string.Format("Aporte por reingreso {0}/{1}", i+1, noPeriodosReingreso);
+                    aporte.Descripcion = string.Format("Aporte generado por reingreso {0}/{1}", i+1, noPeriodosReingreso); // Este texto hace que no se borre el aporte cuando se crean los aportes
                     aporte.Tipo = "ING";
                     aporte.Estado = "PEN";
                     aporte.Valor_Accion = oSocio.Valor_Accion + valorReingreso;

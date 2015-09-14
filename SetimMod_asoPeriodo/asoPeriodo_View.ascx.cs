@@ -266,15 +266,23 @@ namespace SetimMod_asoPeriodo
         {
             try
             {
-                _EntidadControl._5GenerarAportes((int)paginaEstado.Master_Id);
+                // Controla que el período no esté cerrado.
+                int PeriodoId = (int)paginaEstado.Master_Id;
+                var oPeriodo = _EntidadControl._1SelById(PeriodoId);
+                if (oPeriodo.Estado == "CER")
+                {
+                    throw new Exception("Error: No se pueden generar los aportes en el período porque está cerrado");
+                }
+                //
+                _EntidadControl._5GenerarAportes(PeriodoId);
                 Response.Redirect(Request.RawUrl, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception exc)
             {
                 Exceptions.LogException(exc);
-                const string headerText = "Error";
-                const string messageText = "Error al crear los aportes en el período seleccionado. Mire en el visor de eventos.";
+                string headerText = "Error";
+                string messageText = "Error al crear los aportes en el período seleccionado. Mire en el visor de eventos." + exc.Message;
                 Skin.AddModuleMessage(this,
                     headerText,
                     messageText,

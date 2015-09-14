@@ -1,19 +1,19 @@
 ﻿
 
-//-> asoSocio.cs
+//-> asoServicioSocio.cs
 
-//-> asoSocioControl.cs
+//-> asoServicioSocioControl.cs
 
-//-> ext_asoSocioControl.cs
+//-> ext_asoServicioSocioControl.cs
 
-//-> asoSocio.cs
+//-> asoServicioSocio.cs
 
-//-> asoSocioControl.cs
+//-> asoServicioSocioControl.cs
 
-//-> ext_asoSocioControl.cs
+//-> ext_asoServicioSocioControl.cs
 // Generated helper templates
 // SetimSiAso\SetimGenClass\Modelos\GenMasterClass.txt4
 // Generated items
-// SetimSiAso\SetimGenClass\Modelos\ext_asoSocioControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocioControl.cs
-// SetimSiAso\SetimGenClass\Modelos\asoSocio.cs
+// SetimSiAso\SetimGenClass\Modelos\ext_asoServicioSocioControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoServicioSocioControl.cs
+// SetimSiAso\SetimGenClass\Modelos\asoServicioSocio.cs

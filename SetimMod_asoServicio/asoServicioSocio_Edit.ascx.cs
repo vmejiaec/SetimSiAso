@@ -66,7 +66,8 @@ namespace SetimMod_asoServicioSocio
                 tbasoSocio_Id.Text = "0";
                 tbasoServicio_Id.Text = this.paginaEstadoMaster.Master_Id.ToString();
                 tbasoSocio_Nombre.Text = "Digitar 2 letras...";
-
+                tbValor.Text = "0";
+                tbNo_Periodos.Text = "0";
             }
             else
             {
@@ -77,7 +78,8 @@ namespace SetimMod_asoServicioSocio
                 tbasoSocio_Id.Text = o.asoSocio_Id.ToString();
                 tbasoServicio_Id.Text = o.asoServicio_Id.ToString();
                 tbasoSocio_Nombre.Text = o.asoSocio_Nombre;
-
+                tbValor.Text = o.Valor.ToString();
+                tbNo_Periodos.Text = o.No_Periodos.ToString();
             }
         }
         // Carga un objeto con los datos del formulario
@@ -88,7 +90,8 @@ namespace SetimMod_asoServicioSocio
             o.asoSocio_Id = Int32.Parse(tbasoSocio_Id.Text);
             o.asoServicio_Id = Int32.Parse(tbasoServicio_Id.Text);
             o.asoSocio_Nombre = tbasoSocio_Nombre.Text;
-
+            o.Valor = string.IsNullOrWhiteSpace(tbValor.Text) ? 0 : decimal.Parse(tbValor.Text);
+            o.No_Periodos = Int32.Parse(tbNo_Periodos.Text);
             return o;
         }
         // Carga los estados desde una lista 

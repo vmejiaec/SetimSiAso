@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <%--Funcion para poner el formato numérico a los campos de Valor--%>
-<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
+<script src="http://asoimpq.org/dnn/Resources/Shared/scripts/autoNumeric-2.0-Beta.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(function ($) {
         $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
@@ -42,6 +42,53 @@
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
         </div>
+<%--Inicio Autocompletar--%>
+    <script type="text/javascript">
+        $(function () {
+            $("#<%= tbasoSocio_Nombre.ClientID %>").autocomplete({
+                minLength: 2,
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: location.href,
+                        dataType: "json",
+                        data: ({ 'FUNCTION': 'GetSociosActivosByPrefijo', 'param0': request.term }),
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    value: item.valor,
+                                    label: item.etiqueta,
+                                    desc: item.desc
+                                }
+                            }))
+                        },
+                        beforeSend: function (xhr) { xhr.setRequestHeader("X-SETIM-REQUEST", "TRUE"); },// Para atajarlo en el Load de la página
+                        error: function (xhr, status, error) { alert(error); },
+                        failure: function (response) { alert(response.responseText); }
+                    });
+                },
+                focus: function (event, ui) {
+                    $("#<%= tbasoSocio_Nombre.ClientID %>").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    //$("#project").val(ui.item.label);
+                    $("#<%= tbasoSocio_Id.ClientID %>").val(ui.item.value);
+                    //$("#autocomplete-description").html(ui.item.desc);
+                    return false;
+                },
+                open: function () {
+                    $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                },
+                close: function () {
+                    $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                }
+            });
+        });
+    </script>
+<%--Fin Autocompletar--%>
+
         <div class="dnnFormItem">
             <dnn:label id="lbTipo" runat="server" text="Tipo:" />
             <asp:DropDownList runat="server" ID="ddlTipo" />

@@ -5,10 +5,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
 <ul class="dnnActions dnnClear">
-    <li>
-        <asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
-    <li>
-        <asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
+    <%--<li><asp:LinkButton runat="server" ID="btAccion" Text="Accion" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>--%>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">

@@ -5,14 +5,14 @@
 <#
     // The namespace surrounding the code
     var namespaceName               = "SetimBasico";
-    var connectionString            = @"Data Source=.;Initial Catalog=dnndev.me;Integrated Security=True";
+    var connectionString            = @"Data Source=VICTOR-PC\SQL2008R2;Initial Catalog=asoimpq_dnn2;Integrated Security=True";
     var schema                      = GetSchema (connectionString);
     var fileManager = TemplateFileManager.Create(this);
 
     var vTablas = schema
         .SchemaObjects
         .Where (so => ((so.Type == SchemaObject.SchemaObjectType.Table) 
-            && (so.Name.Equals("asoSocio"))))
+            && (so.Name.Equals("asoServicioSocio"))))
         .ToArray ();
 
     foreach(var vTabla in vTablas)

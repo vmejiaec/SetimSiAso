@@ -221,7 +221,7 @@ namespace SetimMod_asoPrestamoTmp
             {
                 // Carga los datos de los préstamos vigentes en las tablas del sistema
 
-                var lstPrestamosTmp=_EntidadControl._0Sel();
+                var lstPrestamosTmp = _EntidadControl._0Sel();
                 var ctlPrestamo = new asoPrestamoControl();
                 var ctlSocio = new asoSocioControl();
                 var ctlCuota = new asoPeriodoCuotaControl();
@@ -239,7 +239,7 @@ namespace SetimMod_asoPrestamoTmp
                     // Si el usuario no existe se pasa al siguiente de la lista
                     if (lstSocioRes.Count == 0)
                     {
-                        errores.Add(string.Format("Socio no encontrado con el CI: {0}",oPrestamoTmp.CI));
+                        errores.Add(string.Format("Socio no encontrado con el CI: {0}", oPrestamoTmp.CI));
                         continue;
                     }
                     var oSocio = lstSocioRes[0];

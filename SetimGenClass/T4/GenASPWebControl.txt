@@ -8,6 +8,14 @@
 //-> asoPrestamoTmp_View.ascx
 
 //-> asoPrestamoTmp_View.ascx.cs
+
+//-> asoPrestamoTmp_Edit.ascx.cs
+
+//-> asoPrestamoTmp_Edit.ascx
+
+//-> asoPrestamoTmp_View.ascx.cs
+
+//-> asoPrestamoTmp_View.ascx
 // Generated helper templates
 // SetimSiAso\SetimGenClass\ASP_Control\GenASPWebControl.txt4
 // Generated items

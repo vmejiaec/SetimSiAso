@@ -11,6 +11,5 @@
     Font-Names="Verdana" Font-Size="8pt" 
     WaitMessageFont-Names="Verdana" 
     WaitMessageFont-Size="14pt" Width="1200px">
-    <LocalReport ReportPath=".\DesktopModules\Setim\SetimMod_asoPrestamo\asoPeriodoCuota_ByPrestamo_Rep.rdlc">
-    </LocalReport>
+    <LocalReport ReportPath="asoPeriodoCuota_ByPrestamo_Rep.rdlc"/>
 </rsweb:ReportViewer>

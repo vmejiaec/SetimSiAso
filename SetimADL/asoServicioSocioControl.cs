@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Data;
 using DotNetNuke.Services.Log.EventLog;
@@ -16,9 +16,12 @@ namespace SetimBasico
     ///<summary>
     ///Controladores para los procedimientos de asoServicioSocio
     ///</summary>
+
+    [DataObjectAttribute()]
     public partial class asoServicioSocioControl
     {
         LogEventos _eventos = new LogEventos();
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoServicioSocio> _0Sel()
         {
             return CBO.FillCollection<asoServicioSocio>(DataProvider.Instance().ExecuteReader(
@@ -27,14 +30,16 @@ namespace SetimBasico
             ));
         }
 
-        public IList<asoServicioSocio> _0SelByAll(Int32? asoSocio_Id = null, Int32? asoServicio_Id = null, String asoSocio_Nombre = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoServicioSocio> _0SelByAll(Int32? asoSocio_Id = null, Int32? asoServicio_Id = null, String asoSocio_Nombre = null, Decimal? Valor = null, Int32? No_Periodos = null, Int32 PageIndex = 0, Int32 PageSize = 10, String SortField = "Id", String SortDirection = "ASC")
         {
             return CBO.FillCollection<asoServicioSocio>(DataProvider.Instance().ExecuteReader(
                 "sp_asoServicioSocio_0SelByAll"
-                , asoSocio_Id, asoServicio_Id, asoSocio_Nombre, PageIndex, PageSize, SortField, SortDirection
+                , asoSocio_Id, asoServicio_Id, asoSocio_Nombre, Valor, No_Periodos, PageIndex, PageSize, SortField, SortDirection
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public asoServicioSocio _1SelById(Int32 Id)
         {
             return CBO.FillObject<asoServicioSocio>(DataProvider.Instance().ExecuteReader(
@@ -43,6 +48,7 @@ namespace SetimBasico
             ));
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Delete, true)]
         public int _4Del(asoServicioSocio o)
         {
             try
@@ -60,13 +66,14 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Insert, true)]
         public int _2Ins(asoServicioSocio o)
         {
             try
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoServicioSocio_2Ins"
-                    , o.asoSocio_Id, o.asoServicio_Id
+                    , o.asoSocio_Id, o.asoServicio_Id, o.asoSocio_Nombre, o.Valor, o.No_Periodos
                     );
             }
             catch (Exception exc)
@@ -77,13 +84,14 @@ namespace SetimBasico
             }
         }
 
+        [DataObjectMethodAttribute(DataObjectMethodType.Update, true)]
         public int _3Upd(asoServicioSocio o)
         {
             try
             {
                 return DataProvider.Instance().ExecuteScalar<int>(
                     "sp_asoServicioSocio_3Upd"
-                    , o.Id, o.asoSocio_Id, o.asoServicio_Id
+                    , o.Id, o.asoSocio_Id, o.asoServicio_Id, o.asoSocio_Nombre, o.Valor, o.No_Periodos
                     );
             }
             catch (Exception exc)

@@ -1655,7 +1655,7 @@
             this.txtDataBase.Name = "txtDataBase";
             this.txtDataBase.Size = new System.Drawing.Size(100, 20);
             this.txtDataBase.TabIndex = 32;
-            this.txtDataBase.Text = "dnndev.me";
+            this.txtDataBase.Text = "asoimpq_dnn2";
             // 
             // label24
             // 

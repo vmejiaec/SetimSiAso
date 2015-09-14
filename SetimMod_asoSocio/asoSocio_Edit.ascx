@@ -8,7 +8,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
-<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
+<script src="http://asoimpq.org/dnn/Resources/Shared/scripts/autoNumeric-2.0-Beta.js" type="text/javascript"></script>
 
 <%--Funcion para poner el formato numérico a los campos de Valor--%>
 <script type="text/javascript">
@@ -72,7 +72,7 @@
             <asp:RequiredFieldValidator ID="rfv_Valor_Ahorro" runat="server" ControlToValidate="tbValor_Ahorro" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor_Ahorro" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label ID="lbValor_Voluntario" runat="server" Text="Valor_Ahorro:" HelpText="Valor_Ahorro" />
+            <dnn:Label ID="lbValor_Voluntario" runat="server" Text="Valor_Voluntario:" HelpText="Valor_Ahorro" />
             <asp:TextBox runat="server" ID="tbValor_Voluntario" CssClass="TextBox_Setim_Valor" />
             <asp:RequiredFieldValidator ID="rfv_Valor_Voluntario" runat="server" ControlToValidate="tbValor_Voluntario" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor_Voluntario" SetFocusOnError="true" />
         </div>

@@ -3,6 +3,11 @@ using DotNetNuke.Common;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Reflection;
+using DotNetNuke.Security;
+using DotNetNuke.Services.Exceptions;
 
 namespace SetimMod_asoPeriodoAporte
 {
@@ -12,6 +17,9 @@ namespace SetimMod_asoPeriodoAporte
 
         protected override void OnLoad(EventArgs e)
         {
+            // Atajar la llamada del Ajax
+            if (Request.Headers["X-SETIM-REQUEST"] == "TRUE") AjaxWrapper();
+            // Proceso normal
             base.OnLoad(e);
             this._Nivel = 1;
             this._UserID = ModuleContext.PortalSettings.UserId;
@@ -55,7 +63,7 @@ namespace SetimMod_asoPeriodoAporte
                 // Usar this.paginaEstadoMaster.Master_Id.ToString() para la clave foranea
                 tbId.Text = "0";
                 tbasoPeriodo_Id.Text = this.paginaEstadoMaster.Master_Id.ToString();
-                tbasoSocio_Id.Text = "";
+                tbasoSocio_Id.Text = "-1";
                 ddlTipo.SelectedValue = "Seleccione..."; // Cambiar por el Tipo inicial
                 ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el Estado inicial
                 tbDescripcion.Text = "Descripcion";
@@ -124,6 +132,46 @@ namespace SetimMod_asoPeriodoAporte
             ddlTipo.DataTextField = "Texto";
             ddlTipo.DataValueField = "Valor";
             ddlTipo.DataBind();
+        }
+
+        // Soporte para autocompletar
+        public string GetSociosActivosByPrefijo(string Prefijo)
+        {
+            asoSocioControl ctlSocio = new asoSocioControl();
+            var lstSocios = ctlSocio._0SelByAll("ACT", "Users_Nombre", Prefijo, 0, 10, "Users_Nombre", "ASC");
+            List<AutoCompletarItem> lista = new List<AutoCompletarItem>();
+            foreach (var socio in lstSocios)
+                lista.Add(new AutoCompletarItem { valor = socio.Id.ToString(), etiqueta = socio.Users_Nombre, desc = socio.Estado });
+            var json = JsonConvert.SerializeObject(lista);
+            return json;
+        }
+        // Repartidor de mensajes Ajax para autocompletar
+        public void AjaxWrapper()
+        {
+            Response.Clear();
+            string strData = "";
+            try
+            {
+                MethodInfo mi = GetType().GetMethod(Request.Params["FUNCTION"]);
+                object[] objs = new object[mi.GetParameters().Length];
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    objs[i] = (new PortalSecurity()).InputFilter(Request.Params["param" + i], PortalSecurity.FilterFlag.NoMarkup);
+                }
+                strData = mi.Invoke(this, objs).ToString();
+            }
+            catch (Exception ex)
+            {
+                strData = "{Error : Caught}";
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+            //
+            Response.ContentType = "json";
+            Response.Write(strData);
+            Response.Flush();
+            try { Response.End(); }
+            catch { }
+            return;
         }
     }
 }

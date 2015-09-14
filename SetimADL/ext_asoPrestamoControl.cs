@@ -60,19 +60,19 @@ namespace SetimBasico
                     break;
                 case "Descripcion":
                     res = _0SelByAll(
-                        Descripcion: (String)valor,
+                        Descripcion: "%" + (String)valor +"%",
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 case "asoSocio_Nombre":
                     res = _0SelByAll(
-                        asoSocio_Nombre: (String)valor,
+                        asoSocio_Nombre: "%" + (String)valor +"%" ,
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;
                 case "asoSocio_Nombre_Garante":
                     res = _0SelByAll(
-                        asoSocio_Nombre_Garante: (String)valor,
+                        asoSocio_Nombre_Garante: "%" + (String)valor+"%" ,
                         Estado: estado,
                         PageIndex: PageIndex, PageSize: PageSize, SortField: SortField, SortDirection: SortDirection);
                     break;

@@ -36,7 +36,7 @@ namespace FlexiSqlTools.Presentation.WindowsFormsApplication
         {
             EnableOrDisableControl();
 
-            txtConnectionString.Text = string.Format(@"Data Source={0};Integrated Security = True;Database=dnndev.me;", txtServerName.Text);
+            txtConnectionString.Text = string.Format(@"Data Source={0};Integrated Security = True;Database=asoimpq_dnn2;", txtServerName.Text);
 
             chkLstRowNumber.Enabled = chkRowNumber.Checked;
 
@@ -644,7 +644,7 @@ namespace FlexiSqlTools.Presentation.WindowsFormsApplication
                 // -------------------------------------------------------------------
                     " (SELECT COUNT(*) FROM sys.computed_columns {2}" +
                     " where name = [{0}].INFORMATION_SCHEMA.COLUMNS.COLUMN_NAME {2}" +
-                    " and object_id = (select object_id from [dnndev.me].sys.tables where name = [{0}].INFORMATION_SCHEMA.COLUMNS.TABLE_NAME) {2}" +
+                    " and object_id = (select object_id from [asoimpq_dnn2].sys.tables where name = [{0}].INFORMATION_SCHEMA.COLUMNS.TABLE_NAME) {2}" +
                     " ) as IsComputed, {2}" +
                 // -------------------------------------------------------------------
                 "	({2}" +

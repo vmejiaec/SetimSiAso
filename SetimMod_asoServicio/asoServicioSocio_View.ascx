@@ -38,9 +38,12 @@
 
     <Columns>
         <asp:BoundColumn DataField="Id" HeaderText="Id" HeaderStyle-Width="50px" SortExpression="Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="asoSocio_Id" HeaderText="Socio_Id" HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="asoServicio_Id" HeaderText="Servicio_Id" HeaderStyle-Width="50px" SortExpression="asoServicio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
-        <asp:BoundColumn DataField="asoSocio_Nombre" HeaderText="Socio_Nombre" HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="asoSocio_Id"        HeaderText="Socio_Id"       HeaderStyle-Width="50px" SortExpression="asoSocio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoServicio_Id"     HeaderText="Servicio_Id"    HeaderStyle-Width="50px" SortExpression="asoServicio_Id" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="asoSocio_Nombre"    HeaderText="Socio_Nombre"   HeaderStyle-Width="50px" SortExpression="asoSocio_Nombre" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Left" />
+        <asp:BoundColumn DataField="Valor"              HeaderText="Valor"          HeaderStyle-Width="50px" SortExpression="Valor" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+        <asp:BoundColumn DataField="No_Periodos"        HeaderText="No Periodos"    HeaderStyle-Width="50px" SortExpression="No_Periodos" HeaderStyle-HorizontalAlign="Center" DataFormatString="{0}" ItemStyle-HorizontalAlign="Right" />
+        
         <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
         <asp:TemplateColumn>
             <FooterTemplate>
@@ -56,7 +59,7 @@
             <HeaderStyle Width="50px" />
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
-                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
+                    NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "DetEdit") %>'
                     Text="Editar" />
             </ItemTemplate>
         </asp:TemplateColumn>

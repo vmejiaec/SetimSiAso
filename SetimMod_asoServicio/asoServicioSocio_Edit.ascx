@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
 <%--Funcion para poner el formato numérico a los campos de Valor--%>
-<script src="/Resources/Shared/scripts/autoNumeric-2.0-BETA.js" type="text/javascript"></script>
+<script src="http://asoimpq.org/dnn/Resources/Shared/scripts/autoNumeric-2.0-Beta.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(function ($) {
         $('input[class=TextBox_Setim_Valor]').autoNumeric('init', { aSep: '.', aDec: ',' });
@@ -37,6 +37,16 @@
             <dnn:Label runat="server" ID="lbasoSocio_Nombre" Text="asoSocio_Nombre:" HelpText="asoSocio_Nombre" />
             <asp:TextBox runat="server" ID="tbasoSocio_Nombre" />
             <asp:RequiredFieldValidator ID="rfv_tbasoSocio_Nombre" runat="server" ControlToValidate="tbasoSocio_Nombre" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoSocio_Nombre" SetFocusOnError="true" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label ID="lbValor" runat="server" Text="Valor:" HelpText="Valor" />
+            <asp:TextBox runat="server" ID="tbValor" CssClass="TextBox_Setim_Valor" />
+            <asp:RequiredFieldValidator ID="rfv_Valor" runat="server" ControlToValidate="tbValor" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Valor" SetFocusOnError="true" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lbNo_Periodos" Text="No_Periodos:" HelpText="No_Periodos" />
+            <asp:TextBox runat="server" ID="tbNo_Periodos" Enabled="true" />
+            <asp:RequiredFieldValidator ID="rfv_tbNo_Periodos" runat="server" ControlToValidate="tbNo_Periodos" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta No_Periodos" SetFocusOnError="true" />
         </div>
     </fieldset>
     <script type="text/javascript">
