@@ -7,7 +7,7 @@
 <asp:Label runat="server" ID="lbTitulo" ForeColor="#3399FF" Font-Italic="true" Font-Bold="true"></asp:Label>
 
 <ul class="dnnActions dnnClear">
-    <%--<li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>--%>
+    <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnSecondaryAction" /></li>
     <li><asp:LinkButton runat="server" ID="btGenerarCuotas" Text="Generar Cuotas" CssClass="dnnSecondaryAction confirm" OnClick="btGenerarCuotas_OnClick" /></li>
     <li><asp:HyperLink runat="server" ID="hlReporteCuotas" Text="Reporte Tabla Amrt." CssClass="dnnPrimaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="hlPrecancelar" Text="Pre cancelar." CssClass="dnnSecondaryAction" /></li>

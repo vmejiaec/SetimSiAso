@@ -52,9 +52,21 @@ namespace SetimMod_asoPeriodoCuota
             {
                 // Valores por defecto para el INSERT
                 // Usar this.paginaEstadoMaster.Master_Id.ToString() para la clave foranea
+                // Consulta los datos del préstamo
+                int Prestamo_Id = (int) this.paginaEstadoMaster.Master_Id;
+                asoPeriodoCuotaControl ctlCuotas = new asoPeriodoCuotaControl();
+                var lstCoutasABorrar = ctlCuotas._0SelByasoPrestamo_Id(Prestamo_Id);
+                int Periodo_maxId = -1;
+                foreach (var c in lstCoutasABorrar)
+                {
+                    if (c.asoPeriodo_Id > Periodo_maxId)
+                        Periodo_maxId = c.asoPeriodo_Id;
+                }
+                Periodo_maxId++;
+                //
                 tbId.Text = "0";
-                tbasoPeriodo_Id.Text = "0";
-                tbasoPrestamo_Id.Text = "0";
+                tbasoPeriodo_Id.Text = Periodo_maxId.ToString();
+                tbasoPrestamo_Id.Text = Prestamo_Id.ToString();
                 tbValor_Capital.Text = "0";
                 tbValor_Interes.Text = "0";
                 ddlEstado.SelectedValue = "Seleccione..."; // Cambiar por el Estado inicial

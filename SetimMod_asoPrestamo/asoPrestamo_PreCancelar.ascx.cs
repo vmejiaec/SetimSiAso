@@ -3,6 +3,7 @@ using DotNetNuke.Common;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
+using System.Collections.Generic;
 
 namespace SetimMod_asoPrestamo
 {
@@ -31,8 +32,9 @@ namespace SetimMod_asoPrestamo
             decimal Interes = decimal.Parse(tbInteres.Text);
             decimal DifCapital = Capital + Interes - Abono;
             int NoPeriodosFaltan = Int32.Parse( tbPeriodosQueFaltan.Text);
+            int Prestamo_Id = (int)paginaEstadoMaster.Master_Id;
             // Si la diferencia es cero, el abono cubre toda la precancelación
-            var lstCuotas = _EntidadControl._0SelByasoPrestamo_Id((int)paginaEstadoMaster.Master_Id);
+            var lstCuotas = _EntidadControl._0SelByasoPrestamo_Id(Prestamo_Id);
             if (DifCapital == 0)
             {
                 bool bPrimerPendiente = true;
@@ -62,35 +64,87 @@ namespace SetimMod_asoPrestamo
                 bool bPrimerPendiente = true;
                 decimal DifCapitalPeriodo = Math.Round( DifCapital /(NoPeriodosFaltan - 1),2);
                 decimal CapitalArrastre = DifCapital;
-                int NoPer = 1;
+                // Borra las cuotas y calcula el período id
+                int Periodo_Id_Max_Cob = -1;
                 foreach (var cuota in lstCuotas)
                 {
                     if (cuota.Estado == "PEN")
                     {
-                        if (bPrimerPendiente)
-                        {
-                            // Se modifica la primera cuota pendiente de la tabla de amortización.
-                            cuota.Valor_Capital = Abono - Interes;
-                            cuota.Valor_Interes = Interes;
-                            _EntidadControl._3Upd(cuota);
-                            bPrimerPendiente = false;
-                        }
-                        else
-                        {
-                            // Se Actualiza el resto de cuotas
-                            cuota.Valor_Interes = Math.Round(CapitalArrastre * TasaInteres / 1200, 2);
-                            CapitalArrastre -= DifCapitalPeriodo;
-                            if (NoPer == NoPeriodosFaltan - 1)
-                                cuota.Valor_Capital = DifCapitalPeriodo + CapitalArrastre;
-                            else
-                            {
-                                cuota.Valor_Capital = DifCapitalPeriodo;
-                            }
-                            _EntidadControl._3Upd(cuota);
-                            NoPer ++;
-                        }
+                        _EntidadControl._4Del(cuota);
+                    }
+                    else
+                    {
+                        if (cuota.asoPeriodo_Id > Periodo_Id_Max_Cob)
+                            Periodo_Id_Max_Cob = cuota.asoPeriodo_Id;
                     }
                 }
+                // Crea las nuevas cuotas
+                var lstCuotasNuevas = new List<asoPeriodoCuota>();
+                for (int i = 1; i <= NoPeriodosFaltan; i++)
+                {
+                    if (bPrimerPendiente)
+                    {
+                        var cuota = new asoPeriodoCuota();
+                        cuota.asoPeriodo_Id = Periodo_Id_Max_Cob + i;
+                        cuota.asoPrestamo_Id = Prestamo_Id;
+                        cuota.Valor_Capital = Abono - Interes; ;
+                        cuota.Valor_Interes = Interes;
+                        cuota.Estado = "PEN";
+                        cuota.Descripcion = "Generado por Precancelación";
+                        bPrimerPendiente = false;
+                        _EntidadControl._2Ins(cuota);
+                    }
+                    else
+                    {
+                        var cuota = new asoPeriodoCuota();
+                        cuota.asoPeriodo_Id = Periodo_Id_Max_Cob + i;
+                        cuota.asoPrestamo_Id = Prestamo_Id;
+
+                        cuota.Valor_Interes = Math.Round(CapitalArrastre * TasaInteres / 1200, 2);
+                        CapitalArrastre -= DifCapitalPeriodo;
+                        if (i == NoPeriodosFaltan)
+                            cuota.Valor_Capital = DifCapitalPeriodo + CapitalArrastre;
+                        else
+                        {
+                            cuota.Valor_Capital = DifCapitalPeriodo;
+                        }
+
+                        cuota.Estado = "PEN";
+                        cuota.Descripcion = "Generado por Precancelación";
+                        bPrimerPendiente = false;
+                        _EntidadControl._2Ins(cuota);
+                    }
+                }
+                // --------------------------------------------------
+                //foreach (var cuota in lstCuotas)
+                //{
+                //    if (cuota.Estado == "PEN")
+                //    {
+                //        if (bPrimerPendiente)
+                //        {
+                //            // Se modifica la primera cuota pendiente de la tabla de amortización.
+                //            cuota.Valor_Capital = Abono - Interes;
+                //            cuota.Valor_Interes = Interes;
+                //            _EntidadControl._3Upd(cuota);
+                //            bPrimerPendiente = false;
+                //        }
+                //        else
+                //        {
+                //            // Se Actualiza el resto de cuotas
+                //            cuota.Valor_Interes = Math.Round(CapitalArrastre * TasaInteres / 1200, 2);
+                //            CapitalArrastre -= DifCapitalPeriodo;
+                //            if (NoPer == NoPeriodosFaltan - 1)
+                //                cuota.Valor_Capital = DifCapitalPeriodo + CapitalArrastre;
+                //            else
+                //            {
+                //                cuota.Valor_Capital = DifCapitalPeriodo;
+                //            }
+                //            _EntidadControl._3Upd(cuota);
+                //            NoPer ++;
+                //        }
+                //    }
+                //}
+                // --------------------------------------------------
             }
             string url = Globals.NavigateURL();
             if (this._Nivel != 0)

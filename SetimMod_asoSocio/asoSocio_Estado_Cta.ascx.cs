@@ -101,7 +101,8 @@ namespace SetimMod_asoSocio
             res = ctlCuota._0SelByasoSocio_Id(
                     (int)paginaEstadoMaster.Master_Id,
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
-                );            
+                );
+            PrestamosTotal.Text = string.Format("{0:N2}", res.Sum(cuota => cuota.Valor_Suma));
             return res;
         }
         private IList<asoPeriodoDebito> ConsultaSPDebitos()
@@ -113,6 +114,7 @@ namespace SetimMod_asoSocio
                     (int)paginaEstadoMaster.Master_Id,
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
                 );
+            DebitosTotal.Text = string.Format("{0:N2}",res.Sum(debito => debito.Valor_Mas_Comision)); 
             return res;
         }
         // Carga los campos para filtrar 

@@ -20,17 +20,17 @@
         <legend></legend>
         <div class="dnnFormItem">
             <dnn:label runat="server" id="lbId" text="Id:" helptext="Id" />
-            <asp:TextBox runat="server" ID="tbId" Enabled="true" />
+            <asp:TextBox runat="server" ID="tbId" Enabled="false" />
             <asp:RequiredFieldValidator ID="rfv_tbId" runat="server" ControlToValidate="tbId" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:label runat="server" id="lbasoPeriodo_Id" text="asoPeriodo_Id:" helptext="asoPeriodo_Id" />
-            <asp:TextBox runat="server" ID="tbasoPeriodo_Id" Enabled="true" />
+            <asp:TextBox runat="server" ID="tbasoPeriodo_Id" Enabled="false" />
             <asp:RequiredFieldValidator ID="rfv_tbasoPeriodo_Id" runat="server" ControlToValidate="tbasoPeriodo_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPeriodo_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:label runat="server" id="lbasoPrestamo_Id" text="asoPrestamo_Id:" helptext="asoPrestamo_Id" />
-            <asp:TextBox runat="server" ID="tbasoPrestamo_Id" Enabled="true" />
+            <asp:TextBox runat="server" ID="tbasoPrestamo_Id" Enabled="false" />
             <asp:RequiredFieldValidator ID="rfv_tbasoPrestamo_Id" runat="server" ControlToValidate="tbasoPrestamo_Id" CssClass="dnnFormMessage dnnFormError" Text="Requerido" ErrorMessage="Falta asoPrestamo_Id" SetFocusOnError="true" />
         </div>
         <div class="dnnFormItem">

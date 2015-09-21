@@ -49,6 +49,15 @@ namespace SetimMod_asoSocio {
         protected global::System.Web.UI.WebControls.DataGrid dgMasterAportes;
         
         /// <summary>
+        /// PrestamosTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PrestamosTotal;
+        
+        /// <summary>
         /// dgMasterCuotas control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace SetimMod_asoSocio {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataGrid dgMasterCuotas;
+        
+        /// <summary>
+        /// DebitosTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DebitosTotal;
         
         /// <summary>
         /// dgMasterDebito control.

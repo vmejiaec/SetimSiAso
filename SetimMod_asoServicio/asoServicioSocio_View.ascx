@@ -7,6 +7,7 @@
 <ul class="dnnActions dnnClear">
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
     <li><asp:LinkButton runat="server" ID="btAccion" Text="Cargar socios activos" CssClass="dnnSecondaryAction confirm" OnClick="btAccion_OnClick" /></li>
+    <li><asp:LinkButton runat="server" ID="btQuitarSociosSinPeriodos" Text="Quitar socios sin períodos" CssClass="dnnSecondaryAction confirm" OnClick="btQuitarSociosSinPeriodos_OnClick" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">

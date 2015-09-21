@@ -281,6 +281,42 @@ namespace SetimMod_asoPeriodoDebito
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
+        //btBorrarDebitosPEN_OnClick
+        protected void btBorrarDebitosPEN_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int Servicio_Id = (int)paginaEstadoMaster.Master_Id;
+                var lstDebitos = _EntidadControl._0SelByasoServicio_Id(Servicio_Id);
+                foreach (var deb in lstDebitos)
+                {
+                    try
+                    {
+                        if (deb.Estado == "PEN")
+                        {
+                            _EntidadControl._4Del(deb);
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        continue;
+                    }
+                }
+                
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error.";
+                string messageText = string.Format("Hay error al generar los débitos de este servicio: {0} <br/> {1}", exc.Message, exc.InnerException.Message);
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
         // Boton para ejecutar una accion
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {

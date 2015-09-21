@@ -235,6 +235,38 @@ namespace SetimMod_asoServicioSocio
                     DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
             }
         }
+        //btQuitarSociosSinPeriodos_OnClick
+        protected void btQuitarSociosSinPeriodos_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int p_asoServicio_Id = (int)paginaEstadoMaster.Master_Id;
+                var lstServicioSocios = _EntidadControl._0SelByAll(asoServicio_Id : p_asoServicio_Id,PageSize:300);
+                foreach(var socio in lstServicioSocios)
+                {
+                    try
+                    {
+                        _EntidadControl._4Del(socio);                        
+                    }
+                    catch (Exception exc)
+                    {
+                        continue;
+                    }
+                }
+                Response.Redirect(Request.RawUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception exc)
+            {
+                Exceptions.LogException(exc);
+                const string headerText = "Error";
+                const string messageText = "Hay error al quitar el socio del servicio.";
+                Skin.AddModuleMessage(this,
+                    headerText,
+                    messageText,
+                    DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning);
+            }
+        }
         // Boton para ejecutar una accion
         protected void btConfigAportes_OnClick(object sender, EventArgs e)
         {

@@ -31,6 +31,15 @@ namespace SetimMod_asoServicioSocio {
         protected global::System.Web.UI.WebControls.LinkButton btAccion;
         
         /// <summary>
+        /// btQuitarSociosSinPeriodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btQuitarSociosSinPeriodos;
+        
+        /// <summary>
         /// pnFiltros control.
         /// </summary>
         /// <remarks>

@@ -42,7 +42,7 @@
     </Columns>
 </asp:DataGrid>
 
-<div class="dnnFormMessage dnnFormSuccess">PRESTAMOS</div>
+<div class="dnnFormMessage dnnFormSuccess">PRESTAMOS: <asp:Label runat="server" ID="PrestamosTotal" Text="0,00"></asp:Label> </div>
 
 <asp:DataGrid runat="server" ID="dgMasterCuotas"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
@@ -69,7 +69,7 @@
     </Columns>
 </asp:DataGrid>
 
-<div class="dnnFormMessage dnnFormSuccess">DÉBITOS</div>
+<div class="dnnFormMessage dnnFormSuccess">DÉBITOS: <asp:Label runat="server" ID="DebitosTotal" Text="0,00"></asp:Label> </div>
 
 <asp:DataGrid runat="server" ID="dgMasterDebito"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"

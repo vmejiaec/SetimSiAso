@@ -16,6 +16,8 @@
         <asp:HyperLink runat="server" ID="hlCargaArchivo" Text="Carga de Archivo" CssClass="dnnSecondaryAction" /></li>
     <li>
         <asp:HyperLink runat="server" ID="Reporte" Text="Reporte" CssClass="dnnSecondaryAction" /></li>
+    <li>
+        <asp:LinkButton runat="server" ID="btBorrarDebitosPEN" Text="Borrar débitos pendientes" CssClass="dnnSecondaryAction confirm" OnClick="btBorrarDebitosPEN_OnClick" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">

@@ -22,6 +22,15 @@ namespace SetimMod_asoPeriodoCuota {
         protected global::System.Web.UI.WebControls.Label lbTitulo;
         
         /// <summary>
+        /// addButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink addButton;
+        
+        /// <summary>
         /// btGenerarCuotas control.
         /// </summary>
         /// <remarks>
