@@ -48,6 +48,8 @@ namespace SetimMod_asoSetimLista
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
             btAccion.NavigateUrl = ModuleContext.EditUrl("DetView");
+            // Seguridad
+            addButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()

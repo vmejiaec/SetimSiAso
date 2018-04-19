@@ -21,9 +21,17 @@ namespace SetimBasico
         public string _Usuario_Nombre {
             get
             {
+                    UserInfo _currentUser = UserController.Instance.GetCurrentUserInfo();
+                    string Usuario_Nombre = string.Format("{0} {1}", _currentUser.FirstName, _currentUser.LastName);
+                    return Usuario_Nombre;
+            }
+        }
+        // Verifica si tiene permiso de edición por medio del rol RolSetimEditar
+        public bool _Usuario_RolSetimEditar
+        {
+            get {
                 UserInfo _currentUser = UserController.Instance.GetCurrentUserInfo();
-                string Usuario_Nombre = string.Format("{0} {1}", _currentUser.FirstName, _currentUser.LastName);
-                return Usuario_Nombre;
+                return _currentUser.IsInRole("RolSetimEditar");
             }
         }
         // Estado de la páginas

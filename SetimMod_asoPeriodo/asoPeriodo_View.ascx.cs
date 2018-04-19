@@ -57,6 +57,11 @@ namespace SetimMod_asoPeriodo
             lbTitulo.Text = string.Format("Periódo actual: ({0}) {1:d}", oParam.asoPeriodo_Id_Actual, oParam.asoPeriodo_Actual_Fecha);
             // Inicializa el botón de edición
             hlAportes.NavigateUrl = ModuleContext.EditUrl("View_Aporte");
+            //Seguridad
+            btAccion.Enabled = this._Usuario_RolSetimEditar;
+            lbMarcarPagados.Enabled = this._Usuario_RolSetimEditar;
+            lbPeriodoActual.Enabled = this._Usuario_RolSetimEditar;
+            lbCrearAportes.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

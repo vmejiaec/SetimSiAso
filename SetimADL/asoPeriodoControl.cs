@@ -40,6 +40,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodo> _0SelByAnio_Periodos_Cerrados(Int32 p_Anio)
+        {
+            return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodo_0SelByAnio_Periodos_Cerrados"
+                , p_Anio
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodo> _0SelByPeriodos_Cerrados_12Regs(Int32 p_Dummy)
         {
             return CBO.FillCollection<asoPeriodo>(DataProvider.Instance().ExecuteReader(

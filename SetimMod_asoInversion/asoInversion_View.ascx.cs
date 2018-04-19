@@ -18,6 +18,7 @@ namespace SetimMod_asoInversion
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            
             // Carga el nivel en jerarquía de master/detail 
             this._Nivel = 0;
             // Carga de jQuery

@@ -1,0 +1,21 @@
+﻿USE [asoimpq_dnn2]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_asoPeriodoDebito_0SelByAll_Desc_Coutas]    Script Date: 25/03/2018 18:33:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Procedure [dbo].[sp_asoPeriodoDebito_0SelByAll_Desc_Coutas]
+(
+	@p_dummy int
+)
+AS
+BEGIN
+  -- Consulta todos los débitos de los socios en sus servicios y los organiza por cuotas 
+    Set NoCount On;
+	SELECT Id, asoPeriodo_Id, asoServicio_Id, asoSocio_Id, Valor, Valor_Comision, Estado, Descripcion, asoSocio_Nombre, asoPeriodo_Fecha, Valor_Mas_Comision, No_Cuotas, No_Cuotas_PEN, No_Cuotas_COB, 
+	convert(nvarchar,ROW_NUMBER() over (partition by asoServicio_Id, asoSocio_Id order by asoPeriodo_Id)) + ' / ' + CONVERT( nvarchar, No_Cuotas) as Desc_Coutas,
+	asoServicio_Nombre
+	FROM [dbo].[asoPeriodoDebito]
+	--where asoServicio_Id = @p_asoServicio_Id
+END

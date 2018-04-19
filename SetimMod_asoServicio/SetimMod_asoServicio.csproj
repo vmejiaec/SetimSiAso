@@ -76,6 +76,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asoimpq_dnn2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>asoimpq_dnn2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="asoimpq_dnn2DataSet_asoPeriodoDebitoGen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xsd</DependentUpon>
+    </Compile>
     <Compile Include="asoPeriodoDebito_Archivo.ascx.cs">
       <DependentUpon>asoPeriodoDebito_Archivo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -132,6 +142,13 @@
     <Compile Include="asoServicio_View.ascx.designer.cs">
       <DependentUpon>asoServicio_View.ascx</DependentUpon>
     </Compile>
+    <Compile Include="asoPeriodoDebitoGen_Rep.ascx.cs">
+      <DependentUpon>asoPeriodoDebitoGen_Rep.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asoPeriodoDebitoGen_Rep.ascx.designer.cs">
+      <DependentUpon>asoPeriodoDebitoGen_Rep.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_dnndev_meDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -148,6 +165,7 @@
     <Content Include="asoServicioSocio_View.ascx" />
     <Content Include="asoServicio_Edit.ascx" />
     <Content Include="asoServicio_View.ascx" />
+    <Content Include="asoPeriodoDebitoGen_Rep.ascx" />
     <Content Include="Module.build">
       <SubType>Designer</SubType>
     </Content>
@@ -168,6 +186,28 @@
       <DependentUpon>_dnndev_meDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="web.config" />
+    <Content Include="asoimpq_dnn2DataSet.xsc">
+      <DependentUpon>asoimpq_dnn2DataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="asoimpq_dnn2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>asoimpq_dnn2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="asoimpq_dnn2DataSet.xss">
+      <DependentUpon>asoimpq_dnn2DataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xsc">
+      <DependentUpon>asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xsd</DependentUpon>
+    </Content>
+    <None Include="asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>asoimpq_dnn2DataSet_asoPeriodoDebitoGen.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xss">
+      <DependentUpon>asoimpq_dnn2DataSet_asoPeriodoDebitoGen.xsd</DependentUpon>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -185,6 +225,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="asoPeriodoDebito_Rep.rdlc" />
+    <EmbeddedResource Include="asoPeriodoDebitoGen_Rep.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

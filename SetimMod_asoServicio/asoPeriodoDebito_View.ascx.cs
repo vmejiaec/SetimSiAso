@@ -51,13 +51,18 @@ namespace SetimMod_asoPeriodoDebito
                 // Carga de datos
                 ConsultaDatos();
             }
-            // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Det_EditDebito");
-            Reporte.NavigateUrl = ModuleContext.EditUrl("Det_DebitoRep");
+            // Inicializa el botón de edición            
+            addButton.NavigateUrl = ModuleContext.EditUrl("Det_EditDebito");            
             hlCargaArchivo.NavigateUrl = ModuleContext.EditUrl("Det_DebitoArc");
             // Publica los avisos
             lbAvisos.Text = paginaEstado.Avisos;
-            // Consulta el nombre del servicio
+            // Reporte
+            Reporte.NavigateUrl = ModuleContext.EditUrl("Det_DebitoRep");
+            // Seguridad
+            addButton.Enabled = this._Usuario_RolSetimEditar;
+            btGenerarDebitos.Enabled = this._Usuario_RolSetimEditar;
+            hlCargaArchivo.Enabled = this._Usuario_RolSetimEditar;
+            btBorrarDebitosPEN.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

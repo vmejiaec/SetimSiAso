@@ -29,6 +29,8 @@ namespace SetimMod_asoPrestamo
                 CargarDdl_Estados();
                 ColocarDatosEnFormulario();
             }
+            // Seguridad
+            saveButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
         protected void Guardar(object sender, EventArgs e)

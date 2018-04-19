@@ -4,14 +4,40 @@
 
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.UI.WebControls" Assembly="DotNetNuke" %>
 
+<script src="http://asoimpq.org/Resources/Shared/scripts/printThis.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function printDiv(nombreDiv) {
+        $("#divImprimir").printThis();
+    }
+</script>
+
+<ul class="dnnActions dnnClear">
+    <li><input id="btnImprimir" type="button" class="dnnSecondaryAction"  onclick="printDiv('divImprimir')" value="Imprimir" /></li>
+</ul>
+
+<div id="divImprimir" style="width:90% ; margin:10px" >
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" >
+    <h2>Estado de Cuenta</h2>
+    <p>
+    <asp:Table ID="Table1" runat="server">
+            <asp:TableRow Width="100%">
+                <asp:TableCell Width="40%"><asp:Label runat="server" ID="lbSocioNombre" Font-Bold="true"></asp:Label></asp:TableCell>
+                <asp:TableCell Width="30%"><asp:Label runat="server" ID="lbFecha" Font-Bold="true"></asp:Label></asp:TableCell>
+                <asp:TableCell Width="10%"><asp:Label runat="server" ID="lbSumaTotal" Font-Bold="true"></asp:Label></asp:TableCell>
+            </asp:TableRow>
+    </asp:Table>
+    </p>
     <div class="dnnClear">
+        <asp:Label runat="server" ID="lbFiltro_Anio" Text="Año: " />
+        <asp:DropDownList runat="server" ID="ddlFiltro_Anio" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Anio_SelectedIndexChanged" />
+
         <asp:Label runat="server" ID="lbFiltro_Criterio" Text="Período: " />
         <asp:DropDownList runat="server" ID="ddlFiltro_Campo" AutoPostBack="true" CssClass="DropDownList_Setim" OnSelectedIndexChanged="ddlFiltro_Campo_SelectedIndexChanged" />
     </div>
 </asp:Panel>
 
-<div class="dnnFormMessage dnnFormSuccess">APORTES</div>
+<div class="dnnFormMessage dnnFormSuccess">APORTES: <asp:Label runat="server" ID="AportesTotal" Text="0,00"></asp:Label> </div>
 
 <asp:DataGrid runat="server" ID="dgMasterAportes"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
@@ -44,7 +70,7 @@
     </Columns>
 </asp:DataGrid>
 
-<div class="dnnFormMessage dnnFormSuccess">PRESTAMOS</div>
+<div class="dnnFormMessage dnnFormSuccess">PRESTAMOS: <asp:Label runat="server" ID="PrestamosTotal" Text="0,00"></asp:Label></div>
 
 <asp:DataGrid runat="server" ID="dgMasterCuotas"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
@@ -71,7 +97,7 @@
     </Columns>
 </asp:DataGrid>
 
-<div class="dnnFormMessage dnnFormSuccess">DÉBITOS</div>
+<div class="dnnFormMessage dnnFormSuccess">DÉBITOS: <asp:Label runat="server" ID="DebitosTotal" Text="0,00"></asp:Label></div>
 
 <asp:DataGrid runat="server" ID="dgMasterDebito"
     CssClass="dnnGrid" AutoGenerateColumns="False" GridLines="None"
@@ -98,6 +124,7 @@
         <%--  <asp:ButtonColumn Text="Sel" ButtonType="LinkButton" CommandName="Select" />--%>
     </Columns>
 </asp:DataGrid>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {

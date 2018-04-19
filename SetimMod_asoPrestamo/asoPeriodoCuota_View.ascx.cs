@@ -56,6 +56,10 @@ namespace SetimMod_asoPeriodoCuota
             hlPrecancelar.NavigateUrl = ModuleContext.EditUrl("Edit_PreCancela");
             // Pone el título en la pantalla
             lbTitulo.Text = paginaEstadoMaster.Master_Nombre;
+            // Seguridad
+            addButton.Enabled = this._Usuario_RolSetimEditar;
+            btGenerarCuotas.Enabled = this._Usuario_RolSetimEditar;
+            hlPrecancelar.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

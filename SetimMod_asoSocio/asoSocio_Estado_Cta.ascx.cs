@@ -32,6 +32,7 @@ namespace SetimMod_asoSocio
             // Datos del módulo y del usuario del DNN
             this._ModuleId = ModuleContext.ModuleId;
             this._UserID = ModuleContext.PortalSettings.UserId;
+            
             // Solo si es primera vez, carga los datos por defecto.
             if (!IsPostBack)
             {
@@ -46,6 +47,8 @@ namespace SetimMod_asoSocio
                     paginaEstado = new PaginaEstado();
                     paginaEstado.ModuleID = this._ModuleId;
                 }
+                // Carga los años
+                CargarDdl_Anio();
                 // Carga los períodos
                 CargarDdl_CamposDelFiltro();
                 // Carga de datos
@@ -82,6 +85,26 @@ namespace SetimMod_asoSocio
                 dgMasterDebito.DataSource = datosDebitos;
                 dgMasterDebito.DataBind();
             }
+            // Calcula los subtotales, total, el nombre del socio y los títulos
+            Decimal SumAportes = 0, SumCuotas = 0, SumDebitos = 0, SumTotal=0;
+
+            int Socio_Id = (int)paginaEstadoMaster.Master_Id;
+            var ctlSocio = new asoSocioControl();
+            var oSocio = ctlSocio._1SelById(Socio_Id);            
+            String strSocioNombre = oSocio.Users_Nombre;
+
+            SumAportes = datosAportes.Sum(aporte => aporte.Valor_Suma);
+            SumCuotas = datosCuotas.Sum(cuota => cuota.Valor_Suma);
+            SumDebitos = datosDebitos.Sum(debito => debito.Valor_Mas_Comision);
+            SumTotal = SumAportes + SumCuotas + SumDebitos;
+
+            AportesTotal.Text = string.Format("{0:N2}", SumAportes);
+            PrestamosTotal.Text = string.Format("{0:N2}", SumCuotas);
+            DebitosTotal.Text = string.Format("{0:N2}", SumDebitos); 
+            // Carga el título            
+            lbFecha.Text = string.Format("Fecha: {0:d}", DateTime.Now);
+            lbSocioNombre.Text = string.Format("Socio: {0}", strSocioNombre);
+            lbSumaTotal.Text = string.Format("Total: {0:N2} ", SumTotal);
         }
         // Proceso para consultar a la base los datos
         private IList<asoPeriodoAporte> ConsultaSPAportes()
@@ -91,6 +114,7 @@ namespace SetimMod_asoSocio
                     Int32.Parse((string)paginaEstado.Filtro_Valor), //Periodo_Actual_Id,
                     (int)paginaEstadoMaster.Master_Id
                 );
+            
             return res;
         }
         private IList<asoPeriodoCuota> ConsultaSPCuotas()
@@ -102,7 +126,7 @@ namespace SetimMod_asoSocio
                     (int)paginaEstadoMaster.Master_Id,
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
                 );
-            PrestamosTotal.Text = string.Format("{0:N2}", res.Sum(cuota => cuota.Valor_Suma));
+            
             return res;
         }
         private IList<asoPeriodoDebito> ConsultaSPDebitos()
@@ -114,14 +138,29 @@ namespace SetimMod_asoSocio
                     (int)paginaEstadoMaster.Master_Id,
                     Int32.Parse((string)paginaEstado.Filtro_Valor) //Periodo_Actual_Id
                 );
-            DebitosTotal.Text = string.Format("{0:N2}",res.Sum(debito => debito.Valor_Mas_Comision)); 
+            
             return res;
+        }
+        // Carga el campo para filtrar años
+        private void CargarDdl_Anio()
+        {
+            asoAnioControl ctlAnio = new asoAnioControl();
+            var lista = ctlAnio._0Sel();
+            
+            ddlFiltro_Anio.DataSource = lista;
+            ddlFiltro_Anio.DataTextField = "Descripcion";
+            ddlFiltro_Anio.DataValueField = "Anio";
+            ddlFiltro_Anio.DataBind();
+
+            paginaEstado.Filtro2_Valor = ddlFiltro_Anio.SelectedValue;
+            
         }
         // Carga los campos para filtrar 
         private void CargarDdl_CamposDelFiltro()
         {
             asoPeriodoControl ctlPeriodo = new asoPeriodoControl();
-            var lista = ctlPeriodo._0SelByPeriodos_Cerrados_12Regs(1);
+
+            var lista = ctlPeriodo._0SelByAnio_Periodos_Cerrados(Int32.Parse((String)(paginaEstado.Filtro2_Valor)));
             foreach (var o in lista)
                 o.Descripcion = string.Format("({0}) {1:d}",o.Id,o.Fecha_Periodo);
 
@@ -133,6 +172,14 @@ namespace SetimMod_asoSocio
             //ddlFiltro_Campo.SelectedValue = paginaEstado.Filtro_Campo ?? "TOD";
             //ddlFiltro_Campo.SelectedIndex = 0;
             paginaEstado.Filtro_Valor = ddlFiltro_Campo.SelectedValue;
+        }
+        // Cambio del año
+        protected void ddlFiltro_Anio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ddl = (DropDownList)sender;
+            paginaEstado.Filtro2_Valor = ddl.SelectedValue;
+            CargarDdl_CamposDelFiltro();
+            ConsultaDatos();
         }
         // Cambio del período
         protected void ddlFiltro_Campo_SelectedIndexChanged(object sender, EventArgs e)

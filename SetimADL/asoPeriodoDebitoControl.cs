@@ -49,6 +49,15 @@ namespace SetimBasico
         }
 
         [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
+        public IList<asoPeriodoDebito> _0SelByAll_Desc_Coutas(Int32 p_dummy)
+        {
+            return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(
+                "sp_asoPeriodoDebito_0SelByAll_Desc_Coutas"
+                , p_dummy
+            ));
+        }
+
+        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
         public IList<asoPeriodoDebito> _0SelByasoServicio_Id_Desc_Coutas(Int32 p_asoServicio_Id)
         {
             return CBO.FillCollection<asoPeriodoDebito>(DataProvider.Instance().ExecuteReader(

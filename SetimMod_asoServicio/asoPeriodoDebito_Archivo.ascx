@@ -18,7 +18,7 @@
         <legend></legend>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lbId" Text="Archivo:" HelpText="Archivo para procesar" />
-            <dnn:DnnFilePicker  runat="server" ID="fpArchivo" FileFilter="xls"   />
+            <dnn:DnnFilePicker  runat="server" ID="fpArchivo" FileFilter="xls" />
         </div>
     </fieldset>
 </div>

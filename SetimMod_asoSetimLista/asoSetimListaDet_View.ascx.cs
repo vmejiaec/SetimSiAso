@@ -49,6 +49,8 @@ namespace SetimMod_asoSetimListaDet
             }
             // Inicializa el botón para crear ua nueva entidad
             addButton.NavigateUrl = ModuleContext.EditUrl("DetEdit");
+            // Seguridad
+            addButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView desde el SP
         protected void ConsultaDatos()

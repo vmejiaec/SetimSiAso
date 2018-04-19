@@ -55,6 +55,8 @@ namespace SetimMod_asoPeriodoAporte
             }
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit_Aporte");
+            // Seguridad 
+            addButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

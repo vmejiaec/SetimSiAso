@@ -67,7 +67,7 @@
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
                     NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
-                    Text="Editar" />
+                    Text="Editar" Enabled='<%# _Usuario_RolSetimEditar %>'/>
             </ItemTemplate>
         </asp:TemplateColumn>
         <asp:TemplateColumn>
@@ -77,7 +77,7 @@
                     class="confirm"
                     CommandArgument='<%# Eval("Id") %>'
                     CommandName="Borrar"
-                    Text="Borrar" />
+                    Text="Borrar" Enabled='<%# _Usuario_RolSetimEditar %>'/>
             </ItemTemplate>
         </asp:TemplateColumn>
     </Columns>

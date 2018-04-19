@@ -57,6 +57,9 @@ namespace SetimMod_asoSocio
             }
             // Inicializa los links
             hlEstadoCta.NavigateUrl = ModuleContext.EditUrl("View_EstadoCta");
+            //Seguridad
+            btCopiarSocios.Enabled = this._Usuario_RolSetimEditar;
+            btAplicarReingreso.Enabled = this._Usuario_RolSetimEditar;
         }
         // Carga los estados desde una lista de SetimLista
         private void CargarDdl_Estados()

@@ -53,6 +53,8 @@ namespace SetimMod_asoPrestamo
             // Inicializa el botón de edición
             addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
             hlCuotas.NavigateUrl = ModuleContext.EditUrl("View_Cuotas");
+            // Seguridad
+            addButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

@@ -141,7 +141,7 @@ namespace SetimMod_asoPrestamo
             // 
             int no_periodos_Max = 24;
             for (int i = 0; i < no_periodos_Max; i++)
-                ddlNo_Periodos.Items.Add(new ListItem(string.Format("{0}", i+6)));
+                ddlNo_Periodos.Items.Add(new ListItem(string.Format("{0}", i+1)));
         }
 
         // Soporte para autocompletar

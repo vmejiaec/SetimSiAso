@@ -12,6 +12,7 @@
     <li><asp:HyperLink runat="server" ID="addButton" Text="Nuevo" CssClass="dnnPrimaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="btSociosRegistrados" Text="Socios Registrados" CssClass="dnnSecondaryAction" /></li>
     <li><asp:HyperLink runat="server" ID="btDebitos" Text="Débitos" CssClass="dnnSecondaryAction" /></li>
+    <li><asp:HyperLink runat="server" ID="Reporte" Text="Reporte General de Débitos" CssClass="dnnSecondaryAction" /></li>
 </ul>
 
 <asp:Panel runat="server" ID="pnFiltros" CssClass="dnnFormMessage" DefaultButton="btBuscar">
@@ -71,7 +72,8 @@
             <ItemTemplate>
                 <asp:HyperLink runat="server" ID="Hyperlink1"
                     NavigateUrl='<%# ModuleContext.EditUrl("EntidadId", Eval("Id").ToString(), "Edit") %>'
-                    Text="Editar" />
+                    Text="Editar"
+                    Enabled='<%# _Usuario_RolSetimEditar %>' />
             </ItemTemplate>
         </asp:TemplateColumn>
         <asp:TemplateColumn>
@@ -81,7 +83,8 @@
                     class="confirm"
                     CommandArgument='<%# Eval("Id") %>'
                     CommandName="Borrar"
-                    Text="Borrar" />
+                    Text="Borrar"
+                    Enabled='<%# _Usuario_RolSetimEditar %>'  />
             </ItemTemplate>
         </asp:TemplateColumn>
     </Columns>

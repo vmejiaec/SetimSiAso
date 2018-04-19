@@ -23,7 +23,7 @@ namespace SetimMod_asoServicio
             {
                 // Obtiene el nombre del servicio
                 asoServicioControl ctrServicio = new asoServicioControl();
-                var oServicio = ctrServicio._1SelById((int)paginaEstadoMaster.Master_Id); 
+                var oServicio = ctrServicio._1SelById((int)paginaEstadoMaster.Master_Id);
                 // Obtiene el período actual
                 asoParametroControl ctlParam = new asoParametroControl();
                 var oParam = ctlParam._1SelById(1);
@@ -55,10 +55,13 @@ namespace SetimMod_asoServicio
                 var infoArchivo = FileManager.Instance.GetFile(fpArchivo.FileID);
                 string archivoExcel = infoArchivo.PhysicalPath;
 
-                string ConnectionString =string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=0\";", archivoExcel);
+                // Actualización del driver para acceder al archivo excel Víctor 2018-03-17
+                //string ConnectionString =string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=0\";", archivoExcel);
+                // Nuevo driver ACE
+                // Para que esto funcione es necesario instalar en el servidor: https ://www.microsoft.com/es-ES/download/confirmation.aspx?id=23734
+                string ConnectionString =string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=Yes\";", archivoExcel);
                 System.Data.OleDb.OleDbConnection objConnection =
                     new System.Data.OleDb.OleDbConnection(ConnectionString);
-
                 objConnection.Open();
                 System.Data.OleDb.OleDbCommand objCommand = new System.Data.OleDb.OleDbCommand();
                 objCommand.Connection = objConnection;

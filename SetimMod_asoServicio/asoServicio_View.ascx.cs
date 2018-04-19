@@ -55,9 +55,19 @@ namespace SetimMod_asoServicio
                 ConsultaDatos();
             }
             // Inicializa el botón de edición
-            addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
-            btSociosRegistrados.NavigateUrl = ModuleContext.EditUrl("DetView");
+            if (this._Usuario_RolSetimEditar)
+            { 
+                btSociosRegistrados.NavigateUrl = ModuleContext.EditUrl("DetView");
+                addButton.NavigateUrl = ModuleContext.EditUrl("Edit");
+            }
+            else
+            {
+                btSociosRegistrados.Enabled = false;
+                addButton.Enabled = false;
+            }
             btDebitos.NavigateUrl = ModuleContext.EditUrl("Det_ViewDebito");
+            // Inicializa el botón para llamar la pantalla del reporte
+            Reporte.NavigateUrl = ModuleContext.EditUrl("Det_DebitoGenRep");
         }
         // Proceso de carga de datos en el GridView
         protected void ConsultaDatos()

@@ -1,0 +1,44 @@
+﻿
+Create Procedure [dbo].[sp_asoAnio_0Sel]
+AS
+BEGIN
+--
+-- SP para obtener los años 
+-- Obtiene una lista de años en base de los períodos cerrados
+-- ordenados descendentemente
+--
+    Set NoCount On;
+	SELECT 
+		min(id) id, 
+		cast(year(fecha_periodo) as varchar(4)) nombre,
+		cast( year(fecha_periodo) as varchar(4)) descripcion,
+		year(fecha_periodo) anio,
+		max(id) max_id
+	FROM [dbo].[asoPeriodo]
+	where estado = 'CER'
+    group by year(fecha_periodo)
+	order by id desc
+END
+
+
+create Procedure [dbo].[sp_asoPeriodo_0SelByAnio_Periodos_Cerrados]
+(
+	@p_Anio int
+)
+AS
+BEGIN
+-- 
+-- SP para obtener los períodos de un determinado año
+-- Obtiene los períodos cerrados del año que recibe como parámetro tipo int
+--
+    Set NoCount On;
+
+	select
+		Id, No_Periodo, Fecha_Periodo, Estado, Descripcion
+	from 
+		asoPeriodo
+	where 
+		Estado = 'CER' and Year(Fecha_Periodo) = @p_Anio
+	order by Id desc
+	
+END

@@ -3,6 +3,7 @@ using DotNetNuke.Common;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Collections;
 using SetimBasico;
+using DotNetNuke.Entities.Users;
 
 namespace SetimMod_asoSocio
 {
@@ -11,6 +12,8 @@ namespace SetimMod_asoSocio
         private int _UserID;
         private int _EntidadId;
         private readonly asoSocioControl _EntidadControl = new asoSocioControl();
+        public static UserInfo _currentUser = UserController.Instance.GetCurrentUserInfo();
+        public bool _Usuario_RolSetimEditar = _currentUser.IsInRole("RolSetimEditar");
 
         protected override void OnLoad(EventArgs e)
         {
@@ -23,6 +26,8 @@ namespace SetimMod_asoSocio
             {
                 ColocarDatosEnFormulario(_EntidadId);
             }
+            // Seguridad            
+            saveButton.Enabled = this._Usuario_RolSetimEditar;
         }
         // Guardar o actualizar dependiendo del parámetro de llamada a la pantalla
         protected void Guardar(object sender, EventArgs e)
