@@ -139,7 +139,7 @@ namespace SetimMod_asoPrestamo
         private void CargarDdl_No_Periodos()
         {
             // 
-            int no_periodos_Max = 24;
+            int no_periodos_Max = 60;
             for (int i = 0; i < no_periodos_Max; i++)
                 ddlNo_Periodos.Items.Add(new ListItem(string.Format("{0}", i+1)));
         }
